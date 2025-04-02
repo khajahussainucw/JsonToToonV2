@@ -2,9 +2,28 @@
 
 
 
-<h1>asdf</h1>
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <a routerLink="/">My Angular App</a>
+    </div>
+    <ul class="nav-links">
+      <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">dummy</a></li>
+
+      <li><a routerLink="/home">Go to About Us</a></li>
+      <li><a routerLink="/about">Go to About Us</a></li>
+    </ul>
+  </nav></header>
 
 
 
 
-<router-outlet />
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Angular App. All rights reserved.</p>
+</footer>
