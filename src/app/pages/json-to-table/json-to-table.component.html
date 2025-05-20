@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>JSON to Table Converter</h1>
+  
+  <div class="content-wrapper">
+    <div class="editor-section">
+      <h2>JSON Input</h2>
+      <div #editor class="editor"></div>
+      <button (click)="convertToTable()" class="convert-btn">Convert to Table</button>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </div>
+
+    <div class="table-section">
+      <h2>Table Output</h2>
+      <div class="table-container">
+        <table *ngIf="tableData.length > 0">
+          <thead>
+            <tr>
+              <th *ngFor="let column of columns">{{ column }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of tableData">
+              <td *ngFor="let column of columns">{{ row[column] }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="tableData.length === 0" class="no-data">
+          No data to display. Please enter valid JSON array.
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
