@@ -1,15 +1,17 @@
 <div class="container">
   <h1>JSON to Table Converter</h1>
   
-  <div class="content-wrapper">
-    <div class="editor-section">
+  <div class="split-container">
+    <div class="split-pane left-pane" id="left-pane">
       <h2>JSON Input</h2>
       <div #editor class="editor"></div>
       <button (click)="convertToTable()" class="convert-btn">Convert to Table</button>
       <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
-
-    <div class="table-section">
+    
+    <div class="splitter" id="splitter" #splitter></div>
+    
+    <div class="split-pane right-pane" id="right-pane">
       <h2>Table Output</h2>
       <div class="table-container">
         <table *ngIf="tableData.length > 0">
