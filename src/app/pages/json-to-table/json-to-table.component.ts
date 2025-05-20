@@ -35,7 +35,14 @@ export class JsonToTableComponent implements AfterViewInit {
       setTimeout(() => {
         this.initializeEditor('');
         this.initSplitter();
-      });
+        
+        // Add window resize handler
+        window.addEventListener('resize', () => {
+          if (this.aceEditor) {
+            this.aceEditor.resize();
+          }
+        });
+      }, 100);
     }
   }
 
@@ -56,8 +63,16 @@ export class JsonToTableComponent implements AfterViewInit {
       highlightActiveLine: true,
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
-      useWrapMode: true
+      useWrapMode: true,
+      showLineNumbers: true,
+      printMargin: false,
+      displayIndentGuides: true
     });
+
+    // Force a resize after initialization
+    setTimeout(() => {
+      this.aceEditor.resize();
+    }, 100);
 
     this.aceEditor.session.on('change', () => {
       this.debouncedConvertToTable();
