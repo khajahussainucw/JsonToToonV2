@@ -2,9 +2,9 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 112px); /* Navbar (56px) + Footer (24px) + Container padding (2 * 24px) + Extra margin (8px) */
+  height: calc(100vh - 56px); /* Only account for Navbar height */
   margin: -1.5rem;  /* Counteract Bootstrap container padding */
-  overflow: hidden;
+  overflow: hidden; /* Prevent main container from scrolling */
 }
 
 /* Common Header */
@@ -23,11 +23,11 @@
   display: flex;
   flex: 1;
   gap: 6px;
-  overflow: hidden;
   background-color: #f5f5f5;
   padding: 6px;
   min-height: 400px;
-  margin-top: 0;  /* Remove top margin */
+  margin-top: 0;
+  overflow: hidden; /* Prevent content area from scrolling */
 }
 
 /* JSON Input Container */
@@ -126,31 +126,76 @@
   flex: 0.7;
   display: flex;
   min-width: 400px;
+  overflow: hidden;
 }
 
 .table-container {
+  padding: 1rem;
+  overflow: auto; /* Enable scrolling for table content */
   width: 100%;
-  overflow: auto;
+  height: 100%;
 }
 
-/* Table Styles */
+/* Card body containing the table should be full height */
+.table-output-container .card-body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Base table styles */
 .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #f8f9fa;
+  border: 2px solid black !important;
+}
+
+/* Cell styles */
+.table td {
+  padding: 0.75rem;
+  border: 1px solid black;
+  vertical-align: top;
+}
+
+/* Key column */
+.nested-key {
+  font-weight: 500;
+  color: #212529;
+  width: 200px;
+  background-color: #f8f9fa;
+}
+
+/* Nested levels */
+.table .table {
+  background-color: #e9ecef !important;
+  border: 3px solid black !important;
   margin: 0;
 }
 
-.table th {
-  position: sticky;
-  top: 0;
-  background-color: #f8f9fa;
-  z-index: 1;
-  font-weight: 600;
-  border-top: none;
+.table .table .table {
+  background-color: #dee2e6 !important;
+  border: 4px solid black !important;
 }
 
-.table td {
-  vertical-align: middle;
+.table .table .table .table {
+  background-color: #ced4da !important;
+  border: 5px solid black !important;
 }
 
+.table .table .table .table .table {
+  background-color: #adb5bd !important;
+  border: 6px solid black !important;
+}
+
+/* Array values */
+.table td span {
+  display: inline-block;
+  padding: 2px 4px;
+}
+
+/* No data message */
 .no-data {
   display: flex;
   align-items: center;
@@ -189,8 +234,8 @@
 
 
 .containerPadding {
-  padding-left: 27px;
-  padding-right: 27px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .nested-table {
@@ -225,22 +270,28 @@
   background-color: #fefefe;
 }
 
-.nested-key {
-  font-weight: 500;
-  color: #495057;
-  font-size: 0.9em;
-  width: 30%;
-  background-color: #f8f9fa;
-}
-
 /* Main table styles */
-.table-container .table > tbody > td {
-  vertical-align: top;
-  padding: 0.75rem;
+.table-container .table {
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #f8f9fa;
+  border: 2px solid black !important;
 }
 
-/* Array of primitives style */
-.nested-table tr td span {
-  display: inline-block;
-  padding: 2px 4px;
+.table-container .table > thead > tr > th {
+  border: 1px solid black;
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+.table-container .table > tbody > tr > td {
+  border: 1px solid black;
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+/* Add spacing between nested tables */
+.table td .table {
+  margin: 4px 0;
 }
