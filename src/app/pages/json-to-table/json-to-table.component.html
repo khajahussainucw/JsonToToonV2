@@ -22,11 +22,10 @@
           <div class="editor-container">
             <div #editor class="editor"></div>
           </div>
-          <div class="control-bar">
-            <button (click)="convertToTable()" class="btn btn-success">
-              <i class="fas fa-table"></i> Convert to Table
-            </button>
-            <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <div class="error-bar" *ngIf="errorMessage">
+            <div class="error-message">
+              <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+            </div>
           </div>
         </div>
       </div>
@@ -58,7 +57,7 @@
               </tbody>
             </table>
             <div *ngIf="tableData.length === 0" class="no-data">
-              Enter valid JSON array and click "Convert to Table" to see results
+              Enter valid JSON array to see the table
             </div>
           </div>
         </div>

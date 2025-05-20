@@ -22,6 +22,7 @@ export class JsonToTableComponent implements AfterViewInit {
   private initialX = 0;
   private initialLeftWidth = 0;
   private containerWidth = 0;
+  private debounceTimer: any;
   
   tableData: any[] = [];
   columns: string[] = [];
@@ -46,7 +47,7 @@ export class JsonToTableComponent implements AfterViewInit {
     }
 
     this.aceEditor = ace.edit(this.editor.nativeElement);
-    this.aceEditor.setTheme('ace/theme/monokai');
+    this.aceEditor.setTheme('ace/theme/github');
     this.aceEditor.session.setMode('ace/mode/json');
     this.aceEditor.setValue(content);
     this.aceEditor.setOptions({
@@ -55,58 +56,121 @@ export class JsonToTableComponent implements AfterViewInit {
       showGutter: true,
       highlightActiveLine: true,
       enableBasicAutocompletion: true,
-      enableLiveAutocompletion: true
+      enableLiveAutocompletion: true,
+      useWrapMode: true
     });
+
+    this.aceEditor.session.on('change', () => {
+      this.debouncedConvertToTable();
+    });
+  }
+
+  private debouncedConvertToTable() {
+    clearTimeout(this.debounceTimer);
+    this.debounceTimer = setTimeout(() => {
+      this.convertToTable();
+    }, 300);
   }
 
   loadSampleData() {
     const sampleData = [
       {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john@example.com",
-        "age": 30,
-        "address": {
-          "street": "123 Main St",
-          "city": "Boston",
-          "state": "MA",
-          "zip": "02108"
+        "team": "Team A",
+        "members": [
+          { "name": "Alice", "role": "Leader" },
+          { "name": "Bob", "role": "Member" }
+        ],
+        "details": {
+          "location": "New York",
+          "project": {
+            "name": "Project X",
+            "status": "Active"
+          }
         },
-        "roles": ["admin", "user"],
-        "active": true
+        "tags": ["frontend", "backend"]
       },
       {
-        "id": 2,
-        "name": "Jane Smith",
-        "email": "jane@example.com",
-        "age": 25,
-        "address": {
-          "street": "456 Park Ave",
-          "city": "New York",
-          "state": "NY",
-          "zip": "10022"
+        "team": "Team B",
+        "members": [
+          { "name": "Carol", "role": "Leader" },
+          { "name": "Dave", "role": "Member" }
+        ],
+        "details": {
+          "location": "London",
+          "project": {
+            "name": "Project Y",
+            "status": "Planning"
+          }
         },
-        "roles": ["user"],
-        "active": true
-      },
-      {
-        "id": 3,
-        "name": "Bob Johnson",
-        "email": "bob@example.com",
-        "age": 35,
-        "address": {
-          "street": "789 Elm St",
-          "city": "Chicago",
-          "state": "IL",
-          "zip": "60601"
-        },
-        "roles": ["user", "editor"],
-        "active": false
+        "tags": ["mobile", "design"]
       }
     ];
     
     this.aceEditor.setValue(JSON.stringify(sampleData, null, 2));
     this.convertToTable();
+  }
+
+  private flattenObject(obj: any, prefix = ''): any {
+    return Object.keys(obj).reduce((acc: any, key: string) => {
+      const propName = prefix ? `${prefix}.${key}` : key;
+      
+      if (obj[key] === null || obj[key] === undefined) {
+        acc[propName] = '';
+      } else if (Array.isArray(obj[key])) {
+        // Handle arrays by joining elements
+        acc[propName] = obj[key].map((item: any) => 
+          typeof item === 'object' ? JSON.stringify(item) : item
+        ).join(', ');
+      } else if (typeof obj[key] === 'object') {
+        // Recursively flatten nested objects
+        Object.assign(acc, this.flattenObject(obj[key], propName));
+      } else {
+        acc[propName] = obj[key];
+      }
+      
+      return acc;
+    }, {});
+  }
+
+  convertToTable() {
+    try {
+      const jsonContent = this.aceEditor.getValue().trim();
+      if (!jsonContent) {
+        this.tableData = [];
+        this.columns = [];
+        return;
+      }
+
+      const data = JSON.parse(jsonContent);
+      
+      if (!Array.isArray(data)) {
+        throw new Error('JSON must be an array of objects');
+      }
+
+      if (data.length === 0) {
+        this.tableData = [];
+        this.columns = [];
+        return;
+      }
+
+      // Flatten each object in the array
+      const flattenedData = data.map(item => this.flattenObject(item));
+      
+      // Get all unique columns from all objects
+      const allColumns = new Set<string>();
+      flattenedData.forEach(item => {
+        Object.keys(item).forEach(key => allColumns.add(key));
+      });
+
+      this.columns = Array.from(allColumns);
+      this.tableData = flattenedData;
+      this.errorMessage = '';
+    } catch (error) {
+      this.errorMessage = 'Invalid JSON format';
+      console.error('Error parsing JSON:', error);
+      this.tableData = [];
+      this.columns = [];
+    }
   }
 
   private initSplitter() {
@@ -117,7 +181,6 @@ export class JsonToTableComponent implements AfterViewInit {
       return;
     }
     
-    // Initialize with 50/50 split
     this.leftPane.style.flex = '1';
     this.rightPane.style.flex = '1';
     
@@ -139,7 +202,6 @@ export class JsonToTableComponent implements AfterViewInit {
     document.documentElement.classList.add('resize-cursor');
     this.splitter.nativeElement.classList.add('dragging');
     
-    // Prevent text selection during drag
     document.addEventListener('selectstart', this.preventSelection);
   }
   
@@ -156,7 +218,6 @@ export class JsonToTableComponent implements AfterViewInit {
     this.leftPane.style.flex = `${leftRatio}`;
     this.rightPane.style.flex = `${rightRatio}`;
     
-    // Update editor size
     if (this.aceEditor) {
       this.aceEditor.resize();
     }
@@ -170,7 +231,6 @@ export class JsonToTableComponent implements AfterViewInit {
       this.splitter.nativeElement.classList.remove('dragging');
       document.removeEventListener('selectstart', this.preventSelection);
       
-      // Update editor size
       if (this.aceEditor) {
         this.aceEditor.resize();
       }
@@ -180,30 +240,5 @@ export class JsonToTableComponent implements AfterViewInit {
   private preventSelection(e: Event) {
     e.preventDefault();
     return false;
-  }
-
-  convertToTable() {
-    try {
-      const jsonContent = this.aceEditor.getValue();
-      const data = JSON.parse(jsonContent);
-      
-      if (!Array.isArray(data)) {
-        throw new Error('JSON must be an array of objects');
-      }
-
-      if (data.length === 0) {
-        this.tableData = [];
-        this.columns = [];
-        return;
-      }
-
-      // Get columns from the first object
-      this.columns = Object.keys(data[0]);
-      this.tableData = data;
-      this.errorMessage = '';
-    } catch (error) {
-      this.errorMessage = 'Invalid JSON format';
-      console.error('Error parsing JSON:', error);
-    }
   }
 } 
