@@ -7,6 +7,17 @@
   overflow: hidden;
 }
 
+/* Common Header */
+.common-header {
+  margin-bottom: 0;  /* Remove bottom margin */
+}
+
+.common-header .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0,0,0,0.125);
+  padding: 0.75rem 1rem;
+}
+
 /* Content Area */
 .content-area {
   display: flex;
@@ -16,13 +27,15 @@
   background-color: #f5f5f5;
   padding: 6px;
   min-height: 400px;
+  margin-top: 0;  /* Remove top margin */
 }
 
 /* JSON Input Container */
 .json-input-container {
-  flex: 1;
+  flex: 0.3;
   display: flex;
   min-width: 200px;
+  max-width: 40%;
 }
 
 .card {
@@ -110,9 +123,9 @@
 
 /* Table Output Container */
 .table-output-container {
-  flex: 1;
+  flex: 0.7;
   display: flex;
-  min-width: 200px;
+  min-width: 400px;
 }
 
 .table-container {

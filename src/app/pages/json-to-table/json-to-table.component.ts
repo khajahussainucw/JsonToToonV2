@@ -181,8 +181,9 @@ export class JsonToTableComponent implements AfterViewInit {
       return;
     }
     
-    this.leftPane.style.flex = '1';
-    this.rightPane.style.flex = '1';
+    // Initialize with 30/70 split
+    this.leftPane.style.flex = '0.3';
+    this.rightPane.style.flex = '0.7';
     
     this.splitter.nativeElement.addEventListener('mousedown', this.startDrag.bind(this));
   }
@@ -210,7 +211,7 @@ export class JsonToTableComponent implements AfterViewInit {
     if (!this.isDragging || !this.leftPane || !this.rightPane) return;
     
     const deltaX = e.clientX - this.initialX;
-    const newLeftWidth = Math.max(100, Math.min(this.containerWidth - 100, this.initialLeftWidth + deltaX));
+    const newLeftWidth = Math.max(200, Math.min(this.containerWidth * 0.4, this.initialLeftWidth + deltaX));
     
     const leftRatio = newLeftWidth / this.containerWidth;
     const rightRatio = 1 - leftRatio;
