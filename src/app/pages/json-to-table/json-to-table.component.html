@@ -48,7 +48,7 @@
                 </ng-container>
               </ng-container>
             </ng-container>
-            <div *ngIf="tableData.length === 0" class="no-data">
+            <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
               Enter valid JSON array to see the table
             </div>
           </div>

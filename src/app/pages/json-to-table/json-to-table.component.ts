@@ -35,7 +35,6 @@ export class JsonToTableComponent implements AfterViewInit {
       setTimeout(() => {
         this.initializeEditor('');
         this.initSplitter();
-        this.loadSampleData();
       });
     }
   }
@@ -49,7 +48,7 @@ export class JsonToTableComponent implements AfterViewInit {
     this.aceEditor = ace.edit(this.editor.nativeElement);
     this.aceEditor.setTheme('ace/theme/github');
     this.aceEditor.session.setMode('ace/mode/json');
-    this.aceEditor.setValue(content);
+    this.aceEditor.setValue(content, -1);
     this.aceEditor.setOptions({
       fontSize: '14px',
       showPrintMargin: false,
@@ -74,46 +73,30 @@ export class JsonToTableComponent implements AfterViewInit {
 
   loadSampleData() {
     const sampleData = {
-      "simpleValues": {
-        "string": "Hello World",
-        "number": 42,
-        "boolean": true,
-        "null": null
-      },
-      "arrays": {
-        "simple": [1, 2, 3, 4, 5],
-        "mixed": [1, "two", { "three": 3 }, [4, 5]],
-        "objects": [
-          { "id": 1, "name": "Item 1" },
-          { "id": 2, "name": "Item 2" }
-        ]
-      },
-      "nestedObjects": {
-        "level1": {
-          "level2": {
-            "level3": {
-              "deep": "Very Deep Value"
-            }
-          }
-        }
-      },
-      "complexArray": [
+      "project": "FitTrack Pro",
+      "description": "A comprehensive fitness tracker for maintaining a healthy lifestyle",
+      "features": [
         {
           "id": 1,
-          "details": {
-            "info": {
-              "tags": ["important", "urgent"]
-            }
-          }
+          "feature_name": "Step Counter",
+          "description": "Tracks daily steps and calorie burn"
         },
         {
           "id": 2,
-          "details": {
-            "info": {
-              "tags": ["normal"]
-            }
-          }
+          "feature_name": "Workout Plans",
+          "description": "Personalized workout plans based on fitness goals"
+        },
+        {
+          "id": 3,
+          "feature_name": "Health Metrics",
+          "description": "Monitors heart rate, sleep, and hydration levels"
         }
+      ],
+      "created_at": "2024-12-20",
+      "version": "2.5.0",
+      "integrations": [
+        "Google Fit",
+        "Apple Health"
       ]
     };
     
