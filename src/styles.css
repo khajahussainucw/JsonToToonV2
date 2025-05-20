@@ -53,17 +53,7 @@ app-root {
   color: #f8f9fa;
 }
 
-.navbar-brand:hover .logo-json {
-  transform: rotate(-8deg);
-}
 
-.navbar-brand:hover .logo-to {
-  transform: rotate(12deg);
-}
-
-.navbar-brand:hover .logo-table {
-  transform: rotate(-8deg);
-}
 
 /* Global Button Styles */
 .action-buttons {

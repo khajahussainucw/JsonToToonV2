@@ -1,9 +1,25 @@
 /* Container styles */
+.container-fluid {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+/*  margin: 1rem 0;*/
+}
+/*
+.container-fluid:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}*/
+
 /* Card styles */
 .card {
   border: 1px solid rgba(0,0,0,0.1);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   transition: box-shadow 0.3s ease;
+  height: calc(100vh - 86px); /* Account for just the navbar */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; /* Add space before footer */
 }
 
 .card:hover {
@@ -19,12 +35,14 @@
 .card-body {
   padding: 0;
   background-color: #fff;
+  flex: 1;
+  min-height: 0; /* Important for Firefox */
 }
 
 /* Split Container */
 .split-container {
   display: flex;
-  height: 600px;
+  height: 100%;
   background-color: #fff;
 }
 
@@ -154,13 +172,31 @@
   border-collapse: separate;
   border-spacing: 0;
   background-color: #fff;
-  border: 2px solid #000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  transition: box-shadow 0.3s ease;
+  border: 2.5px solid #564b4b;
+  box-shadow: 1px 5px 5px #878686;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .table:hover {
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 1px 7px 7px #878686;
+}
+
+.table th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.table th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 .table td {
@@ -194,7 +230,7 @@
   border: 5px solid #000;
 }
 
-.table .table .table .table .table {
+.table .table .table .table {
   background-color: #dee2e6;
   border: 6px solid #000;
 }
