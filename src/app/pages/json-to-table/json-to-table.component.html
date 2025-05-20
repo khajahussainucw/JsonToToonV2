@@ -1,18 +1,35 @@
-<div class="container">
-  <h1>JSON to Table Converter</h1>
-  
-  <div class="split-container">
-    <div class="split-pane left-pane" id="left-pane">
-      <h2>JSON Input</h2>
-      <div #editor class="editor"></div>
-      <button (click)="convertToTable()" class="convert-btn">Convert to Table</button>
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div class="main-container">
+  <!-- Content area -->
+  <div class="content-area">
+    <div class="json-input-container">
+      <div class="input-header">
+        <p>Copy and Paste JSON in the following area</p>
+        <div class="action-buttons">
+          <button class="btn-sample" (click)="loadSampleData()">
+            <i class="fas fa-flask"></i> Sample
+          </button>
+          <button class="btn-share">
+            <i class="fas fa-share"></i> Share
+          </button>
+          <button class="btn-help">
+            <i class="fas fa-question-circle"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="editor-container">
+        <div #editor class="editor"></div>
+      </div>
+      
+      <div class="control-bar">
+        <button (click)="convertToTable()" class="convert-btn">Convert to Table</button>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      </div>
     </div>
     
     <div class="splitter" id="splitter" #splitter></div>
     
-    <div class="split-pane right-pane" id="right-pane">
-      <h2>Table Output</h2>
+    <div class="table-output-container">
       <div class="table-container">
         <table *ngIf="tableData.length > 0">
           <thead>
@@ -27,7 +44,7 @@
           </tbody>
         </table>
         <div *ngIf="tableData.length === 0" class="no-data">
-          No data to display. Please enter valid JSON array.
+          Enter valid JSON array and click "Convert to Table" to see results
         </div>
       </div>
     </div>

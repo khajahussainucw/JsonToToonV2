@@ -31,15 +31,10 @@ export class JsonToTableComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Initialize with sample JSON
-      const sampleJson = JSON.stringify([
-        { "id": 1, "name": "John", "age": 30 },
-        { "id": 2, "name": "Jane", "age": 25 }
-      ], null, 2);
-      
       setTimeout(() => {
-        this.initializeEditor(sampleJson);
+        this.initializeEditor('');
         this.initSplitter();
+        this.loadSampleData();
       });
     }
   }
@@ -62,13 +57,61 @@ export class JsonToTableComponent implements AfterViewInit {
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true
     });
+  }
+
+  loadSampleData() {
+    const sampleData = [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "age": 30,
+        "address": {
+          "street": "123 Main St",
+          "city": "Boston",
+          "state": "MA",
+          "zip": "02108"
+        },
+        "roles": ["admin", "user"],
+        "active": true
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "age": 25,
+        "address": {
+          "street": "456 Park Ave",
+          "city": "New York",
+          "state": "NY",
+          "zip": "10022"
+        },
+        "roles": ["user"],
+        "active": true
+      },
+      {
+        "id": 3,
+        "name": "Bob Johnson",
+        "email": "bob@example.com",
+        "age": 35,
+        "address": {
+          "street": "789 Elm St",
+          "city": "Chicago",
+          "state": "IL",
+          "zip": "60601"
+        },
+        "roles": ["user", "editor"],
+        "active": false
+      }
+    ];
     
+    this.aceEditor.setValue(JSON.stringify(sampleData, null, 2));
     this.convertToTable();
   }
 
   private initSplitter() {
-    this.leftPane = document.getElementById('left-pane');
-    this.rightPane = document.getElementById('right-pane');
+    this.leftPane = document.querySelector('.json-input-container');
+    this.rightPane = document.querySelector('.table-output-container');
     
     if (!this.leftPane || !this.rightPane || !this.splitter) {
       return;
