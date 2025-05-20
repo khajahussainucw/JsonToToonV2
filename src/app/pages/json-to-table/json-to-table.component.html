@@ -79,7 +79,7 @@
       <table class="table">
         <tbody>
           <tr *ngFor="let key of getObjectKeys(data)">
-            <td class="nested-key">{{ key }}</td>
+            <td class="nested-key"><b>{{ key }}</b></td>
             <td>
               <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key] }">
               </ng-container>

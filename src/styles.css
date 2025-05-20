@@ -29,15 +29,16 @@ app-root {
   transform: rotate(-5deg);
 }
 
-.logo-json span {
-  display: inline-block;
-  transform: rotate(0deg);
-  color: #dc3545;
-  border: 2px solid #ffc107;
-  padding: 0 4px;
-  border-radius: 4px;
-  background-color: rgba(255, 193, 7, 0.1);
-}
+  .logo-json span {
+    display: inline-block;
+    transform: rotate(0deg);
+    color: #dc3545;
+    /* border: 2px solid #ffc107;*/
+    border: 3px solid #704800;
+    padding: 0 4px;
+    border-radius: 4px;
+    /* background-color: rgba(255, 193, 7, 0.1);*/
+  }
 
 .logo-to {
   display: inline-block;

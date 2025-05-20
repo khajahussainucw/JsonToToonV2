@@ -30,7 +30,7 @@
 
 /* JSON Input Container */
 .json-input-container {
-  flex: 0.45;
+  flex: 0.3;
   position: relative;
   border-right: 1px solid rgba(0,0,0,0.1);
   background-color: #f8f9fa;
@@ -136,7 +136,7 @@
 
 /* Table Output Container */
 .table-output-container {
-  flex: 0.55;
+  flex: 0.7;
   overflow: hidden;
   background-color: #fff;
 }
