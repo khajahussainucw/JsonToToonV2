@@ -17,6 +17,85 @@ app-root {
   height: 100%;
 }
 
+/* Logo Styles */
+.navbar-brand {
+  padding: 0 !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo-json {
+  display: inline-block;
+  transform: rotate(-5deg);
+}
+
+.logo-json span {
+  display: inline-block;
+  transform: rotate(0deg);
+  color: #dc3545;
+  border: 2px solid #ffc107;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: rgba(255, 193, 7, 0.1);
+}
+
+.logo-to {
+  display: inline-block;
+  transform: rotate(30deg);
+  color: forestgreen;
+  margin: 0 3px;
+}
+
+.logo-table {
+  display: inline-block;
+  transform: rotate(-5deg);
+  color: #f8f9fa;
+}
+
+.navbar-brand:hover .logo-json {
+  transform: rotate(-8deg);
+}
+
+.navbar-brand:hover .logo-to {
+  transform: rotate(12deg);
+}
+
+.navbar-brand:hover .logo-table {
+  transform: rotate(-8deg);
+}
+
+/* Global Button Styles */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-buttons .btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.btn-dark {
+  background-color: #212529;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-dark:hover {
+  background-color: #343a40;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-dark:active {
+  transform: translateY(0);
+}
+
 .resize-cursor {
   cursor: col-resize !important;
 }
