@@ -73,61 +73,107 @@ export class JsonToTableComponent implements AfterViewInit {
   }
 
   loadSampleData() {
-    const sampleData = [
-      {
-        "team": "Team A",
-        "members": [
-          { "name": "Alice", "role": "Leader" },
-          { "name": "Bob", "role": "Member" }
-        ],
-        "details": {
-          "location": "New York",
-          "project": {
-            "name": "Project X",
-            "status": "Active"
-          }
-        },
-        "tags": ["frontend", "backend"]
+    const sampleData = {
+      "simpleValues": {
+        "string": "Hello World",
+        "number": 42,
+        "boolean": true,
+        "null": null
       },
-      {
-        "team": "Team B",
-        "members": [
-          { "name": "Carol", "role": "Leader" },
-          { "name": "Dave", "role": "Member" }
-        ],
-        "details": {
-          "location": "London",
-          "project": {
-            "name": "Project Y",
-            "status": "Planning"
+      "arrays": {
+        "simple": [1, 2, 3, 4, 5],
+        "mixed": [1, "two", { "three": 3 }, [4, 5]],
+        "objects": [
+          { "id": 1, "name": "Item 1" },
+          { "id": 2, "name": "Item 2" }
+        ]
+      },
+      "nestedObjects": {
+        "level1": {
+          "level2": {
+            "level3": {
+              "deep": "Very Deep Value"
+            }
+          }
+        }
+      },
+      "complexArray": [
+        {
+          "id": 1,
+          "details": {
+            "info": {
+              "tags": ["important", "urgent"]
+            }
           }
         },
-        "tags": ["mobile", "design"]
-      }
-    ];
+        {
+          "id": 2,
+          "details": {
+            "info": {
+              "tags": ["normal"]
+            }
+          }
+        }
+      ]
+    };
     
     this.aceEditor.setValue(JSON.stringify(sampleData, null, 2));
     this.convertToTable();
   }
 
-  private flattenObject(obj: any, prefix = ''): any {
-    return Object.keys(obj).reduce((acc: any, key: string) => {
-      const propName = prefix ? `${prefix}.${key}` : key;
-      
-      if (obj[key] === null || obj[key] === undefined) {
-        acc[propName] = '';
-      } else if (Array.isArray(obj[key])) {
-        // Handle arrays by joining elements
-        acc[propName] = obj[key].map((item: any) => 
-          typeof item === 'object' ? JSON.stringify(item) : item
-        ).join(', ');
-      } else if (typeof obj[key] === 'object') {
-        // Recursively flatten nested objects
-        Object.assign(acc, this.flattenObject(obj[key], propName));
-      } else {
-        acc[propName] = obj[key];
+  isArray(value: any): boolean {
+    return Array.isArray(value);
+  }
+
+  isObject(value: any): boolean {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  getObjectKeys(obj: any): string[] {
+    if (!obj || typeof obj !== 'object') return [];
+    return Object.keys(obj);
+  }
+
+  hasComplexItems(arr: any[]): boolean {
+    if (!Array.isArray(arr) || arr.length === 0) return false;
+    return arr.some(item => typeof item === 'object' && item !== null);
+  }
+
+  getCommonKeys(arr: any[]): string[] {
+    if (!Array.isArray(arr) || arr.length === 0) return [];
+    
+    // Get all possible keys from all objects
+    const keySet = new Set<string>();
+    arr.forEach(item => {
+      if (item && typeof item === 'object') {
+        Object.keys(item).forEach(key => keySet.add(key));
       }
-      
+    });
+    
+    return Array.from(keySet);
+  }
+
+  private formatValue(value: any): any {
+    if (value === null || value === undefined) {
+      return '';
+    }
+    return value; // Return as is for recursive handling
+  }
+
+  private flattenObject(obj: any): any {
+    // Handle null or undefined
+    if (obj === null || obj === undefined) {
+      return { value: '' };
+    }
+
+    // Handle primitive types
+    if (typeof obj !== 'object') {
+      return { value: String(obj) };
+    }
+
+    // Keep structure for recursive handling
+    return Object.keys(obj).reduce((acc: any, key: string) => {
+      acc[key] = this.formatValue(obj[key]);
       return acc;
     }, {});
   }
@@ -138,36 +184,46 @@ export class JsonToTableComponent implements AfterViewInit {
       if (!jsonContent) {
         this.tableData = [];
         this.columns = [];
+        this.errorMessage = '';
         return;
       }
 
-      const data = JSON.parse(jsonContent);
+      let data = JSON.parse(jsonContent);
       
+      // Convert single object to array
       if (!Array.isArray(data)) {
-        throw new Error('JSON must be an array of objects');
+        data = [data];
       }
 
-      if (data.length === 0) {
-        this.tableData = [];
-        this.columns = [];
-        return;
+      // Validate that we have objects
+      if (data.length === 0 || data.some((item: unknown) => typeof item !== 'object' || item === null)) {
+        throw new Error('JSON must contain objects');
       }
 
-      // Flatten each object in the array
-      const flattenedData = data.map(item => this.flattenObject(item));
-      
-      // Get all unique columns from all objects
+      // Process each object in the array
+      const processedData = data.map((item: Record<string, any>) => {
+        try {
+          return this.flattenObject(item);
+        } catch (err) {
+          console.warn('Error processing object:', err);
+          return item;
+        }
+      });
+
+      // Get all unique top-level keys
       const allColumns = new Set<string>();
-      flattenedData.forEach(item => {
-        Object.keys(item).forEach(key => allColumns.add(key));
+      processedData.forEach((item: Record<string, any>) => {
+        if (item && typeof item === 'object') {
+          Object.keys(item).forEach(key => allColumns.add(key));
+        }
       });
 
       this.columns = Array.from(allColumns);
-      this.tableData = flattenedData;
+      this.tableData = processedData;
       this.errorMessage = '';
-    } catch (error) {
-      this.errorMessage = 'Invalid JSON format';
-      console.error('Error parsing JSON:', error);
+    } catch (error: any) {
+      this.errorMessage = error.message || 'Invalid JSON format';
+      console.error('Error processing JSON:', error);
       this.tableData = [];
       this.columns = [];
     }

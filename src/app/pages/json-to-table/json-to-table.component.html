@@ -42,18 +42,23 @@
       <div class="card h-100">
         <div class="card-body p-0">
           <div class="table-container">
-            <table *ngIf="tableData.length > 0" class="table table-hover mb-0">
-              <thead>
-                <tr>
-                  <th *ngFor="let column of columns">{{ column }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let row of tableData">
-                  <td *ngFor="let column of columns">{{ row[column] }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <ng-container *ngIf="tableData.length > 0">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th *ngFor="let column of columns">{{ column }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of tableData">
+                    <td *ngFor="let column of columns">
+                      <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[column] }">
+                      </ng-container>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
             <div *ngIf="tableData.length === 0" class="no-data">
               Enter valid JSON array to see the table
             </div>
@@ -62,4 +67,60 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
+
+<!-- Recursive template for nested structures -->
+<ng-template #recursiveTable let-data>
+  <ng-container [ngSwitch]="true">
+    <!-- Array handling -->
+    <ng-container *ngSwitchCase="isArray(data)">
+      <table class="table table-sm nested-table" *ngIf="data.length > 0">
+        <thead *ngIf="hasComplexItems(data)">
+          <tr>
+            <th *ngFor="let key of getCommonKeys(data)">{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="hasComplexItems(data); else simpleArray">
+            <tr *ngFor="let item of data">
+              <td *ngFor="let key of getCommonKeys(data)">
+                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key] }">
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #simpleArray>
+            <tr>
+              <td>
+                <span *ngFor="let item of data; let last = last">
+                  {{ item }}{{ !last ? ', ' : '' }}
+                </span>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+      <span *ngIf="data.length === 0">[]</span>
+    </ng-container>
+
+    <!-- Object handling -->
+    <ng-container *ngSwitchCase="isObject(data)">
+      <table class="table table-sm nested-table">
+        <tbody>
+          <tr *ngFor="let key of getObjectKeys(data)">
+            <td class="nested-key">{{ key }}</td>
+            <td>
+              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key] }">
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <!-- Primitive value handling -->
+    <ng-container *ngSwitchDefault>
+      {{ data }}
+    </ng-container>
+  </ng-container>
+</ng-template> 

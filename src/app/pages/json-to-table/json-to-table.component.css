@@ -192,3 +192,55 @@
   padding-left: 27px;
   padding-right: 27px;
 }
+
+.nested-table {
+  margin: 0;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.nested-table td {
+  padding: 0.4rem 0.75rem !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+.nested-table th {
+  padding: 0.5rem 0.75rem !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: #f8f9fa;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+/* Add visual hierarchy for nested levels */
+.nested-table .nested-table {
+  background-color: #fcfcfc;
+  margin: 4px 0;
+}
+
+.nested-table .nested-table .nested-table {
+  background-color: #fefefe;
+}
+
+.nested-key {
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9em;
+  width: 30%;
+  background-color: #f8f9fa;
+}
+
+/* Main table styles */
+.table-container .table > tbody > td {
+  vertical-align: top;
+  padding: 0.75rem;
+}
+
+/* Array of primitives style */
+.nested-table tr td span {
+  display: inline-block;
+  padding: 2px 4px;
+}
