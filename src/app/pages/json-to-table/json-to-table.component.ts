@@ -253,7 +253,7 @@ export class JsonToTableComponent implements AfterViewInit {
       this.tableData = processedData;
       this.errorMessage = '';
     } catch (error: any) {
-      this.errorMessage = error.message || 'Invalid JSON format';
+      //this.errorMessage = 'Invalid JSON format';
       console.error('Error processing JSON:', error);
       this.tableData = [];
       this.columns = [];

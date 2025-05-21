@@ -12,7 +12,7 @@
         <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
           <i class="fas fa-info-circle"></i>
         </button>
-        <button class="btn btn-sm btn-success ms-2" (click)="downloadAsExcel()">
+        <button class="btn btn-sm btn-dark ms-2" (click)="downloadAsExcel()" *ngIf="tableData.length > 0 && !errorMessage">
           <i class="fas fa-file-excel"></i> Download
         </button>
       </div>
@@ -23,7 +23,7 @@
           <div #editor class="editor"></div>
           <div class="error-bar" *ngIf="errorMessage">
             <div class="error-message">
-              <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+              <i class="fas fa-exclamation-circle text-danger"></i> {{ errorMessage }}
             </div>
           </div>
         </div>
