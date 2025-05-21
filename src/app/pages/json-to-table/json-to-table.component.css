@@ -192,29 +192,28 @@
   background-color: #fff;
   border: 2.5px solid #564b4b;
   box-shadow: 1px 5px 5px #878686;
-/*  border-radius: 10px 0 0 10px;*/
   transition: all 0.3s ease;
   overflow: hidden;
+  border-radius: 0;
+}
+
+/* Nested table styles */
+.table .table {
+  margin: 4px 0;
+  box-shadow: none;
+  border: 2px solid #000;
 }
 
 .table:hover {
   box-shadow: 1px 7px 7px #878686;
 }
 
-.table th:first-child {
-  border-top-left-radius: 10px;
-}
-
-.table th:last-child {
-  border-top-right-radius: 0;
-}
-
-.table tr:last-child td:first-child {
-  border-bottom-left-radius: 10px;
-}
-
+/* Remove all border radius rules */
+.table th:first-child,
+.table th:last-child,
+.table tr:last-child td:first-child,
 .table tr:last-child td:last-child {
-  border-bottom-right-radius: 0;
+  border-radius: 0;
 }
 
 .table td {
