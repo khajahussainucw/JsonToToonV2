@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 declare const ace: any;
 
@@ -33,7 +34,37 @@ export class JsonToTableComponent implements AfterViewInit {
   columns: string[] = [];
   errorMessage: string = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private meta: Meta,
+    private title: Title
+  ) {
+    this.setupMetaTags();
+  }
+
+  private setupMetaTags() {
+    // Set page title
+    this.title.setTitle('JSON to Table Converter - Convert Complex JSON to HTML Table Online');
+
+    // Set meta description
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Convert complex JSON to HTML table. Supports complex JSON, offering a responsive interface for real-time conversion and validation.'
+    });
+
+    // Set meta keywords
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'json to table,json to table converter,json to html table,convert json,json to html,json converter,json string,convert json to table,jsontotable,convert json to table online,jason to table,json into table,from json to table,json to tabel,json totable,jsonto table,transform json to table,json2 table,complex json to table online,json2table,json parser,json parser online,json object viewer'
+    });
+
+    // Add additional meta tags for better SEO
+    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
+    this.meta.updateTag({ name: 'author', content: 'JSON to Table Converter' });
+    this.meta.updateTag({ property: 'og:title', content: 'JSON to Table Converter - Convert Complex JSON to HTML Table Online' });
+    this.meta.updateTag({ property: 'og:description', content: 'Convert complex JSON to HTML table. Supports complex JSON, offering a responsive interface for real-time conversion and validation.' });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+  }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
