@@ -12,6 +12,9 @@
         <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
           <i class="fas fa-info-circle"></i>
         </button>
+        <button class="btn btn-sm btn-success ms-2" (click)="downloadAsExcel()">
+          <i class="fas fa-file-excel"></i> Download
+        </button>
       </div>
     </div>
     <div class="card-body p-0">
@@ -28,7 +31,7 @@
         <div class="splitter" id="splitter" #splitter></div>
         
         <div class="table-output-container">
-          <div class="table-container">
+          <div class="table-container" #tableContainer>
             <ng-container *ngIf="tableData.length > 0">
               <ng-container *ngFor="let item of tableData">
                 <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item }">
@@ -94,4 +97,4 @@
       {{ data }}
     </ng-container>
   </ng-container>
-</ng-template> 
+</ng-template>

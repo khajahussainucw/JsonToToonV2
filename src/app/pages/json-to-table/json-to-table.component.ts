@@ -14,6 +14,7 @@ declare const ace: any;
 export class JsonToTableComponent implements AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
+  @ViewChild('tableContainer', { static: false }) private tableContainer!: ElementRef<HTMLElement>;
   
   private aceEditor: any;
   private isDragging = false;
@@ -182,6 +183,32 @@ export class JsonToTableComponent implements AfterViewInit {
     }, {});
   }
 
+  /**
+   * Generates an Excel file from the HTML table and triggers download.
+   */
+  downloadAsExcel(): void {
+    let tableHtml = this.tableContainer.nativeElement.innerHTML;
+    // inject table border only
+    tableHtml = tableHtml.replace(/<table/gi, '<table border="1"');
+    // left-align all header and data cells and vertical middle
+    tableHtml = tableHtml.replace(/<(th|td)/gi, '<$1 align="left" valign="middle"');
+    // embed CSS style for borders and collapse
+    const style = '<style>table, th, td { border:1px solid #000; border-collapse:collapse; }</style>';
+    const excelContent = 
+      `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+       <head><meta charset="UTF-8">${style}</head>
+       <body>${tableHtml}</body></html>`;
+    const blob = new Blob([excelContent], { type: 'application/vnd.ms-excel' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'table-data.xls';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
   convertToTable() {
     try {
       const jsonContent = this.aceEditor.getValue().trim();
@@ -314,4 +341,4 @@ export class JsonToTableComponent implements AfterViewInit {
     e.preventDefault();
     return false;
   }
-} 
+}
