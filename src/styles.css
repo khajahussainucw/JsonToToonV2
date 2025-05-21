@@ -24,6 +24,13 @@ app-root {
   letter-spacing: 0.5px;
 }
 
+.logo-json,
+.logo-to,
+.logo-table {
+  font-family: 'Roboto Mono', monospace;
+  transition: all 0.3s ease;
+}
+
 .logo-json {
   display: inline-block;
   transform: rotate(-5deg);
