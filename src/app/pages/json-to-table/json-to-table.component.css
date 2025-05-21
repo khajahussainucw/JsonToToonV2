@@ -174,7 +174,7 @@
   background-color: #fff;
   border: 2.5px solid #564b4b;
   box-shadow: 1px 5px 5px #878686;
-  border-radius: 12px;
+/*  border-radius: 10px 0 0 10px;*/
   transition: all 0.3s ease;
   overflow: hidden;
 }
@@ -188,7 +188,7 @@
 }
 
 .table th:last-child {
-  border-top-right-radius: 10px;
+  border-top-right-radius: 0;
 }
 
 .table tr:last-child td:first-child {
@@ -196,7 +196,7 @@
 }
 
 .table tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 0;
 }
 
 .table td {
@@ -328,7 +328,7 @@
   width: 100%;
   background-color: transparent;
   border: 1px solid #dee2e6;
-  border-radius: 4px;
+/*  border-radius: 4px;*/
   margin: 2px 0;
 }
 
