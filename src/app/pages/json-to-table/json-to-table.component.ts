@@ -20,8 +20,12 @@ export class JsonToTableComponent implements AfterViewInit {
   private leftPane: HTMLElement | null = null;
   private rightPane: HTMLElement | null = null;
   private initialX = 0;
+  private initialY = 0;
   private initialLeftWidth = 0;
+  private initialLeftHeight = 0;
   private containerWidth = 0;
+  private containerHeight = 0;
+  private isMobile = false;
   private debounceTimer: any;
   
   tableData: any[] = [];
@@ -34,10 +38,12 @@ export class JsonToTableComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
         this.initializeEditor('');
+        this.checkMobileView();
         this.initSplitter();
         
         // Add window resize handler
         window.addEventListener('resize', () => {
+          this.checkMobileView();
           if (this.aceEditor) {
             this.aceEditor.resize();
           }
@@ -227,6 +233,10 @@ export class JsonToTableComponent implements AfterViewInit {
     }
   }
 
+  private checkMobileView() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
   private initSplitter() {
     this.leftPane = document.querySelector('.json-input-container');
     this.rightPane = document.querySelector('.table-output-container');
@@ -235,15 +245,20 @@ export class JsonToTableComponent implements AfterViewInit {
       return;
     }
     
-    // Initialize with 30/70 split
-    this.leftPane.style.flex = '0.3';
-    this.rightPane.style.flex = '0.7';
-    
-    this.splitter.nativeElement.addEventListener('mousedown', this.startDrag.bind(this));
+    if (this.isMobile) {
+      // Mobile heights (no dragging needed)
+      this.leftPane.style.height = 'calc(40vh - 12px)';
+      this.rightPane.style.height = 'calc(60vh - 12px)';
+    } else {
+      // Desktop initial widths with splitter
+      this.leftPane.style.flex = '0.22';
+      this.rightPane.style.flex = '0.78';
+      this.splitter.nativeElement.addEventListener('mousedown', this.startDrag.bind(this));
+    }
   }
   
   private startDrag(e: MouseEvent) {
-    if (!this.leftPane || !this.rightPane) return;
+    if (!this.leftPane || !this.rightPane || this.isMobile) return;
     
     this.isDragging = true;
     this.initialX = e.clientX;
@@ -262,10 +277,13 @@ export class JsonToTableComponent implements AfterViewInit {
   
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(e: MouseEvent) {
-    if (!this.isDragging || !this.leftPane || !this.rightPane) return;
+    if (!this.isDragging || !this.leftPane || !this.rightPane || this.isMobile) return;
     
     const deltaX = e.clientX - this.initialX;
-    const newLeftWidth = Math.max(200, Math.min(this.containerWidth * 0.4, this.initialLeftWidth + deltaX));
+    const newLeftWidth = Math.max(
+      200,
+      Math.min(this.containerWidth * 0.32, this.initialLeftWidth + deltaX)
+    );
     
     const leftRatio = newLeftWidth / this.containerWidth;
     const rightRatio = 1 - leftRatio;

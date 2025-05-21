@@ -48,7 +48,7 @@
 
 /* JSON Input Container */
 .json-input-container {
-  flex: 0.3;
+  flex: 0.22;
   position: relative;
   border-right: 1px solid rgba(0,0,0,0.1);
   background-color: #f8f9fa;
@@ -293,28 +293,87 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .card {
+    height: calc(100vh - 140px);
+    margin-bottom: 0;
+  }
+
   .split-container {
     flex-direction: column;
-    height: auto;
-  }
-  
-  .splitter {
-    width: 100%;
-    height: 6px;
-  }
-  
-  .splitter::before {
-    transform: rotate(0deg);
+    height: 100%;
   }
   
   .json-input-container {
-    height: 300px;
+    flex: none !important;
+    height: calc(40vh - 12px);
     border-right: none;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 2px solid #333;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
   }
 
   .table-output-container {
-    height: 300px;
+    flex: none !important;
+    height: calc(60vh - 12px);
+    margin-top: 30px;
+    padding-top: 15px;
+  }
+  
+  /* Hide splitter in mobile view */
+  .splitter {
+    display: none;
+  }
+
+  .table-container {
+    padding: 10px;
+    height: 100%;
+    overflow-x: auto;
+  }
+
+  /* Adjust table for mobile */
+  .table {
+    min-width: 100%;
+    font-size: 14px;
+  }
+
+  .table td {
+    padding: 8px 10px;
+  }
+
+  .nested-key {
+    width: 150px;
+  }
+}
+
+/* Additional mobile optimization */
+@media (max-width: 480px) {
+  .card-header {
+    padding: 8px 10px;
+  }
+
+  .action-buttons .btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .table td {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  .nested-key {
+    width: 120px;
+  }
+
+  /* Adjust spacing for very small devices */
+  .json-input-container {
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+  }
+
+  .table-output-container {
+    margin-top: 25px;
+    padding-top: 12px;
   }
 }
 
