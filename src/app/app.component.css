@@ -13,3 +13,22 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Logo styles - only add styles that don't conflict with inline transforms */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.logo-json {
+  color: #fff;
+}
+
+.logo-to {
+  margin: 0 4px;
+}
+
+.logo-table {
+  color: #fff;
+}
+
