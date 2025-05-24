@@ -400,6 +400,15 @@
   }
 }
 
+
+
+/* Smooth shadow for main container */
+.paddingLeftRight {
+  border: 2.5px solid #564b4b;
+  box-shadow: 1px 5px 5px #878686;
+}
+
+
 /* Add responsive horizontal padding */
 .paddingLeftRight {
   padding-left: 1rem;
