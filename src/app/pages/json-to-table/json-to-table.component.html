@@ -1,19 +1,26 @@
 <div class="paddingLeftRight" >
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <span class="fw-bold">Copy and Paste JSON in the following area</span>
+      <span class="fw-bold">
+        <span class="d-none d-md-inline">Copy and Paste JSON in the following area</span>
+        <span class="d-inline d-md-none">Enter JSON here</span>
+      </span>
       <div class="action-buttons">
         <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
-          <i class="fas fa-flask"></i> Sample
+          <i class="fas fa-flask"></i>
+          <span class="d-none d-md-inline"> Sample</span>
         </button>
         <button class="btn btn-sm btn-dark">
-          <i class="fas fa-share-square"></i> Share
+          <i class="fas fa-share-square"></i>
+          <span class="d-none d-md-inline"> Share</span>
         </button>
         <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
           <i class="fas fa-info-circle"></i>
+          <span class="d-none d-md-inline"> Info</span>
         </button>
         <button class="btn btn-sm btn-dark ms-2" (click)="downloadAsExcel()" *ngIf="tableData.length > 0 && !errorMessage">
-          <i class="fas fa-file-excel"></i> Download
+          <i class="fas fa-file-excel"></i>
+          <span class="d-none d-md-inline"> Download</span>
         </button>
       </div>
     </div>
