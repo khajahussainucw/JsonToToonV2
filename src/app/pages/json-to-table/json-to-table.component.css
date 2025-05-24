@@ -388,8 +388,8 @@
   .json-input-container {
     height: 200px;
     min-height: 200px;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    /*margin-bottom: 15px;*/
+   /* padding-bottom: 10px;*/
   }
 
   .table-output-container {
