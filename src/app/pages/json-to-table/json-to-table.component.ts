@@ -338,9 +338,10 @@ export class JsonToTableComponent implements AfterViewInit {
     if (!this.isDragging || !this.leftPane || !this.rightPane || this.isMobile) return;
     
     const deltaX = e.clientX - this.initialX;
+    // Allow splitter to move fully from 0 to container width
     const newLeftWidth = Math.max(
-      200,
-      Math.min(this.containerWidth * 0.32, this.initialLeftWidth + deltaX)
+      0,
+      Math.min(this.containerWidth, this.initialLeftWidth + deltaX)
     );
     
     const leftRatio = newLeftWidth / this.containerWidth;
