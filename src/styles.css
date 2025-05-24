@@ -38,7 +38,7 @@ app-root {
 
   .logo-json span {
     display: inline-block;
-    transform: rotate(0deg);
+/*    transform: rotate(0deg);*/
     color: #dc3545;
     /* border: 2px solid #ffc107;*/
     border: 3px solid #704800;
@@ -49,14 +49,14 @@ app-root {
 
 .logo-to {
   display: inline-block;
-  transform: rotate(30deg);
+ /* transform: rotate(30deg);*/
   color: forestgreen;
-  margin: 0 3px;
+/*  margin: 0 3px;*/
 }
 
 .logo-table {
   display: inline-block;
-  transform: rotate(-5deg);
+/*  transform: rotate(-5deg);*/
   color: #f8f9fa;
 }
 
