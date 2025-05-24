@@ -33,6 +33,7 @@ export class JsonToTableComponent implements AfterViewInit {
   tableData: any[] = [];
   columns: string[] = [];
   errorMessage: string = '';
+  public isSingleObject: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -189,7 +190,7 @@ export class JsonToTableComponent implements AfterViewInit {
     return Array.from(keySet);
   }
 
-  private formatValue(value: any): any {
+  public formatValue(value: any): any {
     if (value === null || value === undefined) {
       return '';
     }
@@ -250,12 +251,9 @@ export class JsonToTableComponent implements AfterViewInit {
         return;
       }
 
-      let data = JSON.parse(jsonContent);
-      
-      // Convert single object to array
-      if (!Array.isArray(data)) {
-        data = [data];
-      }
+      const parsed = JSON.parse(jsonContent);
+      this.isSingleObject = !Array.isArray(parsed);
+      const data = Array.isArray(parsed) ? parsed : [parsed];
 
       // Validate that we have objects
       if (data.length === 0 || data.some((item: unknown) => typeof item !== 'object' || item === null)) {

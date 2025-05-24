@@ -196,6 +196,17 @@
   border-radius: 0;
 }
 
+/* Cell borders for tables */
+.table th, .table td {
+  border: 1px solid #564b4b;
+}
+
+/* Stronger line under headers */
+.table th {
+  border-bottom: 2.5px solid #564b4b;
+  font-weight: bold;
+}
+
 /* Main table styles */
 .table-container > .table {
   margin-bottom: 0;

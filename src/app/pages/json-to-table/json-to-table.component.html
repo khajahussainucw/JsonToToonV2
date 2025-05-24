@@ -40,10 +40,29 @@
         <div class="table-output-container">
           <div class="table-container" #tableContainer>
             <ng-container *ngIf="tableData.length > 0">
-              <ng-container *ngFor="let item of tableData">
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item }">
-                </ng-container>
+              <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
+                <!-- Flat table for array of objects -->
+                <table class="table" *ngIf="columns.length > 0">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let col of columns"><b>{{ col }}</b></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of tableData">
+                      <td *ngFor="let col of columns">
+                        <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
+                          <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                        </ng-container>
+                        <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </ng-container>
+              <ng-template #singleObjectTpl>
+                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
+              </ng-template>
             </ng-container>
             <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
               Enter valid JSON array to see the table
@@ -60,27 +79,33 @@
   <ng-container [ngSwitch]="true">
     <!-- Array handling -->
     <ng-container *ngSwitchCase="isArray(data)">
-      <table class="table" *ngIf="data.length > 0">
+      <!-- Complex array of objects -->
+      <table class="table" *ngIf="data.length > 0 && hasComplexItems(data)">
+        <thead>
+          <tr>
+            <th *ngFor="let col of getCommonKeys(data)">{{ col }}</th>
+          </tr>
+        </thead>
         <tbody>
-          <ng-container *ngIf="hasComplexItems(data); else simpleArray">
-            <tr *ngFor="let item of data">
-              <td colspan="2">
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item }">
-                </ng-container>
-              </td>
-            </tr>
-          </ng-container>
-          <ng-template #simpleArray>
-            <tr>
-              <td colspan="2">
-                <span *ngFor="let item of data; let last = last">
-                  {{ item }}{{ !last ? ', ' : '' }}
-                </span>
-              </td>
-            </tr>
-          </ng-template>
+          <tr *ngFor="let item of data">
+            <td *ngFor="let col of getCommonKeys(data)">
+              <ng-container *ngIf="isArray(item[col]) || isObject(item[col]); else primitive">
+                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[col] }"></ng-container>
+              </ng-container>
+              <ng-template #primitive>{{ formatValue(item[col]) }}</ng-template>
+            </td>
+          </tr>
         </tbody>
       </table>
+      <!-- Simple array of primitives -->
+      <table class="table" *ngIf="data.length > 0 && !hasComplexItems(data)">
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td>{{ formatValue(item) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Empty array -->
       <span *ngIf="data.length === 0">[]</span>
     </ng-container>
 
