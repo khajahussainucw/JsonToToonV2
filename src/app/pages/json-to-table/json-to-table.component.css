@@ -310,8 +310,8 @@
 /* Responsive Styles */
 @media (max-width: 768px) {
   .card {
-    height: calc(100vh - 140px);
-    margin-bottom: 0;
+    height: auto !important;
+    margin-bottom: 1rem; /* ensure space before footer */
   }
 
   .split-container {
@@ -335,6 +335,7 @@
     min-height: 300px;
     margin-top: 20px;
     padding-top: 15px;
+    padding-bottom: 2rem; /* extra bottom padding to avoid overlap with footer */
   }
   
   /* Hide splitter in mobile view */
