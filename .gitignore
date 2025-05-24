@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/.vs/json-to-table-angular/CopilotIndices/0.2.1657.32929
+/.vs/json-to-table-angular/config
+/.vs/json-to-table-angular/FileContentIndex
+/.vs/json-to-table-angular/v17
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
