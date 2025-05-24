@@ -317,6 +317,7 @@
   .split-container {
     flex-direction: column;
     height: 100%;
+    border-radius:5px;
   }
   
   .json-input-container {
