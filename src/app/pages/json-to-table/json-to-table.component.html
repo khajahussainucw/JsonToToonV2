@@ -6,6 +6,10 @@
         <span class="d-inline d-md-none">Enter JSON here</span>
       </span>
       <div class="action-buttons">
+        <button class="btn btn-sm btn-dark ms-2 animate__animated animate__flipInX" (click)="downloadAsExcel()" *ngIf="hasValidJson">
+          <i class="fas fa-file-excel"></i>
+          <span class="d-none d-md-inline"> Download</span>
+        </button>
         <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
           <i class="fas fa-flask"></i>
           <span class="d-none d-md-inline"> Sample</span>
@@ -16,12 +20,9 @@
         </button>
         <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
           <i class="fas fa-info-circle"></i>
-          <span class="d-none d-md-inline"> Info</span>
+          <!--<span class="d-none d-md-inline"> Info</span>-->
         </button>
-        <button class="btn btn-sm btn-dark ms-2" (click)="downloadAsExcel()" *ngIf="tableData.length > 0 && !errorMessage">
-          <i class="fas fa-file-excel"></i>
-          <span class="d-none d-md-inline"> Download</span>
-        </button>
+
       </div>
     </div>
     <div class="card-body p-0">

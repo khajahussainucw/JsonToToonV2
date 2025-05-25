@@ -34,6 +34,7 @@ export class JsonToTableComponent implements AfterViewInit {
   columns: string[] = [];
   errorMessage: string = '';
   public isSingleObject: boolean = false;
+  public hasValidJson: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -248,10 +249,12 @@ export class JsonToTableComponent implements AfterViewInit {
         this.tableData = [];
         this.columns = [];
         this.errorMessage = '';
+        this.hasValidJson = false;
         return;
       }
 
       const parsed = JSON.parse(jsonContent);
+      this.hasValidJson = true;
       this.isSingleObject = !Array.isArray(parsed);
       const data = Array.isArray(parsed) ? parsed : [parsed];
 
@@ -282,7 +285,7 @@ export class JsonToTableComponent implements AfterViewInit {
       this.tableData = processedData;
       this.errorMessage = '';
     } catch (error: any) {
-      //this.errorMessage = 'Invalid JSON format';
+      this.hasValidJson = false;
       console.error('Error processing JSON:', error);
       this.tableData = [];
       this.columns = [];
