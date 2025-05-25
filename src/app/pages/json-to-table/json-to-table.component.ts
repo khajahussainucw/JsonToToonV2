@@ -376,4 +376,23 @@ export class JsonToTableComponent implements AfterViewInit {
     e.preventDefault();
     return false;
   }
+
+  /**
+   * Programmatically opens the maximized table modal (browser only).
+   */
+  openTableModal(): void {
+    // Only run in browser
+    if (isPlatformBrowser(this.platformId)) {
+      import('bootstrap').then(({ Modal }) => {
+        const modalElement = document.getElementById('tableModal');
+        if (modalElement) {
+          const tableModal = new Modal(modalElement, {
+            backdrop: 'static',
+            keyboard: true
+          });
+          tableModal.show();
+        }
+      }).catch(err => console.error('Failed to load bootstrap modal:', err));
+    }
+  }
 }
