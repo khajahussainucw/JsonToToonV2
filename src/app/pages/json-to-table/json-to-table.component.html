@@ -6,14 +6,17 @@
         <span class="d-inline d-md-none">Enter JSON here</span>
       </span>
       <div class="action-buttons">
-        <button class="btn btn-sm btn-dark ms-2 animate__animated animate__flipInX" (click)="downloadAsExcel()" *ngIf="hasValidJson">
-          <i class="fas fa-file-excel"></i>
-          <span class="d-none d-md-inline"> Download</span>
-        </button>
-        <button class="btn btn-sm btn-dark ms-2" *ngIf="hasValidJson" (click)="openTableModal()">
+
+        <button class="btn btn-sm btn-dark  animate__animated animate__flipInX" *ngIf="hasValidJson" (click)="openTableModal()">
           <i class="fas fa-expand"></i>
           <span class="d-none d-md-inline"> Maximize</span>
         </button>
+
+        <button class="btn btn-sm btn-dark  " (click)="downloadAsExcel()" *ngIf="hasValidJson">
+          <i class="fas fa-file-excel"></i>
+          <span class="d-none d-md-inline"> Download</span>
+        </button>
+
         <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
           <i class="fas fa-flask"></i>
           <span class="d-none d-md-inline"> Sample</span>
@@ -138,14 +141,17 @@
 
 <!-- Fullscreen modal for maximized table -->
 <div class="modal fade" id="tableModal" tabindex="-1" aria-labelledby="tableModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width:97vw;">
-    <div class="modal-content" style="height:97vh;">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width:98vw; ">
+    <div class="modal-content" style="height:100vh !important; ">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="tableModalLabel">Maximized Table View</h5>
+        <h5 class="modal-title d-flex align-items-center" id="tableModalLabel">
+          <i class="fas fa-expand me-2"></i>
+          Maximized Table View
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="table-container">
+        <div class="">
           <ng-container *ngIf="tableData.length > 0">
             <ng-container *ngIf="!isSingleObject; else singleObjectTplModal">
               <table class="table" *ngIf="columns.length > 0">
@@ -174,9 +180,6 @@
             Enter valid JSON array to see the table
           </div>
         </div>
-      </div>
-      <div class="modal-footer bg-light">
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

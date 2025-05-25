@@ -514,3 +514,8 @@
   padding-left: 12px;
   padding-top:5px
 }
+
+/* Ensure the close icon in the maximize modal is white */
+#tableModal .btn-close {
+  filter: invert(1) brightness(1.5);
+}

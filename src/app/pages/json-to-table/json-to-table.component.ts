@@ -387,7 +387,7 @@ export class JsonToTableComponent implements AfterViewInit {
         const modalElement = document.getElementById('tableModal');
         if (modalElement) {
           const tableModal = new Modal(modalElement, {
-            backdrop: 'static',
+            backdrop: true,
             keyboard: true
           });
           tableModal.show();
