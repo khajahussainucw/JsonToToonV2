@@ -1,0 +1,326 @@
+<div class="paddingLeftRight">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span class="fw-bold">
+        <span class="d-none d-md-inline">Copy and Paste JSON in the following area</span>
+        <span class="d-inline d-md-none">Enter JSON here</span>
+      </span>
+      <div class="action-buttons">
+
+        <button class="btn btn-sm btn-dark  animate__animated animate__flipInX" *ngIf="hasValidJson" (click)="openTableModal()">
+          <i class="fas fa-expand"></i>
+          <span class="d-none d-md-inline"> Maximize</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark  " (click)="downloadAsExcel()" *ngIf="hasValidJson">
+          <i class="fas fa-file-excel"></i>
+          <span class="d-none d-md-inline"> Download</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
+          <i class="fas fa-flask"></i>
+          <span class="d-none d-md-inline"> Sample</span>
+        </button>
+        <button class="btn btn-sm btn-dark">
+          <i class="fas fa-share-square"></i>
+          <span class="d-none d-md-inline"> Share</span>
+        </button>
+        <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
+          <i class="fas fa-info-circle"></i>
+          <!--<span class="d-none d-md-inline"> Info</span>-->
+        </button>
+
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <div class="split-container">
+        <div class="json-input-container">
+          <div #editor class="editor"></div>
+          <div class="error-bar" *ngIf="errorMessage">
+            <div class="error-message">
+              <i class="fas fa-exclamation-circle text-danger"></i> {{ errorMessage }}
+            </div>
+          </div>
+        </div>
+
+        <div class="splitter" id="splitter" #splitter></div>
+
+        <div class="table-output-container">
+          <div class="table-container" #tableContainer>
+            <ng-container *ngIf="tableData.length > 0">
+              <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
+                <!-- Flat table for array of objects -->
+                <table class="table" *ngIf="columns.length > 0">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let col of columns"><b>{{ col }}</b></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of tableData">
+                      <td *ngFor="let col of columns">
+                        <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
+                          <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                        </ng-container>
+                        <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-container>
+              <ng-template #singleObjectTpl>
+                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
+              </ng-template>
+            </ng-container>
+            <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
+              Enter valid JSON array to see the table
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recursive template for nested structures -->
+<ng-template #recursiveTable let-data>
+  <ng-container [ngSwitch]="true">
+    <!-- Array handling -->
+    <ng-container *ngSwitchCase="isArray(data)">
+      <!-- Complex array of objects -->
+      <table class="table" *ngIf="data.length > 0 && hasComplexItems(data)">
+        <thead>
+          <tr>
+            <th *ngFor="let col of getCommonKeys(data)">{{ col }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td *ngFor="let col of getCommonKeys(data)">
+              <ng-container *ngIf="isArray(item[col]) || isObject(item[col]); else primitive">
+                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[col] }"></ng-container>
+              </ng-container>
+              <ng-template #primitive>{{ formatValue(item[col]) }}</ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Simple array of primitives -->
+      <table class="table" *ngIf="data.length > 0 && !hasComplexItems(data)">
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td>{{ formatValue(item) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Empty array -->
+      <span *ngIf="data.length === 0">[]</span>
+    </ng-container>
+
+    <!-- Object handling -->
+    <ng-container *ngSwitchCase="isObject(data)">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let key of getObjectKeys(data)">
+            <td class="nested-key"><b>{{ key }}</b></td>
+            <td>
+              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key] }">
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <!-- Primitive value handling -->
+    <ng-container *ngSwitchDefault>
+      {{ data }}
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<!-- Fullscreen modal for maximized table -->
+<div class="modal fade" id="tableModal" tabindex="-1" aria-labelledby="tableModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width:98vw; ">
+    <div class="modal-content" style="height:96vh !important; ">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title d-flex align-items-center" id="tableModalLabel">
+          <i class="fas fa-expand me-2"></i>
+          Maximized Table View
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="">
+          <ng-container *ngIf="tableData.length > 0">
+            <ng-container *ngIf="!isSingleObject; else singleObjectTplModal">
+              <table class="table" *ngIf="columns.length > 0">
+                <thead>
+                  <tr>
+                    <th *ngFor="let col of columns"><b>{{ col }}</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of tableData">
+                    <td *ngFor="let col of columns">
+                      <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCellModal">
+                        <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                      </ng-container>
+                      <ng-template #defaultCellModal>{{ formatValue(row[col]) }}</ng-template>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+            <ng-template #singleObjectTplModal>
+              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
+            </ng-template>
+          </ng-container>
+          <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
+            Enter valid JSON array to see the table
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Info Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white py-3">
+        <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">
+          <i class="fas fa-info-circle me-3"></i>
+          JSON to Table Converter Tool
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="welcome-section mb-4">
+          <p class="lead">Welcome to JSON to Table Converter tool!</p>
+          <p class="text-muted">This innovative and user-friendly web tool makes it easy to convert JSON data into HTML tables. It's perfect for developers and data analysts, helping you transform both simple and complex JSON structures into clear, visual table formats.</p>
+          <p class="text-muted">Dealing with JSON data can be tricky, especially with large datasets. Our tool addresses this challenge directly by converting JSON into tables and ensuring the data is presented clearly and concisely. Whether you need to convert JSON for debugging or for better data presentation, this tool is up to the task.</p>
+        </div>
+
+        <div class="features-section mb-5">
+          <h6 class="section-title fs-5 mb-4">🚀 Core Features</h6>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-magic text-primary me-3 fs-5"></i>
+                    <strong>Smart JSON Parsing</strong>
+                  </div>
+                  <p class="text-muted ms-4">Handles both simple and complex JSON structures, including nested objects and arrays.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-bolt text-warning me-3 fs-5"></i>
+                    <strong>Real-Time Conversion</strong>
+                  </div>
+                  <p class="text-muted ms-4">See your JSON transform into tables instantly as you type or paste your data.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-table text-success me-3 fs-5"></i>
+                    <strong>Intelligent Table Layout</strong>
+                  </div>
+                  <p class="text-muted ms-4">Automatically organizes your data in the most readable table format possible.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-file-export text-info me-3 fs-5"></i>
+                    <strong>Export Options</strong>
+                  </div>
+                  <p class="text-muted ms-4">Download your tables as Excel files for further analysis and sharing.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-expand-arrows-alt text-danger me-3 fs-5"></i>
+                    <strong>Flexible Viewing</strong>
+                  </div>
+                  <p class="text-muted ms-4">Toggle between normal and fullscreen views for better visualization of large datasets.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-code text-secondary me-3 fs-5"></i>
+                    <strong>Developer Friendly</strong>
+                  </div>
+                  <p class="text-muted ms-4">Built-in JSON validation and error highlighting to help catch issues quickly.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-section mb-5">
+          <h6 class="section-title fs-5 mb-4">🎯 How to Use</h6>
+          <div class="usage-steps">
+            <div class="step mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-3">1</span>
+                <strong>Input Your JSON</strong>
+              </div>
+              <p class="text-muted ms-5">Paste your JSON data into the editor or use the "Sample" button to try example data.</p>
+            </div>
+            <div class="step mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-3">2</span>
+                <strong>Instant Conversion</strong>
+              </div>
+              <p class="text-muted ms-5">Watch as your JSON is automatically converted into a well-formatted table.</p>
+            </div>
+            <div class="step mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-3">3</span>
+                <strong>Customize View</strong>
+              </div>
+              <p class="text-muted ms-5">Use the maximize button for a better view or download as Excel for offline use.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-tips-section mb-5">
+          <h6 class="section-title fs-5 mb-4">💡 Pro Tips</h6>
+          <div class="tips-container bg-light p-4 rounded">
+            <ul class="mb-0">
+              <li class="mb-2">Use the sample data button to understand the tool's capabilities</li>
+              <li class="mb-2">For large datasets, use the maximize button for better visibility</li>
+              <li class="mb-2">The tool handles nested JSON structures automatically - no special formatting needed</li>
+              <li>Download as Excel to preserve your converted tables for later use</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="support-section text-center mt-5">
+          <p class="mb-0">
+            <i class="fas fa-heart text-danger me-2"></i>
+            Made with love for developers and data enthusiasts
+          </p>
+          <p class="text-muted small mt-2">
+            Have feedback? We'd love to hear from you!
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer bg-light">
+
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">
+          <i class="fas fa-flask"></i>
+          <span class="d-none d-md-inline"> Try Sample</span>
+        </button>
+
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">
+          <i class="fas fa-times"></i>
+          <span class="d-none d-md-inline"> Close</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
