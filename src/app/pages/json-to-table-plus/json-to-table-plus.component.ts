@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 
 declare const ace: any;
+declare const $: any;
 
 @Component({
   selector: 'app-json-to-table-plus',
@@ -16,6 +17,7 @@ export class JsonToTablePlusComponent implements AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
   @ViewChild('tableContainer', { static: false }) private tableContainer!: ElementRef<HTMLElement>;
+  @ViewChild('mainTable') private mainTable!: ElementRef<HTMLElement>;
 
   private aceEditor: any;
   private isDragging = false;
@@ -29,12 +31,14 @@ export class JsonToTablePlusComponent implements AfterViewInit {
   private containerHeight = 0;
   private isMobile = false;
   private debounceTimer: any;
+  private dataTable: any;
 
   tableData: any[] = [];
   columns: string[] = [];
   errorMessage: string = '';
   public isSingleObject: boolean = false;
   public hasValidJson: boolean = false;
+  public expandedRows: Set<string> = new Set();
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -160,7 +164,16 @@ export class JsonToTablePlusComponent implements AfterViewInit {
     };
 
     this.aceEditor.setValue(JSON.stringify(sampleData, null, 2));
-    this.convertToTable();
+    
+    // Clear existing data and expanded rows
+    this.tableData = [];
+    this.columns = [];
+    this.expandedRows.clear();
+    
+    // Convert to table after a short delay to ensure editor is updated
+    setTimeout(() => {
+      this.convertToTable();
+    }, 100);
   }
 
   isArray(value: any): boolean {
@@ -246,7 +259,120 @@ export class JsonToTablePlusComponent implements AfterViewInit {
     URL.revokeObjectURL(url);
   }
 
+  private initializeDataTable() {
+    if (this.dataTable) {
+      this.dataTable.destroy();
+    }
+
+    // Wait for Angular to finish rendering the table
+    setTimeout(() => {
+      const table = $(this.mainTable.nativeElement);
+      
+      // Check if table exists and has proper structure
+      if (table.length === 0) {
+        console.warn('Table element not found');
+        return;
+      }
+
+      // Debug column counts
+      const headerCols = table.find('thead th').length;
+      const firstRowCols = table.find('tbody tr:first td').length;
+      console.log('Header columns:', headerCols);
+      console.log('Body columns:', firstRowCols);
+
+      // If columns don't match, don't initialize DataTables
+      if (headerCols !== firstRowCols) {
+        console.error('Column count mismatch. Headers:', headerCols, 'Body:', firstRowCols);
+        return;
+      }
+
+      try {
+        const config: any = {
+          destroy: true,
+          ordering: true,
+          searching: true,
+          paging: true,
+          pageLength: 10,
+          lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+          responsive: true,
+          scrollX: true,
+          dom: 'lfrtp',
+          columnDefs: [
+            {
+              targets: '_all',
+              defaultContent: ''
+            }
+          ]
+        };
+
+        // Add specific configurations based on table type
+        if (this.isSingleObject) {
+          config.order = [[0, 'asc']];
+          config.columnDefs = [
+            { orderable: true, targets: 0 },
+            { orderable: false, targets: 1 }
+          ];
+        }
+
+        this.dataTable = table.DataTable(config);
+      } catch (error) {
+        console.error('Error initializing DataTable:', error);
+      }
+    }, 100);
+  }
+
+  toggleNestedContent(rowId: string) {
+    if (this.expandedRows.has(rowId)) {
+      this.expandedRows.delete(rowId);
+    } else {
+      this.expandedRows.add(rowId);
+    }
+  }
+
+  isExpanded(rowId: string): boolean {
+    return this.expandedRows.has(rowId);
+  }
+
+  // Expand all nested content
+  expandAll(): void {
+    const allIds = this.getAllNestedContentIds();
+    allIds.forEach(id => this.expandedRows.add(id));
+  }
+
+  // Collapse all nested content
+  collapseAll(): void {
+    this.expandedRows.clear();
+  }
+
+  // Helper method to get all possible nested content IDs
+  private getAllNestedContentIds(): string[] {
+    const ids: string[] = [];
+    
+    if (this.isSingleObject) {
+      // For single object view
+      this.getObjectKeys(this.tableData[0]).forEach((key, index) => {
+        if (this.isArray(this.tableData[0][key]) || this.isObject(this.tableData[0][key])) {
+          ids.push(`single_${index}`);
+        }
+      });
+    } else {
+      // For array of objects view
+      this.tableData.forEach((row, rowIndex) => {
+        this.columns.forEach(col => {
+          if (this.isArray(row[col]) || this.isObject(row[col])) {
+            ids.push(`row_${rowIndex}_${col}`);
+          }
+        });
+      });
+    }
+    
+    return ids;
+  }
+
   convertToTable() {
+    // Clear any existing expanded rows
+    this.expandedRows.clear();
+    
     try {
       const jsonContent = this.aceEditor.getValue().trim();
       if (!jsonContent) {
@@ -257,53 +383,64 @@ export class JsonToTablePlusComponent implements AfterViewInit {
         return;
       }
 
-      // Attempt to parse JSON; if it's a wrapped string, parse twice
       let parsed: any;
       try {
-        debugger
         const firstParse = JSON.parse(jsonContent);
-        // If the content was a JSON-encoded string, parse it again
         parsed = typeof firstParse === 'string'
           ? JSON.parse(firstParse)
           : firstParse;
       } catch (err) {
         throw err;
       }
+
       this.hasValidJson = true;
       this.isSingleObject = !Array.isArray(parsed);
-      const data = Array.isArray(parsed) ? parsed : [parsed];
 
-      // Validate that we have objects
-      if (data.length === 0 || data.some((item: unknown) => typeof item !== 'object' || item === null)) {
-        throw new Error('JSON must contain objects');
+      if (this.isSingleObject) {
+        // Handle single object
+        this.tableData = [parsed];
+        this.columns = ['Property', 'Value'];
+      } else {
+        // Handle array of objects
+        const data = Array.isArray(parsed) ? parsed : [parsed];
+        if (data.length === 0 || data.some((item: unknown) => typeof item !== 'object' || item === null)) {
+          throw new Error('JSON must contain objects');
+        }
+
+        // Process the data
+        const processedData = data.map((item: Record<string, any>) => {
+          try {
+            return this.flattenObject(item);
+          } catch (err) {
+            console.warn('Error processing object:', err);
+            return item;
+          }
+        });
+
+        // Get all unique columns
+        const allColumns = new Set<string>();
+        processedData.forEach((item: Record<string, any>) => {
+          if (item && typeof item === 'object') {
+            Object.keys(item).forEach(key => allColumns.add(key));
+          }
+        });
+
+        this.columns = Array.from(allColumns);
+        this.tableData = processedData;
       }
 
-      // Process each object in the array
-      const processedData = data.map((item: Record<string, any>) => {
-        try {
-          return this.flattenObject(item);
-        } catch (err) {
-          console.warn('Error processing object:', err);
-          return item;
-        }
-      });
-
-      // Get all unique top-level keys
-      const allColumns = new Set<string>();
-      processedData.forEach((item: Record<string, any>) => {
-        if (item && typeof item === 'object') {
-          Object.keys(item).forEach(key => allColumns.add(key));
-        }
-      });
-
-      this.columns = Array.from(allColumns);
-      this.tableData = processedData;
       this.errorMessage = '';
+
+      // Initialize DataTable after data is loaded
+      setTimeout(() => {
+        this.initializeDataTable();
+      }, 100);
     } catch (error: any) {
       this.hasValidJson = false;
       console.error('Error processing JSON:', error);
       this.tableData = [];
       this.columns = [];
+      this.errorMessage = error.message;
     }
   }
 

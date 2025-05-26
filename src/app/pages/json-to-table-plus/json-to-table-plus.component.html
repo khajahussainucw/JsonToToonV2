@@ -46,34 +46,82 @@
         <div class="splitter" id="splitter" #splitter></div>
 
         <div class="table-output-container">
+          <div class="table-actions mb-2">
+            <button class="btn btn-sm btn-outline-primary me-2" (click)="expandAll()">
+              <i class="fas fa-plus-square"></i> Expand All
+            </button>
+            <button class="btn btn-sm btn-outline-primary" (click)="collapseAll()">
+              <i class="fas fa-minus-square"></i> Collapse All
+            </button>
+          </div>
           <div class="table-container" #tableContainer>
-            <ng-container *ngIf="tableData.length > 0">
-              <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
-                <!-- Flat table for array of objects -->
-                <table class="table" *ngIf="columns.length > 0">
-                  <thead>
-                    <tr>
-                      <th *ngFor="let col of columns"><b>{{ col }}</b></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let row of tableData">
-                      <td *ngFor="let col of columns">
-                        <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
-                          <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
-                        </ng-container>
-                        <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="table-responsive">
+              <ng-container *ngIf="tableData.length > 0">
+                <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
+                  <!-- Flat table for array of objects -->
+                  <table class="table" #mainTable *ngIf="columns.length > 0">
+                    <thead>
+                      <tr>
+                        <th *ngFor="let col of columns">
+                          <b>{{ col }}</b>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of tableData; let i = index">
+                        <td *ngFor="let col of columns">
+                          <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
+                            <div class="nested-content">
+                              <button class="btn btn-sm btn-link" (click)="toggleNestedContent('row_' + i + '_' + col)">
+                                <i class="fas" [ngClass]="{'fa-minus-square': isExpanded('row_' + i + '_' + col), 'fa-plus-square': !isExpanded('row_' + i + '_' + col)}"></i>
+                                <span *ngIf="isArray(row[col])" class="array-count">({{ row[col].length }} items)</span>
+                              </button>
+                              <div [ngClass]="{'d-none': !isExpanded('row_' + i + '_' + col)}">
+                                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                              </div>
+                            </div>
+                          </ng-container>
+                          <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ng-container>
+                <ng-template #singleObjectTpl>
+                  <table class="table" #mainTable>
+                    <thead>
+                      <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let key of getObjectKeys(tableData[0]); let i = index">
+                        <td class="nested-key"><b>{{ key }}</b></td>
+                        <td>
+                          <ng-container *ngIf="isArray(tableData[0][key]) || isObject(tableData[0][key]); else primitiveValue">
+                            <div class="nested-content">
+                              <button class="btn btn-sm btn-link" (click)="toggleNestedContent('single_' + i)">
+                                <i class="fas" [ngClass]="{'fa-minus-square': isExpanded('single_' + i), 'fa-plus-square': !isExpanded('single_' + i)}"></i>
+                                <span *ngIf="isArray(tableData[0][key])" class="array-count">({{ tableData[0][key].length }} items)</span>
+                              </button>
+                              <div [ngClass]="{'d-none': !isExpanded('single_' + i)}">
+                                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0][key] }"></ng-container>
+                              </div>
+                            </div>
+                          </ng-container>
+                          <ng-template #primitiveValue>
+                            {{ formatValue(tableData[0][key]) }}
+                          </ng-template>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ng-template>
               </ng-container>
-              <ng-template #singleObjectTpl>
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
-              </ng-template>
-            </ng-container>
-            <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
-              Enter valid JSON array to see the table
+              <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
+                Enter valid JSON array to see the table
+              </div>
             </div>
           </div>
         </div>
@@ -88,17 +136,25 @@
     <!-- Array handling -->
     <ng-container *ngSwitchCase="isArray(data)">
       <!-- Complex array of objects -->
-      <table class="table" *ngIf="data.length > 0 && hasComplexItems(data)">
+      <table class="table nested-table" *ngIf="data.length > 0 && hasComplexItems(data)">
         <thead>
           <tr>
             <th *ngFor="let col of getCommonKeys(data)">{{ col }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of data">
+          <tr *ngFor="let item of data; let i = index">
             <td *ngFor="let col of getCommonKeys(data)">
               <ng-container *ngIf="isArray(item[col]) || isObject(item[col]); else primitive">
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[col] }"></ng-container>
+                <div class="nested-content">
+                  <button class="btn btn-sm btn-link" (click)="toggleNestedContent('nested_' + i + '_' + col)">
+                    <i class="fas" [ngClass]="{'fa-minus-square': isExpanded('nested_' + i + '_' + col), 'fa-plus-square': !isExpanded('nested_' + i + '_' + col)}"></i>
+                    <span *ngIf="isArray(item[col])" class="array-count">({{ item[col].length }} items)</span>
+                  </button>
+                  <div [ngClass]="{'d-none': !isExpanded('nested_' + i + '_' + col)}">
+                    <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[col] }"></ng-container>
+                  </div>
+                </div>
               </ng-container>
               <ng-template #primitive>{{ formatValue(item[col]) }}</ng-template>
             </td>
@@ -106,7 +162,7 @@
         </tbody>
       </table>
       <!-- Simple array of primitives -->
-      <table class="table" *ngIf="data.length > 0 && !hasComplexItems(data)">
+      <table class="table nested-table" *ngIf="data.length > 0 && !hasComplexItems(data)">
         <tbody>
           <tr *ngFor="let item of data">
             <td>{{ formatValue(item) }}</td>
@@ -119,13 +175,23 @@
 
     <!-- Object handling -->
     <ng-container *ngSwitchCase="isObject(data)">
-      <table class="table">
+      <table class="table nested-table">
         <tbody>
-          <tr *ngFor="let key of getObjectKeys(data)">
+          <tr *ngFor="let key of getObjectKeys(data); let i = index">
             <td class="nested-key"><b>{{ key }}</b></td>
             <td>
-              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key] }">
+              <ng-container *ngIf="isArray(data[key]) || isObject(data[key]); else primitiveObj">
+                <div class="nested-content">
+                  <button class="btn btn-sm btn-link" (click)="toggleNestedContent('obj_' + i + '_' + key)">
+                    <i class="fas" [ngClass]="{'fa-minus-square': isExpanded('obj_' + i + '_' + key), 'fa-plus-square': !isExpanded('obj_' + i + '_' + key)}"></i>
+                    <span *ngIf="isArray(data[key])" class="array-count">({{ data[key].length }} items)</span>
+                  </button>
+                  <div [ngClass]="{'d-none': !isExpanded('obj_' + i + '_' + key)}">
+                    <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key] }"></ng-container>
+                  </div>
+                </div>
               </ng-container>
+              <ng-template #primitiveObj>{{ formatValue(data[key]) }}</ng-template>
             </td>
           </tr>
         </tbody>
