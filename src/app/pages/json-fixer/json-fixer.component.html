@@ -1,1 +1,28 @@
-<p>json-fixer works!</p>
+<div class="paddingLeftRight">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span class="fw-bold">Paste faulty/invalid JSON in the left area and click the "Fix JSON!!" button to correct it.</span>
+      <div class="action-buttons">
+        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
+          <i class="fas fa-flask"></i> Sample
+        </button>
+        <button class="btn btn-sm btn-dark" (click)="fixJson()">
+          <i class="fas fa-magic"></i> Fix
+        </button>
+        <button class="btn btn-sm btn-dark" (click)="clearEditors()">
+          <i class="fas fa-eraser"></i> Clear
+        </button>
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <div class="split-container" style="display: flex; height: calc(100vh - 83px);">
+        <div style="flex: 0 0 30%; border-right: 1px solid rgba(0,0,0,0.1);">
+          <div #editorLeft class="editor" style="height: 100%; width: 100%;"></div>
+        </div>
+        <div style="flex: 0 0 70%; padding-left: 10px;">
+          <div #editorRight class="editor" style="height: 100%; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
