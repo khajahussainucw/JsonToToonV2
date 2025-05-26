@@ -6,17 +6,17 @@ import { Meta, Title } from '@angular/platform-browser';
 declare const ace: any;
 
 @Component({
-  selector: 'app-json-to-table',
+  selector: 'app-json-to-table-plus',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './json-to-table.component.html',
-  styleUrl: './json-to-table.component.css'
+  templateUrl: './json-to-table-plus.component.html',
+  styleUrl: './json-to-table-plus.component.css'
 })
-export class JsonToTableComponent implements AfterViewInit {
+export class JsonToTablePlusComponent implements AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
   @ViewChild('tableContainer', { static: false }) private tableContainer!: ElementRef<HTMLElement>;
-  
+
   private aceEditor: any;
   private isDragging = false;
   private leftPane: HTMLElement | null = null;
@@ -29,7 +29,7 @@ export class JsonToTableComponent implements AfterViewInit {
   private containerHeight = 0;
   private isMobile = false;
   private debounceTimer: any;
-  
+
   tableData: any[] = [];
   columns: string[] = [];
   errorMessage: string = '';
@@ -74,7 +74,7 @@ export class JsonToTableComponent implements AfterViewInit {
         this.initializeEditor('');
         this.checkMobileView();
         this.initSplitter();
-        
+
         // Add window resize handler
         window.addEventListener('resize', () => {
           this.checkMobileView();
@@ -158,7 +158,7 @@ export class JsonToTableComponent implements AfterViewInit {
         "Apple Health"
       ]
     };
-    
+
     this.aceEditor.setValue(JSON.stringify(sampleData, null, 2));
     this.convertToTable();
   }
@@ -183,7 +183,7 @@ export class JsonToTableComponent implements AfterViewInit {
 
   getCommonKeys(arr: any[]): string[] {
     if (!Array.isArray(arr) || arr.length === 0) return [];
-    
+
     // Get all possible keys from all objects
     const keySet = new Set<string>();
     arr.forEach(item => {
@@ -191,7 +191,7 @@ export class JsonToTableComponent implements AfterViewInit {
         Object.keys(item).forEach(key => keySet.add(key));
       }
     });
-    
+
     return Array.from(keySet);
   }
 
@@ -231,7 +231,7 @@ export class JsonToTableComponent implements AfterViewInit {
     tableHtml = tableHtml.replace(/<(th|td)/gi, '<$1 align="left" valign="middle"');
     // embed CSS style for borders and collapse
     const style = '<style>table, th, td { border:1px solid #000; border-collapse:collapse; }</style>';
-    const excelContent = 
+    const excelContent =
       `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
        <head><meta charset="UTF-8">${style}</head>
        <body>${tableHtml}</body></html>`;
@@ -314,11 +314,11 @@ export class JsonToTableComponent implements AfterViewInit {
   private initSplitter() {
     this.leftPane = document.querySelector('.json-input-container');
     this.rightPane = document.querySelector('.table-output-container');
-    
+
     if (!this.leftPane || !this.rightPane || !this.splitter) {
       return;
     }
-    
+
     if (this.isMobile) {
       // Mobile heights (no dragging needed)
       this.leftPane.style.height = 'calc(40vh - 12px)';
@@ -330,29 +330,29 @@ export class JsonToTableComponent implements AfterViewInit {
       this.splitter.nativeElement.addEventListener('mousedown', this.startDrag.bind(this));
     }
   }
-  
+
   private startDrag(e: MouseEvent) {
     if (!this.leftPane || !this.rightPane || this.isMobile) return;
-    
+
     this.isDragging = true;
     this.initialX = e.clientX;
-    
+
     const leftRect = this.leftPane.getBoundingClientRect();
     const containerRect = this.leftPane.parentElement?.getBoundingClientRect();
-    
+
     this.initialLeftWidth = leftRect.width;
     this.containerWidth = containerRect?.width || 0;
-    
+
     document.documentElement.classList.add('resize-cursor');
     this.splitter.nativeElement.classList.add('dragging');
-    
+
     document.addEventListener('selectstart', this.preventSelection);
   }
-  
+
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(e: MouseEvent) {
     if (!this.isDragging || !this.leftPane || !this.rightPane || this.isMobile) return;
-    
+
     const deltaX = e.clientX - this.initialX;
     // Constrain splitter so left pane never collapses entirely
     const minLeftWidth = 100; // minimum width in pixels for left pane
@@ -361,18 +361,18 @@ export class JsonToTableComponent implements AfterViewInit {
       minLeftWidth,
       Math.min(maxLeftWidth, this.initialLeftWidth + deltaX)
     );
-    
+
     const leftRatio = newLeftWidth / this.containerWidth;
     const rightRatio = 1 - leftRatio;
-    
+
     this.leftPane.style.flex = `${leftRatio}`;
     this.rightPane.style.flex = `${rightRatio}`;
-    
+
     if (this.aceEditor) {
       this.aceEditor.resize();
     }
   }
-  
+
   @HostListener('document:mouseup')
   onMouseUp() {
     if (this.isDragging) {
@@ -380,13 +380,13 @@ export class JsonToTableComponent implements AfterViewInit {
       document.documentElement.classList.remove('resize-cursor');
       this.splitter.nativeElement.classList.remove('dragging');
       document.removeEventListener('selectstart', this.preventSelection);
-      
+
       if (this.aceEditor) {
         this.aceEditor.resize();
       }
     }
   }
-  
+
   private preventSelection(e: Event) {
     e.preventDefault();
     return false;
