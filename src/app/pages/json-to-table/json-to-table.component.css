@@ -519,3 +519,14 @@
 #tableModal .btn-close {
   filter: invert(1) brightness(1.5);
 }
+
+/* Override scrollable modal content to occupy full viewport height */
+#tableModal.modal-dialog-scrollable .modal-content,
+#tableModal .modal-dialog.modal-dialog-scrollable .modal-content {
+  max-height: none !important;
+ /* height: 95vh !important;*/
+}
+/* Ensure modal body scrolls vertically */
+#tableModal .modal-body {
+  overflow-y: auto !important;
+}
