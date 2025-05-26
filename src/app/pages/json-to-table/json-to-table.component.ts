@@ -109,6 +109,10 @@ export class JsonToTableComponent implements AfterViewInit {
       displayIndentGuides: true
     });
 
+    // Ensure long lines wrap within the editor
+    this.aceEditor.session.setUseWrapMode(true);
+    this.aceEditor.session.setOption('wrap', 'free');
+
     // Force a resize after initialization
     setTimeout(() => {
       this.aceEditor.resize();
@@ -253,7 +257,18 @@ export class JsonToTableComponent implements AfterViewInit {
         return;
       }
 
-      const parsed = JSON.parse(jsonContent);
+      // Attempt to parse JSON; if it's a wrapped string, parse twice
+      let parsed: any;
+      try {
+        debugger
+        const firstParse = JSON.parse(jsonContent);
+        // If the content was a JSON-encoded string, parse it again
+        parsed = typeof firstParse === 'string'
+          ? JSON.parse(firstParse)
+          : firstParse;
+      } catch (err) {
+        throw err;
+      }
       this.hasValidJson = true;
       this.isSingleObject = !Array.isArray(parsed);
       const data = Array.isArray(parsed) ? parsed : [parsed];
