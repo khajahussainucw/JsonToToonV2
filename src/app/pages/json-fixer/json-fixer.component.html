@@ -15,11 +15,12 @@
       </div>
     </div>
     <div class="card-body p-0">
-      <div class="split-container" style="display: flex; height: calc(100vh - 83px);">
-        <div style="flex: 0 0 30%; border-right: 1px solid rgba(0,0,0,0.1);">
+      <div class="split-container" style="display: flex; height: 100%;">
+        <div class="json-input-container" style="flex: 0 0 30%;">
           <div #editorLeft class="editor" style="height: 100%; width: 100%;"></div>
         </div>
-        <div style="flex: 0 0 70%; padding-left: 10px;">
+        <div class="splitter" id="splitter" #splitter></div>
+        <div class="json-output-container" style="flex: 0 0 70%;">
           <div #editorRight class="editor" style="height: 100%; width: 100%;"></div>
         </div>
       </div>
