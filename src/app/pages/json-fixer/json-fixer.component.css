@@ -33,33 +33,61 @@
   border-right: 1px solid #ced4da;
 }
 
-.splitter:hover {
-  background-color: #e9ecef;
-}
+  .splitter:hover {
+    background-color: #e9ecef;
+  }
 
-.splitter::before,
-.splitter::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 2px;
-  height: 20px;
-  background-color: #adb5bd;
-  border-radius: 3px;
-}
+  .splitter::before,
+  .splitter::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 20px;
+    background-color: #adb5bd;
+    border-radius: 3px;
+  }
 
-.splitter::before {
-  margin-left: -1px;
-}
+  .splitter::before {
+    margin-left: -1px;
+  }
 
-.splitter::after {
-  margin-left: 1px;
-}
+  .splitter::after {
+    margin-left: 1px;
+  }
 
-.splitter.dragging {
-  background-color: #e9ecef;
+  .splitter.dragging {
+    background-color: #e9ecef;
+  }
+
+/* Mobile styles for splitter */
+@media (max-width: 768px) {
+  .splitter {
+    width: 100%;
+    height: 8px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+  }
+
+    .splitter::before,
+    .splitter::after {
+      height: 2px;
+      width: 20px;
+    }
+
+    .splitter::before {
+      margin-left: -1px;
+      margin-top: -1px;
+    }
+
+    .splitter::after {
+      margin-left: 1px;
+      margin-top: 1px;
+    }
 }
 
 /* Card styles */
@@ -71,7 +99,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem; /* Add space before footer */
-  padding-left:5px;
+  
 }
 
 .card:hover {
@@ -122,6 +150,16 @@
     width: 20px;
   }
 
+  .splitter::before {
+    margin-left: -1px;
+    margin-top: -1px;
+  }
+
+  .splitter::after {
+    margin-left: 1px;
+    margin-top: 1px;
+  }
+
   .split-container {
     flex-direction: column;
   }
@@ -130,4 +168,10 @@
   .json-output-container {
     flex: 0 0 50% !important;
   }
+}
+
+/* Add green highlight for Fix JSON text */
+.fix-text {
+  color: #32c832;
+  font-weight: bold;
 }
