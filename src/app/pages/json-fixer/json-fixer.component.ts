@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { JsonFixerService } from './json-fixer.service';
 declare const ace: any;
 
 @Component({
@@ -24,7 +25,7 @@ export class JsonFixerComponent implements AfterViewInit {
   private containerWidth = 0;
   errorMessage: string = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private fixerService: JsonFixerService) {}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -166,7 +167,20 @@ export class JsonFixerComponent implements AfterViewInit {
   }
 
   fixJson(): void {
-    // TODO: Fix or transform JSON from left editor to right editor
+    const input = this.aceEditorLeft.getValue().trim();
+    if (!input) {
+      this.aceEditorRight.setValue('Please enter invalid JSON to fix', -1);
+      return;
+    }
+    // Call backend API
+    this.fixerService.fixJson(input).subscribe(
+      (response) => {
+        this.aceEditorRight.setValue(JSON.stringify(response, null, 2), -1);
+      },
+      (error) => {
+        this.aceEditorRight.setValue('Sorry, unable to fix this JSON.... 😔', -1);
+      }
+    );
   }
 
   clearEditors(): void {
