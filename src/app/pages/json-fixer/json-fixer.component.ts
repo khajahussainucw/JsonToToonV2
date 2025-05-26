@@ -22,6 +22,7 @@ export class JsonFixerComponent implements AfterViewInit {
   private rightPane: HTMLElement | null = null;
   private initialX = 0;
   private containerWidth = 0;
+  errorMessage: string = '';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -80,7 +81,10 @@ export class JsonFixerComponent implements AfterViewInit {
 
     this.leftPane = this.splitter.nativeElement.previousElementSibling as HTMLElement;
     this.rightPane = this.splitter.nativeElement.nextElementSibling as HTMLElement;
-    
+    const parentEl = this.splitter.nativeElement.parentNode as HTMLElement;
+    const totalWidth = parentEl.offsetWidth;
+    console.log(`Splitter debug -> Left: ${this.leftPane.offsetWidth}px, Splitter: ${this.splitter.nativeElement.offsetWidth}px, Right: ${this.rightPane.offsetWidth}px, Total: ${totalWidth}px`);
+
     this.splitter.nativeElement.addEventListener('mousedown', (e: MouseEvent) => this.startDrag(e));
     document.addEventListener('mousemove', (e: MouseEvent) => this.onMouseMove(e));
     document.addEventListener('mouseup', () => this.onMouseUp());
