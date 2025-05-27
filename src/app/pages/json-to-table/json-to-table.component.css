@@ -530,3 +530,39 @@
 #tableModal .modal-body {
   overflow-y: auto !important;
 }
+
+/* Loading overlay for split */
+.split-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(211, 211, 211, 0.8); /* light grey overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Custom bouncing dots loader */
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.loading-dots span {
+  width: 12px;
+  height: 12px;
+  background-color: #6c757d; /* softer grey for calmer look */
+  border-radius: 50%;
+  animation: bounce 0.6s infinite ease-in-out both;
+}
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}

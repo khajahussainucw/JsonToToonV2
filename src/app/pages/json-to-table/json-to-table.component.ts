@@ -35,6 +35,7 @@ export class JsonToTableComponent implements AfterViewInit {
   errorMessage: string = '';
   public isSingleObject: boolean = false;
   public hasValidJson: boolean = false;
+  public isLoading: boolean = true;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -82,6 +83,7 @@ export class JsonToTableComponent implements AfterViewInit {
             this.aceEditor.resize();
           }
         });
+        this.isLoading = false;
       }, 100);
     }
   }
