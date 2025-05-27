@@ -7,6 +7,8 @@ import { JsonFixerComponent } from './pages/json-fixer/json-fixer.component';
 
 export const routes: Routes = [
   { path: '', component: JsonToTableComponent },
+  { path: 'index.html', component: JsonToTableComponent },
   { path: 'json-fixer', component: JsonFixerComponent },
+  { path: 'json-fixer.html', component: JsonFixerComponent },
   { path: '**', redirectTo: '' }
 ];
