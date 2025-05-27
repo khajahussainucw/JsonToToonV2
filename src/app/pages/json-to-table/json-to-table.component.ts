@@ -1,14 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
+import { HttpClientModule } from '@angular/common/http';
+import { JsonStorageService } from '../../services/json-storage.service';
 
 declare const ace: any;
 
 @Component({
   selector: 'app-json-to-table',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ShareModalComponent, HttpClientModule],
   templateUrl: './json-to-table.component.html',
   styleUrl: './json-to-table.component.css'
 })
@@ -36,13 +39,19 @@ export class JsonToTableComponent implements AfterViewInit {
   public isSingleObject: boolean = false;
   public hasValidJson: boolean = false;
   public isLoading: boolean = true;
+  private isLoadingSharedJson = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private route: ActivatedRoute,
+    private jsonStorageService: JsonStorageService
   ) {
     this.setupMetaTags();
+    if (isPlatformBrowser(this.platformId)) {
+      this.handleUrlParameters();
+    }
   }
 
   private setupMetaTags() {
@@ -67,6 +76,36 @@ export class JsonToTableComponent implements AfterViewInit {
     this.meta.updateTag({ property: 'og:title', content: 'JSON to Table Converter - Convert Complex JSON to HTML Table Online' });
     this.meta.updateTag({ property: 'og:description', content: 'Convert complex JSON to HTML table. Supports complex JSON, offering a responsive interface for real-time conversion and validation.' });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
+  }
+
+  private handleUrlParameters(): void {
+    this.route.queryParams.subscribe(params => {
+      const guid = params['guid'];
+      if (guid && !this.isLoadingSharedJson) {
+        this.isLoadingSharedJson = true;
+        this.isLoading = true;
+        this.jsonStorageService.getJsonByGuid(guid).subscribe({
+          next: (jsonData) => {
+            // Wait for editor to be initialized
+            const checkEditor = setInterval(() => {
+              if (this.aceEditor) {
+                this.aceEditor.setValue(jsonData, -1);
+                this.convertToTable();
+                clearInterval(checkEditor);
+              }
+            }, 100);
+          },
+          error: (error) => {
+            console.error('Error loading shared JSON:', error);
+            this.errorMessage = 'Failed to load shared JSON. The link might be expired or invalid.';
+          },
+          complete: () => {
+            this.isLoadingSharedJson = false;
+            this.isLoading = false;
+          }
+        });
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -411,5 +450,9 @@ export class JsonToTableComponent implements AfterViewInit {
         }
       }).catch(err => console.error('Failed to load bootstrap modal:', err));
     }
+  }
+
+  getEditorContent(): string {
+    return this.aceEditor?.getValue() || '';
   }
 }
