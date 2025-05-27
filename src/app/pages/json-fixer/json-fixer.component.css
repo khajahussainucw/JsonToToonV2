@@ -46,15 +46,23 @@
   background-color: #fff;
 }
 
-/* JSON Input Container */
+/* JSON Input/Output Container */
 .json-input-container {
-  flex: 0;
   position: relative;
-  border-right: 1px solid rgba(0,0,0,0.1);
   background-color: #f8f9fa;
   transition: background-color 0.3s ease;
   display: flex;
   flex-direction: column;
+}
+
+/* Default widths */
+.json-input-container {
+  flex: 0 0 25%;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.json-output-container {
+  flex: 1 1 auto;
 }
 
 .editor {
@@ -113,66 +121,76 @@
   border-right: 1px solid #ced4da;
 }
 
-  .splitter:hover {
-    background-color: #e9ecef;
+.splitter:hover {
+  background-color: #e9ecef;
+}
+
+.splitter::before,
+.splitter::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background-color: #adb5bd;
+  border-radius: 3px;
+}
+
+.splitter::before {
+  margin-left: -1px;
+}
+
+.splitter::after {
+  margin-left: 1px;
+}
+
+.splitter.dragging {
+  background-color: #e9ecef;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .splitter {
+    width: 100%;
+    height: 16px;
+    cursor: row-resize;
+    border-left: none;
+    border-right: none;
+    border-top: 2px solid #ced4da;
+    border-bottom: 2px solid #ced4da;
   }
 
   .splitter::before,
   .splitter::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 2px;
-    height: 20px;
-    background-color: #adb5bd;
-    border-radius: 3px;
+    height: 2px;
+    width: 20px;
   }
 
   .splitter::before {
     margin-left: -1px;
+    margin-top: -1px;
   }
 
   .splitter::after {
     margin-left: 1px;
+    margin-top: 1px;
   }
 
-  .splitter.dragging {
-    background-color: #e9ecef;
+  .split-container {
+    flex-direction: column;
   }
 
-/* Mobile styles for splitter */
-@media (max-width: 768px) {
-  .splitter {
-    width: 100%;
-    height: 8px;
-    border-left: none;
-    border-right: none;
-    border-top: 1px solid #ced4da;
-    border-bottom: 1px solid #ced4da;
+  .json-input-container,
+  .json-output-container {
+    flex: 0 0 50% !important;
   }
-
-    .splitter::before,
-    .splitter::after {
-      height: 2px;
-      width: 20px;
-    }
-
-    .splitter::before {
-      margin-left: -1px;
-      margin-top: -1px;
-    }
-
-    .splitter::after {
-      margin-left: 1px;
-      margin-top: 1px;
-    }
 }
 
 /* Table Output Container */
 .table-output-container {
-  flex: 1;
+  flex: 1 1 auto;
   overflow: hidden;
   background-color: #fff;
 }
@@ -341,110 +359,23 @@
     background: #555;
   }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .card {
-    height: auto !important;
-    margin-bottom: 1rem; /* ensure space before footer */
-  }
-
-  .split-container {
-    flex-direction: column;
-    height: 100%;
-    border-radius: 5px;
-  }
-
-  .json-input-container {
-    flex: none !important;
-    height: 250px;
-    min-height: 250px;
-    border-right: none;
-    border-bottom: 2px solid #333;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-  }
-
-  .table-output-container {
-    flex: 1 1 auto !important;
-    height: calc(100% - 290px);
-    min-height: 300px;
-    margin-top: 20px;
-    padding-top: 15px;
-    padding-bottom: 2rem; /* extra bottom padding to avoid overlap with footer */
-  }
-
-  /* Hide splitter in mobile view */
-  .splitter {
-    display: none;
-  }
-
-  .table-container {
-    padding: 10px;
-    height: 100%;
-    overflow-x: auto;
-  }
-
-  /* Adjust table for mobile */
-  .table {
-    min-width: 100%;
-    font-size: 14px;
-  }
-
-    .table td {
-      padding: 8px 10px;
-    }
-
-  .nested-key {
-    width: 150px;
-  }
+/* Add green highlight for Fix JSON text */
+.fix-text {
+  color: #32c832;
+  font-weight: bold;
 }
 
-/* Additional mobile optimization */
-@media (max-width: 480px) {
-  .card-header {
-    padding: 8px 10px;
-  }
-
-  .action-buttons .btn {
-    padding: 4px 8px;
-    font-size: 12px;
-  }
-
-  .table td {
-    padding: 6px 8px;
-    font-size: 13px;
-  }
-
-  .nested-key {
-    width: 120px;
-  }
-
-  /* Adjust spacing for very small devices */
-  .json-input-container {
-    height: 200px;
-    min-height: 200px;
-    /*margin-bottom: 15px;*/
-    /* padding-bottom: 10px;*/
-  }
-
-  .table-output-container {
-    height: calc(100% - 240px);
-    min-height: 250px;
-    margin-top: 15px;
-    padding-top: 10px;
-  }
-}
-
-/* Add responsive horizontal padding */
+/* Padding utilities */
 .paddingLeftRight {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 5px;
+  padding-left: 12px;
+  padding-top: 5px;
 }
 
 @media (min-width: 768px) {
   .paddingLeftRight {
-    padding-left: 1.5rem;
-    padding-right: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -509,12 +440,6 @@
 /* Add spacing between nested tables */
 .table td .table {
   margin: 4px 0;
-}
-
-.paddingLeftRight {
-  padding-right: 5px;
-  padding-left: 12px;
-  padding-top: 5px
 }
 
 /* Ensure the close icon in the maximize modal is white */
