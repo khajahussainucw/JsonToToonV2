@@ -35,6 +35,7 @@ export class JsonToTableComponent implements AfterViewInit {
   errorMessage: string = '';
   public isSingleObject: boolean = false;
   public hasValidJson: boolean = false;
+  isLoading: boolean = true;  // Add loading state
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -42,6 +43,7 @@ export class JsonToTableComponent implements AfterViewInit {
     private title: Title
   ) {
     this.setupMetaTags();
+    this.isLoading = true;  // Initialize loading state
   }
 
   private setupMetaTags() {
@@ -82,6 +84,7 @@ export class JsonToTableComponent implements AfterViewInit {
             this.aceEditor.resize();
           }
         });
+        this.isLoading = false;  // Set loading to false after initialization
       }, 100);
     }
   }
