@@ -1,0 +1,62 @@
+<div class="json-formatter-container">
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Input</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleJson()">
+            <i class="fas fa-flask"></i>
+            Sample
+          </button>
+          <button class="btn">
+            <i class="fas fa-upload"></i>
+            Upload
+          </button>
+          <button class="btn">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel (Output) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Output</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn">
+            <i class="fas fa-file-excel"></i>
+            Excel
+          </button>
+          <button class="btn">
+            <i class="fas fa-file-csv"></i>
+            CSV
+          </button>
+          <button class="btn">
+            <i class="fas fa-download"></i>
+            Download
+          </button>
+          <button class="btn">
+            <i class="fas fa-compress"></i>
+            Minify
+          </button>
+          <button class="btn">
+            <i class="fas fa-copy"></i>
+            Copy
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div> 
