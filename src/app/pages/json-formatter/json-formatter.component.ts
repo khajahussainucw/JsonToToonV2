@@ -31,6 +31,8 @@ export class JsonFormatterComponent implements AfterViewInit {
   // Modal dialog state
   errorModalVisible = false;
   errorMessage = '';
+  // Copy success message state
+  copySuccessVisible = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -222,6 +224,23 @@ export class JsonFormatterComponent implements AfterViewInit {
     this.aceInputEditor.setValue('', -1);
     this.aceInputEditor.clearSelection();
     this.formatJson();
+  }
+
+  // Copy output content to clipboard
+  copyToClipboard(): void {
+    const outputContent = this.aceOutputEditor.getValue();
+    if (!outputContent || outputContent.trim() === '') {
+      return;
+    }
+    
+    navigator.clipboard.writeText(outputContent).then(() => {
+      this.copySuccessVisible = true;
+      setTimeout(() => {
+        this.copySuccessVisible = false;
+      }, 3000);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
   }
 
   private checkMobileView() {
