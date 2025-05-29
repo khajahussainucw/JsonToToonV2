@@ -1,7 +1,7 @@
 .json-formatter-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 105px);
+  height: calc(100vh - 72px);
   width: 100%;
   overflow: hidden;
   background-color: #f8f9fa;
@@ -12,12 +12,12 @@
 .editors-wrapper {
   display: flex;
   width: 100%;
-  height: calc(100vh - 105px);
+  height: calc(100vh - 72px);
   overflow: hidden;
   gap: 4px;
 }
 
-.editor-container {
+  .editor-container {
   display: flex;
   flex-direction: column;
   background: white;
