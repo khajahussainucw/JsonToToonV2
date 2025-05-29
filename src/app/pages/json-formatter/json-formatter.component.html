@@ -37,11 +37,11 @@
             <i class="fas fa-file-excel"></i>
             Excel
           </button>
-          <button class="btn">
+          <!--<button class="btn">
             <i class="fas fa-file-csv"></i>
             CSV
-          </button>
-          <button class="btn">
+          </button>-->
+          <button class="btn" (click)="downloadJson()">
             <i class="fas fa-download"></i>
             Download
           </button>
@@ -89,7 +89,7 @@
       <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">
-      JSON copied to clipboard!
+      {{ copySuccessMessage }}
     </div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">

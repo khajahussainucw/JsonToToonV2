@@ -33,6 +33,7 @@ export class JsonFormatterComponent implements AfterViewInit {
   errorMessage = '';
   // Copy success message state
   copySuccessVisible = false;
+  copySuccessMessage = '';
   // Copy error message state
   copyErrorVisible = false;
   copyErrorMessage = '';
@@ -242,6 +243,7 @@ export class JsonFormatterComponent implements AfterViewInit {
     }
     
     navigator.clipboard.writeText(outputContent).then(() => {
+      this.copySuccessMessage = 'JSON copied to clipboard!';
       this.copySuccessVisible = true;
       setTimeout(() => {
         this.copySuccessVisible = false;
@@ -270,6 +272,47 @@ export class JsonFormatterComponent implements AfterViewInit {
     } catch (error: any) {
       // If output is not valid JSON, do nothing or show error
       console.error('Cannot minify invalid JSON:', error);
+    }
+  }
+
+  // Download JSON output as a file
+  downloadJson(): void {
+    const outputContent = this.aceOutputEditor.getValue();
+    if (!outputContent || outputContent.trim() === '') {
+      this.copyErrorMessage = 'Nothing to download';
+      this.copyErrorVisible = true;
+      setTimeout(() => {
+        this.copyErrorVisible = false;
+      }, 3000);
+      return;
+    }
+    
+    try {
+      // Validate JSON before downloading
+      JSON.parse(outputContent);
+      
+      const blob = new Blob([outputContent], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'formatted.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      
+      // Show success message
+      this.copySuccessMessage = 'JSON downloaded successfully!';
+      this.copySuccessVisible = true;
+      setTimeout(() => {
+        this.copySuccessVisible = false;
+      }, 3000);
+    } catch (error: any) {
+      this.copyErrorMessage = 'Cannot download invalid JSON';
+      this.copyErrorVisible = true;
+      setTimeout(() => {
+        this.copyErrorVisible = false;
+      }, 3000);
     }
   }
 
