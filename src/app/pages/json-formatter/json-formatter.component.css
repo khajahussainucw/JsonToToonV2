@@ -23,18 +23,22 @@
   background: white;
   flex: 1;
   margin: 5px;
-  border: 2.5px solid #564b4b;
+  border: 3px solid #564b4b;
   border-radius: 5px;
   box-shadow: 1px 5px 5px #878686;
+
+
+
+  margin: 7px;
 }
 
-.editor-container.left {
+/*.editor-container.left {
   border-right: 1px solid #dee2e6;
 }
 
 .editor-container.right {
   border-left: 1px solid #dee2e6;
-}
+}*/
 
 .panel-header {
   padding: 8px;
@@ -84,9 +88,9 @@
   height: 28px;
 }
 
-.btn:hover {
-  background-color: #424649;
-}
+  .btn:hover {
+    background-color: #424649;
+  }
 
 .editor-wrapper {
   flex: 1;
@@ -101,10 +105,10 @@
   font-size: 14px;
 }
 
-/* Make ace editor use full height */
-.editor .ace_editor {
-  height: 100% !important;
-}
+  /* Make ace editor use full height */
+  .editor .ace_editor {
+    height: 100% !important;
+  }
 
 .splitter {
   display: none;
@@ -134,7 +138,4 @@
   .panel-actions {
     gap: 2px;
   }
-
-  
 }
-

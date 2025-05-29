@@ -8,13 +8,13 @@
           <h2>Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleJson()">
+          <button class="btn" (click)="loadSampleJson()" aria-label="Sample">
             <i class="fas fa-flask"></i>
-            Sample
+            <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()">
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
             <i class="fas fa-upload"></i>
-            Upload
+            <span class="d-none d-md-inline">Upload</span>
           </button>
           <button class="btn" (click)="clearInput()">
             <i class="fas fa-trash"></i>
@@ -33,25 +33,25 @@
           <h2>Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn">
+          <!--<button class="btn">
             <i class="fas fa-file-excel"></i>
             Excel
-          </button>
+          </button>-->
           <!--<button class="btn">
             <i class="fas fa-file-csv"></i>
             CSV
           </button>-->
-          <button class="btn" (click)="downloadJson()">
+          <button class="btn" (click)="downloadJson()" aria-label="Download">
             <i class="fas fa-download"></i>
-            Download
+            <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="minifyJson()">
+          <button class="btn" (click)="minifyJson()" aria-label="Minify">
             <i class="fas fa-compress"></i>
-            Minify
+            <span class="d-none d-md-inline">Minify</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()">
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
             <i class="fas fa-copy"></i>
-            Copy
+            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
