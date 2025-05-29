@@ -81,15 +81,18 @@ export class JsonFormatterComponent implements AfterViewInit {
     this.aceInputEditor.setOptions({
       useWrapMode: true,
     });
+    // Enable wrap explicitly
+    this.aceInputEditor.getSession().setUseWrapMode(true);
 
     // Initialize output editor
     this.aceOutputEditor = ace.edit(this.outputEditor.nativeElement);
     this.aceOutputEditor.setTheme('ace/theme/github');
     this.aceOutputEditor.session.setMode('ace/mode/json');
     this.aceOutputEditor.setOptions({
-      useWrapMode: true,
-      maxLines: Infinity
+      useWrapMode: true
     });
+    // Enable wrap explicitly
+    this.aceOutputEditor.getSession().setUseWrapMode(true);
 
     // Add change listener to input editor
     this.aceInputEditor.session.on('change', () => {
@@ -118,7 +121,16 @@ export class JsonFormatterComponent implements AfterViewInit {
         return;
       }
 
-      const parsedJson = JSON.parse(inputJson);
+      let parsedJson: any = JSON.parse(inputJson);
+      // If the JSON text is a quoted string, parse it again to get the real object
+      if (typeof parsedJson === 'string') {
+        try {
+          parsedJson = JSON.parse(parsedJson);
+        } catch (error: any) {
+          this.aceOutputEditor.setValue('Invalid JSON string: ' + error.message);
+          return;
+        }
+      }
       const formattedJson = JSON.stringify(parsedJson, null, 2);
       this.aceOutputEditor.setValue(formattedJson, -1);
       this.aceOutputEditor.clearSelection();
