@@ -45,7 +45,7 @@
             <i class="fas fa-download"></i>
             Download
           </button>
-          <button class="btn">
+          <button class="btn" (click)="minifyJson()">
             <i class="fas fa-compress"></i>
             Minify
           </button>
@@ -90,6 +90,15 @@
     </div>
     <div class="toast-body">
       JSON copied to clipboard!
+    </div>
+  </div>
+  <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="fas fa-exclamation-circle text-warning me-2"></i>
+      <strong class="me-auto">Warning</strong>
+    </div>
+    <div class="toast-body">
+      {{ copyErrorMessage }}
     </div>
   </div>
 </div> 

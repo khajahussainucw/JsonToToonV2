@@ -33,6 +33,9 @@ export class JsonFormatterComponent implements AfterViewInit {
   errorMessage = '';
   // Copy success message state
   copySuccessVisible = false;
+  // Copy error message state
+  copyErrorVisible = false;
+  copyErrorMessage = '';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -230,6 +233,11 @@ export class JsonFormatterComponent implements AfterViewInit {
   copyToClipboard(): void {
     const outputContent = this.aceOutputEditor.getValue();
     if (!outputContent || outputContent.trim() === '') {
+      this.copyErrorMessage = 'Nothing to copy';
+      this.copyErrorVisible = true;
+      setTimeout(() => {
+        this.copyErrorVisible = false;
+      }, 3000);
       return;
     }
     
@@ -239,8 +247,30 @@ export class JsonFormatterComponent implements AfterViewInit {
         this.copySuccessVisible = false;
       }, 3000);
     }).catch(err => {
-      console.error('Failed to copy: ', err);
+      this.copyErrorMessage = 'Failed to copy to clipboard';
+      this.copyErrorVisible = true;
+      setTimeout(() => {
+        this.copyErrorVisible = false;
+      }, 3000);
     });
+  }
+
+  // Minify JSON output
+  minifyJson(): void {
+    const outputContent = this.aceOutputEditor.getValue();
+    if (!outputContent || outputContent.trim() === '') {
+      return;
+    }
+    
+    try {
+      const parsed = JSON.parse(outputContent);
+      const minified = JSON.stringify(parsed);
+      this.aceOutputEditor.setValue(minified, -1);
+      this.aceOutputEditor.clearSelection();
+    } catch (error: any) {
+      // If output is not valid JSON, do nothing or show error
+      console.error('Cannot minify invalid JSON:', error);
+    }
   }
 
   private checkMobileView() {
