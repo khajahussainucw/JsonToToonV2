@@ -79,17 +79,18 @@ export class JsonFormatterComponent implements AfterViewInit {
     this.aceInputEditor.setTheme('ace/theme/github');
     this.aceInputEditor.session.setMode('ace/mode/json');
     this.aceInputEditor.setOptions({
-      fontSize: '14px',
-      showPrintMargin: false,
-      showGutter: true,
-      highlightActiveLine: true,
-      enableBasicAutocompletion: true,
-      enableLiveAutocompletion: true,
       useWrapMode: true,
-      showLineNumbers: true,
-      displayIndentGuides: true,
-      minLines: 10,
-      maxLines: Infinity
+/*      fontSize: '14px',*/
+//      showPrintMargin: false,
+//      showGutter: true,
+//      highlightActiveLine: true,
+//      enableBasicAutocompletion: true,
+//      enableLiveAutocompletion: true,
+//      useWrapMode: true,
+//      showLineNumbers: true,
+//      displayIndentGuides: true,
+///*      minLines: 10,*/
+//      maxLines: Infinity
     });
 
     // Initialize output editor
@@ -97,15 +98,16 @@ export class JsonFormatterComponent implements AfterViewInit {
     this.aceOutputEditor.setTheme('ace/theme/github');
     this.aceOutputEditor.session.setMode('ace/mode/json');
     this.aceOutputEditor.setOptions({
-      fontSize: '14px',
-      showPrintMargin: false,
-      showGutter: true,
-      highlightActiveLine: true,
-      readOnly: true,
       useWrapMode: true,
-      showLineNumbers: true,
-      displayIndentGuides: true,
-      minLines: 10,
+  /*    fontSize: '14px',*/
+   //   showPrintMargin: false,
+   //   showGutter: true,
+   //   highlightActiveLine: true,
+   //   readOnly: true,
+   //   useWrapMode: true,
+   //   showLineNumbers: true,
+   //   displayIndentGuides: true,
+   ///*   minLines: 10,*/
       maxLines: Infinity
     });
 

@@ -1,7 +1,7 @@
 .json-formatter-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 105px); /* Adjusted for navbar and minimal padding */
+  height: calc(100vh - 105px);
   width: 100%;
   overflow: hidden;
   background-color: #f8f9fa;
@@ -12,7 +12,6 @@
 .editors-wrapper {
   display: flex;
   width: 100%;
-  /*  height: 100%;*/
   height: calc(100vh - 105px);
   overflow: hidden;
   gap: 4px;
@@ -22,12 +21,10 @@
   display: flex;
   flex-direction: column;
   background: white;
-  /*height: 100%;*/
   flex: 1;
   margin: 5px;
-  border: 3px solid black;
-  border-radius: 5px;
   border: 2.5px solid #564b4b;
+  border-radius: 5px;
   box-shadow: 1px 5px 5px #878686;
 }
 
@@ -138,15 +135,6 @@
     gap: 2px;
   }
 
-  .btn {
-    padding: 2px 6px;
-    font-size: 0.75rem;
-    height: 24px;
-  }
+  
 }
 
-/* Cursor styles for dragging */
-:root.resize-cursor,
-:root.resize-cursor * {
-  cursor: col-resize !important;
-} 
