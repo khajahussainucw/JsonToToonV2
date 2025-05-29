@@ -17,7 +17,7 @@ export class JsonFormatterComponent implements AfterViewInit {
   @ViewChild('outputEditor') private outputEditor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
   @ViewChild('fileInput') private fileInput!: ElementRef<HTMLInputElement>;
-  
+
   private aceInputEditor: any;
   private aceOutputEditor: any;
   private isDragging = false;
@@ -28,7 +28,10 @@ export class JsonFormatterComponent implements AfterViewInit {
   private containerWidth = 0;
   private isMobile = false;
   private debounceTimer: any;
-  
+  // Modal dialog state
+  errorModalVisible = false;
+  errorMessage = '';
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private meta: Meta,
@@ -55,7 +58,7 @@ export class JsonFormatterComponent implements AfterViewInit {
         this.initializeEditors();
         this.checkMobileView();
         this.initSplitter();
-        
+
         window.addEventListener('resize', () => {
           this.checkMobileView();
           if (this.aceInputEditor) {
@@ -81,6 +84,8 @@ export class JsonFormatterComponent implements AfterViewInit {
     this.aceInputEditor.session.setMode('ace/mode/json');
     this.aceInputEditor.setOptions({
       useWrapMode: true,
+      fontSize: '14px',
+      showPrintMargin: false,
     });
     // Enable wrap explicitly
     this.aceInputEditor.getSession().setUseWrapMode(true);
@@ -90,7 +95,9 @@ export class JsonFormatterComponent implements AfterViewInit {
     this.aceOutputEditor.setTheme('ace/theme/github');
     this.aceOutputEditor.session.setMode('ace/mode/json');
     this.aceOutputEditor.setOptions({
-      useWrapMode: true
+      useWrapMode: true,
+      fontSize: '14px',
+      showPrintMargin: false,
     });
     // Enable wrap explicitly
     this.aceOutputEditor.getSession().setUseWrapMode(true);
@@ -128,15 +135,21 @@ export class JsonFormatterComponent implements AfterViewInit {
         try {
           parsedJson = JSON.parse(parsedJson);
         } catch (error: any) {
-          this.aceOutputEditor.setValue('Invalid JSON string: ' + error.message);
+          this.aceOutputEditor.setValue('Invalid JSON string: ' + error.message, -1);
+          this.aceOutputEditor.clearSelection();
           return;
         }
       }
       const formattedJson = JSON.stringify(parsedJson, null, 2);
       this.aceOutputEditor.setValue(formattedJson, -1);
       this.aceOutputEditor.clearSelection();
-    } catch (error: any) {
-      this.aceOutputEditor.setValue('Invalid JSON: ' + error.message);
+    }
+    catch (error: any) {
+
+
+      this.aceOutputEditor.setValue('Invalid JSON', -1);
+      this.aceOutputEditor.clearSelection();
+      return;
     }
   }
 
@@ -161,7 +174,7 @@ export class JsonFormatterComponent implements AfterViewInit {
         "validity": "30 days"
       }
     ];
-    
+
     this.aceInputEditor.setValue(JSON.stringify(sampleJson, null, 2), -1);
     this.aceInputEditor.clearSelection();
     this.formatJson();
@@ -185,11 +198,30 @@ export class JsonFormatterComponent implements AfterViewInit {
         this.aceInputEditor.setValue(formatted, -1);
         this.aceInputEditor.clearSelection();
         this.formatJson();
-      } catch {
-        this.aceOutputEditor.setValue('Please upload a valid JSON document.', -1);
+      } catch (error: any) {
+        this.showErrorModal('Please upload a valid JSON document.');
+        return;
       }
     };
     reader.readAsText(file);
+  }
+
+  // Show bootstrap modal with error message
+  showErrorModal(message: string): void {
+    this.errorMessage = message;
+    this.errorModalVisible = true;
+  }
+
+  // Close the error modal
+  closeErrorModal(): void {
+    this.errorModalVisible = false;
+  }
+
+  // Clear the input editor and format (clears output)
+  clearInput(): void {
+    this.aceInputEditor.setValue('', -1);
+    this.aceInputEditor.clearSelection();
+    this.formatJson();
   }
 
   private checkMobileView() {
@@ -199,7 +231,7 @@ export class JsonFormatterComponent implements AfterViewInit {
 
   private adjustLayoutForMobile() {
     if (!this.leftPane || !this.rightPane) return;
-    
+
     if (this.isMobile) {
       this.leftPane.style.height = 'calc(50vh - 12px)';
       this.rightPane.style.height = 'calc(50vh - 12px)';
@@ -216,7 +248,7 @@ export class JsonFormatterComponent implements AfterViewInit {
   private initSplitter() {
     this.leftPane = document.querySelector('.input-container');
     this.rightPane = document.querySelector('.output-container');
-    
+
     if (!this.leftPane || !this.rightPane || !this.splitter) {
       return;
     }
@@ -228,19 +260,19 @@ export class JsonFormatterComponent implements AfterViewInit {
 
   private startDrag(e: MouseEvent) {
     if (!this.leftPane || !this.rightPane || this.isMobile) return;
-    
+
     this.isDragging = true;
     this.initialX = e.clientX;
-    
+
     const leftRect = this.leftPane.getBoundingClientRect();
     const containerRect = this.leftPane.parentElement?.getBoundingClientRect();
-    
+
     this.initialLeftWidth = leftRect.width;
     this.containerWidth = containerRect?.width || 0;
-    
+
     document.documentElement.classList.add('resize-cursor');
     this.splitter.nativeElement.classList.add('dragging');
-    
+
     document.addEventListener('mousemove', this.onMouseMove.bind(this));
     document.addEventListener('mouseup', this.onMouseUp.bind(this));
     document.addEventListener('selectstart', this.preventSelection);
@@ -248,7 +280,7 @@ export class JsonFormatterComponent implements AfterViewInit {
 
   private onMouseMove(e: MouseEvent) {
     if (!this.isDragging || !this.leftPane || !this.rightPane || this.isMobile) return;
-    
+
     const deltaX = e.clientX - this.initialX;
     const minWidth = 200;
     const maxWidth = this.containerWidth - minWidth;
@@ -256,13 +288,13 @@ export class JsonFormatterComponent implements AfterViewInit {
       minWidth,
       Math.min(maxWidth, this.initialLeftWidth + deltaX)
     );
-    
+
     const leftRatio = newLeftWidth / this.containerWidth;
     const rightRatio = 1 - leftRatio;
-    
+
     this.leftPane.style.flex = `${leftRatio}`;
     this.rightPane.style.flex = `${rightRatio}`;
-    
+
     if (this.aceInputEditor && this.aceOutputEditor) {
       this.aceInputEditor.resize();
       this.aceOutputEditor.resize();
@@ -277,7 +309,7 @@ export class JsonFormatterComponent implements AfterViewInit {
       document.removeEventListener('mousemove', this.onMouseMove.bind(this));
       document.removeEventListener('mouseup', this.onMouseUp.bind(this));
       document.removeEventListener('selectstart', this.preventSelection);
-      
+
       if (this.aceInputEditor && this.aceOutputEditor) {
         this.aceInputEditor.resize();
         this.aceOutputEditor.resize();
