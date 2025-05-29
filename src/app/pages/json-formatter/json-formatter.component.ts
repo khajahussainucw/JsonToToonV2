@@ -16,6 +16,7 @@ export class JsonFormatterComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
   @ViewChild('outputEditor') private outputEditor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
+  @ViewChild('fileInput') private fileInput!: ElementRef<HTMLInputElement>;
   
   private aceInputEditor: any;
   private aceOutputEditor: any;
@@ -140,38 +141,55 @@ export class JsonFormatterComponent implements AfterViewInit {
   }
 
   loadSampleJson() {
-    const sampleJson = {
-      "name": "JSON Formatter Example",
-      "version": "1.0.0",
-      "description": "A sample JSON object with various data types",
-      "active": true,
-      "created_at": "2024-03-15T10:30:00Z",
-      "stats": {
-        "views": 1000,
-        "likes": 150,
-        "shares": 75
+    const sampleJson = [
+      {
+        "planId": 1001,
+        "planName": "Basic Plan",
+        "price": 20,
+        "data": "5GB",
+        "minutes": 200,
+        "sms": 100,
+        "validity": "25 days"
       },
-      "tags": [
-        "json",
-        "formatter",
-        "example"
-      ],
-      "author": {
-        "id": 123,
-        "name": "John Doe",
-        "email": "john@example.com",
-        "roles": ["admin", "editor"]
-      },
-      "settings": {
-        "theme": "dark",
-        "notifications": true,
-        "language": "en-US"
+      {
+        "planId": 1002,
+        "planName": "Premium Plan",
+        "price": 40,
+        "data": "15GB",
+        "minutes": "Unlimited",
+        "sms": "Unlimited",
+        "validity": "30 days"
       }
-    };
+    ];
     
     this.aceInputEditor.setValue(JSON.stringify(sampleJson, null, 2), -1);
     this.aceInputEditor.clearSelection();
     this.formatJson();
+  }
+
+  triggerFileUpload(): void {
+    this.fileInput.nativeElement.value = '';
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const content = reader.result as string;
+      try {
+        const parsed = JSON.parse(content);
+        const formatted = JSON.stringify(parsed, null, 2);
+        this.aceInputEditor.setValue(formatted, -1);
+        this.aceInputEditor.clearSelection();
+        this.formatJson();
+      } catch {
+        this.aceOutputEditor.setValue('Please upload a valid JSON document.', -1);
+      }
+    };
+    reader.readAsText(file);
   }
 
   private checkMobileView() {

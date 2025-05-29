@@ -1,4 +1,5 @@
 <div class="json-formatter-container">
+  <input type="file" #fileInput accept=".json,.txt" style="display: none;" (change)="onFileSelected($event)" />
   <div class="editors-wrapper">
     <!-- Left Panel (Input) -->
     <div class="editor-container">
@@ -11,7 +12,7 @@
             <i class="fas fa-flask"></i>
             Sample
           </button>
-          <button class="btn">
+          <button class="btn" (click)="triggerFileUpload()">
             <i class="fas fa-upload"></i>
             Upload
           </button>
@@ -59,4 +60,23 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
+
+<!-- Bootstrap Error Modal -->
+<div class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" [class.show]="errorModalVisible" [style.display]="errorModalVisible ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeErrorModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="errorModalVisible" *ngIf="errorModalVisible"></div> 
