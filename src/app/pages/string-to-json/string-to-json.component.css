@@ -1,0 +1,138 @@
+.json-formatter-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 105px);
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.editors-wrapper {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 105px);
+  overflow: hidden;
+  gap: 4px;
+}
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  flex: 1;
+  margin: 5px;
+  border: 3px solid #564b4b;
+  border-radius: 5px;
+  box-shadow: 1px 5px 5px #878686;
+  margin: 7px;
+}
+
+/*.editor-container.left {
+  border-right: 1px solid #dee2e6;
+}
+
+.editor-container.right {
+  border-left: 1px solid #dee2e6;
+}*/
+
+.panel-header {
+  padding: 8px;
+  background-color: white;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  flex: none;
+}
+
+.panel-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.hint {
+  display: none;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.btn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background-color: #2b3035;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+}
+
+  .btn:hover {
+    background-color: #424649;
+  }
+
+.editor-wrapper {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  display: flex;
+}
+
+.editor {
+  position: absolute;
+  inset: 0;
+  font-size: 14px;
+}
+
+  /* Make ace editor use full height */
+  .editor .ace_editor {
+    height: 100% !important;
+  }
+
+.splitter {
+  display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .json-formatter-container {
+    height: calc(100vh - 70px);
+    padding: 4px;
+  }
+
+  .editors-wrapper {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .editor-container {
+    height: calc(50% - 2px);
+  }
+
+  .panel-header {
+    padding: 4px 8px;
+    height: 36px;
+  }
+
+  .panel-actions {
+    gap: 2px;
+  }
+}
