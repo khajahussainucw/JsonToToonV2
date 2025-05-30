@@ -1,7 +1,8 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { JsonStorageService } from '../../services/json-storage.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-share-modal',
@@ -125,15 +126,19 @@ export class ShareModalComponent implements AfterViewInit {
   showToast: boolean = false;
   toastMessage: string = '';
 
-  constructor(private jsonStorageService: JsonStorageService) {}
+  constructor(
+    private jsonStorageService: JsonStorageService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngAfterViewInit() {
-    // Listen for modal close event to reset state
-    const modalElement = document.getElementById('shareModal');
-    if (modalElement) {
-      modalElement.addEventListener('hidden.bs.modal', () => {
-        this.resetModal();
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      const modalElement = document.getElementById('shareModal');
+      if (modalElement) {
+        modalElement.addEventListener('hidden.bs.modal', () => {
+          this.resetModal();
+        });
+      }
     }
   }
 
@@ -167,12 +172,16 @@ export class ShareModalComponent implements AfterViewInit {
       .subscribe({
         next: (response) => {
           if (response?.guid) {
-            // Build the URL with the guid as a query parameter
-            let url = window.location.origin + window.location.pathname;
-            let separator = url.includes('?') ? '&' : '?';
-            this.sharedUrl = `${url}${separator}guid=${response.guid}`;
-            // Update the browser's address bar
-            window.history.replaceState({}, '', this.sharedUrl);
+            if (isPlatformBrowser(this.platformId)) {
+              // Build the URL with the guid as a query parameter
+              let url = window.location.origin + window.location.pathname;
+              let separator = url.includes('?') ? '&' : '?';
+              this.sharedUrl = `${url}${separator}guid=${response.guid}`;
+              // Update the browser's address bar
+              window.history.replaceState({}, '', this.sharedUrl);
+            } else {
+              this.sharedUrl = `?guid=${response.guid}`;
+            }
             this.toastMessage = 'JSON data has been saved successfully!';
             this.showToast = true;
             setTimeout(() => this.showToast = false, 3000);
@@ -189,8 +198,10 @@ export class ShareModalComponent implements AfterViewInit {
   }
 
   copyUrl(input: HTMLInputElement) {
-    input.select();
-    document.execCommand('copy');
+    if (isPlatformBrowser(this.platformId)) {
+      input.select();
+      document.execCommand('copy');
+    }
     this.toastMessage = 'URL copied to clipboard!';
     this.showToast = true;
     setTimeout(() => this.showToast = false, 2000);

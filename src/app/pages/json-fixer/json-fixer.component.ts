@@ -25,6 +25,39 @@ export class JsonFixerComponent implements AfterViewInit {
   private containerWidth = 0;
   errorMessage: string = '';
 
+  // Loading modal state
+  isLoading: boolean = false;
+  loadingMessages: string[] = [
+    "Analyzing JSON structure...",
+    "Fixing syntax errors...",
+    "Validating property names...",
+    "Correcting nested objects...",
+    "Checking for missing commas...",
+    "Validating array structures...",
+    "Fixing quote inconsistencies...",
+    "Resolving escape sequences...",
+    "Analyzing data types...",
+    "Correcting boolean values...",
+    "Fixing null representations...",
+    "Validating UTF-8 characters...",
+    "Organizing nested arrays...",
+    "Restructuring object hierarchy...",
+    "Removing trailing commas...",
+    "Fixing duplicate keys...",
+    "Validating number formats...",
+    "Optimizing whitespace...",
+    "Ensuring proper indentation...",
+    "Processing complex structures...",
+    "Checking bracket pairs...",
+    "Validating string values...",
+    "Almost done, final touches...",
+    "Formatting output...",
+    "Almost there...",
+  ];
+  currentMessageIndex: number = 0;
+  progressPercent: number = 0;
+  private loadingInterval: any;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private fixerService: JsonFixerService) {}
 
   ngAfterViewInit(): void {
@@ -172,12 +205,27 @@ export class JsonFixerComponent implements AfterViewInit {
       this.aceEditorRight.setValue('Please enter invalid JSON to fix', -1);
       return;
     }
+    // Show loading modal
+    this.isLoading = true;
+    this.currentMessageIndex = 0;
+    this.progressPercent = 0;
+    // Animate loading messages and progress
+    this.loadingInterval = setInterval(() => {
+      this.currentMessageIndex = (this.currentMessageIndex + 1) % this.loadingMessages.length;
+      this.progressPercent = Math.min(100, this.progressPercent + Math.ceil(100 / this.loadingMessages.length));
+    }, 700);
     // Call backend API
     this.fixerService.fixJson(input).subscribe(
       (response) => {
+        clearInterval(this.loadingInterval);
+        this.progressPercent = 100;
+        this.isLoading = false;
         this.aceEditorRight.setValue(JSON.stringify(response, null, 2), -1);
       },
       (error) => {
+        clearInterval(this.loadingInterval);
+        this.progressPercent = 100;
+        this.isLoading = false;
         this.aceEditorRight.setValue('Sorry, unable to fix this JSON.... 😔', -1);
       }
     );

@@ -50,3 +50,24 @@
   </div>
 </div>
 
+<div *ngIf="isLoading" class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.4); z-index: 2000;">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content text-center p-5 shadow-lg" style="border-radius: 1.2rem;">
+      <div class="modal-body">
+        <div class="mb-4">
+          <div class="spinner-border text-success mb-4" style="width: 3.5rem; height: 3.5rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <h4 class="mb-4 fw-bold">{{ loadingMessages[currentMessageIndex] }}</h4>
+          <div class="progress position-relative mx-auto" style="height: 22px; max-width: 420px; border-radius: 1rem; background: #e9ecef;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [style.width]="progressPercent + '%'" aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100" style="font-size: 1.1rem; border-radius: 1rem;">
+              <span class="position-absolute w-100 text-center text-white" style="left:0; top:0; font-weight: 600;">{{ progressPercent }}%</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-muted small">Please wait while we fix your JSON...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
