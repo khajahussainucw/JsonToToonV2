@@ -21,6 +21,7 @@ export class JsonToTableComponent implements AfterViewInit {
   @ViewChild('tableContainer', { static: false }) private tableContainer!: ElementRef<HTMLElement>;
   
   private aceEditor: any;
+  private editorBackupContent: string = '';
   private isDragging = false;
   private leftPane: HTMLElement | null = null;
   private rightPane: HTMLElement | null = null;
@@ -280,7 +281,7 @@ export class JsonToTableComponent implements AfterViewInit {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'table-data.xls';
+    link.download = 'JsonConvertedToExcel.xls';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -301,7 +302,7 @@ export class JsonToTableComponent implements AfterViewInit {
       // Attempt to parse JSON; if it's a wrapped string, parse twice
       let parsed: any;
       try {
-        debugger
+        
         const firstParse = JSON.parse(jsonContent);
         // If the content was a JSON-encoded string, parse it again
         parsed = typeof firstParse === 'string'
@@ -441,12 +442,36 @@ export class JsonToTableComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       import('bootstrap').then(({ Modal }) => {
         const modalElement = document.getElementById('tableModal');
-        if (modalElement) {
+        const tableOutputContainer = document.querySelector('.table-output-container');
+        const modalBody = modalElement?.querySelector('.modal-body');
+        
+        if (modalElement && tableOutputContainer && modalBody) {
+          // Store the current editor content
+          this.editorBackupContent = this.aceEditor?.getValue() || '';
+          
+          // Copy the table content to modal body
+          modalBody.innerHTML = tableOutputContainer.innerHTML;
+          
           const tableModal = new Modal(modalElement, {
-            backdrop: true,
             keyboard: true
           });
+          
+          // Add event listener for modal close
+          modalElement.addEventListener('hidden.bs.modal', () => {
+            // Restore the editor content when modal is closed
+            if (this.aceEditor && this.editorBackupContent) {
+              this.aceEditor.setValue(this.editorBackupContent);
+              this.convertToTable(); // Refresh the table view
+            }
+          }, { once: true }); // Remove listener after first execution
+          
           tableModal.show();
+          
+          // Clear the ace editor content after modal is shown
+          if (this.aceEditor) {
+            this.aceEditor.setValue('');
+            this.convertToTable(); // Reset the table data
+          }
         }
       }).catch(err => console.error('Failed to load bootstrap modal:', err));
     }
