@@ -205,6 +205,8 @@ export class JsonFixerComponent implements AfterViewInit {
       this.aceEditorRight.setValue('Please enter invalid JSON to fix', -1);
       return;
     }
+    // Clear right editor before making the network call
+    this.aceEditorRight.setValue('', -1);
     // Show loading modal
     this.isLoading = true;
     this.currentMessageIndex = 0;
