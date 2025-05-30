@@ -480,4 +480,68 @@ export class JsonToTableComponent implements AfterViewInit {
   getEditorContent(): string {
     return this.aceEditor?.getValue() || '';
   }
+
+  openShareModal(): void {
+    const json = this.getEditorContent();
+    let isValid = true;
+    try {
+      if (!json.trim()) {
+        isValid = false;
+      } else {
+        JSON.parse(json);
+      }
+    } catch (e) {
+      isValid = false;
+    }
+    if (!isValid) {
+      this.showInvalidJsonModal();
+      return;
+    }
+    // Open the share modal programmatically
+    if (isPlatformBrowser(this.platformId)) {
+      import('bootstrap').then(({ Modal }) => {
+        const modalElement = document.getElementById('shareModal');
+        if (modalElement) {
+          const shareModal = new Modal(modalElement, { keyboard: true });
+          shareModal.show();
+        }
+      });
+    }
+  }
+
+  showInvalidJsonModal(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      import('bootstrap').then(({ Modal }) => {
+        let modalElement = document.getElementById('invalidJsonModal');
+        if (!modalElement) {
+          // Create the modal if it doesn't exist
+          modalElement = document.createElement('div');
+          modalElement.id = 'invalidJsonModal';
+          modalElement.className = 'modal fade';
+          modalElement.tabIndex = -1;
+          modalElement.innerHTML = `
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header bg-black text-white">
+                  <h5 class="modal-title"><i class='fas fa-exclamation-triangle me-2'></i>Invalid JSON</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Please enter a valid JSON in the editor before sharing.</p>
+                </div>
+                <div class="modal-footer bg-light">
+                  <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i> Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(modalElement);
+        }
+        const invalidModal = new Modal(modalElement, { keyboard: true });
+        invalidModal.show();
+      });
+    }
+  }
 }
