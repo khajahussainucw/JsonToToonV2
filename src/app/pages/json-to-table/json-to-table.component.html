@@ -52,32 +52,39 @@
         
         <div class="table-output-container">
           <div class="table-container" #tableContainer>
-            <ng-container *ngIf="tableData.length > 0">
-              <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
-                <!-- Flat table for array of objects -->
-                <table class="table" *ngIf="columns.length > 0">
-                  <thead>
-                    <tr>
-                      <th *ngFor="let col of columns"><b>{{ col }}</b></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let row of tableData">
-                      <td *ngFor="let col of columns">
-                        <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
-                          <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
-                        </ng-container>
-                        <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <ng-container *ngIf="hasValidJson">
+              <ng-container *ngIf="tableData.length > 0">
+                <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
+                  <!-- Flat table for array of objects -->
+                  <table class="table" *ngIf="columns.length > 0">
+                    <thead>
+                      <tr>
+                        <th *ngFor="let col of columns"><b>{{ col }}</b></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of tableData">
+                        <td *ngFor="let col of columns">
+                          <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
+                            <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                          </ng-container>
+                          <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ng-container>
+                <ng-template #singleObjectTpl>
+                  <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
+                </ng-template>
               </ng-container>
-              <ng-template #singleObjectTpl>
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
-              </ng-template>
             </ng-container>
-            <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
+            <div *ngIf="!hasValidJson && errorMessage" class="invalid-json-message">
+              <div class="basic-message">
+                {{ errorMessage }}
+              </div>
+            </div>
+            <div *ngIf="hasValidJson && tableData.length === 0" class="no-data">
               Enter valid JSON array to see the table
             </div>
           </div>

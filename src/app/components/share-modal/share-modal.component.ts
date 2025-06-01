@@ -49,8 +49,9 @@ import { isPlatformBrowser } from '@angular/common';
               <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">
                 <i class="fas fa-times me-2"></i> Cancel
               </button>
-              <button type="button" class="btn btn-sm btn-success" (click)="saveJson()">
-                <i class="fas fa-save me-2"></i> Save
+              <button type="button" class="btn btn-sm btn-success" (click)="saveJson()" [disabled]="isSaving">
+                <i class="fas me-2" [ngClass]="{'fa-save': !isSaving, 'fa-spinner fa-spin': isSaving}"></i>
+                {{ isSaving ? 'Saving...' : 'Save' }}
               </button>
             </ng-container>
             <ng-container *ngIf="sharedUrl">

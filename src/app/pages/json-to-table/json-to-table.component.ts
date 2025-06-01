@@ -302,22 +302,30 @@ export class JsonToTableComponent implements AfterViewInit {
       // Attempt to parse JSON; if it's a wrapped string, parse twice
       let parsed: any;
       try {
-        
         const firstParse = JSON.parse(jsonContent);
         // If the content was a JSON-encoded string, parse it again
         parsed = typeof firstParse === 'string'
           ? JSON.parse(firstParse)
           : firstParse;
-      } catch (err) {
-        throw err;
+      } catch (err: any) {
+        this.hasValidJson = false;
+        this.errorMessage = err.message || 'Invalid JSON format';
+        this.tableData = [];
+        this.columns = [];
+        return;
       }
+
       this.hasValidJson = true;
       this.isSingleObject = !Array.isArray(parsed);
       const data = Array.isArray(parsed) ? parsed : [parsed];
 
       // Validate that we have objects
       if (data.length === 0 || data.some((item: unknown) => typeof item !== 'object' || item === null)) {
-        throw new Error('JSON must contain objects');
+        this.hasValidJson = false;
+        this.errorMessage = 'JSON must contain objects';
+        this.tableData = [];
+        this.columns = [];
+        return;
       }
 
       // Process each object in the array
@@ -343,7 +351,7 @@ export class JsonToTableComponent implements AfterViewInit {
       this.errorMessage = '';
     } catch (error: any) {
       this.hasValidJson = false;
-      console.error('Error processing JSON:', error);
+      this.errorMessage = error.message || 'Failed to process JSON';
       this.tableData = [];
       this.columns = [];
     }

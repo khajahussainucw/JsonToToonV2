@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +10,12 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'json-to-table-angular';
+
+  constructor(private router: Router) {}
+
+  onLogoClick(event: MouseEvent) {
+    event.preventDefault();
+    // Navigate to home and force a full reload
+    window.location.href = '/';
+  }
 }

@@ -566,3 +566,20 @@
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1); }
 }
+
+.invalid-json-message {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.basic-message {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #666;
+  font-size: 14px;
+}
