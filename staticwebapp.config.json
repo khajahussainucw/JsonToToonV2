@@ -1,0 +1,13 @@
+//{
+//  //"navigationFallback": {
+//  //  "rewrite": "/index.html",
+//  //  "exclude": [ "/assets/*", "/api/*" ]
+//  //},
+//  "routes": [
+//    {
+//      "route": "/index.html",
+//      "redirect": "/home",
+//      "statusCode": 301
+//    }
+//  ]
+//}

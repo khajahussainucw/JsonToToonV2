@@ -9,6 +9,8 @@ import { StringToJsonComponent } from './pages/string-to-json/string-to-json.com
 
 export const routes: Routes = [
   { path: '', component: JsonToTableComponent },
+  { path: 'index', component: JsonToTableComponent },
+  { path: 'json-to-table', component: JsonToTableComponent },
   { path: 'json-fixer', component: JsonFixerComponent },
   { path: 'json-formatter', component: JsonFormatterComponent },
   { path: 'string-to-json', component: StringToJsonComponent },

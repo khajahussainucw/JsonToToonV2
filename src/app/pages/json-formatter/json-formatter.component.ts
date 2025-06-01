@@ -47,14 +47,14 @@ export class JsonFormatterComponent implements AfterViewInit {
   }
 
   private setupMetaTags() {
-    this.title.setTitle('JSON Formatter - Format and Beautify JSON Online');
+    this.title.setTitle('JSON Formatter');
     this.meta.updateTag({
       name: 'description',
-      content: 'Format and beautify JSON data with real-time preview. Supports complex JSON structures with syntax highlighting.'
+      content: 'Experience super fast conversion with online JSON Formatter tool, streamlining data validation and beautification. Tailored for developers and data scientists seeking swift, dependable tools for JSON formatting and analysis.'
     });
     this.meta.updateTag({
       name: 'keywords',
-      content: 'json formatter,json beautifier,format json,json validator,json pretty print,json editor,json viewer'
+      content: 'json formatter, json formatter online, format json, JSON Checker, json format, json online format, format json online, json viewer, json viewer online, jsonformatter, json beautifier, json pretty print'
     });
   }
 

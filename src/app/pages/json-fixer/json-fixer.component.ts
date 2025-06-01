@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { JsonFixerService } from './json-fixer.service';
+import { Title, Meta } from '@angular/platform-browser';
 declare const ace: any;
 
 @Component({
@@ -58,7 +59,27 @@ export class JsonFixerComponent implements AfterViewInit {
   progressPercent: number = 0;
   private loadingInterval: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private fixerService: JsonFixerService) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object, 
+    private fixerService: JsonFixerService,
+    private titleService: Title,
+    private metaService: Meta
+  ) {
+    // Set page title
+    this.titleService.setTitle('JSON Fixer - Fix JSON Parse Errors, Syntax Errors, and Format JSON Files');
+
+    // Set meta description
+    this.metaService.updateTag({
+      name: 'description',
+      content: 'Easily fix JSON file errors, from parse errors to syntax issues, with the JSON fixer. Validate, repair, and format JSON data for accurate, error-free results—perfect for developers and data analysts working with JSON.'
+    });
+
+    // Set meta keywords
+    this.metaService.updateTag({
+      name: 'keywords',
+      content: 'json fixer, json file fixer, fix json online, fix json error, json parse error, json syntax error, invalid json repair, vscode fix json, json format fixer, json string fixer'
+    });
+  }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {

@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -49,14 +47,14 @@ export class StringToJsonComponent implements AfterViewInit {
   }
 
   private setupMetaTags() {
-    this.title.setTitle('JSON Formatter - Format and Beautify JSON Online');
+    this.title.setTitle('String json to json');
     this.meta.updateTag({
       name: 'description',
-      content: 'Format and beautify JSON data with real-time preview. Supports complex JSON structures with syntax highlighting.'
+      content: 'Convert string to JSON effortlessly with this online string to JSON converter. Perfect for developers needing to parse string JSON to JSON format, JavaScript string to JSON, or JSON string to JSON. Quick, accurate, and easy to use.'
     });
     this.meta.updateTag({
       name: 'keywords',
-      content: 'json formatter,json beautifier,format json,json validator,json pretty print,json editor,json viewer'
+      content: 'string to json,string json to json online, string json to json, stringtojson, string to json converter, string to json online, convert string to json, javascript string to json, json string, string to json javascript, json string to json, convert to JSON format, string to JSON parser'
     });
   }
 
@@ -162,28 +160,9 @@ export class StringToJsonComponent implements AfterViewInit {
   }
 
   loadSampleJson() {
-    const sampleJson = [
-      {
-        "planId": 1001,
-        "planName": "Basic Plan",
-        "price": 20,
-        "data": "5GB",
-        "minutes": 200,
-        "sms": 100,
-        "validity": "25 days"
-      },
-      {
-        "planId": 1002,
-        "planName": "Premium Plan",
-        "price": 40,
-        "data": "15GB",
-        "minutes": "Unlimited",
-        "sms": "Unlimited",
-        "validity": "30 days"
-      }
-    ];
+    const sampleJson = `"{\\"users\\": [{\\"id\\": 1, \\"name\\": \\"John Doe\\", \\"email\\": \\"john@example.com\\", \\"active\\": true}, {\\"id\\": 2, \\"name\\": \\"Jane Smith\\", \\"email\\": \\"jane@example.com\\", \\"active\\": false}], \\"metadata\\": {\\"total\\": 2, \\"page\\": 1, \\"timestamp\\": \\"2024-01-15T10:30:00Z\\"}}"`;
 
-    this.aceInputEditor.setValue(JSON.stringify(sampleJson, null, 2), -1);
+    this.aceInputEditor.setValue(sampleJson, -1);
     this.aceInputEditor.clearSelection();
     this.formatJson();
   }
