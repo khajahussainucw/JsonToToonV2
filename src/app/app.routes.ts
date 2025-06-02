@@ -4,6 +4,7 @@ import { JsonFixerComponent } from './pages/json-fixer/json-fixer.component';
 import { JsonFormatterComponent } from './pages/json-formatter/json-formatter.component';
 import { StringToJsonComponent } from './pages/string-to-json/string-to-json.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { AboutComponent } from './pages/about/about.component';
 
 //export const routes: Routes = [];
 
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'json-formatter', component: JsonFormatterComponent },
   { path: 'string-to-json', component: StringToJsonComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'about', component: AboutComponent },
   { path: '**', redirectTo: '' }
 ];
