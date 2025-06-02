@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ContactService, ContactFormData } from '../../services/contact.service';
+import { FormsModule, NgForm } from '@angular/forms';
+import { ContactService } from '../../services/contact.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -12,43 +12,47 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  formData: ContactFormData = {
+  @ViewChild('contactForm') contactForm!: NgForm;
+  
+  formData = {
     name: '',
     email: '',
     message: ''
   };
   
   isSubmitting = false;
-  showSuccessMessage = false;
-  showErrorMessage = false;
-  errorMessage = '';
+  showSuccessModal = false;
 
   constructor(private contactService: ContactService) {}
 
   onSubmit() {
-    if (this.isSubmitting) return;
+    if (this.isSubmitting || !this.contactForm.valid) return;
     
     this.isSubmitting = true;
-    this.showSuccessMessage = false;
-    this.showErrorMessage = false;
 
     this.contactService.sendMessage(this.formData).subscribe({
-      next: (response) => {
-        this.showSuccessMessage = true;
+      next: () => {
+        // Show success modal
+        this.showSuccessModal = true;
+        
+        // Reset form
         this.formData = {
           name: '',
           email: '',
           message: ''
         };
+        this.contactForm.resetForm();
       },
       error: (error) => {
-        this.showErrorMessage = true;
-        this.errorMessage = 'Failed to send message. Please try again later.';
         console.error('Error sending message:', error);
       },
       complete: () => {
         this.isSubmitting = false;
       }
     });
+  }
+
+  closeSuccessModal() {
+    this.showSuccessModal = false;
   }
 } 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ContactFormData {
@@ -17,12 +17,13 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   sendMessage(formData: ContactFormData): Observable<any> {
-    return this.http.get(this.apiUrl, {
-      params: {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message
-      }
-    });
+    // Create URL parameters
+    const params = new HttpParams()
+      .set('name', formData.name)
+      .set('email', formData.email)
+      .set('message', formData.message);
+
+    // Make POST request with parameters in URL
+    return this.http.post(this.apiUrl, null, { params });
   }
 } 

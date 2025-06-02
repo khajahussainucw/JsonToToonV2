@@ -6,20 +6,6 @@
     <div class="card-body">
       <p class="lead mb-4">Have a question or feedback? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
       
-      <!-- Success Message -->
-      <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showSuccessMessage">
-        <i class="fas fa-check-circle me-2"></i>
-        Thank you for your message! We'll get back to you soon.
-        <button type="button" class="btn-close" (click)="showSuccessMessage = false" aria-label="Close"></button>
-      </div>
-
-      <!-- Error Message -->
-      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showErrorMessage">
-        <i class="fas fa-exclamation-circle me-2"></i>
-        {{ errorMessage }}
-        <button type="button" class="btn-close" (click)="showErrorMessage = false" aria-label="Close"></button>
-      </div>
-
       <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
@@ -77,4 +63,34 @@
       </form>
     </div>
   </div>
-</div> 
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" [class.show]="showSuccessModal" [style.display]="showSuccessModal ? 'block' : 'none'" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+          <i class="fas fa-check-circle me-2"></i>
+          Success
+        </h5>
+        <button type="button" class="btn-close btn-close-white" (click)="closeSuccessModal()"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-envelope-open-text fa-3x text-success"></i>
+        </div>
+        <p class="mb-0">Thank you for your message! We'll get back to you soon.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success" (click)="closeSuccessModal()">
+          <i class="fas fa-check me-2"></i>
+          Got it!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="showSuccessModal" *ngIf="showSuccessModal"></div> 
