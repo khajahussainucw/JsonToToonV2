@@ -17,6 +17,4 @@ export class JsonFixerService {
     const body = JSON.stringify(jsonString); // ✅ this is important
     return this.http.post<any>(this.apiUrl, body, { headers });
   }
-
-
 } 

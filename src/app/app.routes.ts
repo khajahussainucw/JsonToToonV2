@@ -5,6 +5,7 @@ import { JsonFormatterComponent } from './pages/json-formatter/json-formatter.co
 import { StringToJsonComponent } from './pages/string-to-json/string-to-json.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 //export const routes: Routes = [];
 
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'string-to-json', component: StringToJsonComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '' }
 ];

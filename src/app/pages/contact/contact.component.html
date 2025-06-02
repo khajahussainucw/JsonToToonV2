@@ -1,0 +1,80 @@
+<div class="m-4">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="fw-bold mb-0">Contact Us</h1>
+    </div>
+    <div class="card-body">
+      <p class="lead mb-4">Have a question or feedback? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+      
+      <!-- Success Message -->
+      <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showSuccessMessage">
+        <i class="fas fa-check-circle me-2"></i>
+        Thank you for your message! We'll get back to you soon.
+        <button type="button" class="btn-close" (click)="showSuccessMessage = false" aria-label="Close"></button>
+      </div>
+
+      <!-- Error Message -->
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showErrorMessage">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="showErrorMessage = false" aria-label="Close"></button>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="name" 
+            name="name"
+            [(ngModel)]="formData.name"
+            required
+            #name="ngModel">
+          <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+            Please enter your name.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            [(ngModel)]="formData.email"
+            required
+            email
+            #email="ngModel">
+          <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea 
+            class="form-control" 
+            id="message" 
+            name="message"
+            rows="5"
+            [(ngModel)]="formData.message"
+            required
+            #message="ngModel"></textarea>
+          <div class="invalid-feedback" *ngIf="message.invalid && (message.dirty || message.touched)">
+            Please enter your message.
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="isSubmitting || contactForm.form.invalid">
+          <i class="fas" [ngClass]="{'fa-paper-plane': !isSubmitting, 'fa-spinner fa-spin': isSubmitting}"></i>
+          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div> 

@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { JsonFixerService } from './json-fixer.service';
+import { JsonFixerService } from '../../services/json-fixer.service';
 import { Title, Meta } from '@angular/platform-browser';
 declare const ace: any;
 
