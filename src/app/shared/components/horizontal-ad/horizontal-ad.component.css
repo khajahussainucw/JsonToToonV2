@@ -1,0 +1,17 @@
+.ad-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.adsbygoogle {
+  display: block !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ad-container {
+    margin: 10px auto !important;
+    max-width: 100% !important;
+    padding: 0 10px;
+  }
+}
