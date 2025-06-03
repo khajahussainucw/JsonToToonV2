@@ -3,12 +3,13 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { JsonFixerService } from '../../services/json-fixer.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { HorizontalAdComponent } from '../../shared/components';
 declare const ace: any;
 
 @Component({
   selector: 'app-json-fixer',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HorizontalAdComponent],
   templateUrl: './json-fixer.component.html',
   styleUrls: ['./json-fixer.component.css']
 })

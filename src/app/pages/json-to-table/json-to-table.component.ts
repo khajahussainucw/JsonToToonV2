@@ -5,13 +5,14 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JsonStorageService } from '../../services/json-storage.service';
+import { HorizontalAdComponent } from '../../shared/components';
 
 declare const ace: any;
 
 @Component({
   selector: 'app-json-to-table',
   standalone: true,
-  imports: [CommonModule, RouterModule, ShareModalComponent, HttpClientModule],
+  imports: [CommonModule, RouterModule, ShareModalComponent, HttpClientModule, HorizontalAdComponent],
   templateUrl: './json-to-table.component.html',
   styleUrl: './json-to-table.component.css'
 })
