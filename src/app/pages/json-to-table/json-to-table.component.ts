@@ -462,17 +462,34 @@ export class JsonToTableComponent implements AfterViewInit {
           modalBody.innerHTML = tableOutputContainer.innerHTML;
           
           const tableModal = new Modal(modalElement, {
-            keyboard: true
+            keyboard: true,
+            backdrop: true
           });
           
-          // Add event listener for modal close
-          modalElement.addEventListener('hidden.bs.modal', () => {
+          // Add event listener for modal close - use more specific cleanup
+          const handleModalClose = () => {
             // Restore the editor content when modal is closed
             if (this.aceEditor && this.editorBackupContent) {
               this.aceEditor.setValue(this.editorBackupContent);
               this.convertToTable(); // Refresh the table view
             }
-          }, { once: true }); // Remove listener after first execution
+            
+            // Force remove any remaining backdrop
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+              backdrop.remove();
+            }
+            
+            // Ensure body classes are cleaned up
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            
+            // Remove the event listener
+            modalElement.removeEventListener('hidden.bs.modal', handleModalClose);
+          };
+          
+          modalElement.addEventListener('hidden.bs.modal', handleModalClose);
           
           tableModal.show();
           
@@ -483,6 +500,40 @@ export class JsonToTableComponent implements AfterViewInit {
           }
         }
       }).catch(err => console.error('Failed to load bootstrap modal:', err));
+    }
+  }
+
+  /**
+   * Manually close the table modal and ensure proper cleanup
+   */
+  closeTableModal(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      import('bootstrap').then(({ Modal }) => {
+        const modalElement = document.getElementById('tableModal');
+        if (modalElement) {
+          const tableModal = Modal.getInstance(modalElement);
+          if (tableModal) {
+            tableModal.hide();
+          }
+          
+          // Restore the editor content
+          if (this.aceEditor && this.editorBackupContent) {
+            this.aceEditor.setValue(this.editorBackupContent);
+            this.convertToTable();
+          }
+          
+          // Force cleanup
+          setTimeout(() => {
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+              backdrop.remove();
+            }
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+          }, 100);
+        }
+      }).catch(err => console.error('Failed to close modal:', err));
     }
   }
 
