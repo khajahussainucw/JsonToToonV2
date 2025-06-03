@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="split-container">
-        <div class="json-input-container" style="flex: 0.22 1 0%;">
+        <div class="json-input-container">
           <div #editor class="editor"></div>
           <!--<div class="error-bar" *ngIf="errorMessage">
             <div class="error-message">
@@ -50,7 +50,7 @@
         
         <div class="splitter" id="splitter" #splitter></div>
         
-        <div class="table-output-container" style="flex: 0.78 1 0%;">
+        <div class="table-output-container">
           <div class="table-container" #tableContainer>
             <ng-container *ngIf="hasValidJson">
               <ng-container *ngIf="tableData.length > 0">
