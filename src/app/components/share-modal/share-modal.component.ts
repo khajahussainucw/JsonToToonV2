@@ -14,7 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
         <div class="modal-content">
           <div class="modal-header bg-dark text-white">
             <h5 class="modal-title d-flex align-items-center" id="shareModalLabel">
-              <i class="fas fa-file-alt me-2"></i>
+              <i class="fas fa-file-alt "></i>
               Permission/Consent to Save JSON Data
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -47,16 +47,16 @@ import { isPlatformBrowser } from '@angular/common';
           <div class="modal-footer justify-content-end bg-light">
             <ng-container *ngIf="!sharedUrl">
               <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">
-                <i class="fas fa-times me-2"></i> Cancel
+                <i class="fas fa-times"></i> Cancel
               </button>
               <button type="button" class="btn btn-sm btn-success" (click)="saveJson()" [disabled]="isSaving">
-                <i class="fas me-2" [ngClass]="{'fa-save': !isSaving, 'fa-spinner fa-spin': isSaving}"></i>
+                <i class="fas" [ngClass]="{'fa-save': !isSaving, 'fa-spinner fa-spin': isSaving}"></i>
                 {{ isSaving ? 'Saving...' : 'Save' }}
               </button>
             </ng-container>
             <ng-container *ngIf="sharedUrl">
               <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
-                <i class="fas fa-times me-2"></i> Close
+                <i class="fas fa-times "></i> Close
               </button>
             </ng-container>
           </div>
@@ -77,12 +77,12 @@ import { isPlatformBrowser } from '@angular/common';
       >
         <div class="d-flex">
           <div class="toast-body">
-            <i class="fas fa-check-circle me-2"></i>
+            <i class="fas fa-check-circle "></i>
             {{ toastMessage }}
           </div>
           <button
             type="button"
-            class="btn-close btn-close-white me-2 m-auto"
+            class="btn-close btn-close-white  m-auto"
             (click)="showToast = false"
             aria-label="Close"
           ></button>
