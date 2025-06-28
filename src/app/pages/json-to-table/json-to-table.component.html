@@ -100,19 +100,16 @@
     <!-- Array handling -->
     <ng-container *ngSwitchCase="isArray(data)">
       <!-- Complex array of objects -->
+      <!-- Render vertically: each key becomes a row, each array item becomes a column -->
       <table class="table" *ngIf="data.length > 0 && hasComplexItems(data)">
-        <thead>
-          <tr>
-            <th *ngFor="let col of getCommonKeys(data)">{{ col }}</th>
-          </tr>
-        </thead>
         <tbody>
-          <tr *ngFor="let item of data">
-            <td *ngFor="let col of getCommonKeys(data)">
-              <ng-container *ngIf="isArray(item[col]) || isObject(item[col]); else primitive">
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[col] }"></ng-container>
+          <tr *ngFor="let key of getCommonKeys(data)">
+            <td class="nested-key"><b>{{ key }}</b></td>
+            <td *ngFor="let item of data">
+              <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveV">
+                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key] }"></ng-container>
               </ng-container>
-              <ng-template #primitive>{{ formatValue(item[col]) }}</ng-template>
+              <ng-template #primitiveV>{{ formatValue(item[key]) }}</ng-template>
             </td>
           </tr>
         </tbody>
