@@ -33,9 +33,12 @@
       </div>
     </div>
     <div class="card-body p-0" style="position: relative;">
-      <div class="split-loading"  *ngIf="isLoading">
-        <div class="loading-dots">
-          <span></span><span></span><span></span>
+      <div class="split-loading" *ngIf="isLoading">
+        <div class="spinner-container">
+          <div class="spinner-border text-secondary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="loading-message mt-2">Loading data...</div>
         </div>
       </div>
       <div class="split-container">

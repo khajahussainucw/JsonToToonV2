@@ -585,3 +585,16 @@
   color: #666;
   font-size: 14px;
 }
+
+/* Flexbox layout for spinner & optional text */
+.split-loading .spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.split-loading .loading-message {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
