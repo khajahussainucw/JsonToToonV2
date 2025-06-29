@@ -40,7 +40,7 @@ export class JsonToTableComponent implements AfterViewInit {
   errorMessage: string = '';
   public isSingleObject: boolean = false;
   public hasValidJson: boolean = false;
-  public isLoading: boolean = true;
+  public isLoading: boolean = false;
   private isLoadingSharedJson = false;
 
   constructor(
@@ -103,8 +103,8 @@ export class JsonToTableComponent implements AfterViewInit {
           },
           complete: () => {
             this.isLoadingSharedJson = false;
-            this.isLoading = false;
-          }
+              this.isLoading = false;
+            }
         });
       }
     });
@@ -124,7 +124,10 @@ export class JsonToTableComponent implements AfterViewInit {
             this.aceEditor.resize();
           }
         });
-        this.isLoading = false;
+        
+        if (!this.isLoadingSharedJson) {
+          this.isLoading = false;
+        }
       }, 100);
     }
   }
