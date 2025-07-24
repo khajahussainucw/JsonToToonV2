@@ -598,3 +598,38 @@
   font-weight: 500;
   color: #444;
 }
+
+/* Transpose button styles */
+/* Dark slate active color */
+.btn.active {
+  background-color: #495057 !important; /* slate gray */
+  border-color: #495057 !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.5);
+}
+
+.btn-outline-dark.active {
+  background-color: #495057 !important;
+  border-color: #495057 !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.5);
+}
+
+/* Transpose icon animation */
+.fas.fa-arrows-rotate,
+.fas.fa-rotate {
+  transition: transform 0.3s ease;
+}
+
+.btn.active .fas.fa-arrows-rotate {
+  transform: rotate(180deg);
+}
+
+.btn.active .fas.fa-rotate {
+  transform: rotate(90deg);
+}
+
+/* Gap for button groups */
+.gap-2 {
+  gap: 0.5rem !important;
+}

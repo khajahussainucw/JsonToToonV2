@@ -12,6 +12,18 @@
           <span class="d-none d-md-inline"> Maximize</span>
         </button>
 
+        <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleParentTranspose()" 
+                [class.active]="isParentTransposed" title="Transpose parent table">
+          <i class="fas fa-arrows-rotate"></i>
+          <span class="d-none d-lg-inline"> Parent</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleChildTranspose()" 
+                [class.active]="isChildTransposed" title="Transpose child tables">
+          <i class="fas fa-rotate"></i>
+          <span class="d-none d-lg-inline"> Child</span>
+        </button>
+
         <button class="btn btn-sm btn-dark  " (click)="downloadAsExcel()" *ngIf="hasValidJson">
           <i class="fas fa-file-excel"></i>
           <span class="d-none d-md-inline"> Excel</span>
@@ -59,7 +71,8 @@
               <ng-container *ngIf="tableData.length > 0">
                 <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
                   <!-- Flat table for array of objects -->
-                  <table class="table" *ngIf="columns.length > 0">
+                  <!-- Standard orientation (keys as columns) -->
+                  <table class="table" *ngIf="columns.length > 0 && !isParentTransposed">
                     <thead>
                       <tr>
                         <th *ngFor="let col of columns"><b>{{ col }}</b></th>
@@ -69,16 +82,31 @@
                       <tr *ngFor="let row of tableData">
                         <td *ngFor="let col of columns">
                           <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
-                            <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                            <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col], isChild: true }"></ng-container>
                           </ng-container>
                           <ng-template #defaultCell>{{ formatValue(row[col]) }}</ng-template>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+
+                  <!-- Transposed orientation (keys as rows) -->
+                  <table class="table" *ngIf="columns.length > 0 && isParentTransposed">
+                    <tbody>
+                      <tr *ngFor="let key of columns">
+                        <td class="nested-key"><b>{{ key }}</b></td>
+                        <td *ngFor="let item of tableData">
+                          <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveTop">
+                            <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key], isChild: true }"></ng-container>
+                          </ng-container>
+                          <ng-template #primitiveTop>{{ formatValue(item[key]) }}</ng-template>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </ng-container>
                 <ng-template #singleObjectTpl>
-                  <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
+                  <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0], isChild: false }"></ng-container>
                 </ng-template>
               </ng-container>
             </ng-container>
@@ -98,25 +126,50 @@
 </div>
 
 <!-- Recursive template for nested structures -->
-<ng-template #recursiveTable let-data>
+<ng-template #recursiveTable let-data let-isChild="isChild">
   <ng-container [ngSwitch]="true">
     <!-- Array handling -->
     <ng-container *ngSwitchCase="isArray(data)">
       <!-- Complex array of objects -->
-      <!-- Render vertically: each key becomes a row, each array item becomes a column -->
-      <table class="table" *ngIf="data.length > 0 && hasComplexItems(data)">
+      <ng-container *ngIf="data.length > 0 && hasComplexItems(data)">
+        <!-- Determine if this table should be transposed -->
+        <ng-container *ngIf="!(isChild ? isChildTransposed : isParentTransposed)">
+          <!-- Standard view: each key becomes a row, each array item becomes a column -->
+          <table class="table">
         <tbody>
           <tr *ngFor="let key of getCommonKeys(data)">
             <td class="nested-key"><b>{{ key }}</b></td>
             <td *ngFor="let item of data">
               <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveV">
-                <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key] }"></ng-container>
+                    <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key], isChild: true }"></ng-container>
               </ng-container>
               <ng-template #primitiveV>{{ formatValue(item[key]) }}</ng-template>
             </td>
           </tr>
         </tbody>
       </table>
+        </ng-container>
+        <ng-container *ngIf="isChild ? isChildTransposed : isParentTransposed">
+          <!-- Transposed view: each key becomes a column, each array item becomes a row -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th *ngFor="let key of getCommonKeys(data)"><b>{{ key }}</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data">
+                <td *ngFor="let key of getCommonKeys(data)">
+                  <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveVT">
+                    <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key], isChild: true }"></ng-container>
+                  </ng-container>
+                  <ng-template #primitiveVT>{{ formatValue(item[key]) }}</ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+      </ng-container>
       <!-- Simple array of primitives -->
       <table class="table" *ngIf="data.length > 0 && !hasComplexItems(data)">
         <tbody>
@@ -131,13 +184,29 @@
 
     <!-- Object handling -->
     <ng-container *ngSwitchCase="isObject(data)">
-      <table class="table">
+      <!-- Standard (keys as rows) -->
+      <table class="table" *ngIf="!(isChild ? isChildTransposed : isParentTransposed)">
         <tbody>
           <tr *ngFor="let key of getObjectKeys(data)">
             <td class="nested-key"><b>{{ key }}</b></td>
             <td>
-              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key] }">
-              </ng-container>
+              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key], isChild: true }"></ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Transposed (keys as columns) -->
+      <table class="table" *ngIf="isChild ? isChildTransposed : isParentTransposed">
+        <thead>
+          <tr>
+            <th *ngFor="let key of getObjectKeys(data)"><b>{{ key }}</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td *ngFor="let key of getObjectKeys(data)">
+              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: data[key], isChild: true }"></ng-container>
             </td>
           </tr>
         </tbody>
@@ -163,10 +232,21 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="closeTableModal()"></button>
       </div>
       <div class="modal-body">
+        <div class="d-flex justify-content-end mb-3 gap-2">
+          <button class="btn btn-sm btn-outline-dark" (click)="toggleParentTranspose()" 
+                  [class.active]="isParentTransposed" title="Transpose parent table">
+            <i class="fas fa-arrows-rotate"></i> Parent
+          </button>
+          <button class="btn btn-sm btn-outline-dark" (click)="toggleChildTranspose()" 
+                  [class.active]="isChildTransposed" title="Transpose child tables">
+            <i class="fas fa-rotate"></i> Child
+          </button>
+        </div>
         <div class="">
           <ng-container *ngIf="tableData.length > 0">
             <ng-container *ngIf="!isSingleObject; else singleObjectTplModal">
-              <table class="table" *ngIf="columns.length > 0">
+              <!-- Standard orientation (keys as columns) -->
+              <table class="table" *ngIf="columns.length > 0 && !isParentTransposed">
                 <thead>
                   <tr>
                     <th *ngFor="let col of columns"><b>{{ col }}</b></th>
@@ -176,16 +256,31 @@
                   <tr *ngFor="let row of tableData">
                     <td *ngFor="let col of columns">
                       <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCellModal">
-                        <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col] }"></ng-container>
+                        <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col], isChild: true }"></ng-container>
                       </ng-container>
                       <ng-template #defaultCellModal>{{ formatValue(row[col]) }}</ng-template>
                     </td>
                   </tr>
                 </tbody>
               </table>
+
+              <!-- Transposed orientation (keys as rows) -->
+              <table class="table" *ngIf="columns.length > 0 && isParentTransposed">
+                <tbody>
+                  <tr *ngFor="let key of columns">
+                    <td class="nested-key"><b>{{ key }}</b></td>
+                    <td *ngFor="let item of tableData">
+                      <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveTopModal">
+                        <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key], isChild: true }"></ng-container>
+                      </ng-container>
+                      <ng-template #primitiveTopModal>{{ formatValue(item[key]) }}</ng-template>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </ng-container>
             <ng-template #singleObjectTplModal>
-              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0] }"></ng-container>
+              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0], isChild: false }"></ng-container>
             </ng-template>
           </ng-container>
           <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">

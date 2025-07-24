@@ -42,6 +42,8 @@ export class JsonToTableComponent implements AfterViewInit {
   public hasValidJson: boolean = false;
   public isLoading: boolean = false;
   private isLoadingSharedJson = false;
+  public isParentTransposed: boolean = false;
+  public isChildTransposed: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -606,5 +608,13 @@ export class JsonToTableComponent implements AfterViewInit {
         invalidModal.show();
       });
     }
+  }
+
+  toggleParentTranspose(): void {
+    this.isParentTransposed = !this.isParentTransposed;
+  }
+
+  toggleChildTranspose(): void {
+    this.isChildTransposed = !this.isChildTransposed;
   }
 }
