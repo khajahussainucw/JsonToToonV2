@@ -615,6 +615,12 @@
   box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.5);
 }
 
+/* Red icon inside active buttons */
+.btn.active i,
+.btn-outline-dark.active i {
+  color: #51cf66 !important; /* lime green */
+}
+
 /* Transpose icon animation */
 .fas.fa-arrows-rotate,
 .fas.fa-rotate {
