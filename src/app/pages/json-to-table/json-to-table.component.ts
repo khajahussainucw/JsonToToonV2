@@ -654,7 +654,11 @@ export class JsonToTableComponent implements AfterViewInit {
 
       processObj(parsed);
       // Update editor with formatted JSON
-      this.aceEditor.setValue(JSON.stringify(parsed, null, 2));
+      const updatedJson = JSON.stringify(parsed, null, 2);
+      this.aceEditor.setValue(updatedJson, -1);
+      // Ensure any later modal close restores this updated content
+      this.editorBackupContent = updatedJson;
+      this.convertToTable();
     } catch (e) {
       console.warn('Failed to remove column from JSON:', e);
     }
