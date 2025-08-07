@@ -67,6 +67,9 @@
         
         <div class="table-output-container" style="flex: 0.78 1 0%;">
           <div class="table-container" #tableContainer>
+            <div class="filter-status text-muted small mb-1" *ngIf="hasValidJson && tableData.length > 0 && filteredData.length !== tableData.length">
+              Showing {{ filteredData.length }} of {{ tableData.length }} rows
+            </div>
             <ng-container *ngIf="hasValidJson">
               <ng-container *ngIf="tableData.length > 0">
                 <ng-container *ngIf="!isSingleObject; else singleObjectTpl">
@@ -75,11 +78,21 @@
                   <table class="table" *ngIf="columns.length > 0 && !isParentTransposed">
                     <thead>
                       <tr>
-                        <th *ngFor="let col of columns"><b>{{ col }}</b></th>
+                        <th *ngFor="let col of columns" class="position-relative">
+                          <b>{{ col }}</b>
+                          <button type="button" class="btn-close btn-sm column-remove" aria-label="Remove" (click)="removeColumn(col)"></button>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th *ngFor="let col of columns">
+                          <input type="text" class="form-control form-control-sm"
+                                 (input)="updateFilter(col, $any($event.target).value)"
+                                 [value]="filters[col] || ''" placeholder="Filter" />
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let row of tableData">
+                      <tr *ngFor="let row of filteredData">
                         <td *ngFor="let col of columns">
                           <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCell">
                             <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col], isChild: true }"></ng-container>
@@ -95,7 +108,7 @@
                     <tbody>
                       <tr *ngFor="let key of columns">
                         <td class="nested-key"><b>{{ key }}</b></td>
-                        <td *ngFor="let item of tableData">
+                        <td *ngFor="let item of filteredData">
                           <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveTop">
                             <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key], isChild: true }"></ng-container>
                           </ng-container>
@@ -243,17 +256,30 @@
           </button>
         </div>
         <div class="">
+          <div class="filter-status text-muted small mb-1" *ngIf="tableData.length > 0 && filteredData.length !== tableData.length">
+            Showing {{ filteredData.length }} of {{ tableData.length }} rows
+          </div>
           <ng-container *ngIf="tableData.length > 0">
             <ng-container *ngIf="!isSingleObject; else singleObjectTplModal">
               <!-- Standard orientation (keys as columns) -->
               <table class="table" *ngIf="columns.length > 0 && !isParentTransposed">
                 <thead>
                   <tr>
-                    <th *ngFor="let col of columns"><b>{{ col }}</b></th>
+                    <th *ngFor="let col of columns" class="position-relative">
+                      <b>{{ col }}</b>
+                      <button type="button" class="btn-close btn-sm column-remove" aria-label="Remove" (click)="removeColumn(col)"></button>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let col of columns">
+                      <input type="text" class="form-control form-control-sm"
+                             (input)="updateFilter(col, $any($event.target).value)"
+                             [value]="filters[col] || ''" placeholder="Filter" />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let row of tableData">
+                  <tr *ngFor="let row of filteredData">
                     <td *ngFor="let col of columns">
                       <ng-container *ngIf="isArray(row[col]) || isObject(row[col]); else defaultCellModal">
                         <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: row[col], isChild: true }"></ng-container>
@@ -269,7 +295,7 @@
                 <tbody>
                   <tr *ngFor="let key of columns">
                     <td class="nested-key"><b>{{ key }}</b></td>
-                    <td *ngFor="let item of tableData">
+                    <td *ngFor="let item of filteredData">
                       <ng-container *ngIf="isArray(item[key]) || isObject(item[key]); else primitiveTopModal">
                         <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: item[key], isChild: true }"></ng-container>
                       </ng-container>
