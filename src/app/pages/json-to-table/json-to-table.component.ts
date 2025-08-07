@@ -44,6 +44,14 @@ export class JsonToTableComponent implements AfterViewInit {
   private isLoadingSharedJson = false;
   public isParentTransposed: boolean = false;
   public isChildTransposed: boolean = false;
+  public isEditMode: boolean = false;
+
+  // Filtering support
+  public filters: Record<string, string> = {};
+  public filteredData: any[] = [];
+  private removedColumns: Set<string> = new Set();
+  public editingRow: number | null = null;
+  public editingCol: string | null = null;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -174,6 +182,8 @@ export class JsonToTableComponent implements AfterViewInit {
   private debouncedConvertToTable() {
     clearTimeout(this.debounceTimer);
     this.debounceTimer = setTimeout(() => {
+      // Clear removed columns when re-parsing JSON (new dataset)
+      this.removedColumns.clear();
       this.convertToTable();
     }, 300);
   }
@@ -299,6 +309,7 @@ export class JsonToTableComponent implements AfterViewInit {
       const jsonContent = this.aceEditor.getValue().trim();
       if (!jsonContent) {
         this.tableData = [];
+        this.filteredData = [];
         this.columns = [];
         this.errorMessage = '';
         this.hasValidJson = false;
@@ -317,6 +328,7 @@ export class JsonToTableComponent implements AfterViewInit {
         this.hasValidJson = false;
         this.errorMessage = err.message || 'Invalid JSON format';
         this.tableData = [];
+        this.filteredData = [];
         this.columns = [];
         return;
       }
@@ -330,6 +342,7 @@ export class JsonToTableComponent implements AfterViewInit {
         this.hasValidJson = false;
         this.errorMessage = 'JSON must contain objects';
         this.tableData = [];
+        this.filteredData = [];
         this.columns = [];
         return;
       }
@@ -352,13 +365,21 @@ export class JsonToTableComponent implements AfterViewInit {
         }
       });
 
-      this.columns = Array.from(allColumns);
+      this.columns = Array.from(allColumns).filter(col => !this.removedColumns.has(col));
       this.tableData = processedData;
+      // Reset filters based on new columns
+      Object.keys(this.filters).forEach(key => {
+        if (!this.columns.includes(key)) {
+          delete this.filters[key];
+        }
+      });
+      this.applyFilters();
       this.errorMessage = '';
     } catch (error: any) {
       this.hasValidJson = false;
       this.errorMessage = error.message || 'Failed to process JSON';
       this.tableData = [];
+      this.filteredData = [];
       this.columns = [];
     }
   }
@@ -456,15 +477,12 @@ export class JsonToTableComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       import('bootstrap').then(({ Modal }) => {
         const modalElement = document.getElementById('tableModal');
-        const tableOutputContainer = document.querySelector('.table-output-container');
-        const modalBody = modalElement?.querySelector('.modal-body');
-        
-        if (modalElement && tableOutputContainer && modalBody) {
+        if (modalElement) {
           // Store the current editor content
           this.editorBackupContent = this.aceEditor?.getValue() || '';
-          
-          // Copy the table content to modal body
-          modalBody.innerHTML = tableOutputContainer.innerHTML;
+
+          // Hide background content to avoid duplicate search results
+          document.body.classList.add('table-modal-active');
           
           const tableModal = new Modal(modalElement, {
             keyboard: true,
@@ -487,6 +505,7 @@ export class JsonToTableComponent implements AfterViewInit {
             
             // Ensure body classes are cleaned up
             document.body.classList.remove('modal-open');
+            document.body.classList.remove('table-modal-active');
             document.body.style.overflow = '';
             document.body.style.paddingRight = '';
             
@@ -498,11 +517,7 @@ export class JsonToTableComponent implements AfterViewInit {
           
           tableModal.show();
           
-          // Clear the ace editor content after modal is shown
-          if (this.aceEditor) {
-            this.aceEditor.setValue('');
-            this.convertToTable(); // Reset the table data
-          }
+          
         }
       }).catch(err => console.error('Failed to load bootstrap modal:', err));
     }
@@ -522,6 +537,7 @@ export class JsonToTableComponent implements AfterViewInit {
           }
           
           // Restore the editor content
+          document.body.classList.remove('table-modal-active');
           if (this.aceEditor && this.editorBackupContent) {
             this.aceEditor.setValue(this.editorBackupContent);
             this.convertToTable();
@@ -608,6 +624,145 @@ export class JsonToTableComponent implements AfterViewInit {
         invalidModal.show();
       });
     }
+  }
+
+  // Update filter for a specific column
+  removeColumn(column: string): void {
+    this.removedColumns.add(column);
+    this.columns = this.columns.filter(c => c !== column);
+    delete this.filters[column];
+    this.applyFilters();
+
+    // Also remove from underlying JSON/editor
+    this.removeColumnFromEditor(column);
+  }
+
+  public getEditValue(value: any): string {
+    if (this.isArray(value) || this.isObject(value)) {
+      return JSON.stringify(value);
+    }
+    return value;
+  }
+
+  startEdit(rowIndex: number, column: string): void {
+    if (!this.isEditMode) return;
+    this.editingRow = rowIndex;
+    this.editingCol = column;
+  }
+
+  saveEdit(rowIndex: number, column: string, newValue: string): void {
+    // Update tableData and filteredData (which references same objects)
+    if (rowIndex >= 0 && rowIndex < this.tableData.length) {
+      // Try to parse as JSON first, then fall back to string
+      let parsedValue: any;
+      try {
+        parsedValue = JSON.parse(newValue);
+      } catch {
+        parsedValue = newValue;
+      }
+      this.tableData[rowIndex][column] = parsedValue;
+    }
+    // Update Ace JSON
+    try {
+      const jsonContent = this.getEditorContent();
+      const parsed: any = JSON.parse(jsonContent);
+      let parsedValue: any;
+      try {
+        parsedValue = JSON.parse(newValue);
+      } catch {
+        parsedValue = newValue;
+      }
+      
+      if (Array.isArray(parsed)) {
+        if (rowIndex < parsed.length && parsed[rowIndex]) {
+          parsed[rowIndex][column] = parsedValue;
+        }
+      } else {
+        // Single object
+        parsed[column] = parsedValue;
+      }
+      const updatedJson = JSON.stringify(parsed, null, 2);
+      this.aceEditor.setValue(updatedJson, -1);
+      this.editorBackupContent = updatedJson;
+    } catch (e) {
+      console.warn('Failed to update JSON on edit', e);
+    }
+    this.editingRow = null;
+    this.editingCol = null;
+    this.applyFilters();
+  }
+
+  private removeColumnFromEditor(column: string): void {
+    try {
+      const jsonContent = this.getEditorContent();
+      if (!jsonContent.trim()) { return; }
+      const parsed: any = JSON.parse(jsonContent);
+
+      const processObj = (obj: any) => {
+        if (obj && typeof obj === 'object') {
+          if (Array.isArray(obj)) {
+            obj.forEach(item => processObj(item));
+          } else {
+            delete obj[column];
+            // Also iterate nested objects
+            Object.values(obj).forEach(val => processObj(val));
+          }
+        }
+      };
+
+      processObj(parsed);
+      // Update editor with formatted JSON
+      const updatedJson = JSON.stringify(parsed, null, 2);
+      this.aceEditor.setValue(updatedJson, -1);
+      // Ensure any later modal close restores this updated content
+      this.editorBackupContent = updatedJson;
+      this.convertToTable();
+    } catch (e) {
+      console.warn('Failed to remove column from JSON:', e);
+    }
+  }
+
+  toggleEditMode(): void {
+    this.isEditMode = !this.isEditMode;
+    // Exit any cell currently editing when mode toggles off
+    if (!this.isEditMode) {
+      this.editingRow = null;
+      this.editingCol = null;
+    }
+  }
+
+  updateFilter(column: string, value: string): void {
+    this.filters[column] = value;
+    this.applyFilters();
+  }
+
+  // Apply active filters to the table data
+  private applyFilters(): void {
+    const activeFilters = Object.entries(this.filters).filter(([_, v]) => v && v.trim() !== '');
+    if (activeFilters.length === 0) {
+      this.filteredData = [...this.tableData];
+      return;
+    }
+    const normalizedFilters = activeFilters.map(([k, v]) => [k, v.toLowerCase()] as [string, string]);
+    this.filteredData = this.tableData.filter(row => {
+      return normalizedFilters.every(([key, val]) => {
+        const cell = row[key];
+        if (cell === null || cell === undefined) {
+          return false;
+        }
+        let cellStr: string;
+        if (typeof cell === 'object') {
+          try {
+            cellStr = JSON.stringify(cell);
+          } catch {
+            cellStr = String(cell);
+          }
+        } else {
+          cellStr = String(cell);
+        }
+        return cellStr.toLowerCase().includes(val);
+      });
+    });
   }
 
   toggleParentTranspose(): void {

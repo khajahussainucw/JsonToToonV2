@@ -635,6 +635,26 @@
   transform: rotate(90deg);
 }
 
+:host-context(.table-modal-active) .paddingLeftRight,
+:host-context(.table-modal-active) .table-container {
+  display: none !important;
+}
+
+.filter-status { font-size: 0.8rem; color: #6c757d; }
+
+.column-remove {
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  opacity: 0.6;
+  color:black !important;
+}
+.column-remove:hover { opacity: 1; }
+
 /* Gap for button groups */
 .gap-2 {
   gap: 0.5rem !important;
