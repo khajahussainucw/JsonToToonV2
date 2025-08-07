@@ -33,7 +33,7 @@
           <i class="fas fa-flask"></i>
           <span class="d-none d-md-inline"> Sample</span>
         </button>
-        <button class="btn btn-sm btn-dark" (click)="toggleEditMode()" [class.active]="isEditMode">
+        <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleEditMode()" [class.active]="isEditMode">
           <i class="fas fa-pen"></i>
           <span class="d-none d-md-inline"> {{ isEditMode ? 'Done' : 'Edit' }} </span>
         </button>
