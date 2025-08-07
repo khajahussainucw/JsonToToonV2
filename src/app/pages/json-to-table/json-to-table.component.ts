@@ -645,6 +645,7 @@ export class JsonToTableComponent implements AfterViewInit {
   }
 
   startEdit(rowIndex: number, column: string): void {
+    if (!this.isEditMode) return;
     this.editingRow = rowIndex;
     this.editingCol = column;
   }

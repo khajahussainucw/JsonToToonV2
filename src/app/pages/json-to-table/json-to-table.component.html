@@ -132,7 +132,31 @@
                   </table>
                 </ng-container>
                 <ng-template #singleObjectTpl>
-                  <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0], isChild: false }"></ng-container>
+                  <!-- Single object as key-value table -->
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let key of columns; let i = index">
+                        <td class="nested-key position-relative">
+                          <b>{{ key }}</b>
+                          <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(key)"><i class="fas fa-times "></i></button>
+                        </td>
+                        <td (dblclick)="isEditMode && startEdit(0, key)">
+                          <ng-container *ngIf="(isArray(tableData[0][key]) || isObject(tableData[0][key])) && !(isEditMode && editingRow === 0 && editingCol === key); else singleObjectCell">
+                            <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0][key], isChild: true }"></ng-container>
+                          </ng-container>
+                          <ng-template #singleObjectCell>
+                            <ng-container *ngIf="isEditMode && editingRow === 0 && editingCol === key; else singleObjectValue">
+                              <input type="text" class="form-control form-control-sm"
+                                     [value]="getEditValue(tableData[0][key])"
+                                     (blur)="saveEdit(0, key, $any($event.target).value)"
+                                     (keydown.enter)="saveEdit(0, key, $any($event.target).value)" />
+                            </ng-container>
+                            <ng-template #singleObjectValue>{{ formatValue(tableData[0][key]) }}</ng-template>
+                          </ng-template>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </ng-template>
               </ng-container>
             </ng-container>
@@ -331,7 +355,31 @@
               </table>
             </ng-container>
             <ng-template #singleObjectTplModal>
-              <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0], isChild: false }"></ng-container>
+              <!-- Single object as key-value table -->
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let key of columns; let i = index">
+                    <td class="nested-key position-relative">
+                      <b>{{ key }}</b>
+                      <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(key)"><i class="fas fa-times "></i></button>
+                    </td>
+                    <td (dblclick)="isEditMode && startEdit(0, key)">
+                      <ng-container *ngIf="(isArray(tableData[0][key]) || isObject(tableData[0][key])) && !(isEditMode && editingRow === 0 && editingCol === key); else singleObjectCellModal">
+                        <ng-container *ngTemplateOutlet="recursiveTable; context: { $implicit: tableData[0][key], isChild: true }"></ng-container>
+                      </ng-container>
+                      <ng-template #singleObjectCellModal>
+                        <ng-container *ngIf="isEditMode && editingRow === 0 && editingCol === key; else singleObjectValueModal">
+                          <input type="text" class="form-control form-control-sm"
+                                 [value]="getEditValue(tableData[0][key])"
+                                 (blur)="saveEdit(0, key, $any($event.target).value)"
+                                 (keydown.enter)="saveEdit(0, key, $any($event.target).value)" />
+                        </ng-container>
+                        <ng-template #singleObjectValueModal>{{ formatValue(tableData[0][key]) }}</ng-template>
+                      </ng-template>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </ng-template>
           </ng-container>
           <div *ngIf="tableData.length === 0 && errorMessage" class="no-data">
