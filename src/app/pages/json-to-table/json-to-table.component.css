@@ -643,6 +643,7 @@
 .filter-status { font-size: 0.8rem; color: #6c757d; }
 
 .column-remove {
+  cursor: pointer;
   position: absolute;
   top: 2px;
   right: 2px;
@@ -650,6 +651,7 @@
   width: 0.6rem;
   height: 0.6rem;
   opacity: 0.6;
+  color:black !important;
 }
 .column-remove:hover { opacity: 1; }
 

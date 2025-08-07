@@ -80,7 +80,7 @@
                       <tr>
                         <th *ngFor="let col of columns" class="position-relative">
                           <b>{{ col }}</b>
-                          <button type="button" class="btn-close btn-sm column-remove" aria-label="Remove" (click)="removeColumn(col)"></button>
+                          <button type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(col)"><i class="fas fa-times "></i></button>
                         </th>
                       </tr>
                       <tr>
@@ -267,7 +267,7 @@
                   <tr>
                     <th *ngFor="let col of columns" class="position-relative">
                       <b>{{ col }}</b>
-                      <button type="button" class="btn-close btn-sm column-remove" aria-label="Remove" (click)="removeColumn(col)"></button>
+                      <button type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(col)"><i class="fas fa-times "></i></button>
                     </th>
                   </tr>
                   <tr>
