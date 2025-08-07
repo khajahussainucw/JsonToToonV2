@@ -44,11 +44,14 @@ export class JsonToTableComponent implements AfterViewInit {
   private isLoadingSharedJson = false;
   public isParentTransposed: boolean = false;
   public isChildTransposed: boolean = false;
+  public isEditMode: boolean = false;
 
   // Filtering support
   public filters: Record<string, string> = {};
   public filteredData: any[] = [];
   private removedColumns: Set<string> = new Set();
+  public editingRow: number | null = null;
+  public editingCol: string | null = null;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -634,6 +637,60 @@ export class JsonToTableComponent implements AfterViewInit {
     this.removeColumnFromEditor(column);
   }
 
+  public getEditValue(value: any): string {
+    if (this.isArray(value) || this.isObject(value)) {
+      return JSON.stringify(value);
+    }
+    return value;
+  }
+
+  startEdit(rowIndex: number, column: string): void {
+    this.editingRow = rowIndex;
+    this.editingCol = column;
+  }
+
+  saveEdit(rowIndex: number, column: string, newValue: string): void {
+    // Update tableData and filteredData (which references same objects)
+    if (rowIndex >= 0 && rowIndex < this.tableData.length) {
+      // Try to parse as JSON first, then fall back to string
+      let parsedValue: any;
+      try {
+        parsedValue = JSON.parse(newValue);
+      } catch {
+        parsedValue = newValue;
+      }
+      this.tableData[rowIndex][column] = parsedValue;
+    }
+    // Update Ace JSON
+    try {
+      const jsonContent = this.getEditorContent();
+      const parsed: any = JSON.parse(jsonContent);
+      let parsedValue: any;
+      try {
+        parsedValue = JSON.parse(newValue);
+      } catch {
+        parsedValue = newValue;
+      }
+      
+      if (Array.isArray(parsed)) {
+        if (rowIndex < parsed.length && parsed[rowIndex]) {
+          parsed[rowIndex][column] = parsedValue;
+        }
+      } else {
+        // Single object
+        parsed[column] = parsedValue;
+      }
+      const updatedJson = JSON.stringify(parsed, null, 2);
+      this.aceEditor.setValue(updatedJson, -1);
+      this.editorBackupContent = updatedJson;
+    } catch (e) {
+      console.warn('Failed to update JSON on edit', e);
+    }
+    this.editingRow = null;
+    this.editingCol = null;
+    this.applyFilters();
+  }
+
   private removeColumnFromEditor(column: string): void {
     try {
       const jsonContent = this.getEditorContent();
@@ -661,6 +718,15 @@ export class JsonToTableComponent implements AfterViewInit {
       this.convertToTable();
     } catch (e) {
       console.warn('Failed to remove column from JSON:', e);
+    }
+  }
+
+  toggleEditMode(): void {
+    this.isEditMode = !this.isEditMode;
+    // Exit any cell currently editing when mode toggles off
+    if (!this.isEditMode) {
+      this.editingRow = null;
+      this.editingCol = null;
     }
   }
 
