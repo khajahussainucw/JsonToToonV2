@@ -2,14 +2,14 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, I
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
-import { HorizontalAdComponent } from '../../shared/components';
+import { MultiplexAdComponent } from '../../shared/components';
 
 declare const ace: any;
 
 @Component({
   selector: 'app-string-to-json',
   standalone: true,
-  imports: [CommonModule, RouterModule, HorizontalAdComponent],
+  imports: [CommonModule, RouterModule, MultiplexAdComponent],
   templateUrl: './string-to-json.component.html',
   styleUrl: './string-to-json.component.css'
 })

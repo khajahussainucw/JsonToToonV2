@@ -1,0 +1,14 @@
+.ad-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.adsbygoogle {
+  min-height: 100px;
+}
+
+@media (max-width: 768px) {
+  .ad-container {
+    display: none;
+  }
+}

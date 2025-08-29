@@ -48,6 +48,53 @@ import { HorizontalAdComponent } from '../../shared/components';
 - ✅ Prevents duplicate initialization
 - ✅ Configurable styling
 
+## MultiplexAdComponent
+
+A multiplex ad component that displays Google AdSense multiplex ads with autorelaxed format.
+
+### Usage
+
+```typescript
+import { MultiplexAdComponent } from '../../shared/components';
+
+@Component({
+  imports: [MultiplexAdComponent],
+  // ...
+})
+```
+
+```html
+<!-- Basic usage with default settings -->
+<app-multiplex-ad></app-multiplex-ad>
+
+<!-- With custom settings -->
+<app-multiplex-ad 
+  [adSlot]="'your-multiplex-ad-slot'"
+  [adClient]="'ca-pub-your-client-id'"
+  [adFormat]="'autorelaxed'"
+  [maxWidth]="'1000px'"
+  [margin]="'30px auto'">
+</app-multiplex-ad>
+```
+
+### Inputs
+
+- `adSlot` (string): Google AdSense multiplex ad slot ID (default: '5551239728')
+- `adClient` (string): Google AdSense client ID (default: 'ca-pub-9839651695221972')
+- `adFormat` (string): Ad format type (default: 'autorelaxed')
+- `maxWidth` (string): Maximum width of the ad container (default: '1200px')
+- `margin` (string): CSS margin for the ad container (default: '20px auto')
+
+### Features
+
+- ✅ Mobile device detection (ads won't show on mobile)
+- ✅ Server-side rendering compatible
+- ✅ Responsive design
+- ✅ Automatic AdSense initialization
+- ✅ Prevents duplicate initialization
+- ✅ Configurable styling
+- ✅ Optimized for multiplex ad format
+
 ## VerticalAdComponent
 
 A vertical sidebar ad component (to be implemented).
