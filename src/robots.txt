@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://jsonTotable.org/sitemap.xml
+Sitemap: https://jsonparser.ai/sitemap.xml
