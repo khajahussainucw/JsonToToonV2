@@ -17,48 +17,7 @@ app-root {
   height: 100%;
 }
 
-/* Logo Styles */
-.navbar-brand {
-  padding: 0 !important;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.logo-json,
-.logo-to,
-.logo-table {
-  font-family: 'Roboto Mono', monospace;
-  transition: all 0.3s ease;
-}
-
-.logo-json {
-  display: inline-block;
-  transform: rotate(-5deg);
-}
-
-  .logo-json span {
-    display: inline-block;
-/*    transform: rotate(0deg);*/
-    color: #dc3545;
-    /* border: 2px solid #ffc107;*/
-    border: 3px solid #704800;
-    padding: 0 4px;
-    border-radius: 4px;
-    /* background-color: rgba(255, 193, 7, 0.1);*/
-  }
-
-.logo-to {
-  display: inline-block;
- /* transform: rotate(30deg);*/
-  color: forestgreen;
-/*  margin: 0 3px;*/
-}
-
-.logo-table {
-  display: inline-block;
-/*  transform: rotate(-5deg);*/
-  color: #f8f9fa;
-}
+/* Logo Styles - Removed old styles, now handled in app.component.css */
 
 
 

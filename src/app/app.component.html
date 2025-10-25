@@ -2,12 +2,12 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/" (click)="onLogoClick($event)" style="padding-top: 0; padding-bottom: 0;">
-        <span class="logo-json" style="display: inline-block; transform: rotate(-5deg);">
-          <span style="display: inline-block; transform: rotate(0deg);">JSON</span>
+      <a class="navbar-brand logo-container" routerLink="/" (click)="onLogoClick($event)">
+        <span class="logo-json">JSON</span>
+        <span class="logo-parser">
+          Parser
+          <img src="assets/images/rocket.png" alt="Rocket" class="rocket-icon" />
         </span>
-        <span class="logo-to" style="display: inline-block; transform: rotate(25deg); color: forestgreen;">To</span>
-        <span class="logo-table" style="display: inline-block; transform: rotate(-5deg);">Table</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
         <span class="navbar-toggler-icon"></span>
