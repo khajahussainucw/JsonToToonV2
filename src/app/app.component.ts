@@ -9,7 +9,7 @@ import { RouterModule, Router } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'json-to-table-angular';
+  title = 'json-parser-angular';
 
   constructor(private router: Router) {}
 

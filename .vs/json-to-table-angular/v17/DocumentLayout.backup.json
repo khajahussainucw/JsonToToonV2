@@ -1,0 +1,332 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-fixer\\json-fixer.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\json-fixer\\json-fixer.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\dist\\json-to-table-angular\\browser\\chunk-26ZU5ACI.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dist\\json-to-table-angular\\browser\\chunk-26ZU5ACI.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\json-to-table\\json-to-table.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\json-to-table\\json-to-table.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\json-to-table\\json-to-table.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\public\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\dist\\json-to-table-angular\\browser\\assets\\images\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dist\\json-to-table-angular\\browser\\assets\\images\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\assets\\images\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\assets\\images\\favicon.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\assets\\ace\\ace.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\assets\\ace\\ace.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-fixer\\json-fixer.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\json-fixer\\json-fixer.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "json-to-table.component.html",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.html",
+              "RelativeDocumentMoniker": "src\\app\\pages\\json-to-table\\json-to-table.component.html",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.html",
+              "RelativeToolTip": "src\\app\\pages\\json-to-table\\json-to-table.component.html",
+              "ViewState": "AgIAAP0BAAAAAAAAAAAiwAwCAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-03T01:45:01.37Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "multiplex-ad.component.html",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.html",
+              "RelativeDocumentMoniker": "src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.html",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.html",
+              "RelativeToolTip": "src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-29T07:36:59.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "multiplex-ad.component.ts",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.ts",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.ts",
+              "RelativeToolTip": "src\\app\\shared\\components\\multiplex-ad\\multiplex-ad.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-29T07:36:58.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "horizontal-ad.component.ts",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.ts",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.ts",
+              "RelativeToolTip": "src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-16T07:10:43.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "horizontal-ad.component.html",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.html",
+              "RelativeDocumentMoniker": "src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.html",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.html",
+              "RelativeToolTip": "src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-16T07:10:42.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "horizontal-ad.component.css",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.css",
+              "RelativeDocumentMoniker": "src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.css",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.css",
+              "RelativeToolTip": "src\\app\\shared\\components\\horizontal-ad\\horizontal-ad.component.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-16T07:10:38.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "chunk-26ZU5ACI.js",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\dist\\json-to-table-angular\\browser\\chunk-26ZU5ACI.js",
+              "RelativeDocumentMoniker": "dist\\json-to-table-angular\\browser\\chunk-26ZU5ACI.js",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\dist\\json-to-table-angular\\browser\\chunk-26ZU5ACI.js",
+              "RelativeToolTip": "dist\\json-to-table-angular\\browser\\chunk-26ZU5ACI.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABrJQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-16T07:10:17.5Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "json-to-table.component.ts",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\pages\\json-to-table\\json-to-table.component.ts",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.ts",
+              "RelativeToolTip": "src\\app\\pages\\json-to-table\\json-to-table.component.ts",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAAANYAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-28T05:19:16.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "app.component.ts",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.component.ts",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.ts",
+              "RelativeToolTip": "src\\app\\app.component.ts",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-08T23:44:57.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "app.component.html",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.html",
+              "RelativeDocumentMoniker": "src\\app\\app.component.html",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.html",
+              "RelativeToolTip": "src\\app\\app.component.html",
+              "ViewState": "AgIAAA4AAAAAAAAAAAASwCkAAABzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-27T06:07:23.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "json-fixer.component.html",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-fixer\\json-fixer.component.html",
+              "RelativeDocumentMoniker": "src\\app\\pages\\json-fixer\\json-fixer.component.html",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-fixer\\json-fixer.component.html",
+              "RelativeToolTip": "src\\app\\pages\\json-fixer\\json-fixer.component.html",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAiwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-03T04:48:31.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "json-to-table.component.css",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.css",
+              "RelativeDocumentMoniker": "src\\app\\pages\\json-to-table\\json-to-table.component.css",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-to-table\\json-to-table.component.css",
+              "RelativeToolTip": "src\\app\\pages\\json-to-table\\json-to-table.component.css",
+              "ViewState": "AgIAAG4CAAAAAAAAAAAjwH8CAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-03T01:47:02.343Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\public\\favicon.ico",
+              "RelativeDocumentMoniker": "public\\favicon.ico",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\public\\favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "RelativeToolTip": "public\\favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2025-08-08T04:49:24.271Z",
+              "EditorCaption": " - Icon [48x48, 32 bit, BMP]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\dist\\json-to-table-angular\\browser\\assets\\images\\favicon.ico",
+              "RelativeDocumentMoniker": "dist\\json-to-table-angular\\browser\\assets\\images\\favicon.ico",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\dist\\json-to-table-angular\\browser\\assets\\images\\favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "RelativeToolTip": "dist\\json-to-table-angular\\browser\\assets\\images\\favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2025-08-08T04:49:21.421Z",
+              "EditorCaption": " - Icon [48x48, 32 bit, BMP]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\assets\\images\\favicon.ico",
+              "RelativeDocumentMoniker": "src\\assets\\images\\favicon.ico",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\assets\\images\\favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "RelativeToolTip": "src\\assets\\images\\favicon.ico - Icon [48x48, 32 bit, BMP]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2025-08-08T04:49:18.609Z",
+              "EditorCaption": " - Icon [48x48, 32 bit, BMP]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ace.js",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\assets\\ace\\ace.js",
+              "RelativeDocumentMoniker": "src\\assets\\ace\\ace.js",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\assets\\ace\\ace.js",
+              "RelativeToolTip": "src\\assets\\ace\\ace.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAADdMwAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-07T15:52:55.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "app.component.css",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.css",
+              "RelativeDocumentMoniker": "src\\app\\app.component.css",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\app.component.css",
+              "RelativeToolTip": "src\\app\\app.component.css",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-08T23:46:21.843Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "json-fixer.component.ts",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-fixer\\json-fixer.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\pages\\json-fixer\\json-fixer.component.ts",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\app\\pages\\json-fixer\\json-fixer.component.ts",
+              "RelativeToolTip": "src\\app\\pages\\json-fixer\\json-fixer.component.ts",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAAAPIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-08T23:00:19.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "index.html",
+              "DocumentMoniker": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\index.html",
+              "RelativeDocumentMoniker": "src\\index.html",
+              "ToolTip": "D:\\Projects\\Old Projects\\JsonToTableAngularApp\\json-to-table-angular\\src\\index.html",
+              "RelativeToolTip": "src\\index.html",
+              "ViewState": "AgIAABIAAAAAAAAAAAAMwB0AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-03T04:58:36.05Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "json-to-table-angular": {
+    "json-parser-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/json-to-table-angular",
+            "outputPath": "dist/json-parser-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -80,10 +80,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "json-to-table-angular:build:production"
+              "buildTarget": "json-parser-angular:build:production"
             },
             "development": {
-              "buildTarget": "json-to-table-angular:build:development"
+              "buildTarget": "json-parser-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

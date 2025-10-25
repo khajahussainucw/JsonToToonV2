@@ -40,16 +40,16 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-/.vs/json-to-table-angular/CopilotIndices/0.2.1657.32929
-/.vs/json-to-table-angular/config
-/.vs/json-to-table-angular/FileContentIndex
-/.vs/json-to-table-angular/v17
+/.vs/json-parser-angular/CopilotIndices/0.2.1657.32929
+/.vs/json-parser-angular/config
+/.vs/json-parser-angular/FileContentIndex
+/.vs/json-parser-angular/v17
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
-/.vs/json-to-table-angular/copilot-chat/ed427353/sessions
-/.vs/json-to-table-angular/CopilotIndices/17.14.535.60214
+/.vs/json-parser-angular/copilot-chat/ed427353/sessions
+/.vs/json-parser-angular/CopilotIndices/17.14.535.60214
 /.vs/slnx.sqlite-journal
-/.vs/json-to-table-angular/CopilotIndices/17.14.1204.46620
+/.vs/json-parser-angular/CopilotIndices/17.14.1204.46620
 /.vs/json-parser-angular/config
 /.vs/json-parser-angular/CopilotIndices/17.14.1204.46620
 /.vs/json-parser-angular/FileContentIndex
