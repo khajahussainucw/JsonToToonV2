@@ -1,8 +1,11 @@
 {
-  //"navigationFallback": {
-  //  "rewrite": "/index.html",
-  //  "exclude": ["/assets/*", "/api/*"]
-  //},
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/api/*"]
+  },
+  "platform": {
+    "apiRuntime": "node:18"
+  },
   "routes": [
     {
       "route": "/json-reader.html",
