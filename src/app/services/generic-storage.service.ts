@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, map, catchError, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface GenericStorageResponse {
   message: string;
@@ -20,7 +21,7 @@ interface GenericStorageRequest {
   providedIn: 'root'
 })
 export class GenericStorageService {
-  private baseUrl = 'https://jsonparserbackendapp.azurewebsites.net/api/GenericData';
+  private baseUrl = `${environment.apiBaseUrl}/api/GenericData`;
   private storeEndpoint = `${this.baseUrl}/Store`;
   private getEndpoint = `${this.baseUrl}/GetByGuid`;
   private getAllEndpoint = `${this.baseUrl}/GetAll`;

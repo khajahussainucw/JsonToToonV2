@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, map, catchError, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface JsonStorageResponse {
   guid: string;
@@ -11,7 +12,7 @@ interface JsonStorageResponse {
   providedIn: 'root'
 })
 export class JsonStorageService {
-  private baseUrl = 'https://jsonparserbackendapp.azurewebsites.net/api/Cfd1';
+  private baseUrl = `${environment.apiBaseUrl}/api/Cfd1`;
   private insertEndpoint = `${this.baseUrl}/InsertJsonData`;
   private getEndpoint = `${this.baseUrl}/GetJsonDataByGuid`;
   private getAllEndpoint = `${this.baseUrl}/GetAllJsonData`;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface ContactFormData {
   name: string;
@@ -12,7 +13,7 @@ export interface ContactFormData {
   providedIn: 'root'
 })
 export class ContactService {
-  private readonly apiUrl = 'https://jsontotablebackendapp.azurewebsites.net/ContactUs/SendEmail';
+  private readonly apiUrl = `${environment.apiBaseUrl}/ContactUs/SendEmail`;
 
   constructor(private http: HttpClient) {}
 

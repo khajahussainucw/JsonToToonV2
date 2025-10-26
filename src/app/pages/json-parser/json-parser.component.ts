@@ -67,25 +67,25 @@ export class JsonParserComponent implements AfterViewInit {
 
   private setupMetaTags() {
     // Set page title
-    this.title.setTitle('JSON Parser - Convert Complex JSON to HTML Table Online');
+    this.title.setTitle('JSON Parser - Parse, View and Read JSON Online');
 
     // Set meta description
     this.meta.updateTag({
       name: 'description',
-      content: 'Convert complex JSON to HTML table. Supports complex JSON, offering a responsive interface for real-time conversion and validation.'
+      content: 'Online JSON parser to parse, view, read and validate JSON data. Supports complex JSON structures with a clean interface for real-time parsing and visualization.'
     });
 
     // Set meta keywords
     this.meta.updateTag({
       name: 'keywords',
-      content: 'json parser,json to table,json to table converter,json to html table,convert json,json to html,json converter,json string,convert json to table,jsontotable,convert json to table online,jason to table,json into table,from json to table,json to tabel,json totable,jsonto table,transform json to table,json2 table,complex json to table online,json2table,json parser online,json object viewer'
+      content: 'json parser,json viewer,json reader,json parser online,parse json,json viewer online,json reader online,view json,read json,json validator,json visualizer,json object viewer,json data parser,parse json online,json file viewer,json file reader,json string parser,json pretty viewer,json format viewer'
     });
 
     // Add additional meta tags for better SEO
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
     this.meta.updateTag({ name: 'author', content: 'JSON Parser' });
-    this.meta.updateTag({ property: 'og:title', content: 'JSON Parser - Convert Complex JSON to HTML Table Online' });
-    this.meta.updateTag({ property: 'og:description', content: 'Convert complex JSON to HTML table. Supports complex JSON, offering a responsive interface for real-time conversion and validation.' });
+    this.meta.updateTag({ property: 'og:title', content: 'JSON Parser - Parse, View and Read JSON Online' });
+    this.meta.updateTag({ property: 'og:description', content: 'Online JSON parser to parse, view, read and validate JSON data. Supports complex JSON structures with a clean interface for real-time parsing and visualization.' });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
   }
 

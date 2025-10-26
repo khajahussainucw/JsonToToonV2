@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JsonFixerService {
-  private apiUrl = 'https://jsontotablebackendapp.azurewebsites.net/FixMyJsonV2/FixMyJsonV3';
-
-  //private apiUrl = 'https://localhost:7256/FixMyJsonV2/FixMyJsonV3'
+  private apiUrl = `${environment.apiBaseUrl}/FixMyJsonV2/FixMyJsonV3`;
 
   constructor(private http: HttpClient) {}
 
