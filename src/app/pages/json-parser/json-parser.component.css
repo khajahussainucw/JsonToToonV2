@@ -659,3 +659,9 @@
 .gap-2 {
   gap: 0.5rem !important;
 }
+
+/* Logo font style using Roboto Mono */
+.logo-text {
+  font-family: 'Roboto Mono', monospace !important;
+  font-weight: 700;
+}

@@ -9,13 +9,13 @@ import { JsonStorageService } from '../../services/json-storage.service';
 declare const ace: any;
 
 @Component({
-  selector: 'app-json-to-table',
+  selector: 'app-json-parser',
   standalone: true,
   imports: [CommonModule, RouterModule, ShareModalComponent, HttpClientModule],
-  templateUrl: './json-to-table.component.html',
-  styleUrl: './json-to-table.component.css'
+  templateUrl: './json-parser.component.html',
+  styleUrl: './json-parser.component.css'
 })
-export class JsonToTableComponent implements AfterViewInit {
+export class JsonParserComponent implements AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
   @ViewChild('tableContainer', { static: false }) private tableContainer!: ElementRef<HTMLElement>;
@@ -67,7 +67,7 @@ export class JsonToTableComponent implements AfterViewInit {
 
   private setupMetaTags() {
     // Set page title
-    this.title.setTitle('JSON to Table Converter - Convert Complex JSON to HTML Table Online');
+    this.title.setTitle('JSON Parser - Convert Complex JSON to HTML Table Online');
 
     // Set meta description
     this.meta.updateTag({
@@ -78,13 +78,13 @@ export class JsonToTableComponent implements AfterViewInit {
     // Set meta keywords
     this.meta.updateTag({
       name: 'keywords',
-      content: 'json to table,json to table converter,json to html table,convert json,json to html,json converter,json string,convert json to table,jsontotable,convert json to table online,jason to table,json into table,from json to table,json to tabel,json totable,jsonto table,transform json to table,json2 table,complex json to table online,json2table,json parser,json parser online,json object viewer'
+      content: 'json parser,json to table,json to table converter,json to html table,convert json,json to html,json converter,json string,convert json to table,jsontotable,convert json to table online,jason to table,json into table,from json to table,json to tabel,json totable,jsonto table,transform json to table,json2 table,complex json to table online,json2table,json parser online,json object viewer'
     });
 
     // Add additional meta tags for better SEO
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this.meta.updateTag({ name: 'author', content: 'JSON to Table Converter' });
-    this.meta.updateTag({ property: 'og:title', content: 'JSON to Table Converter - Convert Complex JSON to HTML Table Online' });
+    this.meta.updateTag({ name: 'author', content: 'JSON Parser' });
+    this.meta.updateTag({ property: 'og:title', content: 'JSON Parser - Convert Complex JSON to HTML Table Online' });
     this.meta.updateTag({ property: 'og:description', content: 'Convert complex JSON to HTML table. Supports complex JSON, offering a responsive interface for real-time conversion and validation.' });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
   }
@@ -189,30 +189,31 @@ export class JsonToTableComponent implements AfterViewInit {
 
   loadSampleData() {
     const sampleData = {
-      "project": "FitTrack Pro",
-      "description": "A comprehensive fitness tracker for maintaining a healthy lifestyle",
-      "features": [
+      "operator": "TeleConnect Global",
+      "description": "Leading telecommunications provider with nationwide 5G coverage",
+      "services": [
         {
           "id": 1,
-          "feature_name": "Step Counter",
-          "description": "Tracks daily steps and calorie burn"
+          "service_name": "5G Ultra Network",
+          "description": "High-speed 5G connectivity with unlimited data"
         },
         {
           "id": 2,
-          "feature_name": "Workout Plans",
-          "description": "Personalized workout plans based on fitness goals"
+          "service_name": "Fiber Broadband",
+          "description": "Gigabit fiber internet for home and business"
         },
         {
           "id": 3,
-          "feature_name": "Health Metrics",
-          "description": "Monitors heart rate, sleep, and hydration levels"
+          "service_name": "Cloud PBX",
+          "description": "Enterprise-grade cloud phone system with advanced features"
         }
       ],
-      "created_at": "2024-12-20",
-      "version": "2.5.0",
-      "integrations": [
-        "Google Fit",
-        "Apple Health"
+      "established": "2015-03-10",
+      "network_version": "5G-SA",
+      "coverage_areas": [
+        "North America",
+        "Europe",
+        "Asia Pacific"
       ]
     };
     

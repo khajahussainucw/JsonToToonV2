@@ -3,15 +3,15 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/json-to-table/json-to-table.component').then(m => m.JsonToTableComponent)
+    loadComponent: () => import('./pages/json-parser/json-parser.component').then(m => m.JsonParserComponent)
   },
   {
-    path: 'json-to-table',
-    loadComponent: () => import('./pages/json-to-table/json-to-table.component').then(m => m.JsonToTableComponent)
+    path: 'json-parser',
+    loadComponent: () => import('./pages/json-parser/json-parser.component').then(m => m.JsonParserComponent)
   },
   {
-    path: 'json-to-table2',
-    loadComponent: () => import('./pages/json-to-table2/json-to-table2.component').then(m => m.JsonToTable2Component)
+    path: 'json-grid',
+    loadComponent: () => import('./pages/json-grid/json-grid.component').then(m => m.JsonGridComponent)
   },
   {
     path: 'json-fixer',

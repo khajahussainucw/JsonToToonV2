@@ -2,8 +2,8 @@
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
       <span class="fw-bold">
-        <span class="d-none d-md-inline">JSON to Table with AG Grid</span>
-        <span class="d-inline d-md-none">JSON to AG Grid</span>
+        <span class="d-none d-md-inline">JSON Grid</span>
+        <span class="d-inline d-md-none">JSON Grid</span>
       </span>
       <div class="action-buttons">
         <button class="btn btn-sm btn-dark" (click)="autoSizeAll()" *ngIf="hasValidJson" title="Auto-size columns">
@@ -104,14 +104,14 @@
       <div class="modal-header bg-dark text-white py-3">
         <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">
           <i class="fas fa-info-circle me-3"></i>
-          JSON to Table with AG Grid
+          JSON Grid Tool
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body p-4">
         <div class="welcome-section mb-4">
-          <p class="lead">Advanced JSON to Table Converter powered by AG Grid!</p>
-          <p class="text-muted">This professional tool uses the free AG Grid Community Edition to provide powerful features like sorting, filtering, pagination, and data export capabilities. Perfect for handling large datasets and complex JSON structures.</p>
+          <p class="lead">Advanced JSON Grid Converter!</p>
+          <p class="text-muted">This professional tool provides powerful features like sorting, filtering, pagination, and data export capabilities. Perfect for handling large datasets and complex JSON structures.</p>
         </div>
 
         <div class="features-section mb-5">
@@ -204,7 +204,7 @@
               <li class="mb-2">Hold Shift while clicking column headers for multi-column sorting</li>
               <li class="mb-2">Right-click column headers for more options</li>
               <li class="mb-2">Use Auto Size button to fit all columns perfectly</li>
-              <li class="mb-2">AG Grid handles thousands of rows efficiently with virtual scrolling</li>
+              <li class="mb-2">Grid handles thousands of rows efficiently with virtual scrolling</li>
               <li>Double-click column borders for auto-sizing individual columns</li>
             </ul>
           </div>
@@ -213,10 +213,10 @@
         <div class="support-section text-center mt-5">
           <p class="mb-0">
             <i class="fas fa-heart text-danger me-2"></i>
-            Powered by AG Grid Community Edition (Free & Open Source)
+            Professional data grid for handling large datasets
           </p>
           <p class="text-muted small mt-2">
-            Professional data grid for Angular applications
+            Advanced features for data analysis and visualization
           </p>
         </div>
       </div>
@@ -235,5 +235,3 @@
 </div>
 
 <app-share-modal [jsonData]="getEditorContent()"></app-share-modal>
-
-

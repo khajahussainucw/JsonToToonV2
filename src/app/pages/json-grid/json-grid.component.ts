@@ -8,13 +8,13 @@ import { ShareModalComponent } from '../../components/share-modal/share-modal.co
 import { HttpClientModule } from '@angular/common/http';
 import { JsonStorageService } from '../../services/json-storage.service';
 
-// Register AG Grid Community modules
+// Register Grid Community modules
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 declare const ace: any;
 
 @Component({
-  selector: 'app-json-to-table2',
+  selector: 'app-json-grid',
   standalone: true,
   imports: [
     CommonModule, 
@@ -23,10 +23,10 @@ declare const ace: any;
     HttpClientModule, 
     AgGridAngular
   ],
-  templateUrl: './json-to-table2.component.html',
-  styleUrl: './json-to-table2.component.css'
+  templateUrl: './json-grid.component.html',
+  styleUrl: './json-grid.component.css'
 })
-export class JsonToTable2Component implements AfterViewInit {
+export class JsonGridComponent implements AfterViewInit {
   @ViewChild('editor') private editor!: ElementRef<HTMLElement>;
   @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
   @ViewChild('agGrid') agGrid!: AgGridAngular;
@@ -42,7 +42,7 @@ export class JsonToTable2Component implements AfterViewInit {
   private isMobile = false;
   private debounceTimer: any;
   
-  // AG Grid properties
+  // Grid properties
   public columnDefs: ColDef[] = [];
   public rowData: any[] = [];
   public gridOptions: GridOptions;
@@ -68,12 +68,12 @@ export class JsonToTable2Component implements AfterViewInit {
     private route: ActivatedRoute,
     private jsonStorageService: JsonStorageService
   ) {
-    console.log('JsonToTable2Component constructor called');
+    console.log('JsonGridComponent constructor called');
     this.setupMetaTags();
     
-    // Initialize AG Grid options
+    // Initialize Grid options
     this.gridOptions = {
-      theme: 'legacy', // Use legacy theme to match ag-grid.css and ag-theme-alpine.css
+      theme: 'legacy', // Use legacy theme to match grid.css and grid-theme-alpine.css
       pagination: true,
       paginationPageSize: 20,
       paginationPageSizeSelector: [10, 20, 50, 100],
@@ -91,14 +91,14 @@ export class JsonToTable2Component implements AfterViewInit {
   }
 
   private setupMetaTags() {
-    this.title.setTitle('JSON to Table Converter (AG Grid) - Advanced JSON to HTML Table Online');
+    this.title.setTitle('JSON Grid - Advanced JSON to Table Converter with Grid Features');
     this.meta.updateTag({
       name: 'description',
-      content: 'Advanced JSON to Table converter powered by AG Grid. Supports complex JSON with sorting, filtering, pagination, and Excel export capabilities.'
+      content: 'Advanced JSON to Table converter with powerful grid features. Supports complex JSON with sorting, filtering, pagination, and Excel export capabilities.'
     });
     this.meta.updateTag({
       name: 'keywords',
-      content: 'json to table,ag grid,json to html table,json converter,json parser,advanced table,sortable table,filterable table'
+      content: 'json grid,json to table,json to html table,json converter,json parser,advanced table,sortable table,filterable table,data grid'
     });
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }
@@ -151,9 +151,9 @@ export class JsonToTable2Component implements AfterViewInit {
             this.isLoading = false;
           }
           
-          console.log('JsonToTable2Component initialized successfully');
+          console.log('JsonGridComponent initialized successfully');
         } catch (error) {
-          console.error('Error initializing JsonToTable2Component:', error);
+          console.error('Error initializing JsonGridComponent:', error);
           this.isLoading = false;
         }
       }, 100);
@@ -367,7 +367,7 @@ export class JsonToTable2Component implements AfterViewInit {
         return;
       }
 
-      // Flatten nested objects for AG Grid
+      // Flatten nested objects for Grid
       const flattenedData = data.map((item: any) => this.flattenObject(item));
       
       // Generate column definitions from all keys
@@ -452,7 +452,7 @@ export class JsonToTable2Component implements AfterViewInit {
   }
 
   onGridReady(params: GridReadyEvent) {
-    console.log('AG Grid is ready!', params);
+    console.log('Grid is ready!', params);
     try {
       if (params?.api) {
         params.api.sizeColumnsToFit();
@@ -651,5 +651,3 @@ export class JsonToTable2Component implements AfterViewInit {
     }
   }
 }
-
-
