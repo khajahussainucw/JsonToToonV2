@@ -24,7 +24,10 @@ export class ContactService {
       .set('email', formData.email)
       .set('message', formData.message);
 
-    // Make POST request with parameters in URL
-    return this.http.post(this.apiUrl, null, { params });
+    // Make POST request with parameters in URL and expect text response
+    return this.http.post(this.apiUrl, null, { 
+      params,
+      responseType: 'text'
+    });
   }
 } 
