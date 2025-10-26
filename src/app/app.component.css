@@ -56,9 +56,10 @@ footer a:hover::after {
 
 /* Logo styles */
 .navbar-brand {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.4rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0px;
+  font-family: 'Playwrite Brasil', cursive;
 }
 
 .logo-container {
@@ -68,20 +69,22 @@ footer a:hover::after {
   border: 2px solid #fff;
   border-radius: 0.5rem;
   padding: 8px 12px !important;
-  transition: border-color 0.3s ease;
-  font-family: 'Roboto Mono', monospace;
+  transition: all 0.3s ease;
+  font-family: 'Playwrite Brasil', cursive;
 }
 
 .logo-container:hover {
   border-color: #f97316;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
 }
 
 .logo-json {
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  font-family: 'Roboto Mono', monospace;
-  letter-spacing: 0.5px;
+  font-family: 'Playwrite Brasil', cursive;
+  letter-spacing: 0px;
 }
 
 .logo-parser {
@@ -91,10 +94,10 @@ footer a:hover::after {
   color: #000;
   padding: 0 0.5rem;
   border-radius: 0.25rem;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  font-family: 'Roboto Mono', monospace;
-  letter-spacing: 0.5px;
+  font-family: 'Playwrite Brasil', cursive !important;
+  letter-spacing: 0px;
 }
 
 .rocket-icon {
