@@ -56,10 +56,10 @@ footer a:hover::after {
 
 /* Logo styles */
 .navbar-brand {
-  font-weight: 700;
+  font-weight: 900;
   font-size: 1.2rem;
   letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'monospace', Courier, monospace;
 }
 
 .logo-container {
@@ -70,7 +70,7 @@ footer a:hover::after {
   border-radius: 0.4rem;
   padding: 6px 10px !important;
   transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'monospace', Courier, monospace;
 }
 
 .logo-container:hover {
@@ -82,8 +82,8 @@ footer a:hover::after {
 .logo-json {
   color: #fff;
   font-size: 1.1rem;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-family: 'monospace', Courier, monospace;
   letter-spacing: 0.5px;
 }
 
@@ -95,8 +95,8 @@ footer a:hover::after {
   padding: 0 0.4rem;
   border-radius: 0.25rem;
   font-size: 1.1rem;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif !important;
+  font-weight: 900;
+  font-family: 'monospace', Courier, monospace !important;
   letter-spacing: 0.5px;
 }
 
