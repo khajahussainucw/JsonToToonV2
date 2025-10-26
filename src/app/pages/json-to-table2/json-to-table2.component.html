@@ -1,0 +1,240 @@
+<div class="paddingLeftRight">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span class="fw-bold">
+        <span class="d-none d-md-inline">JSON to Table with AG Grid</span>
+        <span class="d-inline d-md-none">JSON to AG Grid</span>
+      </span>
+      <div class="action-buttons">
+        <button class="btn btn-sm btn-dark" (click)="autoSizeAll()" *ngIf="hasValidJson" title="Auto-size columns">
+          <i class="fas fa-arrows-alt-h"></i>
+          <span class="d-none d-md-inline"> Auto Size</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" (click)="downloadAsExcel()" *ngIf="hasValidJson" title="Download as Excel">
+          <i class="fas fa-file-excel"></i>
+          <span class="d-none d-md-inline"> Excel</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" (click)="downloadAsCSV()" *ngIf="hasValidJson" title="Download as CSV">
+          <i class="fas fa-file-csv"></i>
+          <span class="d-none d-md-inline"> CSV</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
+          <i class="fas fa-flask"></i>
+          <span class="d-none d-md-inline"> Sample</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" (click)="openShareModal()">
+          <i class="fas fa-share-square"></i>
+          <span class="d-none d-md-inline"> Share</span>
+        </button>
+
+        <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body p-0" style="position: relative;">
+      <div class="split-loading" *ngIf="isLoading">
+        <div class="spinner-container">
+          <div class="spinner-border text-secondary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="loading-message mt-2">Loading data...</div>
+        </div>
+      </div>
+
+      <div class="split-container">
+        <div class="json-input-container" style="flex: 0.22 1 0%;">
+          <div #editor class="editor"></div>
+        </div>
+        
+        <div class="splitter" id="splitter" #splitter></div>
+        
+        <div class="table-output-container" style="flex: 0.78 1 0%;">
+          <div class="grid-container">
+            <ng-container *ngIf="hasValidJson && rowData.length > 0">
+              <div class="ag-grid-wrapper">
+                <ag-grid-angular
+                  #agGrid
+                  style="width: 100%; height: 100%;"
+                  class="ag-theme-alpine"
+                  [rowData]="rowData"
+                  [columnDefs]="columnDefs"
+                  [defaultColDef]="defaultColDef"
+                  [gridOptions]="gridOptions"
+                  [pagination]="true"
+                  [paginationPageSize]="20"
+                  [paginationPageSizeSelector]="[10, 20, 50, 100]"
+                  [animateRows]="true"
+                  [enableCellTextSelection]="true"
+                  [suppressMenuHide]="true"
+                  (gridReady)="onGridReady($event)"
+                ></ag-grid-angular>
+              </div>
+            </ng-container>
+
+            <div *ngIf="!hasValidJson && errorMessage" class="invalid-json-message">
+              <div class="basic-message">
+                {{ errorMessage }}
+              </div>
+            </div>
+
+            <div *ngIf="hasValidJson && rowData.length === 0" class="no-data">
+              Enter valid JSON array to see the table
+            </div>
+
+            <div *ngIf="!hasValidJson && !errorMessage" class="no-data">
+              Paste your JSON data in the editor to get started
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Info Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white py-3">
+        <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">
+          <i class="fas fa-info-circle me-3"></i>
+          JSON to Table with AG Grid
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="welcome-section mb-4">
+          <p class="lead">Advanced JSON to Table Converter powered by AG Grid!</p>
+          <p class="text-muted">This professional tool uses the free AG Grid Community Edition to provide powerful features like sorting, filtering, pagination, and data export capabilities. Perfect for handling large datasets and complex JSON structures.</p>
+        </div>
+
+        <div class="features-section mb-5">
+          <h6 class="section-title fs-5 mb-4">Features</h6>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-sort text-primary me-3 fs-5"></i>
+                    <strong>Advanced Sorting</strong>
+                  </div>
+                  <p class="text-muted ms-4">Click any column header to sort data ascending or descending.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-filter text-warning me-3 fs-5"></i>
+                    <strong>Powerful Filtering</strong>
+                  </div>
+                  <p class="text-muted ms-4">Use the filter icon in column headers for advanced filtering options.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-edit text-success me-3 fs-5"></i>
+                    <strong>Inline Editing</strong>
+                  </div>
+                  <p class="text-muted ms-4">Double-click any cell to edit values directly in the grid.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-file-export text-info me-3 fs-5"></i>
+                    <strong>Multiple Export Formats</strong>
+                  </div>
+                  <p class="text-muted ms-4">Export your data as Excel (.xlsx) or CSV files.</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-list-ol text-danger me-3 fs-5"></i>
+                    <strong>Pagination</strong>
+                  </div>
+                  <p class="text-muted ms-4">Handle large datasets with customizable page sizes (10, 20, 50, 100 rows).</p>
+                </li>
+                <li class="feature-item mb-4">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-arrows-alt-h text-secondary me-3 fs-5"></i>
+                    <strong>Resizable Columns</strong>
+                  </div>
+                  <p class="text-muted ms-4">Drag column borders to resize, or use auto-size for optimal width.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-section mb-5">
+          <h6 class="section-title fs-5 mb-4">How to Use</h6>
+          <div class="usage-steps">
+            <div class="step mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-3">1</span>
+                <strong>Paste Your JSON</strong>
+              </div>
+              <p class="text-muted ms-5">Enter or paste your JSON data in the editor on the left.</p>
+            </div>
+            <div class="step mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-3">2</span>
+                <strong>Explore the Data</strong>
+              </div>
+              <p class="text-muted ms-5">Use sorting, filtering, and pagination to analyze your data.</p>
+            </div>
+            <div class="step mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-3">3</span>
+                <strong>Export Results</strong>
+              </div>
+              <p class="text-muted ms-5">Download your data as Excel or CSV for further analysis.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-tips-section mb-5">
+          <h6 class="section-title fs-5 mb-4">Pro Tips</h6>
+          <div class="tips-container bg-light p-4 rounded">
+            <ul class="mb-0">
+              <li class="mb-2">Hold Shift while clicking column headers for multi-column sorting</li>
+              <li class="mb-2">Right-click column headers for more options</li>
+              <li class="mb-2">Use Auto Size button to fit all columns perfectly</li>
+              <li class="mb-2">AG Grid handles thousands of rows efficiently with virtual scrolling</li>
+              <li>Double-click column borders for auto-sizing individual columns</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="support-section text-center mt-5">
+          <p class="mb-0">
+            <i class="fas fa-heart text-danger me-2"></i>
+            Powered by AG Grid Community Edition (Free & Open Source)
+          </p>
+          <p class="text-muted small mt-2">
+            Professional data grid for Angular applications
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">
+          <i class="fas fa-flask"></i>
+          <span class="d-none d-md-inline"> Try Sample</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">
+          <i class="fas fa-times"></i>
+          <span class="d-none d-md-inline"> Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-share-modal [jsonData]="getEditorContent()"></app-share-modal>
+<app-multiplex-ad></app-multiplex-ad>
+
+

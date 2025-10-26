@@ -1,0 +1,333 @@
+/* Container styles */
+.card {
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s ease;
+  height: calc(100vh - 83px);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 12px 15px;
+}
+
+.card-body {
+  padding: 0;
+  background-color: #fff;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Split Container */
+.split-container {
+  display: flex;
+  height: 100%;
+  background-color: #fff;
+}
+
+/* JSON Input Container */
+.json-input-container {
+  flex: 0;
+  position: relative;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Splitter */
+.splitter {
+  width: 8px;
+  background-color: #dee2e6;
+  cursor: col-resize;
+  position: relative;
+  transition: background-color 0.2s ease;
+  border-left: 1px solid #ced4da;
+  border-right: 1px solid #ced4da;
+}
+
+.splitter:hover {
+  background-color: #e9ecef;
+}
+
+.splitter::before,
+.splitter::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background-color: #adb5bd;
+  border-radius: 3px;
+}
+
+.splitter::before {
+  margin-left: -1px;
+}
+
+.splitter::after {
+  margin-left: 1px;
+}
+
+.splitter.dragging {
+  background-color: #e9ecef;
+}
+
+/* Table Output Container */
+.table-output-container {
+  flex: 1;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.grid-container {
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ag-grid-wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* AG Grid Theme Customization */
+.ag-theme-alpine {
+  --ag-header-height: 45px;
+  --ag-header-foreground-color: #fff;
+  --ag-header-background-color: #343a40;
+  --ag-odd-row-background-color: #f8f9fa;
+  --ag-row-hover-color: #e9ecef;
+  --ag-border-color: #dee2e6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* No Data Message */
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6c757d;
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.invalid-json-message {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.basic-message {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Loading overlay */
+.split-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.split-loading .spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.split-loading .loading-message {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Ace Editor Theme */
+.ace_editor {
+  font-family: Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  background-color: #f8f9fa;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  transition: all 0.2s ease;
+}
+
+.action-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsive padding - Match original exactly */
+.paddingLeftRight {
+  padding-right: 5px;
+  padding-left: 12px;
+  padding-top: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .card {
+    height: auto !important;
+    margin-bottom: 1rem;
+  }
+
+  .split-container {
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .json-input-container {
+    flex: none !important;
+    height: 250px;
+    min-height: 250px;
+    border-right: none;
+    border-bottom: 2px solid #333;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .table-output-container {
+    flex: 1 1 auto !important;
+    height: calc(100% - 290px);
+    min-height: 300px;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 2rem;
+  }
+  
+  .splitter {
+    display: none;
+  }
+
+  .grid-container {
+    padding: 10px;
+    height: 100%;
+  }
+
+  .action-buttons .btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-header {
+    padding: 8px 10px;
+  }
+
+  .action-buttons .btn {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .json-input-container {
+    height: 200px;
+    min-height: 200px;
+  }
+
+  .table-output-container {
+    height: calc(100% - 240px);
+    min-height: 250px;
+    margin-top: 15px;
+    padding-top: 10px;
+  }
+}
+
+/* Resize cursor global style */
+html.resize-cursor,
+html.resize-cursor * {
+  cursor: col-resize !important;
+}
+
+/* Info modal styles */
+.modal-body .feature-item {
+  transition: transform 0.2s ease;
+}
+
+.modal-body .feature-item:hover {
+  transform: translateX(5px);
+}
+
+.section-title {
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+.tips-container {
+  border-left: 4px solid #0d6efd;
+}
+
+.usage-steps .step {
+  transition: all 0.2s ease;
+}
+
+.usage-steps .step:hover {
+  transform: translateX(5px);
+}

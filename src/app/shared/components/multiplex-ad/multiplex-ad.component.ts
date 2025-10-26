@@ -23,25 +23,25 @@ export class MultiplexAdComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       // Delay initialization to ensure the DOM is ready
       setTimeout(() => {
-        this.initializeAdSense();
+        // this.initializeAdSense(); // Commented out Google AdSense
       }, 100);
     }
   }
 
-  private initializeAdSense() {
-    // Only initialize AdSense if it's available, not on mobile, and not already initialized
-    if (typeof window !== 'undefined' && 
-        (window as any).adsbygoogle && 
-        !this.isMobileDevice() && 
-        !this.adInitialized) {
-      try {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-        this.adInitialized = true;
-      } catch (e) {
-        console.log('AdSense error:', e);
-      }
-    }
-  }
+  // private initializeAdSense() {
+  //   // Only initialize AdSense if it's available, not on mobile, and not already initialized
+  //   if (typeof window !== 'undefined' && 
+  //       (window as any).adsbygoogle && 
+  //       !this.isMobileDevice() && 
+  //       !this.adInitialized) {
+  //     try {
+  //       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+  //       this.adInitialized = true;
+  //     } catch (e) {
+  //       console.log('AdSense error:', e);
+  //     }
+  //   }
+  // }
 
   private isMobileDevice(): boolean {
     if (typeof navigator === 'undefined') return false;

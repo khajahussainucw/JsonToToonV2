@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json-to-table/json-to-table.component').then(m => m.JsonToTableComponent)
   },
   {
+    path: 'json-to-table2',
+    loadComponent: () => import('./pages/json-to-table2/json-to-table2.component').then(m => m.JsonToTable2Component)
+  },
+  {
     path: 'json-fixer',
     loadComponent: () => import('./pages/json-fixer/json-fixer.component').then(m => m.JsonFixerComponent)
   },
