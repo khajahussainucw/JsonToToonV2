@@ -189,31 +189,30 @@ export class JsonToTableComponent implements AfterViewInit {
 
   loadSampleData() {
     const sampleData = {
-      "operator": "TeleConnect Global",
-      "description": "Leading telecommunications provider with nationwide 5G coverage",
-      "services": [
+      "project": "FitTrack Pro",
+      "description": "A comprehensive fitness tracker for maintaining a healthy lifestyle",
+      "features": [
         {
           "id": 1,
-          "service_name": "5G Ultra Network",
-          "description": "High-speed 5G connectivity with unlimited data"
+          "feature_name": "Step Counter",
+          "description": "Tracks daily steps and calorie burn"
         },
         {
           "id": 2,
-          "service_name": "Fiber Broadband",
-          "description": "Gigabit fiber internet for home and business"
+          "feature_name": "Workout Plans",
+          "description": "Personalized workout plans based on fitness goals"
         },
         {
           "id": 3,
-          "service_name": "Cloud PBX",
-          "description": "Enterprise-grade cloud phone system with advanced features"
+          "feature_name": "Health Metrics",
+          "description": "Monitors heart rate, sleep, and hydration levels"
         }
       ],
-      "established": "2015-03-10",
-      "network_version": "5G-SA",
-      "coverage_areas": [
-        "North America",
-        "Europe",
-        "Asia Pacific"
+      "created_at": "2024-12-20",
+      "version": "2.5.0",
+      "integrations": [
+        "Google Fit",
+        "Apple Health"
       ]
     };
     

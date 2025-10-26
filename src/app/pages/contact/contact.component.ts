@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ContactService } from '../../services/contact.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MultiplexAdComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, MultiplexAdComponent],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })

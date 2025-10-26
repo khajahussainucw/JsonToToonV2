@@ -7,7 +7,6 @@ import { ColDef, GridOptions, GridReadyEvent, ModuleRegistry, AllCommunityModule
 import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JsonStorageService } from '../../services/json-storage.service';
-import { MultiplexAdComponent } from '../../shared/components';
 
 // Register AG Grid Community modules
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -22,7 +21,6 @@ declare const ace: any;
     RouterModule, 
     ShareModalComponent, 
     HttpClientModule, 
-    MultiplexAdComponent,
     AgGridAngular
   ],
   templateUrl: './json-to-table2.component.html',

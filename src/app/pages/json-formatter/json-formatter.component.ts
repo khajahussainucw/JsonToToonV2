@@ -2,14 +2,13 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, I
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
-import { MultiplexAdComponent } from '../../shared/components';
 
 declare const ace: any;
 
 @Component({
   selector: 'app-json-formatter',
   standalone: true,
-  imports: [CommonModule, RouterModule, MultiplexAdComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './json-formatter.component.html',
   styleUrl: './json-formatter.component.css'
 })
