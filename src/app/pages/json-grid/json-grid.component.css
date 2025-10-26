@@ -168,7 +168,9 @@
   background-color: #f8f9fa;
   padding: 1rem;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px dashed #dee2e6;
 }
 
 /* Ace Editor Theme */
@@ -177,6 +179,14 @@
   font-size: 14px;
   line-height: 1.4;
   background-color: #f8f9fa;
+}
+
+/* Ace Editor Placeholder */
+.ace_placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+  color: #6c757d !important;
+  font-style: italic;
+  padding: 10px !important;
 }
 
 /* Custom Scrollbar */

@@ -180,7 +180,8 @@ export class JsonGridComponent implements AfterViewInit {
       useWrapMode: true,
       showLineNumbers: true,
       printMargin: false,
-      displayIndentGuides: true
+      displayIndentGuides: true,
+      placeholder: 'Paste JSON here...'
     });
 
     this.aceEditor.session.setUseWrapMode(true);
