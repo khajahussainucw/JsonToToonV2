@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, map, catchError, throwError } from 'rxjs';
 
 interface GenericStorageResponse {
   message: string;
@@ -20,7 +20,7 @@ interface GenericStorageRequest {
   providedIn: 'root'
 })
 export class GenericStorageService {
-  private baseUrl = 'https://jsontotablebackendapp.azurewebsites.net/api/GenericData';
+  private baseUrl = 'https://jsonparserbackendapp.azurewebsites.net/api/GenericData';
   private storeEndpoint = `${this.baseUrl}/Store`;
   private getEndpoint = `${this.baseUrl}/GetByGuid`;
   private getAllEndpoint = `${this.baseUrl}/GetAll`;
@@ -42,7 +42,15 @@ export class GenericStorageService {
         message: result.Message || result.message || 'Data stored successfully',
         guid: result.Guid || result.guid,
         dataType: result.DataType || result.dataType || dataType
-      }))
+      })),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Save data failed:', {
+          status: error.status,
+          statusText: error.statusText,
+          error: error.message
+        });
+        return throwError(() => new Error('Unable to save your data. Please try again.'));
+      })
     );
   }
 
@@ -54,20 +62,48 @@ export class GenericStorageService {
         data: result.Data || result.data,
         dataType: result.DataType || result.dataType,
         source: result.Source || result.source
-      }))
+      })),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          return throwError(() => new Error('The shared link is invalid or has expired'));
+        }
+        console.error('Get data failed:', {
+          status: error.status,
+          statusText: error.statusText,
+          error: error.message
+        });
+        return throwError(() => new Error('Unable to load shared data. The link may be invalid or expired'));
+      })
     );
   }
 
   getAllData(dataType?: string): Observable<any[]> {
     const params = dataType ? { dataType } : {};
-    return this.http.get<any[]>(this.getAllEndpoint, { params });
+    return this.http.get<any[]>(this.getAllEndpoint, { params }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Get all data failed:', {
+          status: error.status,
+          statusText: error.statusText,
+          error: error.message
+        });
+        return throwError(() => new Error('Failed to retrieve all data'));
+      })
+    );
   }
 
   deleteData(guid: string): Observable<boolean> {
     return this.http.delete<any>(this.deleteEndpoint, {
       params: { guid }
     }).pipe(
-      map(() => true)
+      map(() => true),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Delete data failed:', {
+          status: error.status,
+          statusText: error.statusText,
+          error: error.message
+        });
+        return throwError(() => new Error('Failed to delete data'));
+      })
     );
   }
 }

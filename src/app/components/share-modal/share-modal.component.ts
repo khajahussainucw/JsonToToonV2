@@ -186,11 +186,15 @@ export class ShareModalComponent implements AfterViewInit {
             this.toastMessage = 'JSON data has been saved successfully!';
             this.showToast = true;
             setTimeout(() => this.showToast = false, 3000);
+          } else {
+            console.error('No GUID received from server');
+            alert('Failed to save JSON. No GUID received from server.');
           }
         },
         error: (error) => {
           console.error('Error saving JSON:', error);
-          alert('Failed to save JSON. Please try again.');
+          const errorMessage = error?.message || 'Failed to save JSON. Please try again.';
+          alert(errorMessage);
         },
         complete: () => {
           this.isSaving = false;
@@ -198,13 +202,28 @@ export class ShareModalComponent implements AfterViewInit {
       });
   }
 
-  copyUrl(input: HTMLInputElement) {
+  async copyUrl(input: HTMLInputElement) {
     if (isPlatformBrowser(this.platformId)) {
-      input.select();
-      document.execCommand('copy');
+      try {
+        // Modern clipboard API
+        await navigator.clipboard.writeText(this.sharedUrl);
+        this.toastMessage = 'URL copied to clipboard!';
+        this.showToast = true;
+        setTimeout(() => this.showToast = false, 2000);
+      } catch (err) {
+        console.error('Failed to copy using modern API, trying fallback:', err);
+        // Fallback for older browsers
+        try {
+          input.select();
+          document.execCommand('copy');
+          this.toastMessage = 'URL copied to clipboard!';
+          this.showToast = true;
+          setTimeout(() => this.showToast = false, 2000);
+        } catch (fallbackErr) {
+          console.error('Failed to copy URL:', fallbackErr);
+          alert('Failed to copy URL. Please copy manually.');
+        }
+      }
     }
-    this.toastMessage = 'URL copied to clipboard!';
-    this.showToast = true;
-    setTimeout(() => this.showToast = false, 2000);
   }
 } 
