@@ -174,6 +174,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/markdown/markdown-table-generator/markdown-table-generator.component').then(m => m.MarkdownTableGeneratorComponent)
   },
   {
+    path: 'toml-formatter',
+    loadComponent: () => import('./pages/toml/toml-formatter/toml-formatter.component').then(m => m.TomlFormatterComponent)
+  },
+  {
+    path: 'toml-validator',
+    loadComponent: () => import('./pages/toml/toml-validator/toml-validator.component').then(m => m.TomlValidatorComponent)
+  },
+  {
+    path: 'toml-to-json',
+    loadComponent: () => import('./pages/toml/toml-to-json/toml-to-json.component').then(m => m.TomlToJsonComponent)
+  },
+  {
+    path: 'json-to-toml',
+    loadComponent: () => import('./pages/toml/json-to-toml/json-to-toml.component').then(m => m.JsonToTomlComponent)
+  },
+  {
+    path: 'toml-to-yaml',
+    loadComponent: () => import('./pages/toml/toml-to-yaml/toml-to-yaml.component').then(m => m.TomlToYamlComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },
