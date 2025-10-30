@@ -52,6 +52,8 @@
               "node_modules/ace-builds/src-noconflict/mode-typescript.js",
               "node_modules/ace-builds/src-noconflict/mode-css.js",
               "node_modules/ace-builds/src-noconflict/mode-scss.js",
+              "node_modules/ace-builds/src-noconflict/mode-markdown.js",
+              "node_modules/ace-builds/src-noconflict/mode-html.js",
               "node_modules/ace-builds/src-noconflict/theme-github.js"
             ],
             "server": "src/main.server.ts",

@@ -154,6 +154,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/css/css-to-scss/css-to-scss.component').then(m => m.CssToScssComponent)
   },
   {
+    path: 'markdown-editor',
+    loadComponent: () => import('./pages/markdown/markdown-editor/markdown-editor.component').then(m => m.MarkdownEditorComponent)
+  },
+  {
+    path: 'markdown-to-html',
+    loadComponent: () => import('./pages/markdown/markdown-to-html/markdown-to-html.component').then(m => m.MarkdownToHtmlComponent)
+  },
+  {
+    path: 'html-to-markdown',
+    loadComponent: () => import('./pages/markdown/html-to-markdown/html-to-markdown.component').then(m => m.HtmlToMarkdownComponent)
+  },
+  {
+    path: 'markdown-formatter',
+    loadComponent: () => import('./pages/markdown/markdown-formatter/markdown-formatter.component').then(m => m.MarkdownFormatterComponent)
+  },
+  {
+    path: 'markdown-table-generator',
+    loadComponent: () => import('./pages/markdown/markdown-table-generator/markdown-table-generator.component').then(m => m.MarkdownTableGeneratorComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },

@@ -1,0 +1,60 @@
+<div class="html-to-markdown-container">
+  <div class="page-header">
+    <h1 class="page-title">HTML to Markdown Converter</h1>
+    <p class="page-description">Convert HTML code to Markdown</p>
+  </div>
+
+  <div class="editors-wrapper">
+    <div class="editor-container left">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Input HTML</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleHtml()" title="Load Sample">
+            <i class="fas fa-file-code"></i> Sample
+          </button>
+          <button class="btn" (click)="fileInput.click()" title="Upload File">
+            <i class="fas fa-upload"></i> Upload
+          </button>
+          <button class="btn" (click)="clearInput()" title="Clear">
+            <i class="fas fa-times"></i> Clear
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <div class="editor-container right">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Converted Markdown</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="copyToClipboard()" title="Copy to Clipboard">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+          <button class="btn" (click)="downloadMarkdown()" title="Download">
+            <i class="fas fa-download"></i> Download
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+
+  <input #fileInput type="file" accept=".html,.htm" style="display: none;" (change)="uploadFile($event)">
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert" style="position: fixed; top: 80px; right: 20px; z-index: 1000; min-width: 300px;">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="copySuccessMessage" class="alert alert-success" role="alert" style="position: fixed; top: 80px; right: 20px; z-index: 1000; min-width: 300px;">
+    {{ copySuccessMessage }}
+  </div>
+</div>
+

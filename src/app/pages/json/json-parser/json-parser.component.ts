@@ -189,32 +189,24 @@ export class JsonParserComponent implements AfterViewInit {
 
   loadSampleData() {
     const sampleData = {
-      "operator": "TeleConnect Global",
-      "description": "Leading telecommunications provider with nationwide 5G coverage",
-      "services": [
+      "store": "TechHub Electronics",
+      "description": "Premium electronics retailer",
+      "products": [
         {
           "id": 1,
-          "service_name": "5G Ultra Network",
-          "description": "High-speed 5G connectivity with unlimited data"
+          "name": "UltraBook Pro 15",
+          "price": 1299.99,
+          "category": "Computers"
         },
         {
           "id": 2,
-          "service_name": "Fiber Broadband",
-          "description": "Gigabit fiber internet for home and business"
-        },
-        {
-          "id": 3,
-          "service_name": "Cloud PBX",
-          "description": "Enterprise-grade cloud phone system with advanced features"
+          "name": "Wireless Earbuds Max",
+          "price": 199.99,
+          "category": "Audio"
         }
       ],
-      "established": "2015-03-10",
-      "network_version": "5G-SA",
-      "coverage_areas": [
-        "North America",
-        "Europe",
-        "Asia Pacific"
-      ]
+      "rating": 4.7,
+      "locations": ["New York", "Los Angeles", "Chicago"]
     };
     
     this.aceEditor.setValue(JSON.stringify(sampleData, null, 2));

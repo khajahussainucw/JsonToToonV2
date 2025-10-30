@@ -1,0 +1,86 @@
+<div class="table-generator-container">
+  <div class="page-header">
+    <h1 class="page-title">Markdown Table Generator</h1>
+    <p class="page-description">Create Markdown tables easily</p>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="table-editor left">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Table Configuration</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleTable()" title="Load Sample">
+            <i class="fas fa-file-code"></i> Sample
+          </button>
+          <button class="btn" (click)="clearTable()" title="Clear">
+            <i class="fas fa-times"></i> Clear
+          </button>
+        </div>
+      </div>
+
+      <div class="config-section">
+        <div class="config-row">
+          <label>Rows:</label>
+          <input type="number" [(ngModel)]="rows" (ngModelChange)="onRowsChange()" min="1" max="50" class="form-control">
+        </div>
+        <div class="config-row">
+          <label>Columns:</label>
+          <input type="number" [(ngModel)]="cols" (ngModelChange)="onColsChange()" min="1" max="20" class="form-control">
+        </div>
+        <div class="config-row">
+          <label>Alignment:</label>
+          <select [(ngModel)]="alignment" (ngModelChange)="onSettingsChange()" class="form-control">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-input-wrapper">
+        <table class="editable-table">
+          <tr *ngFor="let row of tableData; let i = index">
+            <td *ngFor="let cell of row; let j = index">
+              <input 
+                type="text" 
+                [value]="cell" 
+                (input)="onCellChange(i, j, $any($event.target).value)"
+                [class.header-cell]="i === 0"
+                class="cell-input">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="table-output right">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Generated Markdown</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="copyToClipboard()" title="Copy to Clipboard">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+          <button class="btn" (click)="downloadMarkdown()" title="Download">
+            <i class="fas fa-download"></i> Download
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert" style="position: fixed; top: 80px; right: 20px; z-index: 1000; min-width: 300px;">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="copySuccessMessage" class="alert alert-success" role="alert" style="position: fixed; top: 80px; right: 20px; z-index: 1000; min-width: 300px;">
+    {{ copySuccessMessage }}
+  </div>
+</div>
+
