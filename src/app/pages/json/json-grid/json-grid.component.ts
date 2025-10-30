@@ -4,9 +4,9 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, GridOptions, GridReadyEvent, ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
-import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
+import { ShareModalComponent } from '../../../components/share-modal/share-modal.component';
 import { HttpClientModule } from '@angular/common/http';
-import { JsonStorageService } from '../../services/json-storage.service';
+import { JsonStorageService } from '../../../services/json-storage.service';
 
 // Register Grid Community modules
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -110,7 +110,7 @@ export class JsonGridComponent implements AfterViewInit {
         this.isLoadingSharedJson = true;
         this.isLoading = true;
         this.jsonStorageService.getJsonByGuid(guid).subscribe({
-          next: (jsonData) => {
+          next: (jsonData: any) => {
             const checkEditor = setInterval(() => {
               if (this.aceEditor) {
                 this.aceEditor.setValue(jsonData, -1);
@@ -119,7 +119,7 @@ export class JsonGridComponent implements AfterViewInit {
               }
             }, 100);
           },
-          error: (error) => {
+          error: (error: any) => {
             console.error('Error loading shared JSON:', error);
             this.errorMessage = 'Failed to load shared JSON. The link might be expired or invalid.';
           },

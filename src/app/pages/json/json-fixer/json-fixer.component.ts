@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { JsonFixerService } from '../../services/json-fixer.service';
+import { JsonFixerService } from '../../../services/json-fixer.service';
 import { Title, Meta } from '@angular/platform-browser';
 declare const ace: any;
 
@@ -239,13 +239,13 @@ export class JsonFixerComponent implements AfterViewInit {
     }, 700);
     // Call backend API
     this.fixerService.fixJson(input).subscribe(
-      (response) => {
+      (response: any) => {
         clearInterval(this.loadingInterval);
         this.progressPercent = 100;
         this.isLoading = false;
         this.aceEditorRight.setValue(JSON.stringify(response, null, 2), -1);
       },
-      (error) => {
+      (error: any) => {
         clearInterval(this.loadingInterval);
         this.progressPercent = 100;
         this.isLoading = false;

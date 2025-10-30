@@ -1,0 +1,98 @@
+<div class="csv-tool-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title"><i class="fas fa-code"></i> CSV to XML Converter</h1>
+    <p class="page-description">Convert CSV files to XML format with custom configuration</p>
+  </div>
+  
+  <input type="file" #fileInput accept=".csv" style="display: none;" (change)="uploadFile($event)" />
+  
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Input CSV</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleCsv()" title="Load Sample">
+            <i class="fas fa-flask"></i>
+            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="fileInput.click()" title="Upload">
+            <i class="fas fa-upload"></i>
+            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="showConfig = !showConfig" title="Settings">
+            <i class="fas fa-cog"></i>
+            <span class="d-none d-md-inline">Settings</span>
+          </button>
+          <button class="btn" (click)="clearInput()" title="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="config-panel" *ngIf="showConfig">
+        <div class="config-row">
+          <label>Delimiter:</label>
+          <select [(ngModel)]="delimiter" (change)="convertCsvToXml()">
+            <option value=",">Comma</option>
+            <option value=";">Semicolon</option>
+            <option value="|">Pipe</option>
+            <option value="&#9;">Tab</option>
+          </select>
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="hasHeader" (change)="convertCsvToXml()"> Has Header
+          </label>
+        </div>
+        <div class="config-row">
+          <label>Root:</label>
+          <input type="text" [(ngModel)]="rootElement" (change)="convertCsvToXml()" placeholder="data">
+          <label>Row:</label>
+          <input type="text" [(ngModel)]="rowElement" (change)="convertCsvToXml()" placeholder="row">
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="useAttributes" (change)="convertCsvToXml()"> Use Attributes
+          </label>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel (Output) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Output XML</h2>
+          <span class="badge" *ngIf="successMessage">{{ successMessage }}</span>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadXml()" title="Download">
+            <i class="fas fa-download"></i>
+            <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyXml()" title="Copy">
+            <i class="fas fa-copy"></i>
+            <span class="d-none d-md-inline">Copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Toast -->
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="!!errorMessage" role="alert">
+    <div class="toast-header bg-danger text-white">
+      <i class="fas fa-exclamation-triangle me-2"></i>
+      <strong class="me-auto">Error</strong>
+      <button type="button" class="btn-close btn-close-white" (click)="errorMessage = ''"></button>
+    </div>
+    <div class="toast-body">{{ errorMessage }}</div>
+  </div>
+</div>

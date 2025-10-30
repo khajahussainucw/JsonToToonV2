@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, I
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
-import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
+import { ShareModalComponent } from '../../../components/share-modal/share-modal.component';
 import { HttpClientModule } from '@angular/common/http';
-import { JsonStorageService } from '../../services/json-storage.service';
+import { JsonStorageService } from '../../../services/json-storage.service';
 
 declare const ace: any;
 
@@ -96,7 +96,7 @@ export class JsonParserComponent implements AfterViewInit {
         this.isLoadingSharedJson = true;
         this.isLoading = true;
         this.jsonStorageService.getJsonByGuid(guid).subscribe({
-          next: (jsonData) => {
+          next: (jsonData: any) => {
             // Wait for editor to be initialized
             const checkEditor = setInterval(() => {
               if (this.aceEditor) {
@@ -106,7 +106,7 @@ export class JsonParserComponent implements AfterViewInit {
               }
             }, 100);
           },
-          error: (error) => {
+          error: (error: any) => {
             console.error('Error loading shared JSON:', error);
             this.errorMessage = 'Failed to load shared JSON. The link might be expired or invalid.';
           },

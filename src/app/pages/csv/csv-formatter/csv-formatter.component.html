@@ -1,0 +1,103 @@
+<div class="csv-formatter-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">CSV Formatter</h1>
+    <p class="page-description">Format, beautify and clean your CSV data</p>
+  </div>
+  
+  <input type="file" #fileInput accept=".csv,.txt" style="display: none;" (change)="onFileSelected($event)" />
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input) -->
+    <div class="editor-container input-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>CSV Input</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleCsv()" aria-label="Sample">
+            <i class="fas fa-flask"></i>
+            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
+            <i class="fas fa-upload"></i>
+            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel (Output) -->
+    <div class="editor-container output-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Formatted Output</h2>
+        </div>
+        <div class="panel-actions">
+          <div class="delimiter-controls d-none d-lg-flex">
+            <span class="control-label">Delimiter:</span>
+            <button class="btn btn-sm" [class.active]="delimiter === ','" (click)="changeDelimiter(',')">,</button>
+            <button class="btn btn-sm" [class.active]="delimiter === ';'" (click)="changeDelimiter(';')">;</button>
+            <button class="btn btn-sm" [class.active]="delimiter === '\t'" (click)="changeDelimiter('\t')">Tab</button>
+          </div>
+          <button class="btn" [class.active]="removeEmptyLines" (click)="toggleEmptyLines()" aria-label="Remove Empty Lines">
+            <i class="fas fa-filter"></i>
+            <span class="d-none d-md-inline">Remove Empty</span>
+          </button>
+          <button class="btn" (click)="downloadCsv()" aria-label="Download">
+            <i class="fas fa-download"></i>
+            <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <i class="fas fa-copy"></i>
+            <span class="d-none d-md-inline">Copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" tabindex="-1" [class.show]="errorModalVisible" [style.display]="errorModalVisible ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Error</h5>
+        <button type="button" class="btn-close" (click)="closeErrorModal()"></button>
+      </div>
+      <div class="modal-body"><p>{{ errorMessage }}</p></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeErrorModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="errorModalVisible" *ngIf="errorModalVisible"></div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="copySuccessVisible">
+    <div class="toast-header">
+      <i class="fas fa-check-circle text-success me-2"></i>
+      <strong class="me-auto">Success</strong>
+    </div>
+    <div class="toast-body">{{ copySuccessMessage }}</div>
+  </div>
+  <div class="toast" [class.show]="copyErrorVisible">
+    <div class="toast-header">
+      <i class="fas fa-exclamation-circle text-warning me-2"></i>
+      <strong class="me-auto">Warning</strong>
+    </div>
+    <div class="toast-body">{{ copyErrorMessage }}</div>
+  </div>
+</div>
+

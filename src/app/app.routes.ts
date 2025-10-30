@@ -46,6 +46,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/csv/csv-to-json/csv-to-json.component').then(m => m.CsvToJsonComponent)
   },
   {
+    path: 'csv-viewer',
+    loadComponent: () => import('./pages/csv/csv-viewer/csv-viewer.component').then(m => m.CsvViewerComponent)
+  },
+  {
+    path: 'csv-formatter',
+    loadComponent: () => import('./pages/csv/csv-formatter/csv-formatter.component').then(m => m.CsvFormatterComponent)
+  },
+  {
+    path: 'csv-validator',
+    loadComponent: () => import('./pages/csv/csv-validator/csv-validator.component').then(m => m.CsvValidatorComponent)
+  },
+  {
+    path: 'csv-to-yaml',
+    loadComponent: () => import('./pages/csv/csv-to-yaml/csv-to-yaml.component').then(m => m.CsvToYamlComponent)
+  },
+  {
+    path: 'csv-to-xml',
+    loadComponent: () => import('./pages/csv/csv-to-xml/csv-to-xml.component').then(m => m.CsvToXmlComponent)
+  },
+  {
     path: 'yaml-to-json',
     loadComponent: () => import('./pages/yaml/yaml-to-json/yaml-to-json.component').then(m => m.YamlToJsonComponent)
   },
