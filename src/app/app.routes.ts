@@ -82,6 +82,18 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/yaml/yaml-formatter/yaml-formatter.component').then(m => m.YamlFormatterComponent)
   },
   {
+    path: 'yaml-to-xml',
+    loadComponent: () => import('./pages/yaml/yaml-to-xml/yaml-to-xml.component').then(m => m.YamlToXmlComponent)
+  },
+  {
+    path: 'yaml-to-csv',
+    loadComponent: () => import('./pages/yaml/yaml-to-csv/yaml-to-csv.component').then(m => m.YamlToCsvComponent)
+  },
+  {
+    path: 'yaml-to-toml',
+    loadComponent: () => import('./pages/yaml/yaml-to-toml/yaml-to-toml.component').then(m => m.YamlToTomlComponent)
+  },
+  {
     path: 'xml-formatter',
     loadComponent: () => import('./pages/xml/xml-formatter/xml-formatter.component').then(m => m.XmlFormatterComponent)
   },
@@ -100,6 +112,14 @@ export const routes: Routes = [
   {
     path: 'xml-minifier',
     loadComponent: () => import('./pages/xml/xml-minifier/xml-minifier.component').then(m => m.XmlMinifierComponent)
+  },
+  {
+    path: 'xml-to-yaml',
+    loadComponent: () => import('./pages/xml/xml-to-yaml/xml-to-yaml.component').then(m => m.XmlToYamlComponent)
+  },
+  {
+    path: 'xml-to-csv',
+    loadComponent: () => import('./pages/xml/xml-to-csv/xml-to-csv.component').then(m => m.XmlToCsvComponent)
   },
   {
     path: 'js-formatter',
@@ -192,6 +212,14 @@ export const routes: Routes = [
   {
     path: 'toml-to-yaml',
     loadComponent: () => import('./pages/toml/toml-to-yaml/toml-to-yaml.component').then(m => m.TomlToYamlComponent)
+  },
+  {
+    path: 'toml-to-xml',
+    loadComponent: () => import('./pages/toml/toml-to-xml/toml-to-xml.component').then(m => m.TomlToXmlComponent)
+  },
+  {
+    path: 'toml-to-csv',
+    loadComponent: () => import('./pages/toml/toml-to-csv/toml-to-csv.component').then(m => m.TomlToCsvComponent)
   },
   {
     path: 'privacy-policy',
