@@ -3,27 +3,27 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/json-parser/json-parser.component').then(m => m.JsonParserComponent)
+    loadComponent: () => import('./pages/json/json-parser/json-parser.component').then(m => m.JsonParserComponent)
   },
   {
     path: 'json-parser',
-    loadComponent: () => import('./pages/json-parser/json-parser.component').then(m => m.JsonParserComponent)
+    loadComponent: () => import('./pages/json/json-parser/json-parser.component').then(m => m.JsonParserComponent)
   },
   {
     path: 'json-grid',
-    loadComponent: () => import('./pages/json-grid/json-grid.component').then(m => m.JsonGridComponent)
+    loadComponent: () => import('./pages/json/json-grid/json-grid.component').then(m => m.JsonGridComponent)
   },
   {
     path: 'json-fixer',
-    loadComponent: () => import('./pages/json-fixer/json-fixer.component').then(m => m.JsonFixerComponent)
+    loadComponent: () => import('./pages/json/json-fixer/json-fixer.component').then(m => m.JsonFixerComponent)
   },
   {
     path: 'json-formatter',
-    loadComponent: () => import('./pages/json-formatter/json-formatter.component').then(m => m.JsonFormatterComponent)
+    loadComponent: () => import('./pages/json/json-formatter/json-formatter.component').then(m => m.JsonFormatterComponent)
   },
   {
     path: 'string-to-json',
-    loadComponent: () => import('./pages/string-to-json/string-to-json.component').then(m => m.StringToJsonComponent)
+    loadComponent: () => import('./pages/json/string-to-json/string-to-json.component').then(m => m.StringToJsonComponent)
   },
   {
     path: 'yaml-to-json',
