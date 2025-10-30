@@ -59,13 +59,10 @@ export class JsMinifierComponent implements AfterViewInit {
       wrap: true,
       readOnly: true
     });
-
-    this.loadSampleJs();
   }
 
   loadSampleJs() {
-    const sampleJs = `// Calculate total price
-function calculateTotal(items) {
+    const sampleJs = `function calculateTotal(items) {
   let total = 0;
   
   for (let i = 0; i < items.length; i++) {

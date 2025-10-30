@@ -58,8 +58,6 @@ export class JsxFormatterComponent implements AfterViewInit {
       wrap: true,
       readOnly: true
     });
-
-    this.loadSampleJsx();
   }
 
   loadSampleJsx() {

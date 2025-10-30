@@ -59,8 +59,6 @@ export class JsObfuscatorComponent implements AfterViewInit {
       wrap: true,
       readOnly: true
     });
-
-    this.loadSampleJs();
   }
 
   loadSampleJs() {

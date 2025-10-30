@@ -138,10 +138,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/javascript/regex-tester/regex-tester.component').then(m => m.RegexTesterComponent)
   },
   {
-    path: 'base64-tool',
-    loadComponent: () => import('./pages/javascript/base64-tool/base64-tool.component').then(m => m.Base64ToolComponent)
-  },
-  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },

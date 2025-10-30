@@ -57,8 +57,6 @@ export class JsValidatorComponent implements AfterViewInit {
       wrap: true,
       readOnly: true
     });
-
-    this.loadSampleJs();
   }
 
   loadSampleJs() {

@@ -59,8 +59,6 @@ export class JsFormatterComponent implements AfterViewInit {
       wrap: true,
       readOnly: true
     });
-
-    this.loadSampleJs();
   }
 
   loadSampleJs() {

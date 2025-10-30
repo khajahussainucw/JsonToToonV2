@@ -39,26 +39,19 @@ export class JsConsoleComponent implements AfterViewInit {
       highlightActiveLine: true,
       wrap: true
     });
-
-    this.loadSampleCode();
   }
 
   loadSampleCode() {
-    const sampleCode = `// Welcome to JS Console!
-// Write JavaScript code and click Run
-
-function greet(name) {
+    const sampleCode = `function greet(name) {
   return \`Hello, \${name}!\`;
 }
 
 console.log(greet("World"));
 
-// Try some calculations
 const numbers = [1, 2, 3, 4, 5];
 const sum = numbers.reduce((a, b) => a + b, 0);
 console.log("Sum:", sum);
 
-// Object example
 const person = {
   name: "John",
   age: 30,
