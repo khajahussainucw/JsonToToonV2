@@ -26,6 +26,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json/string-to-json/string-to-json.component').then(m => m.StringToJsonComponent)
   },
   {
+    path: 'json-minifier',
+    loadComponent: () => import('./pages/json/json-minifier/json-minifier.component').then(m => m.JsonMinifierComponent)
+  },
+  {
+    path: 'json-validator',
+    loadComponent: () => import('./pages/json/json-validator/json-validator.component').then(m => m.JsonValidatorComponent)
+  },
+  {
+    path: 'json-to-csv',
+    loadComponent: () => import('./pages/json/json-to-csv/json-to-csv.component').then(m => m.JsonToCsvComponent)
+  },
+  {
+    path: 'json-to-typescript',
+    loadComponent: () => import('./pages/json/json-to-typescript/json-to-typescript.component').then(m => m.JsonToTypescriptComponent)
+  },
+  {
+    path: 'csv-to-json',
+    loadComponent: () => import('./pages/csv/csv-to-json/csv-to-json.component').then(m => m.CsvToJsonComponent)
+  },
+  {
     path: 'yaml-to-json',
     loadComponent: () => import('./pages/yaml/yaml-to-json/yaml-to-json.component').then(m => m.YamlToJsonComponent)
   },
