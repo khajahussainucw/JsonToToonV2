@@ -102,6 +102,46 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/xml/xml-minifier/xml-minifier.component').then(m => m.XmlMinifierComponent)
   },
   {
+    path: 'js-formatter',
+    loadComponent: () => import('./pages/javascript/js-formatter/js-formatter.component').then(m => m.JsFormatterComponent)
+  },
+  {
+    path: 'js-minifier',
+    loadComponent: () => import('./pages/javascript/js-minifier/js-minifier.component').then(m => m.JsMinifierComponent)
+  },
+  {
+    path: 'js-validator',
+    loadComponent: () => import('./pages/javascript/js-validator/js-validator.component').then(m => m.JsValidatorComponent)
+  },
+  {
+    path: 'js-obfuscator',
+    loadComponent: () => import('./pages/javascript/js-obfuscator/js-obfuscator.component').then(m => m.JsObfuscatorComponent)
+  },
+  {
+    path: 'js-deobfuscator',
+    loadComponent: () => import('./pages/javascript/js-deobfuscator/js-deobfuscator.component').then(m => m.JsDeobfuscatorComponent)
+  },
+  {
+    path: 'js-to-typescript',
+    loadComponent: () => import('./pages/javascript/js-to-typescript/js-to-typescript.component').then(m => m.JsToTypescriptComponent)
+  },
+  {
+    path: 'jsx-formatter',
+    loadComponent: () => import('./pages/javascript/jsx-formatter/jsx-formatter.component').then(m => m.JsxFormatterComponent)
+  },
+  {
+    path: 'js-console',
+    loadComponent: () => import('./pages/javascript/js-console/js-console.component').then(m => m.JsConsoleComponent)
+  },
+  {
+    path: 'regex-tester',
+    loadComponent: () => import('./pages/javascript/regex-tester/regex-tester.component').then(m => m.RegexTesterComponent)
+  },
+  {
+    path: 'base64-tool',
+    loadComponent: () => import('./pages/javascript/base64-tool/base64-tool.component').then(m => m.Base64ToolComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },

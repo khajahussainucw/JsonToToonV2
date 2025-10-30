@@ -1,0 +1,48 @@
+<div class="js-validator-container">
+  <div class="page-header">
+    <h1 class="page-title">JavaScript Validator</h1>
+    <p class="page-description">Validate JavaScript syntax and check for errors</p>
+  </div>
+  
+  <input type="file" #fileInput accept=".js,.txt" style="display: none;" (change)="uploadFile($event)" />
+  <div class="editors-wrapper">
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Input JavaScript</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleJs()" aria-label="Sample">
+            <i class="fas fa-flask"></i>
+            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="fileInput.click()" aria-label="Upload">
+            <i class="fas fa-upload"></i>
+            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Validation Result</h2>
+          <span class="badge" *ngIf="validationResult" [class.badge-success]="validationResult.valid" [class.badge-danger]="!validationResult.valid">
+            {{ validationResult.valid ? 'VALID' : 'INVALID' }}
+          </span>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

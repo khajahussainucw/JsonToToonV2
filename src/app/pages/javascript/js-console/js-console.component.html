@@ -1,0 +1,63 @@
+<div class="js-console-container">
+  <div class="page-header">
+    <h1 class="page-title">JavaScript Console</h1>
+    <p class="page-description">Run JavaScript code in an interactive online playground</p>
+  </div>
+
+  <div class="console-layout">
+    <!-- Code Editor Section -->
+    <div class="editor-section">
+      <div class="section-header">
+        <h2>Code Editor</h2>
+        <div class="header-actions">
+          <button class="btn" (click)="loadSampleCode()">
+            <i class="fas fa-flask"></i>
+            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="clearCode()">
+            <i class="fas fa-trash"></i>
+            <span class="d-none d-md-inline">Clear</span>
+          </button>
+          <button class="btn btn-primary" (click)="runCode()">
+            <i class="fas fa-play"></i>
+            <span class="d-none d-md-inline">Run Code</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #codeEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Console Output Section -->
+    <div class="output-section">
+      <div class="section-header">
+        <h2>Console Output</h2>
+        <button class="btn btn-sm" (click)="clearConsole()">
+          <i class="fas fa-trash"></i>
+          <span class="d-none d-md-inline">Clear Output</span>
+        </button>
+      </div>
+      <div class="console-output">
+        <div *ngIf="consoleOutput.length === 0" class="output-placeholder">
+          Click "Run Code" to see output here...
+        </div>
+        <div *ngFor="let line of consoleOutput" class="output-line">
+          {{ line }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Section -->
+  <div class="info-section">
+    <h3><i class="fas fa-info-circle"></i> Tips</h3>
+    <ul>
+      <li>Use <code>console.log()</code> to output values</li>
+      <li>All standard JavaScript features are supported</li>
+      <li>Code runs in a sandboxed environment</li>
+      <li>Press <kbd>Ctrl+Enter</kbd> or click "Run Code" to execute</li>
+    </ul>
+  </div>
+</div>
+
