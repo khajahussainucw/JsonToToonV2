@@ -134,10 +134,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/javascript/js-console/js-console.component').then(m => m.JsConsoleComponent)
   },
   {
-    path: 'regex-tester',
-    loadComponent: () => import('./pages/javascript/regex-tester/regex-tester.component').then(m => m.RegexTesterComponent)
-  },
-  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },
