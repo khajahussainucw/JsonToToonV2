@@ -160,6 +160,38 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- CSS Tools -->
+  <url>
+    <loc>https://jsonparser.ai/css-formatter</loc>
+    <lastmod>2024-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jsonparser.ai/css-minifier</loc>
+    <lastmod>2024-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jsonparser.ai/css-validator</loc>
+    <lastmod>2024-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jsonparser.ai/scss-to-css</loc>
+    <lastmod>2024-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jsonparser.ai/css-to-scss</loc>
+    <lastmod>2024-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- JavaScript Tools -->
   <url>
     <loc>https://jsonparser.ai/js-formatter</loc>
