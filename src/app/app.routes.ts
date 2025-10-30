@@ -134,6 +134,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/javascript/js-console/js-console.component').then(m => m.JsConsoleComponent)
   },
   {
+    path: 'css-formatter',
+    loadComponent: () => import('./pages/css/css-formatter/css-formatter.component').then(m => m.CssFormatterComponent)
+  },
+  {
+    path: 'css-minifier',
+    loadComponent: () => import('./pages/css/css-minifier/css-minifier.component').then(m => m.CssMinifierComponent)
+  },
+  {
+    path: 'css-validator',
+    loadComponent: () => import('./pages/css/css-validator/css-validator.component').then(m => m.CssValidatorComponent)
+  },
+  {
+    path: 'scss-to-css',
+    loadComponent: () => import('./pages/css/scss-to-css/scss-to-css.component').then(m => m.ScssToCssComponent)
+  },
+  {
+    path: 'css-to-scss',
+    loadComponent: () => import('./pages/css/css-to-scss/css-to-scss.component').then(m => m.CssToScssComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },
