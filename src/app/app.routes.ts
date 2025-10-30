@@ -26,6 +26,22 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/string-to-json/string-to-json.component').then(m => m.StringToJsonComponent)
   },
   {
+    path: 'yaml-to-json',
+    loadComponent: () => import('./pages/yaml/yaml-to-json/yaml-to-json.component').then(m => m.YamlToJsonComponent)
+  },
+  {
+    path: 'json-to-yaml',
+    loadComponent: () => import('./pages/yaml/json-to-yaml/json-to-yaml.component').then(m => m.JsonToYamlComponent)
+  },
+  {
+    path: 'yaml-validator',
+    loadComponent: () => import('./pages/yaml/yaml-validator/yaml-validator.component').then(m => m.YamlValidatorComponent)
+  },
+  {
+    path: 'yaml-formatter',
+    loadComponent: () => import('./pages/yaml/yaml-formatter/yaml-formatter.component').then(m => m.YamlFormatterComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },

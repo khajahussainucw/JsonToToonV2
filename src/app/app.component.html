@@ -17,8 +17,9 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">JSON Parser</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/json-grid" routerLinkActive="active">JSON Grid</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/json-formatter" routerLinkActive="active">Json Formatter</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/string-to-json" routerLinkActive="active">String To json</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/json-formatter" routerLinkActive="active">JSON Formatter</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/yaml-to-json" routerLinkActive="active">YAML to JSON</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/json-to-yaml" routerLinkActive="active">JSON to YAML</a></li>
         </ul>
       </div>
     </div>
@@ -30,16 +31,47 @@
   </main>
 
   <!-- Sticky Footer -->
-  <footer class="bg-dark text-light text-center py-3">
+  <footer class="bg-dark text-light py-4">
     <div class="container">
-     
-      <span>Copyright © jsonparser.ai 2025</span>
-      <span class="footer-separator mx-2">|</span>
-      <a class="text-light text-decoration-none mx-1" routerLink="/privacy-policy">Privacy Policy</a>
-      <span class="footer-separator mx-2">|</span>
-      <a class="text-light text-decoration-none mx-1" routerLink="/about">About</a>
-      <span class="footer-separator mx-2">|</span>
-      <a class="text-light text-decoration-none mx-1" routerLink="/contact">Contact</a>
+      <div class="row">
+        <!-- JSON Tools Section -->
+        <div class="col-md-4 mb-3">
+          <h5 class="footer-heading">JSON Tools</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a class="text-light text-decoration-none" routerLink="/">JSON Parser</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/json-grid">JSON Grid</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/json-formatter">JSON Formatter</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/string-to-json">String To JSON</a></li>
+          </ul>
+        </div>
+        
+        <!-- YAML Tools Section -->
+        <div class="col-md-4 mb-3">
+          <h5 class="footer-heading">YAML Tools</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a class="text-light text-decoration-none" routerLink="/yaml-to-json">YAML to JSON</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/json-to-yaml">JSON to YAML</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/yaml-validator">YAML Validator</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/yaml-formatter">YAML Formatter</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company Info Section -->
+        <div class="col-md-4 mb-3">
+          <h5 class="footer-heading">Company</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a class="text-light text-decoration-none" routerLink="/about">About</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/contact">Contact</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="bg-light my-3">
+      
+      <div class="text-center">
+        <span>Copyright © jsonparser.ai 2025</span>
+      </div>
     </div>
   </footer>
 </div>

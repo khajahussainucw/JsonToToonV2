@@ -1,0 +1,192 @@
+.json-to-yaml-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  color: #2b3035;
+  padding: 0 15px;
+  text-align: left;
+  border-radius: 5px;
+  margin: 1px 6px 4px 6px;
+  border: 2px solid #dee2e6;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+  height: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.5px;
+}
+
+.page-title i {
+  font-size: 1.4rem;
+}
+
+.page-description {
+  margin: 2px 0 0 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.editors-wrapper {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 155px);
+  overflow: hidden;
+  gap: 4px;
+}
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  flex: 1;
+  margin: 5px;
+  border: 3px solid #564b4b;
+  border-radius: 5px;
+  box-shadow: 1px 5px 5px #878686;
+
+
+
+  margin: 7px;
+}
+
+.panel-header {
+  padding: 8px;
+  background-color: white;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  flex: none;
+}
+
+.panel-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.hint {
+  display: none;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.btn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background-color: #2b3035;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+}
+
+  .btn:hover {
+    background-color: #424649;
+  }
+
+.editor-wrapper {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  display: flex;
+}
+
+.editor {
+  position: absolute;
+  inset: 0;
+  font-size: 14px;
+}
+
+  /* Make ace editor use full height */
+  .editor .ace_editor {
+    height: 100% !important;
+  }
+
+.splitter {
+  display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .json-to-yaml-container {
+    height: calc(100vh - 70px);
+    padding: 4px;
+  }
+
+  .page-header {
+    padding: 0 10px;
+    margin: 3px 4px 3px 4px;
+    height: 55px;
+  }
+
+  .page-title {
+    font-size: 1.15rem;
+  }
+
+  .page-title i {
+    font-size: 1.05rem;
+  }
+
+  .page-description {
+    font-size: 0.75rem;
+    margin-top: 1px;
+  }
+
+  .editors-wrapper {
+    flex-direction: column;
+    gap: 4px;
+    height: calc(100vh - 165px);
+  }
+
+  .editor-container {
+    height: calc(50% - 2px);
+  }
+
+  .panel-header {
+    padding: 4px 8px;
+    height: 36px;
+  }
+
+  .panel-actions {
+    gap: 2px;
+  }
+}
+
