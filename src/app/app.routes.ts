@@ -82,6 +82,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/yaml/yaml-formatter/yaml-formatter.component').then(m => m.YamlFormatterComponent)
   },
   {
+    path: 'xml-formatter',
+    loadComponent: () => import('./pages/xml/xml-formatter/xml-formatter.component').then(m => m.XmlFormatterComponent)
+  },
+  {
+    path: 'xml-validator',
+    loadComponent: () => import('./pages/xml/xml-validator/xml-validator.component').then(m => m.XmlValidatorComponent)
+  },
+  {
+    path: 'xml-to-json',
+    loadComponent: () => import('./pages/xml/xml-to-json/xml-to-json.component').then(m => m.XmlToJsonComponent)
+  },
+  {
+    path: 'json-to-xml',
+    loadComponent: () => import('./pages/xml/json-to-xml/json-to-xml.component').then(m => m.JsonToXmlComponent)
+  },
+  {
+    path: 'xml-minifier',
+    loadComponent: () => import('./pages/xml/xml-minifier/xml-minifier.component').then(m => m.XmlMinifierComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
   },

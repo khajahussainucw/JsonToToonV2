@@ -17,7 +17,7 @@ footer {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #f97316;
+  color: #4ade80;
 }
 
 .footer-links {
@@ -38,7 +38,7 @@ footer a {
 }
 
 footer a:hover {
-  color: #f97316;
+  color: #4ade80;
 }
 
 footer hr {
@@ -46,7 +46,24 @@ footer hr {
 }
 
 .footer-separator {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-company-links {
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.footer-company-links a {
+  transition: color 0.3s ease;
+}
+
+.footer-company-links a:hover {
+  color: #4ade80 !important;
 }
 
 /* Logo styles */
