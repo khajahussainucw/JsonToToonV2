@@ -3,7 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import * as yaml from 'js-yaml';
-import * as TOML from '@iarna/toml';
+import * as TOML from 'smol-toml';
 
 declare const ace: any;
 
