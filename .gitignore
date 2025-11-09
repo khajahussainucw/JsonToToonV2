@@ -37,25 +37,17 @@ yarn-error.log
 testem.log
 /typings
 
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.pidb
+*.sln.ide
+.vshistory/
+
 # System files
 .DS_Store
 Thumbs.db
-/.vs/json-parser-angular/CopilotIndices/0.2.1657.32929
-/.vs/json-parser-angular/config
-/.vs/json-parser-angular/FileContentIndex
-/.vs/json-parser-angular/v17
-/.vs/slnx.sqlite
-/.vs/VSWorkspaceState.json
-/.vs/json-parser-angular/copilot-chat/ed427353/sessions
-/.vs/json-parser-angular/CopilotIndices/17.14.535.60214
-/.vs/slnx.sqlite-journal
-/.vs/json-parser-angular/CopilotIndices/17.14.1204.46620
-/.vs/json-parser-angular/config
-/.vs/json-parser-angular/CopilotIndices/17.14.1204.46620
-/.vs/json-parser-angular/FileContentIndex
-/.vs/json-parser-angular/v17
-/.vs/JsonParser/CopilotIndices/17.14.1347.20289
-/.vs/JsonParser/FileContentIndex
-/.vs/JsonParser/FileContentIndex/5e98e232-bebc-42d1-833e-7d97eb8ee605.vsidx
-/.vs/JsonParser/config/applicationhost.config
-/.vs/JsonParser/v17
