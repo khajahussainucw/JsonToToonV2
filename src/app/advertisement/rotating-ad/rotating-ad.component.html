@@ -1,0 +1,12 @@
+<!-- Rotating Ad Component -->
+<div class="rotating-ad-wrapper">
+  <!-- Namecheap Ad -->
+  <app-namecheap-ad *ngIf="isNamecheapAd()"></app-namecheap-ad>
+
+  <!-- Shopify Ad -->
+  <app-shopify-ad *ngIf="isShopifyAd()"></app-shopify-ad>
+
+  <!-- DigitalOcean Ad -->
+  <app-digital-ocean-ad *ngIf="isDigitalOceanAd()"></app-digital-ocean-ad>
+</div>
+

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, I
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { RotatingAdComponent } from '../../../advertisement/rotating-ad/rotating-ad.component';
 
 declare const ace: any;
 
@@ -15,7 +16,7 @@ interface ValidationResult {
 @Component({
   selector: 'app-json-validator',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RotatingAdComponent],
   templateUrl: './json-validator.component.html',
   styleUrl: './json-validator.component.css'
 })

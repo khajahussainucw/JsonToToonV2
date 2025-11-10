@@ -1,0 +1,14 @@
+<!-- Shopify Ad Component -->
+<div class="shopify-ad-container" 
+     [class.visible]="isVisible" 
+     [class.hidden]="isDismissed"
+     *ngIf="!isDismissed"
+     [attr.data-visible]="isVisible"
+     [attr.data-dismissed]="isDismissed">
+  <a (click)="onAdClick($event)" class="ad-link" [href]="adLink" target="_blank" rel="noopener noreferrer">
+    <img src="https://app.impact.com/display-ad/13624-2944579?v=0" 
+         alt="Shopify - Drag. Drop. Done. Start free trial" 
+         class="ad-banner" 
+         (error)="onImageError($event)" />
+  </a>
+</div>

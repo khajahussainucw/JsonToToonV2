@@ -1,0 +1,14 @@
+<!-- Namecheap Ad Component -->
+<div class="namecheap-ad-container" 
+     [class.visible]="isVisible" 
+     [class.hidden]="isDismissed"
+     *ngIf="!isDismissed"
+     [attr.data-visible]="isVisible"
+     [attr.data-dismissed]="isDismissed">
+  <a (click)="onAdClick($event)" class="ad-link" [href]="adLink" target="_blank" rel="noopener noreferrer">
+    <img src="https://app.impact.com/display-ad/5618-1183673?v=1" 
+         alt="Search and buy domains from Namecheap - Lowest prices" 
+         class="ad-banner" />
+  </a>
+</div>
+

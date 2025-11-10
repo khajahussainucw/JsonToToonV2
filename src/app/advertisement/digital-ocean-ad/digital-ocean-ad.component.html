@@ -1,0 +1,36 @@
+<!-- Debug: Component is rendering -->
+<div class="digital-ocean-ad-container" 
+     [class.visible]="isVisible" 
+     [class.hidden]="isDismissed"
+     *ngIf="!isDismissed"
+     [attr.data-visible]="isVisible"
+     [attr.data-dismissed]="isDismissed">
+  <a (click)="onAdClick($event)" class="ad-link" [href]="adLink" target="_blank" rel="noopener noreferrer">
+    <div class="ad-content">
+      <div class="ad-left">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 90 90">
+              <circle cx="45" cy="45" r="36.25" fill="none" stroke="currentColor" stroke-width="17.5" stroke-dasharray="170.824100538945 56.941366846315" stroke-dashoffset="113.88273369263"></circle>
+              <rect x="3.25" y="61.5" width="11" height="11" fill="currentColor"></rect>
+              <rect x="14.25" y="72.5" width="13.5" height="13.5" fill="currentColor"></rect>
+              <rect x="27.5" y="55.25" width="17.25" height="17.25" fill="currentColor"></rect>
+            </svg>
+          </div>
+          <span class="logo-text">DigitalOcean</span>
+        </div>
+      </div>
+      <div class="ad-center">
+        <div class="ad-headline">
+          Fuel your launch with <span class="highlight-green">$200</span> cloud credit.
+        </div>
+      </div>
+      <div class="ad-right">
+        <div class="ad-button">
+          Start for free →
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+

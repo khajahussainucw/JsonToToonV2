@@ -1,8 +1,15 @@
 <div class="json-formatter-container">
   <!-- Page Header -->
   <div class="page-header">
-    <h1 class="page-title">JSON Formatter</h1>
-    <p class="page-description">Format, beautify and validate your JSON data</p>
+    <div class="header-content">
+      <div class="header-text">
+        <h1 class="page-title">JSON Formatter</h1>
+        <p class="page-description">Format, beautify and validate your JSON data</p>
+      </div>
+      <div class="header-ad">
+        <app-rotating-ad></app-rotating-ad>
+      </div>
+    </div>
   </div>
   
   <input type="file" #fileInput accept=".json,.txt" style="display: none;" (change)="onFileSelected($event)" />
