@@ -62,180 +62,18 @@
     <div class="toast-body">{{ copyErrorMessage }}</div>
   </div>
 </div>
-<!-- SEO Content Section -->
 <div class="content-section">
   <div class="container-fluid px-4 py-5">
-    
-    <!-- Introduction Section -->
-    <section class="content-block mb-5">
-      <h2 class="content-heading">What is XML to Swift Converter?</h2>
-      <p class="content-text">
-        Need to generate <a href="https://swift.org/" target="_blank" rel="noopener noreferrer">Swift</a> structs from your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> data? This tool does that instantly. Perfect for Swift developers working with iOS, macOS, or server-side Swift who need to deserialize XML into strongly-typed Swift objects. Generate structs, Codable conformance, and type definitions automatically.
-      </p>
-      <p class="content-text">
-        According to <a href="https://docs.swift.org/swift-book/" target="_blank" rel="noopener noreferrer">Swift documentation</a>, Codable protocol makes XML encoding and decoding seamless. Our converter analyzes your XML structure and generates proper Swift structs. First, validate your XML using our <a routerLink="/xml-validator">XML Validator</a>, then convert it to Swift. You can also format your XML with our <a routerLink="/xml-formatter">XML Formatter</a> first if needed.
-      </p>
-      <p class="content-text">
-        Everything happens in your browser – your XML never leaves your computer. Convert, download, and use your Swift structs right away.
-      </p>
-    </section>
-
-    <!-- Key Features Section -->
-    <section class="content-block mb-5">
-      <h2 class="content-heading">What Makes This Tool Different</h2>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <h3 class="feature-title">Automatic Struct Generation</h3>
-            <p class="feature-description">We analyze your XML structure and automatically generate Swift structs. XML elements become structs, attributes become properties, everything gets proper Swift types.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <h3 class="feature-title">Codable Support</h3>
-            <p class="feature-description">Generate Swift structs with Codable conformance for seamless XML encoding and decoding. Works great with Swift's XMLEncoder and XMLDecoder.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <h3 class="feature-title">Optional Types</h3>
-            <p class="feature-description">Configure optional types for properties that might be null. Perfect for Swift's optional type system and safe XML decoding.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <h3 class="feature-title">File Upload Support</h3>
-            <p class="feature-description">Got a big file? Just upload it. Works great for converting those massive XML configs or data files without copy-pasting.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <h3 class="feature-title">Download Swift</h3>
-            <p class="feature-description">One click to download your Swift file. Drop it into your Swift project and start using it. Perfect for iOS, macOS, or server-side Swift applications.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <h3 class="feature-title">Clean Code Output</h3>
-            <p class="feature-description">The generated Swift code is clean and well-formatted. Structs are properly named, properties are typed correctly, and the code follows Swift conventions.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How to Use Section -->
-    <section class="content-block mb-5">
-      <h2 class="content-heading">How It Works</h2>
-      <div class="steps-container">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3 class="step-title">Paste or Upload XML</h3>
-            <p class="step-description">Paste your XML into the left editor, or click "Upload" to load a file. The XML should be valid – use our <a routerLink="/xml-validator">XML Validator</a> first if you're not sure. You can also click "Sample" to see an example.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3 class="step-title">Configure Options</h3>
-            <p class="step-description">Set your struct name, choose whether to use Codable, and configure optional types. These settings customize the generated Swift code to match your project's conventions.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3 class="step-title">Download or Copy</h3>
-            <p class="step-description">Click "Download" to save the Swift file, or "Copy" to copy it to your clipboard. The Swift code is ready to use in your project. Drop it into your Swift project and start using it.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section class="content-block mb-5">
-      <h2 class="content-heading">When You'd Actually Use This</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="use-case-card">
-            <h3 class="use-case-title">iOS Development</h3>
-            <p class="use-case-text">Generate Swift structs from XML API responses for iOS apps. Create models for SOAP APIs or XML-based configurations. Perfect for SwiftUI or UIKit applications.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="use-case-card">
-            <h3 class="use-case-title">macOS Development</h3>
-            <p class="use-case-text">Create Swift structs from XML data for macOS apps. Generate data models for XML-based APIs or configurations. Perfect for macOS application development.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="use-case-card">
-            <h3 class="use-case-title">Server-Side Swift</h3>
-            <p class="use-case-text">Generate Swift structs from XML data for server-side Swift applications. Create data models for XML-based APIs or configurations. Perfect for Vapor or Kitura frameworks.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="use-case-card">
-            <h3 class="use-case-title">Code Generation</h3>
-            <p class="use-case-text">Generate Swift code from XML data structures. Perfect for creating data models, DTOs, or entity structs from XML schemas or API responses.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="content-block mb-5">
-      <h2 class="content-heading">Common Questions</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <h3 class="faq-question">Is my XML data stored?</h3>
-          <p class="faq-answer">Nope. Everything happens right in your browser. Your XML never leaves your computer – we don't even see it.</p>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">How are XML elements handled?</h3>
-          <p class="faq-answer">XML elements become Swift structs. Attributes become struct properties, and nested elements become nested structs or references. Arrays become Swift arrays.</p>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">Can I use the generated Swift code?</h3>
-          <p class="faq-answer">Yes. The generated Swift code is valid and ready to use. Drop it into your Swift project and start using it. You may want to review and refine the structs for your specific use case.</p>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">What about Codable?</h3>
-          <p class="faq-answer">You can enable Codable in the configuration options. This generates Swift structs with Codable conformance for seamless XML encoding and decoding.</p>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">Does it work with large XML files?</h3>
-          <p class="faq-answer">Yep. Since everything happens in your browser, it depends on your device. Small to medium XML structures convert instantly. Really huge structures might take a few seconds.</p>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">What Swift version is supported?</h3>
-          <p class="faq-answer">The generated code works with Swift 4.0 and later. It uses standard Swift features and Codable protocol for maximum compatibility.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Related Tools Section -->
     <section class="content-block">
-      <h2 class="content-heading">Other XML Tools You Might Need</h2>
-      <p class="content-text mb-4">Conversion is just one XML task. Here are other tools that work well together:</p>
+      <h2 class="content-heading">Other XML Code Generation Tools</h2>
       <div class="related-tools-grid">
-        <a routerLink="/xml-formatter" class="tool-link"><span>XML Formatter</span></a>
-        <a routerLink="/xml-validator" class="tool-link"><span>XML Validator</span></a>
-        <a routerLink="/xml-minifier" class="tool-link"><span>XML Minifier</span></a>
-        <a routerLink="/xml-to-json" class="tool-link"><span>XML to JSON</span></a>
-        <a routerLink="/xml-to-yaml" class="tool-link"><span>XML to YAML</span></a>
-        <a routerLink="/xml-to-csharp" class="tool-link"><span>XML to C#</span></a>
         <a routerLink="/xml-to-typescript" class="tool-link"><span>XML to TypeScript</span></a>
+        <a routerLink="/xml-to-csharp" class="tool-link"><span>XML to C#</span></a>
         <a routerLink="/xml-to-java" class="tool-link"><span>XML to Java</span></a>
         <a routerLink="/xml-to-python" class="tool-link"><span>XML to Python</span></a>
-        <a routerLink="/xml-to-php" class="tool-link"><span>XML to PHP</span></a>
         <a routerLink="/xml-to-go" class="tool-link"><span>XML to Go</span></a>
-        <a routerLink="/json-to-swift" class="tool-link"><span>JSON to Swift</span></a>
       </div>
-      <p class="content-text mt-4">
-        Need to learn more about XML? Check out <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">W3C XML</a> or the comprehensive <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">XML specification</a>. For Swift, check out the official <a href="https://docs.swift.org/swift-book/" target="_blank" rel="noopener noreferrer">Swift documentation</a>.
-      </p>
     </section>
-
   </div>
 </div>
 
