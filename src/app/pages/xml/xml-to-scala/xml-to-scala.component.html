@@ -1,0 +1,221 @@
+<div class="xml-to-scala-container">
+  <div class="page-header">
+    <h1 class="page-title">XML to Scala Converter</h1>
+    <p class="page-description">Convert XML to Scala case classes development</p>
+  </div>
+  <div class="config-panel" style="padding: 10px 15px; background: white; margin: 0 6px 4px 6px; border-radius: 5px; border: 2px solid #dee2e6;">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto"><label class="form-label small mb-0" for="className">Class Name:</label></div>
+      <div class="col-auto"><input type="text" id="className" class="form-control form-control-sm" [(ngModel)]="className" (input)="onClassNameChange()" style="width: 150px;" /></div>
+      <div class="col-auto"><label class="form-label small mb-0" for="packageName">Package:</label></div>
+      <div class="col-auto"><input type="text" id="packageName" class="form-control form-control-sm" [(ngModel)]="packageName" (input)="onPackageNameChange()" style="width: 150px;" /></div>
+      <div class="col-auto"><div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="useDataClass" [(ngModel)]="useDataClass" (change)="onUseDataClassChange()" /><label class="form-check-label small" for="useDataClass">Data Class</label></div></div>
+      <div class="col-auto"><div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="useNullableTypes" [(ngModel)]="useNullableTypes" (change)="onUseNullableTypesChange()" /><label class="form-check-label small" for="useNullableTypes">Nullable Types</label></div></div>
+    </div>
+  </div>
+  <input type="file" #fileInput accept=".xml,.txt" style="display: none;" (change)="onFileSelected($event)" />
+  <div class="editors-wrapper">
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left"><h2>XML Input</h2></div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleXml()"><span class="d-none d-md-inline">Sample</span></button>
+          <button class="btn" (click)="triggerFileUpload()"><span class="d-none d-md-inline">Upload</span></button>
+          <button class="btn" (click)="clearInput()"></button>
+        </div>
+      </div>
+      <div class="editor-wrapper"><div #inputEditor class="editor"></div></div>
+    </div>
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left"><h2>Scala Output</h2></div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadScala()"><span class="d-none d-md-inline">Download</span></button>
+          <button class="btn" (click)="copyToClipboard()"><span class="d-none d-md-inline">Copy</span></button>
+        </div>
+      </div>
+      <div class="editor-wrapper"><div #outputEditor class="editor"></div></div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="copySuccessVisible" role="alert"><div class="toast-header"><strong class="me-auto">Success</strong></div><div class="toast-body">{{ copySuccessMessage }}</div></div>
+  <div class="toast" [class.show]="copyErrorVisible" role="alert"><div class="toast-header"><strong class="me-auto">Warning</strong></div><div class="toast-body">{{ copyErrorMessage }}</div></div>
+</div>
+
+<!-- SEO Content Section -->
+<div class="content-section">
+  <div class="container-fluid px-4 py-5">
+    
+    <!-- Introduction Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What is XML to Scala Converter?</h2>
+      <p class="content-text">
+        Need to generate <a href="https://www.scala-lang.org/" target="_blank" rel="noopener noreferrer">Scala</a> case classes from your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> data? This tool does that instantly. Perfect for Scala developers working with Play Framework, Akka, or Spark who need to deserialize XML into strongly-typed Scala objects. Generate case classes, properties, and type definitions automatically.
+      </p>
+      <p class="content-text">
+        According to <a href="https://docs.scala-lang.org/" target="_blank" rel="noopener noreferrer">Scala documentation</a>, case classes are perfect for immutable data structures and XML serialization. Our converter analyzes your XML structure and generates proper Scala case classes. First, validate your XML using our <a routerLink="/xml-validator">XML Validator</a>, then convert it to Scala. You can also format your XML with our <a routerLink="/xml-formatter">XML Formatter</a> first if needed.
+      </p>
+      <p class="content-text">
+        Everything happens in your browser – your XML never leaves your computer. Convert, download, and use your Scala case classes right away.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What Makes This Tool Different</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Automatic Case Class Generation</h3>
+            <p class="feature-description">We analyze your XML structure and automatically generate Scala case classes. XML elements become case classes, attributes become properties, everything gets proper Scala types.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Case Class Support</h3>
+            <p class="feature-description">Generate Scala case classes with automatic equals(), hashCode(), toString(), and copy() methods. Perfect for immutable data models and XML serialization.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Package Support</h3>
+            <p class="feature-description">Configure package names to match your project structure. Generate code that fits seamlessly into your existing Scala project organization.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">File Upload Support</h3>
+            <p class="feature-description">Got a big file? Just upload it. Works great for converting those massive XML configs or data files without copy-pasting.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Download Scala</h3>
+            <p class="feature-description">One click to download your Scala file. Drop it into your Scala project and start using it. Perfect for Play Framework, Akka, or Spark applications.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Clean Code Output</h3>
+            <p class="feature-description">The generated Scala code is clean and well-formatted. Case classes are properly named, properties are typed correctly, and the code follows Scala conventions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">How It Works</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste or Upload XML</h3>
+            <p class="step-description">Paste your XML into the left editor, or click "Upload" to load a file. The XML should be valid – use our <a routerLink="/xml-validator">XML Validator</a> first if you're not sure. You can also click "Sample" to see an example.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Configure Options</h3>
+            <p class="step-description">Set your class name, package name, choose whether to use case classes, and configure nullable types. These settings customize the generated Scala code to match your project's conventions.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Download or Copy</h3>
+            <p class="step-description">Click "Download" to save the Scala file, or "Copy" to copy it to your clipboard. The Scala code is ready to use in your project. Drop it into your Scala project and start using it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">When You'd Actually Use This</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Play Framework</h3>
+            <p class="use-case-text">Generate Scala case classes from XML API responses for Play Framework applications. Create models for SOAP APIs or XML-based configurations. Perfect for Play Framework's XML support.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Akka Applications</h3>
+            <p class="use-case-text">Create Scala case classes from XML data for Akka applications. Generate data models for XML-based message formats or configurations. Perfect for Akka's actor system.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Apache Spark</h3>
+            <p class="use-case-text">Generate Scala case classes from XML data for Spark applications. Create data models for XML-based data processing or configurations. Perfect for Spark's Scala API.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Code Generation</h3>
+            <p class="use-case-text">Generate Scala code from XML data structures. Perfect for creating data models, DTOs, or entity classes from XML schemas or API responses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">Common Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Is my XML data stored?</h3>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your XML never leaves your computer – we don't even see it.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How are XML elements handled?</h3>
+          <p class="faq-answer">XML elements become Scala case classes. Attributes become class properties, and nested elements become nested case classes or references. Arrays become Scala sequences.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I use the generated Scala code?</h3>
+          <p class="faq-answer">Yes. The generated Scala code is valid and ready to use. Drop it into your Scala project and start using it. You may want to review and refine the classes for your specific use case.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What about case classes?</h3>
+          <p class="faq-answer">You can enable case classes in the configuration options. This generates Scala case classes with automatic equals(), hashCode(), toString(), and copy() methods.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Does it work with large XML files?</h3>
+          <p class="faq-answer">Yep. Since everything happens in your browser, it depends on your device. Small to medium XML structures convert instantly. Really huge structures might take a few seconds.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What Scala version is supported?</h3>
+          <p class="faq-answer">The generated code works with Scala 2.12 and later. It uses standard Scala features and case classes for maximum compatibility.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="content-block">
+      <h2 class="content-heading">Other XML Tools You Might Need</h2>
+      <p class="content-text mb-4">Conversion is just one XML task. Here are other tools that work well together:</p>
+      <div class="related-tools-grid">
+        <a routerLink="/xml-formatter" class="tool-link"><span>XML Formatter</span></a>
+        <a routerLink="/xml-validator" class="tool-link"><span>XML Validator</span></a>
+        <a routerLink="/xml-minifier" class="tool-link"><span>XML Minifier</span></a>
+        <a routerLink="/xml-to-json" class="tool-link"><span>XML to JSON</span></a>
+        <a routerLink="/xml-to-yaml" class="tool-link"><span>XML to YAML</span></a>
+        <a routerLink="/xml-to-csharp" class="tool-link"><span>XML to C#</span></a>
+        <a routerLink="/xml-to-typescript" class="tool-link"><span>XML to TypeScript</span></a>
+        <a routerLink="/xml-to-java" class="tool-link"><span>XML to Java</span></a>
+        <a routerLink="/xml-to-python" class="tool-link"><span>XML to Python</span></a>
+        <a routerLink="/xml-to-php" class="tool-link"><span>XML to PHP</span></a>
+        <a routerLink="/xml-to-go" class="tool-link"><span>XML to Go</span></a>
+        <a routerLink="/json-to-scala" class="tool-link"><span>JSON to Scala</span></a>
+      </div>
+      <p class="content-text mt-4">
+        Need to learn more about XML? Check out <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">W3C XML</a> or the comprehensive <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">XML specification</a>. For Scala, check out the official <a href="https://docs.scala-lang.org/" target="_blank" rel="noopener noreferrer">Scala documentation</a>.
+      </p>
+    </section>
+
+  </div>
+</div>

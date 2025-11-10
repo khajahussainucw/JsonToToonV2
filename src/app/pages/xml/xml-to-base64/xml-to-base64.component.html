@@ -1,0 +1,125 @@
+<div class="xml-to-base64-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">XML to Base64 Converter</h1>
+    <p class="page-description">Encode XML to Base64 or decode Base64 to XML instantly</p>
+  </div>
+  
+  <input type="file" #fileInput accept=".xml,.txt" style="display: none;" (change)="onFileSelected($event)" />
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input) -->
+    <div class="editor-container input-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>{{ isEncoding ? 'XML Input' : 'Base64 Input' }}</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="toggleMode()" aria-label="Toggle">
+            <span class="d-none d-md-inline">{{ isEncoding ? 'Decode' : 'Encode' }}</span>
+          </button>
+          <button class="btn" (click)="loadSampleXml()" aria-label="Sample" *ngIf="isEncoding">
+            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
+            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()">          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel (Output) -->
+    <div class="editor-container output-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>{{ isEncoding ? 'Base64 Output' : 'XML Output' }}</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadOutput()" aria-label="Download">
+            <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <span class="d-none d-md-inline">Copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Error Modal -->
+<div class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" [class.show]="errorModalVisible" [style.display]="errorModalVisible ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeErrorModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="errorModalVisible" *ngIf="errorModalVisible"></div>
+
+<!-- Copy Success Toast -->
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
+    </div>
+    <div class="toast-body">
+      {{ copySuccessMessage }}
+    </div>
+  </div>
+  <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
+    </div>
+    <div class="toast-body">
+      {{ copyErrorMessage }}
+    </div>
+  </div>
+</div>
+
+<!-- SEO Content Section -->
+<div class="content-section">
+  <div class="container-fluid px-4 py-5">
+    
+    <!-- Introduction Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What is XML to Base64 Converter?</h2>
+      <p class="content-text">
+        Need to encode your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML</a> to <a href="https://developer.mozilla.org/en-US/docs/Glossary/Base64" target="_blank" rel="noopener noreferrer">Base64</a> or decode Base64 back to XML? This tool does both instantly. Base64 encoding is commonly used for embedding binary data in text formats, transmitting data over protocols that only support text, or storing XML in databases.
+      </p>
+      <p class="content-text">
+        Everything happens in your browser – your data stays private. Encode or decode, download, and use your files right away.
+      </p>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="content-block">
+      <h2 class="content-heading">Other XML Tools You Might Need</h2>
+      <p class="content-text mb-4">Encoding is just one XML task. Here are other tools that work well together:</p>
+      <div class="related-tools-grid">
+        <a routerLink="/xml-formatter" class="tool-link"><span>XML Formatter</span></a>
+        <a routerLink="/xml-validator" class="tool-link"><span>XML Validator</span></a>
+        <a routerLink="/xml-parser" class="tool-link"><span>XML Parser</span></a>
+        <a routerLink="/xml-minifier" class="tool-link"><span>XML Minifier</span></a>
+        <a routerLink="/xml-to-json" class="tool-link"><span>XML to JSON</span></a>
+        <a routerLink="/xml-to-yaml" class="tool-link"><span>XML to YAML</span></a>
+        <a routerLink="/xml-to-csv" class="tool-link"><span>XML to CSV</span></a>
+      </div>
+    </section>
+
+  </div>
+</div>
+

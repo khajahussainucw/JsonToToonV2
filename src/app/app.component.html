@@ -9,12 +9,18 @@
           <img src="assets/images/rocket.png" alt="Rocket" class="rocket-icon" />
         </span>
       </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- Category Label - Moved to right side -->
+        <span class="navbar-text category-label d-none d-lg-block ms-auto me-3">
+          {{ currentPageType }} Tools
+        </span>
+        
+        <ul class="navbar-nav mb-2 mb-lg-0">
           <!-- 4 Primary Page Links -->
           <li class="nav-item" *ngFor="let page of primaryPages">
             <a class="nav-link" [routerLink]="page.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: page.route === '/'}">
@@ -222,6 +228,14 @@
             <li><a class="text-light text-decoration-none" routerLink="/xml-to-php">XML to PHP</a></li>
             <li><a class="text-light text-decoration-none" routerLink="/xml-to-python">XML to Python</a></li>
             <li><a class="text-light text-decoration-none" routerLink="/xml-to-go">XML to Go</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-swift">XML to Swift</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-kotlin">XML to Kotlin</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-dart">XML to Dart</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-ruby">XML to Ruby</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-rust">XML to Rust</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-scala">XML to Scala</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-cpp">XML to C++</a></li>
+            <li><a class="text-light text-decoration-none" routerLink="/xml-to-c">XML to C</a></li>
           </ul>
         </div>
       </div>

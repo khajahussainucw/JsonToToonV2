@@ -1,0 +1,44 @@
+<div class="xml-to-dart-container">
+  <div class="page-header">
+    <h1 class="page-title">XML to Dart Converter</h1>
+    <p class="page-description">Convert XML to Dart classes for Flutter development</p>
+  </div>
+  <div class="config-panel" style="padding: 10px 15px; background: white; margin: 0 6px 4px 6px; border-radius: 5px; border: 2px solid #dee2e6;">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto"><label class="form-label small mb-0" for="className">Class Name:</label></div>
+      <div class="col-auto"><input type="text" id="className" class="form-control form-control-sm" [(ngModel)]="className" (input)="onClassNameChange()" style="width: 150px;" /></div>
+      <div class="col-auto"><label class="form-label small mb-0" for="packageName">Package:</label></div>
+      <div class="col-auto"><input type="text" id="packageName" class="form-control form-control-sm" [(ngModel)]="packageName" (input)="onPackageNameChange()" style="width: 150px;" /></div>
+      <div class="col-auto"><div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="useDataClass" [(ngModel)]="useDataClass" (change)="onUseDataClassChange()" /><label class="form-check-label small" for="useDataClass">Data Class</label></div></div>
+      <div class="col-auto"><div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="useNullableTypes" [(ngModel)]="useNullableTypes" (change)="onUseNullableTypesChange()" /><label class="form-check-label small" for="useNullableTypes">Nullable Types</label></div></div>
+    </div>
+  </div>
+  <input type="file" #fileInput accept=".xml,.txt" style="display: none;" (change)="onFileSelected($event)" />
+  <div class="editors-wrapper">
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left"><h2>XML Input</h2></div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleXml()"><span class="d-none d-md-inline">Sample</span></button>
+          <button class="btn" (click)="triggerFileUpload()"><span class="d-none d-md-inline">Upload</span></button>
+          <button class="btn" (click)="clearInput()"></button>
+        </div>
+      </div>
+      <div class="editor-wrapper"><div #inputEditor class="editor"></div></div>
+    </div>
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left"><h2>Dart Output</h2></div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadDart()"><span class="d-none d-md-inline">Download</span></button>
+          <button class="btn" (click)="copyToClipboard()"><span class="d-none d-md-inline">Copy</span></button>
+        </div>
+      </div>
+      <div class="editor-wrapper"><div #outputEditor class="editor"></div></div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="copySuccessVisible" role="alert"><div class="toast-header"><strong class="me-auto">Success</strong></div><div class="toast-body">{{ copySuccessMessage }}</div></div>
+  <div class="toast" [class.show]="copyErrorVisible" role="alert"><div class="toast-header"><strong class="me-auto">Warning</strong></div><div class="toast-body">{{ copyErrorMessage }}</div></div>
+</div>
