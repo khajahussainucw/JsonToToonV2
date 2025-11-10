@@ -42,6 +42,30 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json/json-to-typescript/json-to-typescript.component').then(m => m.JsonToTypescriptComponent)
   },
   {
+    path: 'json-escape',
+    loadComponent: () => import('./pages/json/json-escape/json-escape.component').then(m => m.JsonEscapeComponent)
+  },
+  {
+    path: 'json-diff',
+    loadComponent: () => import('./pages/json/json-diff/json-diff.component').then(m => m.JsonDiffComponent)
+  },
+  {
+    path: 'json-merge',
+    loadComponent: () => import('./pages/json/json-merge/json-merge.component').then(m => m.JsonMergeComponent)
+  },
+  {
+    path: 'json-path',
+    loadComponent: () => import('./pages/json/json-path/json-path.component').then(m => m.JsonPathComponent)
+  },
+  {
+    path: 'json-schema-generator',
+    loadComponent: () => import('./pages/json/json-schema-generator/json-schema-generator.component').then(m => m.JsonSchemaGeneratorComponent)
+  },
+  {
+    path: 'json-sort',
+    loadComponent: () => import('./pages/json/json-sort/json-sort.component').then(m => m.JsonSortComponent)
+  },
+  {
     path: 'csv-to-json',
     loadComponent: () => import('./pages/csv/csv-to-json/csv-to-json.component').then(m => m.CsvToJsonComponent)
   },
@@ -92,6 +116,14 @@ export const routes: Routes = [
   {
     path: 'yaml-to-toml',
     loadComponent: () => import('./pages/yaml/yaml-to-toml/yaml-to-toml.component').then(m => m.YamlToTomlComponent)
+  },
+  {
+    path: 'yaml-minifier',
+    loadComponent: () => import('./pages/yaml/yaml-minifier/yaml-minifier.component').then(m => m.YamlMinifierComponent)
+  },
+  {
+    path: 'yaml-to-typescript',
+    loadComponent: () => import('./pages/yaml/yaml-to-typescript/yaml-to-typescript.component').then(m => m.YamlToTypescriptComponent)
   },
   {
     path: 'xml-formatter',

@@ -1,0 +1,103 @@
+<div class="json-formatter-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">JSON Escape / Unescape</h1>
+    <p class="page-description">Escape and unescape JSON strings - Convert special characters to escape sequences</p>
+  </div>
+  
+  <input type="file" #fileInput accept=".json,.txt" style="display: none;" (change)="onFileSelected($event)" />
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Input</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn btn-toggle" (click)="toggleMode()" [title]="isEscapeMode ? 'Switch to Unescape' : 'Switch to Escape'">
+            <i [class]="isEscapeMode ? 'fas fa-lock-open' : 'fas fa-lock'"></i>
+            <span class="d-none d-md-inline">{{ isEscapeMode ? 'Unescape' : 'Escape' }}</span>
+          </button>
+          <button class="btn" (click)="loadSample()" aria-label="Sample">
+            <i class="fas fa-flask"></i>
+            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
+            <i class="fas fa-upload"></i>
+            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel (Output) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Output</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadResult()" aria-label="Download">
+            <i class="fas fa-download"></i>
+            <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <i class="fas fa-copy"></i>
+            <span class="d-none d-md-inline">Copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Error Modal -->
+<div class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" [class.show]="errorModalVisible" [style.display]="errorModalVisible ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeErrorModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="errorModalVisible" *ngIf="errorModalVisible"></div>
+
+<!-- Copy Success Toast -->
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="fas fa-check-circle text-success me-2"></i>
+      <strong class="me-auto">Success</strong>
+    </div>
+    <div class="toast-body">
+      {{ copySuccessMessage }}
+    </div>
+  </div>
+  <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="fas fa-exclamation-circle text-warning me-2"></i>
+      <strong class="me-auto">Warning</strong>
+    </div>
+    <div class="toast-body">
+      {{ copyErrorMessage }}
+    </div>
+  </div>
+</div>
+
