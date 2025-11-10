@@ -22,7 +22,11 @@ export class JsObfuscatorComponent implements AfterViewInit {
   errorMessage = '';
   copySuccessMessage = '';
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private titleService: Title, 
+    private metaService: Meta
+  ) {
     this.titleService.setTitle('JavaScript Obfuscator - Obfuscate JS Code Online');
     this.metaService.updateTag({
       name: 'description',
@@ -31,10 +35,18 @@ export class JsObfuscatorComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initializeEditor();
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.initializeEditor();
+      }, 100);
+    }
   }
 
   private initializeEditor() {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
+      console.error('Ace editor is not loaded');
+      return;
+    }
     this.aceInputEditor = ace.edit(this.inputEditor.nativeElement);
     this.aceInputEditor.setTheme('ace/theme/github');
     this.aceInputEditor.session.setMode('ace/mode/javascript');

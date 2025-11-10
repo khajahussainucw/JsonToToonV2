@@ -1,0 +1,285 @@
+<div class="xml-to-csharp-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">XML to C# Converter</h1>
+    <p class="page-description">Convert XML to C# classes and POCO objects for .NET development</p>
+  </div>
+  
+  <!-- Configuration Options -->
+  <div class="config-panel" style="padding: 10px 15px; background: white; margin: 0 6px 4px 6px; border-radius: 5px; border: 2px solid #dee2e6;">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-3">
+        <label class="form-label small mb-1">Class Name:</label>
+        <input type="text" class="form-control form-control-sm" [(ngModel)]="className" (input)="onClassNameChange()" />
+      </div>
+      <div class="col-md-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="useProperties" [(ngModel)]="useProperties" (change)="onUsePropertiesChange()" />
+          <label class="form-check-label small" for="useProperties">Use Properties</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="useNullableTypes" [(ngModel)]="useNullableTypes" (change)="onUseNullableTypesChange()" />
+          <label class="form-check-label small" for="useNullableTypes">Nullable Types</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <input type="file" #fileInput accept=".xml,.txt" style="display: none;" (change)="onFileSelected($event)" />
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input - XML) -->
+    <div class="editor-container input-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>XML Input</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()">          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Splitter -->
+    <div class="splitter" #splitter></div>
+
+    <!-- Right Panel (Output - C#) -->
+    <div class="editor-container output-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>C# Output</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadCsharp()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Error Modal -->
+<div class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" [class.show]="errorModalVisible" [style.display]="errorModalVisible ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeErrorModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="errorModalVisible" *ngIf="errorModalVisible"></div>
+
+<!-- Copy Success Toast -->
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
+    </div>
+    <div class="toast-body">
+      {{ copySuccessMessage }}
+    </div>
+  </div>
+  <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
+    </div>
+    <div class="toast-body">
+      {{ copyErrorMessage }}
+    </div>
+  </div>
+</div>
+
+<!-- SEO Content Section -->
+<div class="content-section">
+  <div class="container-fluid px-4 py-5">
+    
+    <!-- Introduction Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What is XML to C# Converter?</h2>
+      <p class="content-text">
+        Need C# classes from your XML? This tool converts your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> data into C# POCO (Plain Old CLR Object) classes. Perfect for .NET developers who need to deserialize XML into strongly-typed objects using <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">XML serialization</a>.
+      </p>
+      <p class="content-text">
+        According to <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">Microsoft's documentation</a>, strongly-typed classes with XML attributes are essential for XML serialization in .NET. Our converter generates clean C# classes with properties, proper naming conventions, XML attributes, and support for nested elements and attributes.
+      </p>
+      <p class="content-text">
+        Everything happens in your browser – your data stays private. Generate, copy, and use your C# classes right away in your .NET projects.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What Makes This Tool Different</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Automatic Class Generation</h3>
+            <p class="feature-description">We analyze your XML structure and generate C# classes automatically. Nested elements become separate classes, arrays become List&lt;T&gt;, XML attributes become properties with [XmlAttribute], and properties follow C# naming conventions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">XML Serialization Support</h3>
+            <p class="feature-description">Generated classes include XML serialization attributes like [XmlElement], [XmlAttribute], and [XmlText] for proper XML serialization/deserialization with System.Xml.Serialization.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Property vs Field Support</h3>
+            <p class="feature-description">Choose between C# properties (with get/set) or public fields. Properties are the standard for POCO classes and work great with XML serializers.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Nullable Types</h3>
+            <p class="feature-description">Optionally enable nullable reference types for properties that might be null. Perfect for modern C# projects using nullable reference types.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Type Detection</h3>
+            <p class="feature-description">Automatically detects C# types: strings, integers, doubles, booleans. Arrays become List&lt;T&gt; collections, and nested elements become separate classes.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Download C# File</h3>
+            <p class="feature-description">One click to download your C# classes as a .cs file. Drop it into your .NET project and start using it immediately with XML serializers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">How It Works</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste or Upload XML</h3>
+            <p class="step-description">Paste your XML document into the left editor, or click "Upload" to load a file. Configure the class name and options (properties, nullable types) in the settings panel. You can also click "Sample" to see an example.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Automatic Conversion</h3>
+            <p class="step-description">As soon as you paste, the converter processes your XML and displays the C# classes on the right. Nested elements become separate classes, arrays become List&lt;T&gt;, XML attributes become properties with [XmlAttribute], and properties follow C# naming conventions.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Download or Copy</h3>
+            <p class="step-description">Click "Download" to save the C# classes as a .cs file, or "Copy" to copy it to your clipboard. The generated classes are ready to use in your .NET project with System.Xml.Serialization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">When You'd Actually Use This</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">API Integration</h3>
+            <p class="use-case-text">Generate C# classes from XML API responses. Perfect for creating DTOs (Data Transfer Objects) when integrating with SOAP APIs or XML-based web services.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">.NET Development</h3>
+            <p class="use-case-text">Quickly create POCO classes for XML deserialization in .NET applications. Works great with ASP.NET Core, WCF services, and other .NET frameworks that use XML.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Configuration Files</h3>
+            <p class="use-case-text">Convert XML configuration files (like app.config, web.config) to strongly-typed C# classes. Makes configuration management type-safe and easier to work with in .NET applications.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Code Generation</h3>
+            <p class="use-case-text">Save time by generating C# classes automatically instead of writing them manually. Especially useful for complex nested XML structures with many elements and attributes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">Common Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Is my XML data stored?</h3>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your XML never leaves your computer – we don't even see it.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What C# features are supported?</h3>
+          <p class="faq-answer">The generator creates C# classes with properties (or fields), proper naming conventions (PascalCase), List&lt;T&gt; for arrays, XML serialization attributes ([XmlElement], [XmlAttribute], [XmlText]), and support for nested elements. You can choose between properties with get/set or public fields, and enable nullable types.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How are nested elements handled?</h3>
+          <p class="faq-answer">Nested XML elements become separate C# classes. Each nested element gets its own class definition with [XmlElement] attributes, and the parent class references it as a property. Arrays of elements become List&lt;T&gt; where T is the generated class.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How are XML attributes handled?</h3>
+          <p class="faq-answer">XML attributes are converted to C# properties with [XmlAttribute] attributes. This ensures proper serialization and deserialization when working with XML documents.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I customize the generated classes?</h3>
+          <p class="faq-answer">Yes! You can change the root class name, choose between properties and fields, and enable/disable nullable types. The generated code follows C# conventions and includes XML serialization attributes.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What XML serializers work with these classes?</h3>
+          <p class="faq-answer">The generated classes work with <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">System.Xml.Serialization.XmlSerializer</a> (built into .NET). Just use XmlSerializer.Deserialize(stream) or XmlSerializer.Deserialize(reader).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="content-block">
+      <h2 class="content-heading">Other XML Code Generation Tools</h2>
+      <p class="content-text mb-4">Need code in other languages? Here are our other XML code generation tools:</p>
+      <div class="related-tools-grid">
+        <a routerLink="/xml-to-typescript" class="tool-link"><span>XML to TypeScript</span>
+        </a>
+        <a routerLink="/xml-to-java" class="tool-link"><span>XML to Java</span>
+        </a>
+        <a routerLink="/xml-to-php" class="tool-link"><span>XML to PHP</span>
+        </a>
+        <a routerLink="/xml-to-python" class="tool-link"><span>XML to Python</span>
+        </a>
+        <a routerLink="/xml-to-go" class="tool-link"><span>XML to Go</span>
+        </a>
+      </div>
+      <p class="content-text mt-4">
+        Need to learn more about C#? Check out <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" rel="noopener noreferrer">Microsoft's C# documentation</a> or the <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">XML Serialization guide</a> for XML serialization.
+      </p>
+    </section>
+
+  </div>
+</div>
+
