@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
 declare var ace: any;
@@ -7,7 +8,7 @@ declare var ace: any;
 @Component({
   selector: 'app-js-validator',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './js-validator.component.html',
   styleUrl: './js-validator.component.css'
 })

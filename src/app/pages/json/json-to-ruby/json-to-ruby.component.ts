@@ -10,8 +10,8 @@ declare const ace: any;
   selector: 'app-json-to-ruby',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './json-to-ruby.component.html',
-  styleUrl: './json-to-ruby.component.css'
+  templateUrl: './json-to-java.component.html',
+  styleUrl: './json-to-java.component.css'
 })
 export class JsonToRubyComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
@@ -31,6 +31,9 @@ export class JsonToRubyComponent implements AfterViewInit {
   private debounceTimer: any;
   
   className: string = 'RootObject';
+  packageName: string = 'com.example';
+  useLombok: boolean = true;
+  useNullableTypes: boolean = true;
   useAttrAccessor: boolean = true;
   
   errorModalVisible = false;
@@ -125,6 +128,18 @@ export class JsonToRubyComponent implements AfterViewInit {
   }
 
   onClassNameChange() {
+    this.convertJsonToRuby();
+  }
+
+  onPackageNameChange() {
+    this.convertJsonToRuby();
+  }
+
+  onUseLombokChange() {
+    this.convertJsonToRuby();
+  }
+
+  onUseNullableTypesChange() {
     this.convertJsonToRuby();
   }
 
@@ -372,6 +387,10 @@ export class JsonToRubyComponent implements AfterViewInit {
     setTimeout(() => {
       this.copySuccessVisible = false;
     }, 3000);
+  }
+
+  downloadJava(): void {
+    this.downloadRuby();
   }
 
   private checkMobileView() {

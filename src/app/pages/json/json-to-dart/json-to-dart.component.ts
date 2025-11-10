@@ -10,8 +10,8 @@ declare const ace: any;
   selector: 'app-json-to-dart',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './json-to-dart.component.html',
-  styleUrl: './json-to-dart.component.css'
+  templateUrl: './json-to-java.component.html',
+  styleUrl: './json-to-java.component.css'
 })
 export class JsonToDartComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
@@ -31,8 +31,10 @@ export class JsonToDartComponent implements AfterViewInit {
   private debounceTimer: any;
   
   className: string = 'RootObject';
-  useJsonSerializable: boolean = true;
+  packageName: string = 'com.example';
+  useLombok: boolean = true;
   useNullableTypes: boolean = true;
+  useJsonSerializable: boolean = true;
   
   errorModalVisible = false;
   errorMessage = '';
@@ -129,11 +131,19 @@ export class JsonToDartComponent implements AfterViewInit {
     this.convertJsonToDart();
   }
 
-  onUseJsonSerializableChange() {
+  onPackageNameChange() {
+    this.convertJsonToDart();
+  }
+
+  onUseLombokChange() {
     this.convertJsonToDart();
   }
 
   onUseNullableTypesChange() {
+    this.convertJsonToDart();
+  }
+
+  onUseJsonSerializableChange() {
     this.convertJsonToDart();
   }
 
@@ -411,6 +421,10 @@ export class JsonToDartComponent implements AfterViewInit {
     setTimeout(() => {
       this.copySuccessVisible = false;
     }, 3000);
+  }
+
+  downloadJava(): void {
+    this.downloadDart();
   }
 
   private checkMobileView() {

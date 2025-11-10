@@ -10,8 +10,8 @@ declare const ace: any;
   selector: 'app-json-to-rust',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './json-to-rust.component.html',
-  styleUrl: './json-to-rust.component.css'
+  templateUrl: './json-to-java.component.html',
+  styleUrl: './json-to-java.component.css'
 })
 export class JsonToRustComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
@@ -30,7 +30,11 @@ export class JsonToRustComponent implements AfterViewInit {
   private isMobile = false;
   private debounceTimer: any;
   
+  className: string = 'RootObject';
   structName: string = 'RootObject';
+  packageName: string = 'com.example';
+  useLombok: boolean = true;
+  useNullableTypes: boolean = true;
   useSerde: boolean = true;
   useOptionTypes: boolean = true;
   
@@ -126,6 +130,22 @@ export class JsonToRustComponent implements AfterViewInit {
   }
 
   onStructNameChange() {
+    this.convertJsonToRust();
+  }
+
+  onClassNameChange() {
+    this.convertJsonToRust();
+  }
+
+  onPackageNameChange() {
+    this.convertJsonToRust();
+  }
+
+  onUseLombokChange() {
+    this.convertJsonToRust();
+  }
+
+  onUseNullableTypesChange() {
     this.convertJsonToRust();
   }
 
@@ -417,6 +437,10 @@ export class JsonToRustComponent implements AfterViewInit {
     setTimeout(() => {
       this.copySuccessVisible = false;
     }, 3000);
+  }
+
+  downloadJava(): void {
+    this.downloadRust();
   }
 
   private checkMobileView() {

@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
 declare var ace: any;
@@ -13,7 +14,7 @@ interface ValidationResult {
 @Component({
   selector: 'app-xml-validator',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './xml-validator.component.html',
   styleUrl: './xml-validator.component.css'
 })

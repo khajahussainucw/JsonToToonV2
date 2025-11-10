@@ -10,8 +10,8 @@ declare const ace: any;
   selector: 'app-json-to-scala',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './json-to-scala.component.html',
-  styleUrl: './json-to-scala.component.css'
+  templateUrl: './json-to-java.component.html',
+  styleUrl: './json-to-java.component.css'
 })
 export class JsonToScalaComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
@@ -30,7 +30,11 @@ export class JsonToScalaComponent implements AfterViewInit {
   private isMobile = false;
   private debounceTimer: any;
   
+  className: string = 'RootObject';
   caseClassName: string = 'RootObject';
+  packageName: string = 'com.example';
+  useLombok: boolean = true;
+  useNullableTypes: boolean = true;
   useCaseClass: boolean = true;
   useOptionTypes: boolean = true;
   
@@ -126,6 +130,22 @@ export class JsonToScalaComponent implements AfterViewInit {
   }
 
   onCaseClassNameChange() {
+    this.convertJsonToScala();
+  }
+
+  onClassNameChange() {
+    this.convertJsonToScala();
+  }
+
+  onPackageNameChange() {
+    this.convertJsonToScala();
+  }
+
+  onUseLombokChange() {
+    this.convertJsonToScala();
+  }
+
+  onUseNullableTypesChange() {
     this.convertJsonToScala();
   }
 
@@ -397,7 +417,7 @@ export class JsonToScalaComponent implements AfterViewInit {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `${this.caseClassName}.scala`;
+    link.download = `${this.className}.scala`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -408,6 +428,10 @@ export class JsonToScalaComponent implements AfterViewInit {
     setTimeout(() => {
       this.copySuccessVisible = false;
     }, 3000);
+  }
+
+  downloadJava(): void {
+    this.downloadScala();
   }
 
   private checkMobileView() {

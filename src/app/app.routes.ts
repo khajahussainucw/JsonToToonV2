@@ -62,6 +62,38 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json/json-to-go/json-to-go.component').then(m => m.JsonToGoComponent)
   },
   {
+    path: 'json-to-swift',
+    loadComponent: () => import('./pages/json/json-to-swift/json-to-swift.component').then(m => m.JsonToSwiftComponent)
+  },
+  {
+    path: 'json-to-kotlin',
+    loadComponent: () => import('./pages/json/json-to-kotlin/json-to-kotlin.component').then(m => m.JsonToKotlinComponent)
+  },
+  {
+    path: 'json-to-dart',
+    loadComponent: () => import('./pages/json/json-to-dart/json-to-dart.component').then(m => m.JsonToDartComponent)
+  },
+  {
+    path: 'json-to-ruby',
+    loadComponent: () => import('./pages/json/json-to-ruby/json-to-ruby.component').then(m => m.JsonToRubyComponent)
+  },
+  {
+    path: 'json-to-rust',
+    loadComponent: () => import('./pages/json/json-to-rust/json-to-rust.component').then(m => m.JsonToRustComponent)
+  },
+  {
+    path: 'json-to-scala',
+    loadComponent: () => import('./pages/json/json-to-scala/json-to-scala.component').then(m => m.JsonToScalaComponent)
+  },
+  {
+    path: 'json-to-cpp',
+    loadComponent: () => import('./pages/json/json-to-cpp/json-to-cpp.component').then(m => m.JsonToCppComponent)
+  },
+  {
+    path: 'json-to-c',
+    loadComponent: () => import('./pages/json/json-to-c/json-to-c.component').then(m => m.JsonToCComponent)
+  },
+  {
     path: 'json-escape',
     loadComponent: () => import('./pages/json/json-escape/json-escape.component').then(m => m.JsonEscapeComponent)
   },
@@ -176,6 +208,26 @@ export const routes: Routes = [
   {
     path: 'xml-to-csharp',
     loadComponent: () => import('./pages/xml/xml-to-csharp/xml-to-csharp.component').then(m => m.XmlToCsharpComponent)
+  },
+  {
+    path: 'xml-to-typescript',
+    loadComponent: () => import('./pages/xml/xml-to-typescript/xml-to-typescript.component').then(m => m.XmlToTypescriptComponent)
+  },
+  {
+    path: 'xml-to-java',
+    loadComponent: () => import('./pages/xml/xml-to-java/xml-to-java.component').then(m => m.XmlToJavaComponent)
+  },
+  {
+    path: 'xml-to-php',
+    loadComponent: () => import('./pages/xml/xml-to-php/xml-to-php.component').then(m => m.XmlToPhpComponent)
+  },
+  {
+    path: 'xml-to-python',
+    loadComponent: () => import('./pages/xml/xml-to-python/xml-to-python.component').then(m => m.XmlToPythonComponent)
+  },
+  {
+    path: 'xml-to-go',
+    loadComponent: () => import('./pages/xml/xml-to-go/xml-to-go.component').then(m => m.XmlToGoComponent)
   },
   {
     path: 'xml-parser',

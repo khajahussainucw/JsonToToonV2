@@ -88,3 +88,182 @@
   </div>
 </div>
 
+<!-- SEO Content Section -->
+<div class="content-section">
+  <div class="container-fluid px-4 py-5">
+    
+    <!-- Introduction Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What is YAML Validator?</h2>
+      <p class="content-text">
+        YAML Validator is a free online tool that checks your <a href="https://yaml.org/" target="_blank" rel="noopener noreferrer">YAML (YAML Ain't Markup Language)</a> code for syntax errors and validates it against the official YAML specification. Whether you're debugging Docker Compose files, Kubernetes configs, CI/CD pipelines, or learning YAML, our validator instantly tells you if your YAML is valid or where the errors are. Before deploying, make sure to use our <a routerLink="/yaml-formatter">YAML Formatter</a> to clean up your files, or convert from other formats using our <a routerLink="/json-to-yaml">JSON to YAML</a> converter.
+      </p>
+      <p class="content-text">
+        According to <a href="https://yaml.org/spec/1.2.2/" target="_blank" rel="noopener noreferrer">YAML specification</a>, YAML validation is crucial for ensuring data integrity. Our validator follows the official YAML standards, so you can trust the results. Valid YAML gets a green badge, invalid YAML shows you exactly what's wrong. After validation, you might want to <a routerLink="/yaml-minifier">minify your YAML</a> for production or <a routerLink="/yaml-to-json">convert it to JSON</a> for API use.
+      </p>
+      <p class="content-text">
+        Everything runs in your browser – your YAML never leaves your computer. Fast, secure, and completely free.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What Makes This Tool Different</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Instant Validation</h3>
+            <p class="feature-description">Paste your YAML and get results right away. Valid YAML gets a green badge, invalid YAML shows you exactly where the problem is.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Detailed Error Messages</h3>
+            <p class="feature-description">When something's wrong, we tell you the exact line, column, and what went wrong. No guessing – you'll know exactly what to fix.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">File Upload Support</h3>
+            <p class="feature-description">Got a big file? Just upload it. No need to copy-paste those massive YAML configs or data files.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Sample Data</h3>
+            <p class="feature-description">Try it out with sample data. We've got examples of both valid and invalid YAML so you can see how it works.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Standards Compliant</h3>
+            <p class="feature-description">We validate against the official YAML specification. If it passes here, it'll work anywhere – Docker, Kubernetes, CI/CD tools, you name it.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Syntax Highlighting</h3>
+            <p class="feature-description">Nice syntax highlighting makes it easy to spot problems before you even validate. Visual feedback helps catch issues early.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">How It Works</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste or Upload YAML</h3>
+            <p class="step-description">Paste your YAML code into the left editor, or click "Upload" to load a file. You can also click "Valid Sample" or "Invalid Sample" to see examples of both valid and invalid YAML.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Automatic Validation</h3>
+            <p class="step-description">The validator automatically checks your YAML as you type. The right panel shows the validation result with a clear badge – green for valid, red for invalid. If there are errors, you'll see detailed error messages.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Fix and Verify</h3>
+            <p class="step-description">If your YAML is invalid, use the error messages to fix the issues. Common problems include incorrect indentation, missing colons, or invalid characters. Fix the errors and watch the validation status update in real-time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">When You'd Actually Use This</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Docker Compose</h3>
+            <p class="use-case-text">Validate Docker Compose YAML files before deploying. Catch syntax errors early in development. Works great for docker-compose.yml files. After validation, use our <a routerLink="/yaml-formatter">YAML Formatter</a> to ensure consistent formatting.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Kubernetes Configs</h3>
+            <p class="use-case-text">Before deploying, validate your Kubernetes YAML manifests. One syntax error can break your entire deployment. Catch it early with our validator. You can also <a routerLink="/yaml-to-json">convert to JSON</a> if needed for certain Kubernetes tools.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">CI/CD Pipelines</h3>
+            <p class="use-case-text">Validate GitHub Actions, GitLab CI, or other CI/CD YAML configs. Catch errors before they break your pipelines.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Learning YAML</h3>
+            <p class="use-case-text">New to YAML? Use the validator to check your work. Practice writing YAML and see if it's valid before using it in your projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">Common Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Is my YAML data stored?</h3>
+          <p class="faq-answer">Nope. Validation happens right in your browser using JavaScript. Your YAML never leaves your computer.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What makes YAML invalid?</h3>
+          <p class="faq-answer">Common issues include: incorrect indentation, missing colons, invalid characters, incorrect list syntax, or mixing tabs and spaces. Our validator catches all of these.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Does it validate against YAML Schema?</h3>
+          <p class="faq-answer">This tool validates YAML syntax only, not YAML Schema. For schema validation, you'll need specialized tools that support schema validation.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What YAML standards does it follow?</h3>
+          <p class="faq-answer">We follow the <a href="https://yaml.org/spec/1.2.2/" target="_blank" rel="noopener noreferrer">YAML specification</a>. If it validates here, it's valid YAML.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I validate large files?</h3>
+          <p class="faq-answer">Yes. Since validation happens in your browser, performance depends on your device. Small files validate instantly. Very large files (10MB+) might take a few seconds.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Why does my YAML show as invalid?</h3>
+          <p class="faq-answer">Check the error message – it tells you exactly what's wrong. Common fixes: check indentation (YAML is indentation-sensitive), ensure colons are present after keys, verify list syntax, and check for tabs (use spaces instead).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="content-block">
+      <h2 class="content-heading">Other YAML Tools You Might Need</h2>
+      <p class="content-text mb-4">Validation is just one step. Here are other tools that work well together:</p>
+      <div class="related-tools-grid">
+        <a routerLink="/yaml-formatter" class="tool-link"><span>YAML Formatter</span>
+        </a>
+        <a routerLink="/yaml-minifier" class="tool-link"><span>YAML Minifier</span>
+        </a>
+        <a routerLink="/json-to-yaml" class="tool-link"><span>JSON to YAML</span>
+        </a>
+        <a routerLink="/yaml-to-json" class="tool-link"><span>YAML to JSON</span>
+        </a>
+        <a routerLink="/yaml-to-xml" class="tool-link"><span>YAML to XML</span>
+        </a>
+        <a routerLink="/yaml-to-csv" class="tool-link"><span>YAML to CSV</span>
+        </a>
+        <a routerLink="/yaml-to-typescript" class="tool-link"><span>YAML to TypeScript</span>
+        </a>
+      </div>
+      <p class="content-text mt-4">
+        Need to learn more about YAML? Check out the official <a href="https://yaml.org/" target="_blank" rel="noopener noreferrer">YAML.org</a> website or the comprehensive <a href="https://yaml.org/spec/1.2.2/" target="_blank" rel="noopener noreferrer">YAML specification</a>.
+      </p>
+    </section>
+
+  </div>
+</div>
+

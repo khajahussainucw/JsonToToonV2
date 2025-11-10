@@ -10,8 +10,8 @@ declare const ace: any;
   selector: 'app-json-to-kotlin',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './json-to-kotlin.component.html',
-  styleUrl: './json-to-kotlin.component.css'
+  templateUrl: './json-to-java.component.html',
+  styleUrl: './json-to-java.component.css'
 })
 export class JsonToKotlinComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
@@ -30,7 +30,10 @@ export class JsonToKotlinComponent implements AfterViewInit {
   private isMobile = false;
   private debounceTimer: any;
   
+  className: string = 'RootObject';
   dataClassName: string = 'RootObject';
+  packageName: string = 'com.example';
+  useLombok: boolean = true;
   useDataClass: boolean = true;
   useNullableTypes: boolean = true;
   
@@ -126,6 +129,18 @@ export class JsonToKotlinComponent implements AfterViewInit {
   }
 
   onDataClassNameChange() {
+    this.convertJsonToKotlin();
+  }
+
+  onClassNameChange() {
+    this.convertJsonToKotlin();
+  }
+
+  onPackageNameChange() {
+    this.convertJsonToKotlin();
+  }
+
+  onUseLombokChange() {
     this.convertJsonToKotlin();
   }
 
@@ -407,6 +422,10 @@ export class JsonToKotlinComponent implements AfterViewInit {
     setTimeout(() => {
       this.copySuccessVisible = false;
     }, 3000);
+  }
+
+  downloadJava(): void {
+    this.downloadKotlin();
   }
 
   private checkMobileView() {

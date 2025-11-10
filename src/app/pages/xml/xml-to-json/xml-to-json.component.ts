@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
 declare var ace: any;
@@ -8,7 +9,7 @@ declare var ace: any;
 @Component({
   selector: 'app-xml-to-json',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './xml-to-json.component.html',
   styleUrl: './xml-to-json.component.css'
 })
