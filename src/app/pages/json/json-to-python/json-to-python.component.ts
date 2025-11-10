@@ -33,6 +33,7 @@ export class JsonToPythonComponent implements AfterViewInit {
   className: string = 'RootObject';
   useDataclass: boolean = true;
   useTyping: boolean = true;
+  useNullableTypes: boolean = true;
   
   // Modal dialog state
   errorModalVisible = false;
@@ -141,6 +142,10 @@ export class JsonToPythonComponent implements AfterViewInit {
   }
 
   onUseTypingChange() {
+    this.convertJsonToPython();
+  }
+
+  onUseNullableTypesChange() {
     this.convertJsonToPython();
   }
 

@@ -137,11 +137,11 @@ export class JsonToGoComponent implements AfterViewInit {
     this.convertJsonToGo();
   }
 
-  onUseJsonTagsChange() {
+  onUsePointersChange() {
     this.convertJsonToGo();
   }
 
-  onUsePointersChange() {
+  onUseJsonTagsChange() {
     this.convertJsonToGo();
   }
 

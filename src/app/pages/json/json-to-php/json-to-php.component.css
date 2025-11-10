@@ -1,4 +1,4 @@
-.json-to-java-container {
+.json-to-php-container {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 72px);
@@ -171,7 +171,7 @@ html.resize-cursor * {
 }
 
 @media (max-width: 768px) {
-  .json-to-java-container {
+  .json-to-php-container {
     height: calc(100vh - 70px);
     padding: 4px;
   }

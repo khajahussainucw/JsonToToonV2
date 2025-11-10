@@ -1,16 +1,16 @@
-<div class="json-to-java-container">
+<div class="json-to-go-container">
   <!-- Page Header -->
   <div class="page-header">
-    <h1 class="page-title">JSON to Java Converter</h1>
-    <p class="page-description">Convert JSON to Java POJO classes for Java development</p>
+    <h1 class="page-title">JSON to Go Converter</h1>
+    <p class="page-description">Convert JSON to Go POJO classes for Go development</p>
   </div>
   
   <!-- Configuration Options -->
   <div class="config-panel" style="padding: 10px 15px; background: white; margin: 0 6px 4px 6px; border-radius: 5px; border: 2px solid #dee2e6;">
     <div class="row g-3 align-items-center">
       <div class="col-md-3">
-        <label class="form-label small mb-1">Class Name:</label>
-        <input type="text" class="form-control form-control-sm" [(ngModel)]="className" (input)="onClassNameChange()" />
+        <label class="form-label small mb-1">Struct Name:</label>
+        <input type="text" class="form-control form-control-sm" [(ngModel)]="structName" (input)="onStructNameChange()" />
       </div>
       <div class="col-md-3">
         <label class="form-label small mb-1">Package:</label>
@@ -18,14 +18,14 @@
       </div>
       <div class="col-md-3">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="useLombok" [(ngModel)]="useLombok" (change)="onUseLombokChange()" />
-          <label class="form-check-label small" for="useLombok">Use Lombok</label>
+          <input class="form-check-input" type="checkbox" id="useJsonTags" [(ngModel)]="useJsonTags" (change)="onUseJsonTagsChange()" />
+          <label class="form-check-label small" for="useJsonTags">JSON Tags</label>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="useNullableTypes" [(ngModel)]="useNullableTypes" (change)="onUseNullableTypesChange()" />
-          <label class="form-check-label small" for="useNullableTypes">Nullable Types</label>
+          <input class="form-check-input" type="checkbox" id="usePointers" [(ngModel)]="usePointers" (change)="onUsePointersChange()" />
+          <label class="form-check-label small" for="usePointers">Use Pointers</label>
         </div>
       </div>
     </div>
@@ -53,14 +53,14 @@
     <!-- Splitter -->
     <div class="splitter" #splitter></div>
 
-    <!-- Right Panel (Output - Java) -->
+    <!-- Right Panel (Output - Go) -->
     <div class="editor-container output-container">
       <div class="panel-header">
         <div class="panel-header-left">
-          <h2>Java Output</h2>
+          <h2>Go Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadJava()" aria-label="Download"><span class="d-none d-md-inline">Download</span></button>
+          <button class="btn" (click)="downloadGo()" aria-label="Download"><span class="d-none d-md-inline">Download</span></button>
           <button class="btn" (click)="copyToClipboard()" aria-label="Copy"><span class="d-none d-md-inline">Copy</span></button>
         </div>
       </div>

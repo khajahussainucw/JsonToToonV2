@@ -46,6 +46,22 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json/json-to-csharp/json-to-csharp.component').then(m => m.JsonToCsharpComponent)
   },
   {
+    path: 'json-to-java',
+    loadComponent: () => import('./pages/json/json-to-java/json-to-java.component').then(m => m.JsonToJavaComponent)
+  },
+  {
+    path: 'json-to-php',
+    loadComponent: () => import('./pages/json/json-to-php/json-to-php.component').then(m => m.JsonToPhpComponent)
+  },
+  {
+    path: 'json-to-python',
+    loadComponent: () => import('./pages/json/json-to-python/json-to-python.component').then(m => m.JsonToPythonComponent)
+  },
+  {
+    path: 'json-to-go',
+    loadComponent: () => import('./pages/json/json-to-go/json-to-go.component').then(m => m.JsonToGoComponent)
+  },
+  {
     path: 'json-escape',
     loadComponent: () => import('./pages/json/json-escape/json-escape.component').then(m => m.JsonEscapeComponent)
   },
@@ -156,6 +172,10 @@ export const routes: Routes = [
   {
     path: 'xml-to-csv',
     loadComponent: () => import('./pages/xml/xml-to-csv/xml-to-csv.component').then(m => m.XmlToCsvComponent)
+  },
+  {
+    path: 'xml-to-csharp',
+    loadComponent: () => import('./pages/xml/xml-to-csharp/xml-to-csharp.component').then(m => m.XmlToCsharpComponent)
   },
   {
     path: 'xml-parser',
