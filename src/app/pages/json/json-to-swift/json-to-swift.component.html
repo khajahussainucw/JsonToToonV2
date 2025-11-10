@@ -8,18 +8,20 @@
   <!-- Configuration Options -->
   <div class="config-panel" style="padding: 10px 15px; background: white; margin: 0 6px 4px 6px; border-radius: 5px; border: 2px solid #dee2e6;">
     <div class="row g-3 align-items-center">
-      <div class="col-md-3">
-        <label class="form-label small mb-1">Struct Name:</label>
-        <input type="text" class="form-control form-control-sm" [(ngModel)]="structName" (input)="onStructNameChange()" />
+      <div class="col-auto">
+        <label class="form-label small mb-0" for="structName">Struct Name:</label>
       </div>
-      <div class="col-md-3">
-        <div class="form-check">
+      <div class="col-auto">
+        <input type="text" id="structName" class="form-control form-control-sm" [(ngModel)]="structName" (input)="onStructNameChange()" style="width: 150px;" />
+      </div>
+      <div class="col-auto">
+        <div class="form-check mb-0">
           <input class="form-check-input" type="checkbox" id="useCodable" [(ngModel)]="useCodable" (change)="onUseCodableChange()" />
           <label class="form-check-label small" for="useCodable">Use Codable</label>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="form-check">
+      <div class="col-auto">
+        <div class="form-check mb-0">
           <input class="form-check-input" type="checkbox" id="useOptionalTypes" [(ngModel)]="useOptionalTypes" (change)="onUseOptionalTypesChange()" />
           <label class="form-check-label small" for="useOptionalTypes">Optional Types</label>
         </div>
