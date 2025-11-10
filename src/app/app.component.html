@@ -15,12 +15,20 @@
 
       <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
+          <!-- 4 Primary Page Links -->
+          <li class="nav-item" *ngFor="let page of primaryPages">
+            <a class="nav-link" [routerLink]="page.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: page.route === '/'}">
+              {{ page.label }}
+            </a>
+          </li>
+          
+          <!-- 5th Item: Dropdown for More Tools -->
+          <li class="nav-item dropdown" *ngIf="dropdownPages.length > 0">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ currentPageType }} Tools
+              More {{ currentPageType }} Tools
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li *ngFor="let page of relatedPages">
+              <li *ngFor="let page of dropdownPages">
                 <a class="dropdown-item" [routerLink]="page.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: page.route === '/'}">
                   {{ page.label }}
                 </a>
