@@ -113,13 +113,13 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is JSON Merge?</h2>
       <p class="content-text">
-        JSON Merge is a free online tool that combines multiple <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON (JavaScript Object Notation)</a> objects into a single unified object. Perfect for combining configuration files, merging API responses, or consolidating data from multiple sources.
+        Need to combine multiple JSON objects into one? This tool merges multiple <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON (JavaScript Object Notation)</a> objects into a single unified object. Great for combining config files, merging API responses, or consolidating data from different sources.
       </p>
       <p class="content-text">
-        According to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>, merging JSON objects is a common task in web development. Our tool supports both shallow and deep merge strategies, giving you control over how nested objects are combined. Follows the <a href="https://datatracker.ietf.org/doc/html/rfc8259" target="_blank" rel="noopener noreferrer">RFC 8259 JSON specification</a> for valid output.
+        As <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener noreferrer">MDN Web Docs</a> notes, merging JSON objects is super common in web development. Our tool supports both shallow and deep merge strategies, so you control how nested objects get combined. We follow the <a href="https://datatracker.ietf.org/doc/html/rfc8259" target="_blank" rel="noopener noreferrer">RFC 8259 JSON specification</a>, so everything's valid.
       </p>
       <p class="content-text">
-        Everything processes in your browser – your JSON data never leaves your computer. Merge multiple objects instantly with a single click.
+        Everything happens in your browser – your JSON never leaves your computer. Merge multiple objects instantly with one click.
       </p>
     </section>
 
@@ -130,37 +130,37 @@
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Deep & Shallow Merge</h3>
-            <p class="feature-description">Choose between deep merge (recursively merges nested objects) or shallow merge (overwrites nested objects). Perfect for different use cases.</p>
+            <p class="feature-description">Choose deep merge (recursively merges nested objects) or shallow merge (overwrites nested objects). Pick what works for your use case.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Multiple Objects</h3>
-            <p class="feature-description">Merge an array of JSON objects into one. Handles any number of objects, combining them in order with your chosen merge strategy.</p>
+            <p class="feature-description">Merge an array of JSON objects into one. We handle any number of objects, combining them in order with your chosen merge strategy.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Property Override</h3>
-            <p class="feature-description">Later objects override earlier ones for conflicting properties. Perfect for applying defaults and then overriding with specific values.</p>
+            <p class="feature-description">Later objects override earlier ones when properties conflict. Great for applying defaults first, then overriding with specific values.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">File Upload Support</h3>
-            <p class="feature-description">Upload .json or .txt files directly. Perfect for merging large configuration files or API response arrays without copy-pasting.</p>
+            <p class="feature-description">Got big files? Just upload them. Works great for merging those massive config files or API response arrays without copy-pasting.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Copy & Download</h3>
-            <p class="feature-description">Copy merged JSON to clipboard with one click, or download it as a file. Ready to use in your application immediately.</p>
+            <p class="feature-description">One click to copy, or download it as a file. Drop it right into your app – it's ready to go.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Syntax Highlighting</h3>
-            <p class="feature-description">Provides beautiful syntax highlighting for both input and output. Makes it easy to verify the merged result.</p>
+            <p class="feature-description">Both input and output get nice syntax highlighting. Makes it easy to verify the merged result looks right.</p>
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@
           <div class="step-number">1</div>
           <div class="step-content">
             <h3 class="step-title">Paste or Upload JSON Array</h3>
-            <p class="step-description">Paste an array of JSON objects into the left editor, or click "Upload" to load a file. The format should be like <code>[{"key":"value1"},{"key":"value2"}]</code>. Click "Sample" to see an example.</p>
+            <p class="step-description">Paste an array of JSON objects into the left editor, or click "Upload" to load a file. The format should be like <code>[&#123;"key":"value1"&#125;,&#123;"key":"value2"&#125;]</code>. Click "Sample" to see an example.</p>
           </div>
         </div>
         <div class="step-item">
@@ -219,7 +219,7 @@
         <div class="col-md-6">
           <div class="use-case-card">
             <h3 class="use-case-title"><i class="fas fa-layer-group me-2"></i>Object Composition</h3>
-            <p class="use-case-text">Build complex objects by merging simpler ones. Perfect for creating default objects and then adding specific properties.</p>
+            <p class="use-case-text">Build complex objects by merging simpler ones. Great for creating default objects and then adding specific properties.</p>
           </div>
         </div>
       </div>
@@ -231,11 +231,11 @@
       <div class="faq-container">
         <div class="faq-item">
           <h3 class="faq-question">Is my JSON data stored?</h3>
-          <p class="faq-answer">No. Merging happens entirely in your browser using JavaScript. Your data never leaves your computer.</p>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your JSON never leaves your computer – we don't even see it.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">What's the difference between deep and shallow merge?</h3>
-          <p class="faq-answer">Deep merge recursively combines nested objects, merging their properties. Shallow merge overwrites entire nested objects. For example, with <code>{"a":{"b":1}}</code> and <code>{"a":{"c":2}}</code>, deep merge gives <code>{"a":{"b":1,"c":2}}</code>, while shallow gives <code>{"a":{"c":2}}</code>.</p>
+          <p class="faq-answer">Deep merge recursively combines nested objects, merging their properties. Shallow merge overwrites entire nested objects. For example, with two objects that both have an "a" property containing nested objects, deep merge combines the nested properties while shallow merge replaces the entire nested object.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">What happens with conflicting properties?</h3>
@@ -243,7 +243,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-question">Can I merge arrays?</h3>
-          <p class="faq-answer">The tool merges objects, not arrays. If you have an array of objects, it merges those objects. Array properties within objects are overwritten, not merged.</p>
+          <p class="faq-answer">We merge objects, not arrays. If you've got an array of objects, we'll merge those objects. Array properties within objects get overwritten, not merged.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">What if objects have different structures?</h3>
@@ -251,7 +251,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-question">Does it work with invalid JSON?</h3>
-          <p class="faq-answer">No. All input must be valid JSON. If the input is invalid, you'll see an error. Use our <a routerLink="/json-validator">JSON Validator</a> or <a routerLink="/json-fixer">JSON Fixer</a> first.</p>
+          <p class="faq-answer">Nah, you'll need valid JSON first. If something's broken, we'll show you an error. Try our <a routerLink="/json-validator">JSON Validator</a> or <a routerLink="/json-fixer">JSON Fixer</a> to sort it out first.</p>
         </div>
       </div>
     </section>

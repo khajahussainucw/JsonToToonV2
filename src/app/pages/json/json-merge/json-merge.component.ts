@@ -28,6 +28,12 @@ export class JsonMergeComponent implements AfterViewInit {
   copyErrorVisible = false;
   copyErrorMessage = '';
   mergeMode: 'deep' | 'shallow' = 'deep';
+  
+  // Example JSON strings for the template (using HTML entities for curly braces)
+  exampleJson1 = '&lbrace;"a":&lbrace;"b":1&rbrace;&rbrace;';
+  exampleJson2 = '&lbrace;"a":&lbrace;"c":2&rbrace;&rbrace;';
+  exampleJsonDeep = '&lbrace;"a":&lbrace;"b":1,"c":2&rbrace;&rbrace;';
+  exampleJsonShallow = '&lbrace;"a":&lbrace;"c":2&rbrace;&rbrace;';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -62,7 +68,7 @@ export class JsonMergeComponent implements AfterViewInit {
   }
 
   private initializeEditors() {
-    if (typeof ace === 'undefined') {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
       console.error('Ace editor is not loaded');
       return;
     }

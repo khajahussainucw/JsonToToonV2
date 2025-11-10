@@ -91,7 +91,7 @@ export class JsonFixerComponent implements AfterViewInit {
   }
 
   private initializeEditors(): void {
-    if (typeof ace === 'undefined') {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
       console.error('Ace editor is not loaded');
       return;
     }

@@ -70,10 +70,10 @@
       />
       <div class="path-examples">
         <span class="example-label">Examples:</span>
-        <button class="btn-example" (click)="loadPathExample('$..*')">All values</button>
-        <button class="btn-example" (click)="loadPathExample('$.store.book[*].author')">All authors</button>
-        <button class="btn-example" (click)="loadPathExample('$..price')">All prices</button>
-        <button class="btn-example" (click)="loadPathExample('$.store.book[?(@.price < 10)]')">Books under $10</button>
+        <button class="btn-example" (click)="loadPathExample(examplePaths.allValues)">All values</button>
+        <button class="btn-example" (click)="loadPathExample(examplePaths.allAuthors)">All authors</button>
+        <button class="btn-example" (click)="loadPathExample(examplePaths.allPrices)">All prices</button>
+        <button class="btn-example" (click)="loadPathExample(examplePaths.booksUnder10)">Books under $10</button>
       </div>
     </div>
   </div>
@@ -128,13 +128,13 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is JSON Path Query?</h2>
       <p class="content-text">
-        JSON Path Query is a free online tool that extracts data from <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON (JavaScript Object Notation)</a> using JSONPath expressions. Similar to XPath for XML, JSONPath lets you query and extract specific values from complex JSON structures.
+        Need to extract specific data from huge JSON files? JSON Path lets you query and extract values from complex <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON (JavaScript Object Notation)</a> structures. Think of it like XPath for XML, but for JSON.
       </p>
       <p class="content-text">
-        According to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>, JSONPath is essential for navigating and querying JSON data. Our tool supports standard JSONPath syntax, allowing you to find values, filter arrays, and navigate nested structures. Perfect for extracting specific data from large JSON documents or API responses.
+        As <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener noreferrer">MDN Web Docs</a> explains, JSONPath is essential for navigating and querying JSON data. Our tool supports standard JSONPath syntax, so you can find values, filter arrays, and navigate nested structures. Great for pulling specific data from massive JSON documents or API responses.
       </p>
       <p class="content-text">
-        Everything processes in your browser – your JSON data never leaves your computer. Query and extract data instantly with powerful JSONPath expressions.
+        Everything happens in your browser – your JSON never leaves your computer. Query and extract data instantly with powerful JSONPath expressions.
       </p>
     </section>
 
@@ -145,13 +145,13 @@
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Standard JSONPath Syntax</h3>
-            <p class="feature-description">Supports standard JSONPath expressions like <code>$..*</code>, <code>$.store.book[*].author</code>, and <code>$..price</code>. Works with any JSONPath-compatible syntax.</p>
+            <p class="feature-description">We support standard JSONPath expressions like <code>$..*</code>, <code>$.store.book[*].author</code>, and <code>$..price</code>. Works with any JSONPath-compatible syntax.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Filter Expressions</h3>
-            <p class="feature-description">Use filter expressions to find specific items. Query like <code>$.store.book[?(@.price < 10)]</code> to find books under $10.</p>
+            <p class="feature-description">Use filter expressions to find specific items. Query like <code>$.store.book[?(&#64;.price < 10)]</code> to find books under $10.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -163,7 +163,7 @@
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">File Upload Support</h3>
-            <p class="feature-description">Upload .json or .txt files directly. Perfect for querying large JSON documents or API response dumps.</p>
+            <p class="feature-description">Got a big file? Just upload it. Works great for querying those massive JSON documents or API dumps.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -175,7 +175,7 @@
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Copy & Download</h3>
-            <p class="feature-description">Copy query results to clipboard or download them as a file. Perfect for extracting data for further processing.</p>
+            <p class="feature-description">One click to copy, or download it as a file. Great for extracting data you need for further processing.</p>
           </div>
         </div>
       </div>
@@ -246,19 +246,19 @@
       <div class="faq-container">
         <div class="faq-item">
           <h3 class="faq-question">Is my JSON data stored?</h3>
-          <p class="faq-answer">No. Querying happens entirely in your browser using JavaScript. Your data never leaves your computer.</p>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your JSON never leaves your computer – we don't even see it.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">What JSONPath syntax is supported?</h3>
-          <p class="faq-answer">The tool supports standard JSONPath syntax including: <code>$</code> (root), <code>.</code> (child operator), <code>..</code> (recursive descent), <code>[*]</code> (wildcard), <code>[0]</code> (array index), and <code>[?(@.key)]</code> (filter expressions).</p>
+          <p class="faq-answer">We support standard JSONPath syntax including: <code>$</code> (root), <code>.</code> (child operator), <code>..</code> (recursive descent), <code>[*]</code> (wildcard), <code>[0]</code> (array index), and <code>[?(&#64;.key)]</code> (filter expressions).</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">How do filter expressions work?</h3>
-          <p class="faq-answer">Filter expressions use <code>[?(@.property operator value)]</code> syntax. For example, <code>$..book[?(@.price < 10)]</code> finds all books with price less than 10.</p>
+          <p class="faq-answer">Filter expressions use <code>[?(&#64;.property operator value)]</code> syntax. For example, <code>$..book[?(&#64;.price < 10)]</code> finds all books with price less than 10.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">Can I query nested objects?</h3>
-          <p class="faq-answer">Yes. Use the recursive descent operator <code>..</code> to search through all levels. For example, <code>$..price</code> finds all price values regardless of nesting level.</p>
+          <p class="faq-answer">Yep. Use the recursive descent operator <code>..</code> to search through all levels. For example, <code>$..price</code> finds all price values no matter how deep they're nested.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">What if the JSONPath doesn't match anything?</h3>
@@ -266,7 +266,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-question">Does it work with invalid JSON?</h3>
-          <p class="faq-answer">No. The input JSON must be valid. If it's invalid, you'll see an error. Use our <a routerLink="/json-validator">JSON Validator</a> or <a routerLink="/json-fixer">JSON Fixer</a> first.</p>
+          <p class="faq-answer">Nah, you'll need valid JSON first. If something's broken, we'll show you an error. Try our <a routerLink="/json-validator">JSON Validator</a> or <a routerLink="/json-fixer">JSON Fixer</a> to sort it out first.</p>
         </div>
       </div>
     </section>

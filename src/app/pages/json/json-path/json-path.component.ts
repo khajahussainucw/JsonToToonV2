@@ -31,6 +31,14 @@ export class JsonPathComponent implements AfterViewInit {
   copyErrorVisible = false;
   copyErrorMessage = '';
   jsonPath = '$..*';
+  
+  // Example paths for the template
+  examplePaths = {
+    allValues: '$..*',
+    allAuthors: '$.store.book[*].author',
+    allPrices: '$..price',
+    booksUnder10: '$.store.book[?(@.price < 10)]'
+  };
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -65,7 +73,7 @@ export class JsonPathComponent implements AfterViewInit {
   }
 
   private initializeEditors() {
-    if (typeof ace === 'undefined') {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
       console.error('Ace editor is not loaded');
       return;
     }

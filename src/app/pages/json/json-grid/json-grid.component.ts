@@ -161,7 +161,7 @@ export class JsonGridComponent implements AfterViewInit {
   }
 
   private initializeEditor(content: string) {
-    if (typeof ace === 'undefined') {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
       console.error('Ace editor is not loaded');
       return;
     }

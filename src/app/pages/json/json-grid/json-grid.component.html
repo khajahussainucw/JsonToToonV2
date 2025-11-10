@@ -227,3 +227,200 @@
 
 <app-share-modal [jsonData]="getEditorContent()"></app-share-modal>
 
+<!-- SEO Content Section -->
+<div class="content-section">
+  <div class="container-fluid px-4 py-5">
+    
+    <!-- Introduction Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What is JSON Grid?</h2>
+      <p class="content-text">
+        Ever wish you could view your JSON like a spreadsheet? That's exactly what this does. It takes your <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON (JavaScript Object Notation)</a> arrays and turns them into interactive tables you can sort, filter, and explore. Powered by <a href="https://www.ag-grid.com/" target="_blank" rel="noopener noreferrer">AG Grid</a>, so it handles thousands of rows without breaking a sweat.
+      </p>
+      <p class="content-text">
+        As <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener noreferrer">MDN Web Docs</a> notes, JSON arrays are perfect for tabular data. Our grid converts them into tables you can actually work with – sort columns, filter rows, paginate through huge datasets, and export to Excel or CSV. We follow the <a href="https://datatracker.ietf.org/doc/html/rfc8259" target="_blank" rel="noopener noreferrer">RFC 8259 JSON specification</a>, so everything's standard.
+      </p>
+      <p class="content-text">
+        Everything runs in your browser – your data never leaves your computer. View, analyze, and export your JSON like you would any spreadsheet.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What Makes This Tool Different</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Interactive Grid</h3>
+            <p class="feature-description">Your JSON arrays become interactive tables. Click headers to sort, use filters to search, and navigate through huge datasets like it's nothing.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">High Performance</h3>
+            <p class="feature-description">Uses virtual scrolling so even thousands of rows feel smooth. No lag, no waiting – just fast, responsive tables.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Sort & Filter</h3>
+            <p class="feature-description">Click any column header to sort. Use the filter icons to search specific columns. You can even sort by multiple columns at once.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Export Options</h3>
+            <p class="feature-description">Export your filtered and sorted data as Excel or CSV. Great for taking your analysis into spreadsheet apps or databases.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Pagination</h3>
+            <p class="feature-description">Browse huge datasets page by page. Change the page size (10, 20, 50, or 100 rows) to whatever works best for you.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Column Management</h3>
+            <p class="feature-description">Resize columns, auto-size everything, pin columns, hide stuff you don't need. Full control over how you view your data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">How It Works</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste JSON Array</h3>
+            <p class="step-description">Paste your JSON array into the left editor, or click "Sample" to see an example. The JSON should be an array of objects.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Use the Grid</h3>
+            <p class="step-description">The grid appears automatically. Click column headers to sort, use filter icons to search, and resize columns as needed.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Export Data</h3>
+            <p class="step-description">Click "Excel" or "CSV" to download your data. Filtered and sorted data is included in the export.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">When You'd Actually Use This</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title"><i class="fas fa-chart-bar me-2"></i>Data Analysis</h3>
+            <p class="use-case-text">Analyze JSON data from APIs or databases. Sort and filter to find patterns, outliers, or specific records quickly.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title"><i class="fas fa-file-excel me-2"></i>Data Export</h3>
+            <p class="use-case-text">Convert JSON arrays to Excel or CSV for use in spreadsheet apps. Great for reporting or sharing data.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title"><i class="fas fa-search me-2"></i>Data Exploration</h3>
+            <p class="use-case-text">Explore large JSON datasets visually. Use filters and sorting to understand data structure and content.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title"><i class="fas fa-database me-2"></i>API Responses</h3>
+            <p class="use-case-text">View API response data in a table format. Easier to read and analyze than raw JSON, especially for large datasets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">Common Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Is my JSON data stored?</h3>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your JSON never leaves your computer – we don't even see it.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What JSON format does it support?</h3>
+          <p class="faq-answer">We work with JSON arrays of objects. Each object becomes a row, and object properties become columns.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How many rows can it handle?</h3>
+          <p class="faq-answer">The grid uses virtual scrolling and can handle thousands of rows smoothly. Performance depends on your browser and device.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I edit data in the grid?</h3>
+          <p class="faq-answer">Yep. Double-click cells to edit values. Press Enter to save or Escape to cancel. Changes show up in the JSON editor.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Does export include filters and sorting?</h3>
+          <p class="faq-answer">Yep. When you export, we export the current filtered and sorted view. Great for exporting specific subsets of data.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What if my JSON isn't an array?</h3>
+          <p class="faq-answer">We need a JSON array. If you've got a single object, wrap it in an array: <code>[&#123;...&#125;]</code>. Use our <a routerLink="/json-formatter">JSON Formatter</a> to help structure your data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="content-block">
+      <h2 class="content-heading">Other JSON Tools You Might Need</h2>
+      <p class="content-text mb-4">Grid view is just one JSON task. Here are other tools that work well together:</p>
+      <div class="related-tools-grid">
+        <a routerLink="/" class="tool-link">
+          <i class="fas fa-table"></i>
+          <span>JSON Parser</span>
+        </a>
+        <a routerLink="/json-formatter" class="tool-link">
+          <i class="fas fa-indent"></i>
+          <span>JSON Formatter</span>
+        </a>
+        <a routerLink="/json-to-csv" class="tool-link">
+          <i class="fas fa-file-csv"></i>
+          <span>JSON to CSV</span>
+        </a>
+        <a routerLink="/json-validator" class="tool-link">
+          <i class="fas fa-check-circle"></i>
+          <span>JSON Validator</span>
+        </a>
+        <a routerLink="/json-fixer" class="tool-link">
+          <i class="fas fa-wrench"></i>
+          <span>JSON Fixer</span>
+        </a>
+        <a routerLink="/json-sort" class="tool-link">
+          <i class="fas fa-sort"></i>
+          <span>JSON Sort</span>
+        </a>
+        <a routerLink="/json-diff" class="tool-link">
+          <i class="fas fa-code-branch"></i>
+          <span>JSON Diff</span>
+        </a>
+        <a routerLink="/json-to-yaml" class="tool-link">
+          <i class="fas fa-file-code"></i>
+          <span>JSON to YAML</span>
+        </a>
+      </div>
+      <p class="content-text mt-4">
+        Need to learn more about JSON? Check out the official <a href="https://www.json.org/" target="_blank" rel="noopener noreferrer">JSON.org</a> website or the comprehensive guide on <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON" target="_blank" rel="noopener noreferrer">MDN</a>.
+      </p>
+    </section>
+
+  </div>
+</div>
+
