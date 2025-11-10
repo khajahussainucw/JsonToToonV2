@@ -668,7 +668,7 @@
 
 /* SEO Content Section Styles */
 .content-section {
-  background-color: #2b3035;
+  background-color: #f8f9fa;
   padding: 2rem 0;
   margin-top: 2rem;
 }
@@ -680,18 +680,18 @@
 }
 
 .content-heading {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #212529;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 3px solid #4ade80;
 }
 
 .content-text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
-  color: #e9ecef;
+  color: #495057;
   margin-bottom: 1rem;
 }
 
@@ -700,7 +700,7 @@
 .step-description a,
 .use-case-text a,
 .faq-answer a {
-  color: #4ade80;
+  color: #0d6efd;
   text-decoration: underline;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -710,7 +710,7 @@
 .step-description a:hover,
 .use-case-text a:hover,
 .faq-answer a:hover {
-  color: #51cf66;
+  color: #4ade80;
   text-decoration: none;
 }
 
@@ -718,33 +718,33 @@
 .step-description a:visited,
 .use-case-text a:visited,
 .faq-answer a:visited {
-  color: #69db7c;
+  color: #6f42c1;
 }
 
 /* Code element styling */
 .faq-answer code {
-  background-color: #212529;
+  background-color: #f1f3f5;
   padding: 2px 6px;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
-  color: #4ade80;
+  color: #e83e8c;
 }
 
 /* Feature Cards */
 .feature-card {
-  background: #343a40;
-  border: 1px solid #495057;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 1.5rem;
   height: 100%;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.25);
   border-color: #4ade80;
 }
 
@@ -765,17 +765,17 @@
 }
 
 .feature-title {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #212529;
   margin-bottom: 0.75rem;
   margin-top: 0;
 }
 
 .feature-description {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #ced4da;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #6c757d;
   margin: 0;
 }
 
@@ -789,15 +789,15 @@
 .step-item {
   display: flex;
   gap: 1.5rem;
-  background: #343a40;
-  border: 1px solid #495057;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .step-item:hover {
-  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.25);
   border-color: #4ade80;
 }
 
@@ -820,39 +820,39 @@
 }
 
 .step-title {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #212529;
   margin-bottom: 0.5rem;
 }
 
 .step-description {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #e9ecef;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
   margin: 0;
 }
 
 /* Use Case Cards */
 .use-case-card {
-  background: #343a40;
+  background: #ffffff;
   border-left: 4px solid #4ade80;
   border-radius: 8px;
   padding: 1.5rem;
   height: 100%;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .use-case-card:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.25);
 }
 
 .use-case-title {
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #212529;
   margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
@@ -863,9 +863,9 @@
 }
 
 .use-case-text {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: #ced4da;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #6c757d;
   margin: 0;
 }
 
@@ -877,8 +877,8 @@
 }
 
 .faq-item {
-  background: #343a40;
-  border: 1px solid #495057;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 1.5rem;
   transition: all 0.3s ease;
@@ -890,9 +890,9 @@
 }
 
 .faq-question {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #212529;
   margin-bottom: 0.75rem;
   display: flex;
   align-items: flex-start;
@@ -907,9 +907,9 @@
 }
 
 .faq-answer {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #e9ecef;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
   margin: 0;
   padding-left: 2.5rem;
 }
@@ -934,17 +934,17 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
-  background: #343a40;
-  border: 2px solid #495057;
+  background: #ffffff;
+  border: 2px solid #dee2e6;
   border-radius: 8px;
-  color: #ffffff;
+  color: #212529;
   text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 500;
 }
 
 .tool-link:hover {
-  background: #495057;
+  background: #f8f9fa;
   border-color: #4ade80;
   color: #4ade80;
   transform: translateY(-2px);
@@ -972,12 +972,12 @@
   }
 
   .content-heading {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin-bottom: 1rem;
   }
 
   .content-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .feature-card {
@@ -994,7 +994,7 @@
   }
 
   .feature-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 
   .step-item {
@@ -1010,7 +1010,7 @@
   }
 
   .step-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 
   .use-case-card {
@@ -1018,7 +1018,7 @@
   }
 
   .use-case-title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .faq-item {
@@ -1026,7 +1026,7 @@
   }
 
   .faq-question {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   .faq-answer {
