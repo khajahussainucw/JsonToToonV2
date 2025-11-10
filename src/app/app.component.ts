@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
-import { DigitalOceanAdComponent } from './advertisement/digital-ocean-ad/digital-ocean-ad.component';
 
 interface NavLink {
   label: string;
@@ -12,7 +11,7 @@ interface NavLink {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, CommonModule, DigitalOceanAdComponent], 
+  imports: [RouterModule, CommonModule], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
