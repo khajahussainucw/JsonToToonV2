@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "json-parser-angular": {
+    "json-to-toon": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/json-parser-angular",
+            "outputPath": "dist/json-to-toon",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -97,10 +97,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "json-parser-angular:build:production"
+              "buildTarget": "json-to-toon:build:production"
             },
             "development": {
-              "buildTarget": "json-parser-angular:build:development"
+              "buildTarget": "json-to-toon:build:development"
             }
           },
           "defaultConfiguration": "development"
