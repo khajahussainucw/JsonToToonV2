@@ -61,7 +61,7 @@ export class JsonSchemaGeneratorComponent implements AfterViewInit {
   }
 
   private initializeEditors() {
-    if (typeof ace === 'undefined') {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
       console.error('Ace editor is not loaded');
       return;
     }

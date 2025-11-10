@@ -121,3 +121,41 @@ footer hr {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Dropdown menu styling */
+.dropdown-menu {
+  background-color: #343a40;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  background-color: #495057;
+  color: #4ade80;
+}
+
+.dropdown-item.active {
+  background-color: #4ade80;
+  color: #000;
+  font-weight: 600;
+}
+
+.nav-link.dropdown-toggle {
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.nav-link.dropdown-toggle:hover {
+  color: #4ade80 !important;
+}
+

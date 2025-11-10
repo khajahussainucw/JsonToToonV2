@@ -15,11 +15,18 @@
 
       <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">JSON Parser</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/json-grid" routerLinkActive="active">JSON Grid</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/json-formatter" routerLinkActive="active">JSON Formatter</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/yaml-to-json" routerLinkActive="active">YAML to JSON</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/json-to-yaml" routerLinkActive="active">JSON to YAML</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ currentPageType }} Tools
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li *ngFor="let page of relatedPages">
+                <a class="dropdown-item" [routerLink]="page.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: page.route === '/'}">
+                  {{ page.label }}
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
