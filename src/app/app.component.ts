@@ -16,7 +16,7 @@ interface NavLink {
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  title = 'JsonToToon';
+  title = 'JSON to TOON';
   primaryPages: NavLink[] = [];
   dropdownPages: NavLink[] = [];
   currentPageType: string = 'TOON';
