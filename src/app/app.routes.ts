@@ -122,10 +122,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json/json-escape/json-escape.component').then(m => m.JsonEscapeComponent)
   },
   {
-    path: 'json-diff',
-    loadComponent: () => import('./pages/json/json-diff/json-diff.component').then(m => m.JsonDiffComponent)
-  },
-  {
     path: 'json-merge',
     loadComponent: () => import('./pages/json/json-merge/json-merge.component').then(m => m.JsonMergeComponent)
   },

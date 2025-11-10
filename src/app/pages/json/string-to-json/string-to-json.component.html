@@ -14,11 +14,15 @@
           <h2>Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleJson()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleJson()" aria-label="Sample">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
+            <i class="fas fa-upload"></i> <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">          </button>
+          <button class="btn" (click)="clearInput()" aria-label="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -37,11 +41,14 @@
           </button>-->
           <!--<button class="btn">            CSV
           </button>-->
-          <button class="btn" (click)="downloadJson()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadJson()" aria-label="Download">
+            <i class="fas fa-download"></i> <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="minifyJson()" aria-label="Minify">            <span class="d-none d-md-inline">Minify</span>
+          <button class="btn" (click)="minifyJson()" aria-label="Minify">
+            <span class="d-none d-md-inline">Minify</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <i class="fas fa-copy"></i> <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -258,8 +265,6 @@
         <a routerLink="/json-minifier" class="tool-link"><span>JSON Minifier</span>
         </a>
         <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
-        </a>
-        <a routerLink="/json-diff" class="tool-link"><span>JSON Diff</span>
         </a>
       </div>
       <p class="content-text mt-4">

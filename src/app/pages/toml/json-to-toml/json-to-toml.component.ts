@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import * as TOML from 'smol-toml';
 
@@ -9,7 +10,7 @@ declare var ace: any;
 @Component({
   selector: 'app-json-to-toml',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './json-to-toml.component.html',
   styleUrl: './json-to-toml.component.css'
 })

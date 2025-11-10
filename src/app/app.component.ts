@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
         { label: 'JSON Minifier', route: '/json-minifier' },
         { label: 'JSON Fixer', route: '/json-fixer' },
         { label: 'JSON Escape', route: '/json-escape' },
-        { label: 'JSON Diff', route: '/json-diff' },
         { label: 'JSON Merge', route: '/json-merge' },
         { label: 'JSON Path', route: '/json-path' },
         { label: 'JSON Schema', route: '/json-schema-generator' },

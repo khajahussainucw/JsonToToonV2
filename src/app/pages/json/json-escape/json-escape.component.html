@@ -9,10 +9,10 @@
   <div class="mode-toggle-container" style="padding: 10px 15px; background: white; margin: 0 6px 4px 6px; border-radius: 5px; border: 2px solid #dee2e6;">
     <div class="d-flex align-items-center gap-3">
       <span class="small fw-bold">Mode:</span>
-      <button class="btn btn-sm" [class.active]="isEscapeMode" (click)="toggleMode()" style="background-color: {{ isEscapeMode ? '#4ade80' : '#e9ecef' }}; color: {{ isEscapeMode ? 'white' : '#212529' }};">
+      <button class="btn btn-sm" [class.active]="isEscapeMode" (click)="toggleMode()" style="background-color: {{ isEscapeMode ? '#2b3035' : '#e9ecef' }}; color: {{ isEscapeMode ? 'white' : '#212529' }};">
         Escape
       </button>
-      <button class="btn btn-sm" [class.active]="!isEscapeMode" (click)="toggleMode()" style="background-color: {{ !isEscapeMode ? '#4ade80' : '#e9ecef' }}; color: {{ !isEscapeMode ? 'white' : '#212529' }};">
+      <button class="btn btn-sm" [class.active]="!isEscapeMode" (click)="toggleMode()" style="background-color: {{ !isEscapeMode ? '#2b3035' : '#e9ecef' }}; color: {{ !isEscapeMode ? 'white' : '#212529' }};">
         Unescape
       </button>
     </div>
