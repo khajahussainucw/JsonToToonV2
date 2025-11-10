@@ -115,14 +115,6 @@
   background-color: #424649;
 }
 
-.btn-toggle {
-  background-color: #0d6efd;
-}
-
-.btn-toggle:hover {
-  background-color: #0b5ed7;
-}
-
 .editor-wrapper {
   flex: 1;
   position: relative;
