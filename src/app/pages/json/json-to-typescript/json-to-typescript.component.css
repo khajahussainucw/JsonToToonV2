@@ -47,7 +47,7 @@
   width: 100%;
   height: calc(100vh - 155px);
   overflow: hidden;
-  gap: 4px;
+  gap: 8px;
 }
 
 .editor-container {
@@ -92,7 +92,7 @@
 
 .btn {
   padding: 4px 8px;
-  border: none;
+  border: 3px solid #4ade80;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.875rem;
@@ -107,6 +107,7 @@
 
 .btn:hover {
   background-color: #424649;
+  border-color: #4ade80;
 }
 
 .editor-wrapper {

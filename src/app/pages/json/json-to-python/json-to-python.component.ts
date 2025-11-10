@@ -16,17 +16,10 @@ declare const ace: any;
 export class JsonToPythonComponent implements AfterViewInit {
   @ViewChild('inputEditor') private inputEditor!: ElementRef<HTMLElement>;
   @ViewChild('outputEditor') private outputEditor!: ElementRef<HTMLElement>;
-  @ViewChild('splitter') private splitter!: ElementRef<HTMLElement>;
   @ViewChild('fileInput') private fileInput!: ElementRef<HTMLInputElement>;
 
   private aceInputEditor: any;
   private aceOutputEditor: any;
-  private isDragging = false;
-  private leftPane: HTMLElement | null = null;
-  private rightPane: HTMLElement | null = null;
-  private initialX = 0;
-  private initialLeftWidth = 0;
-  private containerWidth = 0;
   private isMobile = false;
   private debounceTimer: any;
   
@@ -70,7 +63,6 @@ export class JsonToPythonComponent implements AfterViewInit {
       setTimeout(() => {
         this.initializeEditors();
         this.checkMobileView();
-        this.initSplitter();
 
         window.addEventListener('resize', () => {
           this.checkMobileView();
@@ -469,100 +461,6 @@ export class JsonToPythonComponent implements AfterViewInit {
 
   private checkMobileView() {
     this.isMobile = window.innerWidth <= 768;
-    this.adjustLayoutForMobile();
-  }
-
-  private adjustLayoutForMobile() {
-    if (!this.leftPane || !this.rightPane) return;
-
-    if (this.isMobile) {
-      this.leftPane.style.height = 'calc(50vh - 12px)';
-      this.rightPane.style.height = 'calc(50vh - 12px)';
-      this.leftPane.style.width = '100%';
-      this.rightPane.style.width = '100%';
-    } else {
-      this.leftPane.style.height = '100%';
-      this.rightPane.style.height = '100%';
-      this.leftPane.style.flex = '0.5';
-      this.rightPane.style.flex = '0.5';
-    }
-  }
-
-  private initSplitter() {
-    this.leftPane = document.querySelector('.input-container');
-    this.rightPane = document.querySelector('.output-container');
-
-    if (!this.leftPane || !this.rightPane || !this.splitter) {
-      return;
-    }
-
-    if (!this.isMobile) {
-      this.splitter.nativeElement.addEventListener('mousedown', this.startDrag.bind(this));
-    }
-  }
-
-  private startDrag(e: MouseEvent) {
-    if (!this.leftPane || !this.rightPane || this.isMobile) return;
-
-    this.isDragging = true;
-    this.initialX = e.clientX;
-
-    const leftRect = this.leftPane.getBoundingClientRect();
-    const containerRect = this.leftPane.parentElement?.getBoundingClientRect();
-
-    this.initialLeftWidth = leftRect.width;
-    this.containerWidth = containerRect?.width || 0;
-
-    document.documentElement.classList.add('resize-cursor');
-    this.splitter.nativeElement.classList.add('dragging');
-
-    document.addEventListener('mousemove', this.onMouseMove.bind(this));
-    document.addEventListener('mouseup', this.onMouseUp.bind(this));
-    document.addEventListener('selectstart', this.preventSelection);
-  }
-
-  private onMouseMove(e: MouseEvent) {
-    if (!this.isDragging || !this.leftPane || !this.rightPane || this.isMobile) return;
-
-    const deltaX = e.clientX - this.initialX;
-    const minWidth = 200;
-    const maxWidth = this.containerWidth - minWidth;
-    const newLeftWidth = Math.max(
-      minWidth,
-      Math.min(maxWidth, this.initialLeftWidth + deltaX)
-    );
-
-    const leftRatio = newLeftWidth / this.containerWidth;
-    const rightRatio = 1 - leftRatio;
-
-    this.leftPane.style.flex = `${leftRatio}`;
-    this.rightPane.style.flex = `${rightRatio}`;
-
-    if (this.aceInputEditor && this.aceOutputEditor) {
-      this.aceInputEditor.resize();
-      this.aceOutputEditor.resize();
-    }
-  }
-
-  private onMouseUp() {
-    if (this.isDragging) {
-      this.isDragging = false;
-      document.documentElement.classList.remove('resize-cursor');
-      this.splitter.nativeElement.classList.remove('dragging');
-      document.removeEventListener('mousemove', this.onMouseMove.bind(this));
-      document.removeEventListener('mouseup', this.onMouseUp.bind(this));
-      document.removeEventListener('selectstart', this.preventSelection);
-
-      if (this.aceInputEditor && this.aceOutputEditor) {
-        this.aceInputEditor.resize();
-        this.aceOutputEditor.resize();
-      }
-    }
-  }
-
-  private preventSelection(e: Event) {
-    e.preventDefault();
-    return false;
   }
 }
 

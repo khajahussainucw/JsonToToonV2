@@ -95,7 +95,7 @@
 
 .btn {
   padding: 4px 8px;
-  border: none;
+  border: 3px solid #4ade80;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.875rem;
@@ -109,6 +109,7 @@
 
 .btn:hover {
   background-color: #424649;
+  border-color: #4ade80;
 }
 
 .config-panel {
