@@ -12,11 +12,15 @@
           <h2>Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="fileInput.click()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="fileInput.click()" aria-label="Upload">
+            <i class="fas fa-upload"></i> <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">          </button>
+          <button class="btn" (click)="clearInput()" aria-label="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -30,9 +34,11 @@
           <h2>Minified Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadXml()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadXml()" aria-label="Download">
+            <i class="fas fa-download"></i> <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <i class="fas fa-copy"></i> <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -65,10 +71,10 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is XML Minifier?</h2>
       <p class="content-text">
-        Need to shrink your XML file size? XML Minifier removes all unnecessary whitespace, line breaks, and comments from your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> files. Perfect for production environments where smaller file sizes mean faster transfers and lower bandwidth usage.
+        Need to shrink your XML file size? XML Minifier removes all unnecessary whitespace, line breaks, and comments from your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML</a> files. Perfect for production environments where smaller file sizes mean faster transfers and lower bandwidth usage.
       </p>
       <p class="content-text">
-        According to <a href="https://developer.mozilla.org/en-US/docs/Web/XML" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>, minified XML is functionally identical to formatted XML but takes up less space. Our minifier preserves all your data and structure while removing everything unnecessary. Great for API responses, config files, or any XML that needs to be compact.
+        Minified XML is functionally identical to formatted XML but takes up less space. The minifier preserves all your data and structure while removing everything unnecessary. Great for API responses, config files, or any XML that needs to be compact.
       </p>
       <p class="content-text">
         Everything happens in your browser – your XML never leaves your computer. Minify, download, and use your compact XML right away.

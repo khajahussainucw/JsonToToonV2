@@ -13,11 +13,16 @@
           <h2>Input XML</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleXml()" title="Sample">            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleXml()" title="Sample">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="fileInput.click()" title="Upload">          </button>
+          <button class="btn" (click)="fileInput.click()" title="Upload">
+            <i class="fas fa-upload"></i>
+          </button>
           <button class="btn" (click)="showConfig = !showConfig" title="Settings">          </button>
-          <button class="btn" (click)="clearInput()" title="Clear">          </button>
+          <button class="btn" (click)="clearInput()" title="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="config-panel" *ngIf="showConfig">
@@ -37,8 +42,12 @@
           <span class="badge" *ngIf="successMessage">{{ successMessage }}</span>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadJson()" title="Download">          </button>
-          <button class="btn" (click)="copyJson()" title="Copy">          </button>
+          <button class="btn" (click)="downloadJson()" title="Download">
+            <i class="fas fa-download"></i>
+          </button>
+          <button class="btn" (click)="copyJson()" title="Copy">
+            <i class="fas fa-copy"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -65,10 +74,10 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is XML to JSON Converter?</h2>
       <p class="content-text">
-        Need to convert your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> to <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON (JavaScript Object Notation)</a>? This tool does that instantly. JSON is the standard for modern APIs, while XML is common in legacy systems. Convert between them whenever you need.
+        Need to convert your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML</a> to <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">JSON</a>? This tool does that instantly. JSON is the standard for modern APIs, while XML is common in legacy systems. Convert between them whenever you need.
       </p>
       <p class="content-text">
-        According to <a href="https://developer.mozilla.org/en-US/docs/Web/XML" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>, both XML and JSON are popular data formats. XML is often used in enterprise systems, SOAP APIs, or legacy integrations, while JSON is standard for REST APIs and modern web applications. Our converter handles the conversion perfectly, preserving all your data structure.
+        Both XML and JSON are popular data formats. XML is often used in enterprise systems, SOAP APIs, or legacy integrations, while JSON is standard for REST APIs and modern web applications. The converter handles the conversion perfectly, preserving all your data structure.
       </p>
       <p class="content-text">
         Everything happens in your browser – your data stays private. Convert, download, and use your JSON file right away.

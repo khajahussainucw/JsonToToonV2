@@ -38,11 +38,15 @@
           <h2>XML Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
+            <i class="fas fa-upload"></i> <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">          </button>
+          <button class="btn" (click)="clearInput()" aria-label="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -57,9 +61,11 @@
           <h2>C# Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadCsharp()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadCsharp()" aria-label="Download">
+            <i class="fas fa-download"></i> <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <i class="fas fa-copy"></i> <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -115,13 +121,13 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is XML to C# Converter?</h2>
       <p class="content-text">
-        Need C# classes from your XML? This tool converts your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> data into C# POCO (Plain Old CLR Object) classes. Perfect for .NET developers who need to deserialize XML into strongly-typed objects using <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">XML serialization</a>.
+        Building <a href="https://dotnet.microsoft.com/" target="_blank" rel="noopener noreferrer">.NET</a> apps and need C# classes from XML? This tool generates clean C# POCO classes with XML serialization support. Perfect for .NET projects where you're working with XML data from APIs or config files.
       </p>
       <p class="content-text">
-        According to <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">Microsoft's documentation</a>, strongly-typed classes with XML attributes are essential for XML serialization in .NET. Our converter generates clean C# classes with properties, proper naming conventions, XML attributes, and support for nested elements and attributes.
+        Instead of manually writing C# classes and XML attributes, paste your XML and get ready-to-use code. The converter handles nested structures, XML attributes, and all the C#-specific details automatically. Works great with <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-serialization" target="_blank" rel="noopener noreferrer">System.Xml.Serialization</a>.
       </p>
       <p class="content-text">
-        Everything happens in your browser – your data stays private. Generate, copy, and use your C# classes right away in your .NET projects.
+        Everything runs locally in your browser. Your XML never leaves your machine – generate, download, and start using the classes right away.
       </p>
     </section>
 
@@ -132,13 +138,13 @@
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">Automatic Class Generation</h3>
-            <p class="feature-description">We analyze your XML structure and generate C# classes automatically. Nested elements become separate classes, arrays become List&lt;T&gt;, XML attributes become properties with [XmlAttribute], and properties follow C# naming conventions.</p>
+            <p class="feature-description">Analyzes your XML and generates C# classes automatically. Nested elements become separate classes, arrays become List&lt;T&gt;, XML attributes become properties with [XmlAttribute].</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <h3 class="feature-title">XML Serialization Support</h3>
-            <p class="feature-description">Generated classes include XML serialization attributes like [XmlElement], [XmlAttribute], and [XmlText] for proper XML serialization/deserialization with System.Xml.Serialization.</p>
+            <p class="feature-description">Generated classes include XML serialization attributes like [XmlElement], [XmlAttribute], and [XmlText] for proper serialization/deserialization.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">

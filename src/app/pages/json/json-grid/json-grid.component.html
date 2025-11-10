@@ -9,13 +9,16 @@
         <button class="btn btn-sm btn-dark" (click)="autoSizeAll()" *ngIf="hasValidJson" title="Auto-size columns">          <span class="d-none d-md-inline"> Auto Size</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="downloadAsExcel()" *ngIf="hasValidJson" title="Download as Excel">          <span class="d-none d-md-inline"> Excel</span>
+        <button class="btn btn-sm btn-dark" (click)="downloadAsExcel()" *ngIf="hasValidJson" title="Download as Excel">
+          <i class="fas fa-download"></i> <span class="d-none d-md-inline"> Excel</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="downloadAsCSV()" *ngIf="hasValidJson" title="Download as CSV">          <span class="d-none d-md-inline"> CSV</span>
+        <button class="btn btn-sm btn-dark" (click)="downloadAsCSV()" *ngIf="hasValidJson" title="Download as CSV">
+          <i class="fas fa-download"></i> <span class="d-none d-md-inline"> CSV</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">          <span class="d-none d-md-inline"> Sample</span>
+        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
+          <i class="fas fa-file-code"></i> <span class="d-none d-md-inline"> Sample</span>
         </button>
 
         <button class="btn btn-sm btn-dark" (click)="openShareModal()">          <span class="d-none d-md-inline"> Share</span>
@@ -186,7 +189,8 @@
         </div>
       </div>
       <div class="modal-footer bg-light">
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">          <span class="d-none d-md-inline"> Try Sample</span>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">
+          <i class="fas fa-file-code"></i> <span class="d-none d-md-inline"> Try Sample</span>
         </button>
         <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">          <span class="d-none d-md-inline"> Close</span>
         </button>

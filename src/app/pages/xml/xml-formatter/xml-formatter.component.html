@@ -14,11 +14,15 @@
           <h2>Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="fileInput.click()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="fileInput.click()" aria-label="Upload">
+            <i class="fas fa-upload"></i> <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">          </button>
+          <button class="btn" (click)="clearInput()" aria-label="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -33,11 +37,14 @@
           <h2>Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadXml()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadXml()" aria-label="Download">
+            <i class="fas fa-download"></i> <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="minifyXml()" aria-label="Minify">            <span class="d-none d-md-inline">Minify</span>
+          <button class="btn" (click)="minifyXml()" aria-label="Minify">
+            <span class="d-none d-md-inline">Minify</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
+            <i class="fas fa-copy"></i> <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -71,10 +78,10 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is XML Formatter?</h2>
       <p class="content-text">
-        Got messy XML that's impossible to read? This tool fixes that. It takes your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> and makes it beautiful – proper indentation, line breaks, everything organized. Whether you're debugging API responses, checking config files, or just trying to understand what your XML actually says, this makes it readable.
+        Got messy XML that's impossible to read? This tool fixes that. It takes your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML</a> and makes it readable – proper indentation, line breaks, everything organized. Whether you're debugging API responses, checking config files, or just trying to understand what your XML actually says, this makes it readable.
       </p>
       <p class="content-text">
-        According to <a href="https://developer.mozilla.org/en-US/docs/Web/XML" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>, XML is widely used for data storage and configuration. Our formatter follows XML standards, so your formatted XML is always valid and standards-compliant.
+        XML is widely used for data storage and configuration. The formatter follows XML standards, so your formatted XML is always valid and standards-compliant.
       </p>
       <p class="content-text">
         Best part? Everything happens instantly in your browser. No server uploads, no data storage – just paste, format, and copy. Your XML stays private.

@@ -33,9 +33,15 @@
       <div class="panel-header">
         <div class="panel-header-left"><h2>XML Input</h2></div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleXml()"><span class="d-none d-md-inline">Sample</span></button>
-          <button class="btn" (click)="triggerFileUpload()"><span class="d-none d-md-inline">Upload</span></button>
-          <button class="btn" (click)="clearInput()"></button>
+          <button class="btn" (click)="loadSampleXml()">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="triggerFileUpload()">
+            <i class="fas fa-upload"></i> <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()" aria-label="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper"><div #inputEditor class="editor"></div></div>
@@ -44,8 +50,12 @@
       <div class="panel-header">
         <div class="panel-header-left"><h2>Python Output</h2></div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadPython()"><span class="d-none d-md-inline">Download</span></button>
-          <button class="btn" (click)="copyToClipboard()"><span class="d-none d-md-inline">Copy</span></button>
+          <button class="btn" (click)="downloadPython()">
+            <i class="fas fa-download"></i> <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()">
+            <i class="fas fa-copy"></i> <span class="d-none d-md-inline">Copy</span>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper"><div #outputEditor class="editor"></div></div>
@@ -73,7 +83,7 @@
         Need Python classes from your XML? This tool generates clean Python code with dataclasses or regular classes. Perfect for <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer">Django</a> or <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer">Flask</a> projects where you're dealing with XML data.
       </p>
       <p class="content-text">
-        Instead of manually parsing XML with ElementTree or lxml, generate typed classes that make your code cleaner and easier to maintain. The converter handles nested structures, attributes, and all that XML complexity automatically.
+        Instead of manually parsing XML with <a href="https://docs.python.org/3/library/xml.etree.elementtree.html" target="_blank" rel="noopener noreferrer">ElementTree</a> or <a href="https://lxml.de/" target="_blank" rel="noopener noreferrer">lxml</a>, generate typed classes that make your code cleaner and easier to maintain. The converter handles nested structures, attributes, and all that XML complexity automatically. Python's <a href="https://docs.python.org/3/library/xml.html" target="_blank" rel="noopener noreferrer">XML libraries</a> work great with these generated classes.
       </p>
       <p class="content-text">
         Everything runs locally in your browser. Your XML never leaves your machine – generate, download, and start using the classes right away.
@@ -131,7 +141,7 @@
           <div class="step-number">1</div>
           <div class="step-content">
             <h3 class="step-title">Paste or Upload XML</h3>
-            <p class="step-description">Paste your XML into the left editor, or upload a file. Click "Sample" to see an example. Make sure your XML is valid – use our <a routerLink="/xml-validator">XML Validator</a> first if needed.</p>
+            <p class="step-description">Paste your XML into the left editor, or upload a file. Click "Sample" to see an example. Make sure your XML is valid according to the <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">W3C XML specification</a> – use our <a routerLink="/xml-validator">XML Validator</a> first if needed.</p>
           </div>
         </div>
         <div class="step-item">
@@ -192,7 +202,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-question">What Python version does it generate?</h3>
-          <p class="faq-answer">The code works with Python 3.7+. If you enable dataclasses, you'll need Python 3.7 or later. Without dataclasses, it works with older Python versions too.</p>
+          <p class="faq-answer">The code works with Python 3.7+. If you enable dataclasses, you'll need Python 3.7 or later. Without dataclasses, it works with older Python versions too. Check the <a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python documentation</a> for version-specific features.</p>
         </div>
         <div class="faq-item">
           <h3 class="faq-question">Does it use dataclasses or regular classes?</h3>
@@ -225,7 +235,7 @@
         <a routerLink="/xml-to-go" class="tool-link"><span>XML to Go</span></a>
       </div>
       <p class="content-text mt-4">
-        Need to validate or format your XML first? Try our <a routerLink="/xml-validator">XML Validator</a> or <a routerLink="/xml-formatter">XML Formatter</a>.
+        Need to validate or format your XML first? Try the <a routerLink="/xml-validator">XML Validator</a> or <a routerLink="/xml-formatter">XML Formatter</a>. For more information about XML, check out <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">W3C XML</a> or the guide on <a href="https://developer.mozilla.org/en-US/docs/Web/XML" target="_blank" rel="noopener noreferrer">MDN</a>.
       </p>
     </section>
 

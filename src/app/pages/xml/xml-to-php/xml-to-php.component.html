@@ -33,9 +33,15 @@
       <div class="panel-header">
         <div class="panel-header-left"><h2>XML Input</h2></div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleXml()"><span class="d-none d-md-inline">Sample</span></button>
-          <button class="btn" (click)="triggerFileUpload()"><span class="d-none d-md-inline">Upload</span></button>
-          <button class="btn" (click)="clearInput()"></button>
+          <button class="btn" (click)="loadSampleXml()">
+            <i class="fas fa-file-code"></i> <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="triggerFileUpload()">
+            <i class="fas fa-upload"></i> <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()" aria-label="Clear">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper"><div #inputEditor class="editor"></div></div>
@@ -44,8 +50,12 @@
       <div class="panel-header">
         <div class="panel-header-left"><h2>PHP Output</h2></div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadPhp()"><span class="d-none d-md-inline">Download</span></button>
-          <button class="btn" (click)="copyToClipboard()"><span class="d-none d-md-inline">Copy</span></button>
+          <button class="btn" (click)="downloadPhp()">
+            <i class="fas fa-download"></i> <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()">
+            <i class="fas fa-copy"></i> <span class="d-none d-md-inline">Copy</span>
+          </button>
         </div>
       </div>
       <div class="editor-wrapper"><div #outputEditor class="editor"></div></div>
