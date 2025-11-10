@@ -1,0 +1,242 @@
+<div class="xml-beautifier-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">XML Beautifier</h1>
+    <p class="page-description">Beautify XML with customizable formatting options</p>
+  </div>
+  
+  <div class="options-bar">
+    <label>Indent Size:</label>
+    <input type="number" [(ngModel)]="indentSize" (change)="onIndentChange()" min="1" max="8" class="indent-input" />
+    <span>spaces</span>
+  </div>
+  
+  <input type="file" #fileInput accept=".xml" style="display: none;" (change)="uploadFile($event)" />
+  <div class="editors-wrapper">
+    <!-- Left Panel (Input) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Input</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="loadSampleXml()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
+          </button>
+          <button class="btn" (click)="fileInput.click()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
+          </button>
+          <button class="btn" (click)="clearInput()">          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #inputEditor class="editor"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel (Output) -->
+    <div class="editor-container">
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Beautified Output</h2>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" (click)="downloadXml()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
+          </button>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="editor-wrapper">
+        <div #outputEditor class="editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Toast -->
+<div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+  <div class="toast" [class.show]="!!errorMessage" role="alert">
+    <div class="toast-header bg-danger text-white">      <strong class="me-auto">Error</strong>
+      <button type="button" class="btn-close btn-close-white" (click)="errorMessage = ''"></button>
+    </div>
+    <div class="toast-body">{{ errorMessage }}</div>
+  </div>
+  <div class="toast" [class.show]="!!copySuccessMessage" role="alert">
+    <div class="toast-header bg-success text-white">      <strong class="me-auto">Success</strong>
+    </div>
+    <div class="toast-body">{{ copySuccessMessage }}</div>
+  </div>
+</div>
+
+<!-- SEO Content Section -->
+<div class="content-section">
+  <div class="container-fluid px-4 py-5">
+    
+    <!-- Introduction Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What is XML Beautifier?</h2>
+      <p class="content-text">
+        Need to format your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> with custom indentation? XML Beautifier gives you more control than standard formatters. Customize indentation size to match your project's coding standards, team preferences, or personal style. Perfect when you need consistent formatting across your XML files.
+      </p>
+      <p class="content-text">
+        According to <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">W3C XML specification</a>, proper formatting makes XML more readable and maintainable. Our beautifier preserves all your data and structure while giving you control over indentation. Works great with config files, API responses, or any XML that needs consistent formatting.
+      </p>
+      <p class="content-text">
+        Everything happens in your browser – your XML never leaves your computer. Beautify, download, and use your formatted XML right away.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What Makes This Tool Different</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Customizable Indentation</h3>
+            <p class="feature-description">Choose your indentation size from 1 to 8 spaces. Match your project's coding standards or personal preferences. Perfect for teams with specific style guides.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Preserves Structure</h3>
+            <p class="feature-description">All your XML data and structure stays intact. We only add formatting – no data loss, no structure changes. Your XML stays valid and functional.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Real-Time Preview</h3>
+            <p class="feature-description">See your formatted XML instantly as you type or paste. Adjust indentation and see the changes immediately. No waiting, no delays.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">File Upload Support</h3>
+            <p class="feature-description">Got a big file? Just upload it. Works great for formatting those massive XML configs or data files without copy-pasting.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Download Formatted XML</h3>
+            <p class="feature-description">One click to download your beautified XML file. Drop it into your project and use it immediately. Perfect for version control or sharing.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Standards Compliant</h3>
+            <p class="feature-description">The formatted XML follows XML standards. Valid XML that works with any XML parser, validator, or tool. Use our <a routerLink="/xml-validator">XML Validator</a> to verify.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">How It Works</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste or Upload XML</h3>
+            <p class="step-description">Paste your XML into the left editor, or click "Upload" to load a file. The XML should be valid – use our <a routerLink="/xml-validator">XML Validator</a> first if you're not sure. You can also click "Sample" to see an example.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Choose Indentation</h3>
+            <p class="step-description">Select your preferred indentation size (1-8 spaces). The formatted output appears instantly on the right. Adjust until it matches your style.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Download or Copy</h3>
+            <p class="step-description">Click "Download" to save the beautified XML file, or "Copy" to copy it to your clipboard. The formatted XML is ready to use in your project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">When You'd Actually Use This</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Team Consistency</h3>
+            <p class="use-case-text">Format XML files to match your team's coding standards. Consistent indentation makes code reviews easier and reduces merge conflicts. Perfect for teams with style guides.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Legacy Code Cleanup</h3>
+            <p class="use-case-text">Beautify messy XML files from legacy systems. Make them readable and maintainable. Perfect for refactoring or migrating old XML configs.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Documentation</h3>
+            <p class="use-case-text">Format XML examples for documentation. Clean, readable XML is easier to understand in tutorials or API docs. Perfect for technical writing.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Version Control</h3>
+            <p class="use-case-text">Format XML before committing to version control. Consistent formatting makes diffs cleaner and easier to review. Perfect for Git workflows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">Common Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Is my XML data stored?</h3>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your XML never leaves your computer – we don't even see it.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What's the difference between Beautifier and Formatter?</h3>
+          <p class="faq-answer">Beautifier lets you customize indentation size, while Formatter uses standard formatting. Use Beautifier when you need specific indentation, Formatter for standard formatting.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Does it change my XML structure?</h3>
+          <p class="faq-answer">No. We only add whitespace and formatting. All your data, attributes, and structure stay exactly the same. Your XML stays valid.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What indentation sizes are supported?</h3>
+          <p class="faq-answer">You can choose from 1 to 8 spaces. Most teams use 2 or 4 spaces. Pick what matches your project's style guide.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Does it work with large XML files?</h3>
+          <p class="faq-answer">Yep. Since everything happens in your browser, it depends on your device. Small to medium XML files format instantly. Really huge files might take a few seconds.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I use tabs instead of spaces?</h3>
+          <p class="faq-answer">Currently we support spaces only. This ensures consistent formatting across different editors and systems. Most XML style guides recommend spaces anyway.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="content-block">
+      <h2 class="content-heading">Other XML Tools You Might Need</h2>
+      <p class="content-text mb-4">Beautification is just one XML task. Here are other tools that work well together:</p>
+      <div class="related-tools-grid">
+        <a routerLink="/xml-formatter" class="tool-link"><span>XML Formatter</span></a>
+        <a routerLink="/xml-validator" class="tool-link"><span>XML Validator</span></a>
+        <a routerLink="/xml-parser" class="tool-link"><span>XML Parser</span></a>
+        <a routerLink="/xml-minifier" class="tool-link"><span>XML Minifier</span></a>
+        <a routerLink="/xml-to-json" class="tool-link"><span>XML to JSON</span></a>
+        <a routerLink="/xml-to-yaml" class="tool-link"><span>XML to YAML</span></a>
+        <a routerLink="/xml-to-csv" class="tool-link"><span>XML to CSV</span></a>
+        <a routerLink="/xml-escape" class="tool-link"><span>XML Escape</span></a>
+      </div>
+      <p class="content-text mt-4">
+        Need to learn more about XML? Check out <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">W3C XML</a> or the comprehensive <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">XML specification</a>.
+      </p>
+    </section>
+
+  </div>
+</div>
+

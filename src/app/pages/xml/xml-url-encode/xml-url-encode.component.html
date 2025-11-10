@@ -98,11 +98,147 @@
     <section class="content-block mb-5">
       <h2 class="content-heading">What is XML URL Encode/Decode?</h2>
       <p class="content-text">
-        Need to URL encode your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML</a> or decode URL-encoded XML? This tool does both instantly. URL encoding is commonly used for passing XML data in URLs, query parameters, or HTTP requests where special characters need to be encoded.
+        Need to URL encode your <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">XML (eXtensible Markup Language)</a> or decode URL-encoded XML? This tool does both instantly. URL encoding (also called percent encoding) is commonly used for passing XML data in URLs, query parameters, or HTTP requests where special characters need to be encoded.
       </p>
       <p class="content-text">
-        Everything happens in your browser – your data stays private. Encode or decode, download, and use your files right away.
+        According to <a href="https://datatracker.ietf.org/doc/html/rfc3986" target="_blank" rel="noopener noreferrer">RFC 3986</a>, URL encoding converts special characters to percent-encoded format (e.g., space becomes %20). Our tool handles XML encoding and decoding perfectly. First, validate your XML using our <a routerLink="/xml-validator">XML Validator</a> if needed, then encode or decode it.
       </p>
+      <p class="content-text">
+        Everything happens in your browser – your XML never leaves your computer. Encode or decode, download, and use your files right away.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">What Makes This Tool Different</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Bidirectional Conversion</h3>
+            <p class="feature-description">Switch between encoding and decoding with one click. Encode XML to URL format or decode URL-encoded XML back to normal XML. Perfect for round-trip conversions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Standards Compliant</h3>
+            <p class="feature-description">Follows RFC 3986 URL encoding standards exactly. Encoded data works correctly with any URL decoder. Perfect for web APIs and HTTP requests.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Real-Time Processing</h3>
+            <p class="feature-description">See encoded or decoded output instantly as you type or paste. No waiting, no delays – immediate results.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">File Upload Support</h3>
+            <p class="feature-description">Got a big file? Just upload it. Works great for encoding or decoding those massive XML files without copy-pasting.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Download Results</h3>
+            <p class="feature-description">One click to download your encoded or decoded XML file. Drop it into your project and use it immediately.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <h3 class="feature-title">URL Safe</h3>
+            <p class="feature-description">URL-encoded XML is safe for URLs, query parameters, and HTTP requests. No special characters that could break URL parsing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">How It Works</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste or Upload XML</h3>
+            <p class="step-description">Paste your XML into the left editor, or click "Upload" to load a file. You can also click "Sample" to see an example. The tool works with any XML content.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Choose Mode</h3>
+            <p class="step-description">Click "Encode" to convert XML to URL-encoded format, or "Decode" to convert URL-encoded XML back to normal XML. The output appears instantly on the right.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Download or Copy</h3>
+            <p class="step-description">Click "Download" to save the encoded or decoded XML file, or "Copy" to copy it to your clipboard. The processed XML is ready to use in your project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">When You'd Actually Use This</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">API Query Parameters</h3>
+            <p class="use-case-text">Encode XML to URL format for passing in API query parameters. Many REST APIs accept XML data in URL parameters. Perfect for GET requests with XML payloads.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">HTTP Requests</h3>
+            <p class="use-case-text">Encode XML for HTTP request headers or query strings. URL encoding ensures XML data survives HTTP transmission without corruption. Perfect for web APIs.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Web Forms</h3>
+            <p class="use-case-text">Encode XML for submission in web forms. HTML forms require URL encoding for special characters. Perfect for form-based XML submission.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="use-case-card">
+            <h3 class="use-case-title">Data Transmission</h3>
+            <p class="use-case-text">Encode or decode XML during data transmission. Ensure XML is properly formatted for different systems or protocols. Perfect for system integrations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-block mb-5">
+      <h2 class="content-heading">Common Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Is my XML data stored?</h3>
+          <p class="faq-answer">Nope. Everything happens right in your browser. Your XML never leaves your computer – we don't even see it.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What is URL encoding?</h3>
+          <p class="faq-answer">URL encoding converts special characters to percent-encoded format. For example, space becomes %20, &lt; becomes %3C, and &gt; becomes %3E. This makes data safe for URLs.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I encode and decode multiple times?</h3>
+          <p class="faq-answer">Yes, but encoding already-encoded XML will double-encode it. Decoding normal XML won't change it. Use the toggle to switch modes as needed.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What's the difference between URL encoding and Base64?</h3>
+          <p class="faq-answer">URL encoding is for URLs and query parameters, while Base64 is for embedding binary data in text. Use URL encoding for URLs, Base64 for other text-based protocols.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Does it work with large XML files?</h3>
+          <p class="faq-answer">Yep. Since everything happens in your browser, it depends on your device. Small to medium XML files encode/decode instantly. Really huge files might take a few seconds.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Is URL encoding secure?</h3>
+          <p class="faq-answer">URL encoding is encoding, not encryption. It's not secure for sensitive data – anyone can decode it. Use encryption if you need security.</p>
+        </div>
+      </div>
     </section>
 
     <!-- Related Tools Section -->
@@ -114,10 +250,15 @@
         <a routerLink="/xml-validator" class="tool-link"><span>XML Validator</span></a>
         <a routerLink="/xml-parser" class="tool-link"><span>XML Parser</span></a>
         <a routerLink="/xml-minifier" class="tool-link"><span>XML Minifier</span></a>
+        <a routerLink="/xml-escape" class="tool-link"><span>XML Escape</span></a>
+        <a routerLink="/xml-to-base64" class="tool-link"><span>XML to Base64</span></a>
         <a routerLink="/xml-to-json" class="tool-link"><span>XML to JSON</span></a>
         <a routerLink="/xml-to-yaml" class="tool-link"><span>XML to YAML</span></a>
         <a routerLink="/xml-to-csv" class="tool-link"><span>XML to CSV</span></a>
       </div>
+      <p class="content-text mt-4">
+        Need to learn more about XML? Check out <a href="https://www.w3.org/XML/" target="_blank" rel="noopener noreferrer">W3C XML</a> or the comprehensive <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">XML specification</a>. For URL encoding, check out <a href="https://datatracker.ietf.org/doc/html/rfc3986" target="_blank" rel="noopener noreferrer">RFC 3986</a>.
+      </p>
     </section>
 
   </div>

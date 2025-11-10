@@ -15,12 +15,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="mainNavbar">
-        <!-- Category Label - Moved to right side -->
-        <span class="navbar-text category-label d-none d-lg-block ms-auto me-3">
-          {{ currentPageType }} Tools
-        </span>
-        
-        <ul class="navbar-nav mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <!-- 4 Primary Page Links -->
           <li class="nav-item" *ngFor="let page of primaryPages">
             <a class="nav-link" [routerLink]="page.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: page.route === '/'}">

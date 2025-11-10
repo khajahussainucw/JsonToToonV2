@@ -121,6 +121,31 @@ footer hr {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Enhanced Navigation Links */
+.nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  position: relative;
+  margin: 0 0.15rem;
+}
+
+.nav-link:hover {
+  color: #f97316 !important;
+  background-color: rgba(249, 115, 22, 0.15);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  color: #f97316 !important;
+  font-weight: 600;
+  background-color: rgba(249, 115, 22, 0.2);
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3);
+}
+  
 /* Dropdown menu styling */
 .dropdown-menu {
   background-color: #343a40;
@@ -140,44 +165,27 @@ footer hr {
 
 .dropdown-item:hover {
   background-color: #495057;
-  color: #4ade80;
+  color: #f97316;
 }
 
 .dropdown-item.active {
-  background-color: #4ade80;
-  color: #000;
+  background-color: #f97316;
+  color: #fff;
   font-weight: 600;
 }
 
 .nav-link.dropdown-toggle {
   font-weight: 500;
   font-size: 1rem;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px;
+  margin: 0 0.15rem;
 }
 
 .nav-link.dropdown-toggle:hover {
-  color: #4ade80 !important;
-}
-
-/* Category Label Styling */
-.category-label {
-  color: #4ade80;
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: 0.5rem 1.5rem;
-  margin-left: 0;
-  margin-right: 0;
-  border-left: 3px solid #4ade80;
-  border-right: 3px solid #4ade80;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'monospace', Courier, monospace;
-  background-color: rgba(74, 222, 128, 0.1);
-  border-radius: 4px;
-}
-
-@media (max-width: 991px) {
-  .category-label {
-    display: none !important;
-  }
+  color: #f97316 !important;
+  background-color: rgba(249, 115, 22, 0.15);
+  transform: translateY(-1px);
 }

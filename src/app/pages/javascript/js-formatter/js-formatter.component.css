@@ -98,7 +98,7 @@
 
 .btn {
   padding: 4px 8px;
-  border: 3px solid #4ade80;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.875rem;
@@ -113,7 +113,7 @@
 
 .btn:hover {
   background-color: #424649;
-  border-color: #4ade80;
+  border-color: transparent;
 }
 
 .editor-wrapper {
@@ -258,7 +258,7 @@
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(74, 222, 128, 0.25);
-  border-color: #4ade80;
+  border-color: transparent;
 }
 
 .feature-icon {
@@ -311,7 +311,7 @@
 
 .step-item:hover {
   box-shadow: 0 4px 12px rgba(74, 222, 128, 0.25);
-  border-color: #4ade80;
+  border-color: transparent;
 }
 
 .step-number {
@@ -399,7 +399,7 @@
 
 .faq-item:hover {
   box-shadow: 0 2px 8px rgba(74, 222, 128, 0.2);
-  border-color: #4ade80;
+  border-color: transparent;
 }
 
 .faq-question {
@@ -458,7 +458,7 @@
 
 .tool-link:hover {
   background: #f8f9fa;
-  border-color: #4ade80;
+  border-color: transparent;
   color: #4ade80;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(74, 222, 128, 0.3);
