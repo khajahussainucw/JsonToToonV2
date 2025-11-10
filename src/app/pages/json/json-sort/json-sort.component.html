@@ -14,17 +14,11 @@
           <h2>Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSample()" aria-label="Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSample()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()">          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -39,13 +33,9 @@
           <h2>Sorted Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadResult()" aria-label="Download">
-            <i class="fas fa-download"></i>
-            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadResult()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -78,18 +68,14 @@
 <!-- Copy Success Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">
       {{ copySuccessMessage }}
     </div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">
       {{ copyErrorMessage }}
@@ -192,25 +178,25 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-code-branch me-2"></i>Version Control</h3>
+            <h3 class="use-case-title">Version Control</h3>
             <p class="use-case-text">Sort JSON keys before committing to Git. Makes diffs cleaner and easier to review, reducing noise from key reordering.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-balance-scale me-2"></i>Comparison</h3>
+            <h3 class="use-case-title">Comparison</h3>
             <p class="use-case-text">Sort JSON objects before comparing them. When keys are in the same order, differences are easier to spot. Works great with our <a routerLink="/json-diff">JSON Diff</a> tool.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-file-code me-2"></i>Config Files</h3>
+            <h3 class="use-case-title">Config Files</h3>
             <p class="use-case-text">Organize configuration files for better readability. Sorted keys make it easier to find and edit specific settings.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-search me-2"></i>Easier Navigation</h3>
+            <h3 class="use-case-title">Easier Navigation</h3>
             <p class="use-case-text">Find properties faster in large JSON objects. Alphabetical order makes it easier to locate specific keys.</p>
           </div>
         </div>
@@ -253,37 +239,21 @@
       <h2 class="content-heading">Other JSON Tools You Might Need</h2>
       <p class="content-text mb-4">Sorting is just one JSON task. Here are other tools that work well together:</p>
       <div class="related-tools-grid">
-        <a routerLink="/" class="tool-link">
-          <i class="fas fa-table"></i>
-          <span>JSON Parser</span>
+        <a routerLink="/" class="tool-link"><span>JSON Parser</span>
         </a>
-        <a routerLink="/json-formatter" class="tool-link">
-          <i class="fas fa-indent"></i>
-          <span>JSON Formatter</span>
+        <a routerLink="/json-formatter" class="tool-link"><span>JSON Formatter</span>
         </a>
-        <a routerLink="/json-validator" class="tool-link">
-          <i class="fas fa-check-circle"></i>
-          <span>JSON Validator</span>
+        <a routerLink="/json-validator" class="tool-link"><span>JSON Validator</span>
         </a>
-        <a routerLink="/json-diff" class="tool-link">
-          <i class="fas fa-code-branch"></i>
-          <span>JSON Diff</span>
+        <a routerLink="/json-diff" class="tool-link"><span>JSON Diff</span>
         </a>
-        <a routerLink="/json-fixer" class="tool-link">
-          <i class="fas fa-wrench"></i>
-          <span>JSON Fixer</span>
+        <a routerLink="/json-fixer" class="tool-link"><span>JSON Fixer</span>
         </a>
-        <a routerLink="/json-minifier" class="tool-link">
-          <i class="fas fa-compress"></i>
-          <span>JSON Minifier</span>
+        <a routerLink="/json-minifier" class="tool-link"><span>JSON Minifier</span>
         </a>
-        <a routerLink="/json-to-csv" class="tool-link">
-          <i class="fas fa-file-csv"></i>
-          <span>JSON to CSV</span>
+        <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
         </a>
-        <a routerLink="/json-schema-generator" class="tool-link">
-          <i class="fas fa-project-diagram"></i>
-          <span>JSON Schema Generator</span>
+        <a routerLink="/json-schema-generator" class="tool-link"><span>JSON Schema Generator</span>
         </a>
       </div>
       <p class="content-text mt-4">

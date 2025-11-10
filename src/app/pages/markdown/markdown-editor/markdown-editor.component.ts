@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Title, Meta, DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
@@ -23,6 +23,7 @@ export class MarkdownEditorComponent implements AfterViewInit {
   htmlOutput: SafeHtml = '';
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title,
     private metaService: Meta,
     private sanitizer: DomSanitizer
@@ -35,10 +36,18 @@ export class MarkdownEditorComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initializeEditor();
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.initializeEditor();
+      }, 100);
+    }
   }
 
   private initializeEditor() {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
+      console.error('Ace editor is not loaded');
+      return;
+    }
     this.aceInputEditor = ace.edit(this.inputEditor.nativeElement);
     this.aceInputEditor.setTheme('ace/theme/github');
     this.aceInputEditor.session.setMode('ace/mode/markdown');

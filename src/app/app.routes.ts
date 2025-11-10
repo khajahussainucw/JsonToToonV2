@@ -42,6 +42,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/json/json-to-typescript/json-to-typescript.component').then(m => m.JsonToTypescriptComponent)
   },
   {
+    path: 'json-to-csharp',
+    loadComponent: () => import('./pages/json/json-to-csharp/json-to-csharp.component').then(m => m.JsonToCsharpComponent)
+  },
+  {
     path: 'json-escape',
     loadComponent: () => import('./pages/json/json-escape/json-escape.component').then(m => m.JsonEscapeComponent)
   },
@@ -152,6 +156,10 @@ export const routes: Routes = [
   {
     path: 'xml-to-csv',
     loadComponent: () => import('./pages/xml/xml-to-csv/xml-to-csv.component').then(m => m.XmlToCsvComponent)
+  },
+  {
+    path: 'xml-parser',
+    loadComponent: () => import('./pages/xml/xml-parser/xml-parser.component').then(m => m.XmlParserComponent)
   },
   {
     path: 'js-formatter',

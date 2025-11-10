@@ -9,27 +9,17 @@
   <div class="toolbar">
     <div class="toolbar-left">
       <input type="file" #fileInput accept=".csv,.txt" style="display: none;" (change)="onFileSelected($event)" />
-      <button class="btn" (click)="loadSampleData()" aria-label="Sample Data">
-        <i class="fas fa-flask"></i>
-        <span class="d-none d-md-inline">Sample Data</span>
+      <button class="btn" (click)="loadSampleData()" aria-label="Sample Data">        <span class="d-none d-md-inline">Sample Data</span>
       </button>
-      <button class="btn" (click)="triggerFileUpload()" aria-label="Upload CSV">
-        <i class="fas fa-upload"></i>
-        <span class="d-none d-md-inline">Upload CSV</span>
+      <button class="btn" (click)="triggerFileUpload()" aria-label="Upload CSV">        <span class="d-none d-md-inline">Upload CSV</span>
       </button>
-      <button class="btn" (click)="clearData()" aria-label="Clear">
-        <i class="fas fa-trash"></i>
-        <span class="d-none d-md-inline">Clear</span>
+      <button class="btn" (click)="clearData()" aria-label="Clear">        <span class="d-none d-md-inline">Clear</span>
       </button>
     </div>
     <div class="toolbar-right">
-      <button class="btn btn-export" (click)="exportToCsv()" aria-label="Export CSV">
-        <i class="fas fa-file-csv"></i>
-        <span class="d-none d-md-inline">Export CSV</span>
+      <button class="btn btn-export" (click)="exportToCsv()" aria-label="Export CSV">        <span class="d-none d-md-inline">Export CSV</span>
       </button>
-      <button class="btn btn-export" (click)="exportToJson()" aria-label="Export JSON">
-        <i class="fas fa-file-code"></i>
-        <span class="d-none d-md-inline">Export JSON</span>
+      <button class="btn btn-export" (click)="exportToJson()" aria-label="Export JSON">        <span class="d-none d-md-inline">Export JSON</span>
       </button>
     </div>
   </div>
@@ -71,18 +61,14 @@
 <!-- Success Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">
       {{ copySuccessMessage }}
     </div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">
       {{ copyErrorMessage }}

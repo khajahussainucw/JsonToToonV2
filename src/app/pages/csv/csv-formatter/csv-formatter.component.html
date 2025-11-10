@@ -14,17 +14,11 @@
           <h2>CSV Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleCsv()" aria-label="Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleCsv()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()">          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -45,17 +39,11 @@
             <button class="btn btn-sm" [class.active]="delimiter === ';'" (click)="changeDelimiter(';')">;</button>
             <button class="btn btn-sm" [class.active]="delimiter === '\t'" (click)="changeDelimiter('\t')">Tab</button>
           </div>
-          <button class="btn" [class.active]="removeEmptyLines" (click)="toggleEmptyLines()" aria-label="Remove Empty Lines">
-            <i class="fas fa-filter"></i>
-            <span class="d-none d-md-inline">Remove Empty</span>
+          <button class="btn" [class.active]="removeEmptyLines" (click)="toggleEmptyLines()" aria-label="Remove Empty Lines">            <span class="d-none d-md-inline">Remove Empty</span>
           </button>
-          <button class="btn" (click)="downloadCsv()" aria-label="Download">
-            <i class="fas fa-download"></i>
-            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadCsv()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -86,16 +74,12 @@
 <!-- Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">{{ copySuccessMessage }}</div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">{{ copyErrorMessage }}</div>
   </div>

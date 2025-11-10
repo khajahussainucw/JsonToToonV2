@@ -14,21 +14,13 @@
           <h2>CSV Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadValidSample()" aria-label="Valid Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Valid Sample</span>
+          <button class="btn" (click)="loadValidSample()" aria-label="Valid Sample">            <span class="d-none d-md-inline">Valid Sample</span>
           </button>
-          <button class="btn btn-warning-custom" (click)="loadInvalidSample()" aria-label="Invalid Sample">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span class="d-none d-md-inline">Invalid Sample</span>
+          <button class="btn btn-warning-custom" (click)="loadInvalidSample()" aria-label="Invalid Sample">            <span class="d-none d-md-inline">Invalid Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()">          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -48,9 +40,7 @@
           </span>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -81,16 +71,12 @@
 <!-- Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">{{ copySuccessMessage }}</div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">{{ copyErrorMessage }}</div>
   </div>

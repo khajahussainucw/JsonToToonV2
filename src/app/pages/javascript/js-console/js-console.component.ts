@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
 declare var ace: any;
@@ -17,7 +17,11 @@ export class JsConsoleComponent implements AfterViewInit {
   private aceEditor: any;
   consoleOutput: string[] = [];
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private titleService: Title, 
+    private metaService: Meta
+  ) {
     this.titleService.setTitle('JavaScript Console - Online JS Playground');
     this.metaService.updateTag({
       name: 'description',
@@ -26,10 +30,18 @@ export class JsConsoleComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initializeEditor();
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.initializeEditor();
+      }, 100);
+    }
   }
 
   private initializeEditor() {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
+      console.error('Ace editor is not loaded');
+      return;
+    }
     this.aceEditor = ace.edit(this.codeEditor.nativeElement);
     this.aceEditor.setTheme('ace/theme/github');
     this.aceEditor.session.setMode('ace/mode/javascript');

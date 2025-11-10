@@ -14,21 +14,13 @@
           <h2>JSON Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleJson()" aria-label="Valid Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Valid Sample</span>
+          <button class="btn" (click)="loadSampleJson()" aria-label="Valid Sample">            <span class="d-none d-md-inline">Valid Sample</span>
           </button>
-          <button class="btn btn-warning-custom" (click)="loadInvalidSample()" aria-label="Invalid Sample">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span class="d-none d-md-inline">Invalid Sample</span>
+          <button class="btn btn-warning-custom" (click)="loadInvalidSample()" aria-label="Invalid Sample">            <span class="d-none d-md-inline">Invalid Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()">          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -48,9 +40,7 @@
           </span>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -83,18 +73,14 @@
 <!-- Copy Success Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">
       {{ copySuccessMessage }}
     </div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">
       {{ copyErrorMessage }}
@@ -197,25 +183,25 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-code me-2"></i>API Development</h3>
+            <h3 class="use-case-title">API Development</h3>
             <p class="use-case-text">Validate API responses before processing them. Catch JSON errors early in development. Works great with <a href="https://swagger.io/" target="_blank" rel="noopener noreferrer">Swagger/OpenAPI</a> or <a href="https://graphql.org/" target="_blank" rel="noopener noreferrer">GraphQL</a> responses.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-file-code me-2"></i>Config File Checks</h3>
+            <h3 class="use-case-title">Config File Checks</h3>
             <p class="use-case-text">Before deploying, validate your JSON configuration files. One syntax error can break your entire application. Catch it early with our validator.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-graduation-cap me-2"></i>Learning JSON</h3>
+            <h3 class="use-case-title">Learning JSON</h3>
             <p class="use-case-text">New to JSON? Use the validator to check your work. Try the invalid sample to see what errors look like, then practice fixing them.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-bug me-2"></i>Debugging</h3>
+            <h3 class="use-case-title">Debugging</h3>
             <p class="use-case-text">Getting parsing errors in your code? Validate the JSON first. Our detailed error messages help you find the exact problem faster than trial and error.</p>
           </div>
         </div>
@@ -258,37 +244,21 @@
       <h2 class="content-heading">Other JSON Tools You Might Need</h2>
       <p class="content-text mb-4">Validation is just one step. Here are other tools that work well together:</p>
       <div class="related-tools-grid">
-        <a routerLink="/" class="tool-link">
-          <i class="fas fa-table"></i>
-          <span>JSON Parser</span>
+        <a routerLink="/" class="tool-link"><span>JSON Parser</span>
         </a>
-        <a routerLink="/json-formatter" class="tool-link">
-          <i class="fas fa-indent"></i>
-          <span>JSON Formatter</span>
+        <a routerLink="/json-formatter" class="tool-link"><span>JSON Formatter</span>
         </a>
-        <a routerLink="/json-minifier" class="tool-link">
-          <i class="fas fa-compress"></i>
-          <span>JSON Minifier</span>
+        <a routerLink="/json-minifier" class="tool-link"><span>JSON Minifier</span>
         </a>
-        <a routerLink="/json-fixer" class="tool-link">
-          <i class="fas fa-wrench"></i>
-          <span>JSON Fixer</span>
+        <a routerLink="/json-fixer" class="tool-link"><span>JSON Fixer</span>
         </a>
-        <a routerLink="/json-to-csv" class="tool-link">
-          <i class="fas fa-file-csv"></i>
-          <span>JSON to CSV</span>
+        <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
         </a>
-        <a routerLink="/json-to-yaml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to YAML</span>
+        <a routerLink="/json-to-yaml" class="tool-link"><span>JSON to YAML</span>
         </a>
-        <a routerLink="/json-to-xml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to XML</span>
+        <a routerLink="/json-to-xml" class="tool-link"><span>JSON to XML</span>
         </a>
-        <a routerLink="/json-schema-generator" class="tool-link">
-          <i class="fas fa-project-diagram"></i>
-          <span>JSON Schema Generator</span>
+        <a routerLink="/json-schema-generator" class="tool-link"><span>JSON Schema Generator</span>
         </a>
       </div>
       <p class="content-text mt-4">

@@ -14,17 +14,11 @@
           <h2>JSON Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSample()" aria-label="Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSample()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()">          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -39,13 +33,9 @@
           <h2>Query Results</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadResult()" aria-label="Download">
-            <i class="fas fa-download"></i>
-            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadResult()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -101,18 +91,14 @@
 <!-- Copy Success Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">
       {{ copySuccessMessage }}
     </div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">
       {{ copyErrorMessage }}
@@ -215,25 +201,25 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-search me-2"></i>Data Extraction</h3>
+            <h3 class="use-case-title">Data Extraction</h3>
             <p class="use-case-text">Extract specific values from large JSON documents. Find all prices, names, or IDs without manually navigating the structure.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-filter me-2"></i>Filtering Arrays</h3>
+            <h3 class="use-case-title">Filtering Arrays</h3>
             <p class="use-case-text">Use filter expressions to find items matching conditions. Find all products under a certain price, or users in a specific city.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-code me-2"></i>API Testing</h3>
+            <h3 class="use-case-title">API Testing</h3>
             <p class="use-case-text">Test API responses by extracting specific fields. Verify that expected values exist and match your requirements.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-database me-2"></i>Data Analysis</h3>
+            <h3 class="use-case-title">Data Analysis</h3>
             <p class="use-case-text">Extract data for analysis or reporting. Pull specific fields from JSON exports to use in spreadsheets or other tools.</p>
           </div>
         </div>
@@ -276,37 +262,21 @@
       <h2 class="content-heading">Other JSON Tools You Might Need</h2>
       <p class="content-text mb-4">Querying is just one JSON task. Here are other tools that work well together:</p>
       <div class="related-tools-grid">
-        <a routerLink="/" class="tool-link">
-          <i class="fas fa-table"></i>
-          <span>JSON Parser</span>
+        <a routerLink="/" class="tool-link"><span>JSON Parser</span>
         </a>
-        <a routerLink="/json-formatter" class="tool-link">
-          <i class="fas fa-indent"></i>
-          <span>JSON Formatter</span>
+        <a routerLink="/json-formatter" class="tool-link"><span>JSON Formatter</span>
         </a>
-        <a routerLink="/json-validator" class="tool-link">
-          <i class="fas fa-check-circle"></i>
-          <span>JSON Validator</span>
+        <a routerLink="/json-validator" class="tool-link"><span>JSON Validator</span>
         </a>
-        <a routerLink="/json-diff" class="tool-link">
-          <i class="fas fa-code-branch"></i>
-          <span>JSON Diff</span>
+        <a routerLink="/json-diff" class="tool-link"><span>JSON Diff</span>
         </a>
-        <a routerLink="/json-merge" class="tool-link">
-          <i class="fas fa-layer-group"></i>
-          <span>JSON Merge</span>
+        <a routerLink="/json-merge" class="tool-link"><span>JSON Merge</span>
         </a>
-        <a routerLink="/json-to-csv" class="tool-link">
-          <i class="fas fa-file-csv"></i>
-          <span>JSON to CSV</span>
+        <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
         </a>
-        <a routerLink="/json-to-yaml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to YAML</span>
+        <a routerLink="/json-to-yaml" class="tool-link"><span>JSON to YAML</span>
         </a>
-        <a routerLink="/json-schema-generator" class="tool-link">
-          <i class="fas fa-project-diagram"></i>
-          <span>JSON Schema Generator</span>
+        <a routerLink="/json-schema-generator" class="tool-link"><span>JSON Schema Generator</span>
         </a>
       </div>
       <p class="content-text mt-4">

@@ -30,17 +30,11 @@
           <h2>JSON Input</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleJson()" aria-label="Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleJson()" aria-label="Sample">            <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="clearInput()">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()">          </button>
         </div>
       </div>
       <div class="editor-wrapper">
@@ -55,13 +49,9 @@
           <h2>Minified Output</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadJson()" aria-label="Download">
-            <i class="fas fa-download"></i>
-            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadJson()" aria-label="Download">            <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyToClipboard()" aria-label="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -94,18 +84,14 @@
 <!-- Copy Success Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="copySuccessVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-check-circle text-success me-2"></i>
-      <strong class="me-auto">Success</strong>
+    <div class="toast-header">      <strong class="me-auto">Success</strong>
     </div>
     <div class="toast-body">
       {{ copySuccessMessage }}
     </div>
   </div>
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">
       {{ copyErrorMessage }}
@@ -208,25 +194,25 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-rocket me-2"></i>Production Deployment</h3>
+            <h3 class="use-case-title">Production Deployment</h3>
             <p class="use-case-text">Minify JSON before deploying to production. Smaller files mean faster API responses, reduced bandwidth costs, and better performance for your users.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-mobile-alt me-2"></i>Mobile Optimization</h3>
+            <h3 class="use-case-title">Mobile Optimization</h3>
             <p class="use-case-text">Every byte counts on mobile networks. Minified JSON reduces data usage, improving load times and user experience on slower connections.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-server me-2"></i>API Requests</h3>
+            <h3 class="use-case-title">API Requests</h3>
             <p class="use-case-text">Send minified JSON in API requests to reduce payload size. Works great with <a href="https://swagger.io/" target="_blank" rel="noopener noreferrer">REST APIs</a> or <a href="https://graphql.org/" target="_blank" rel="noopener noreferrer">GraphQL</a> queries.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-file-code me-2"></i>Config Files</h3>
+            <h3 class="use-case-title">Config Files</h3>
             <p class="use-case-text">Minify JSON configuration files for production. Keeps settings valid while reducing file size, especially useful for large configs.</p>
           </div>
         </div>
@@ -269,37 +255,21 @@
       <h2 class="content-heading">Other JSON Tools You Might Need</h2>
       <p class="content-text mb-4">Minification is just one JSON task. Here are other tools that work well together:</p>
       <div class="related-tools-grid">
-        <a routerLink="/" class="tool-link">
-          <i class="fas fa-table"></i>
-          <span>JSON Parser</span>
+        <a routerLink="/" class="tool-link"><span>JSON Parser</span>
         </a>
-        <a routerLink="/json-formatter" class="tool-link">
-          <i class="fas fa-indent"></i>
-          <span>JSON Formatter</span>
+        <a routerLink="/json-formatter" class="tool-link"><span>JSON Formatter</span>
         </a>
-        <a routerLink="/json-validator" class="tool-link">
-          <i class="fas fa-check-circle"></i>
-          <span>JSON Validator</span>
+        <a routerLink="/json-validator" class="tool-link"><span>JSON Validator</span>
         </a>
-        <a routerLink="/json-to-csv" class="tool-link">
-          <i class="fas fa-file-csv"></i>
-          <span>JSON to CSV</span>
+        <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
         </a>
-        <a routerLink="/json-to-yaml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to YAML</span>
+        <a routerLink="/json-to-yaml" class="tool-link"><span>JSON to YAML</span>
         </a>
-        <a routerLink="/json-to-xml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to XML</span>
+        <a routerLink="/json-to-xml" class="tool-link"><span>JSON to XML</span>
         </a>
-        <a routerLink="/json-to-toon" class="tool-link">
-          <i class="fas fa-file-alt"></i>
-          <span>JSON to TOON</span>
+        <a routerLink="/json-to-toon" class="tool-link"><span>JSON to TOON</span>
         </a>
-        <a routerLink="/json-schema-generator" class="tool-link">
-          <i class="fas fa-project-diagram"></i>
-          <span>JSON Schema Generator</span>
+        <a routerLink="/json-schema-generator" class="tool-link"><span>JSON Schema Generator</span>
         </a>
       </div>
       <p class="content-text mt-4">

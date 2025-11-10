@@ -6,34 +6,22 @@
         <span class="d-inline d-md-none">JSON Grid</span>
       </span>
       <div class="action-buttons">
-        <button class="btn btn-sm btn-dark" (click)="autoSizeAll()" *ngIf="hasValidJson" title="Auto-size columns">
-          <i class="fas fa-arrows-alt-h"></i>
-          <span class="d-none d-md-inline"> Auto Size</span>
+        <button class="btn btn-sm btn-dark" (click)="autoSizeAll()" *ngIf="hasValidJson" title="Auto-size columns">          <span class="d-none d-md-inline"> Auto Size</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="downloadAsExcel()" *ngIf="hasValidJson" title="Download as Excel">
-          <i class="fas fa-file-excel"></i>
-          <span class="d-none d-md-inline"> Excel</span>
+        <button class="btn btn-sm btn-dark" (click)="downloadAsExcel()" *ngIf="hasValidJson" title="Download as Excel">          <span class="d-none d-md-inline"> Excel</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="downloadAsCSV()" *ngIf="hasValidJson" title="Download as CSV">
-          <i class="fas fa-file-csv"></i>
-          <span class="d-none d-md-inline"> CSV</span>
+        <button class="btn btn-sm btn-dark" (click)="downloadAsCSV()" *ngIf="hasValidJson" title="Download as CSV">          <span class="d-none d-md-inline"> CSV</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
-          <i class="fas fa-flask"></i>
-          <span class="d-none d-md-inline"> Sample</span>
+        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">          <span class="d-none d-md-inline"> Sample</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="openShareModal()">
-          <i class="fas fa-share-square"></i>
-          <span class="d-none d-md-inline"> Share</span>
+        <button class="btn btn-sm btn-dark" (click)="openShareModal()">          <span class="d-none d-md-inline"> Share</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
-          <i class="fas fa-info-circle"></i>
-        </button>
+        <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">        </button>
       </div>
     </div>
 
@@ -98,9 +86,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-dark text-white py-3">
-        <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">
-          <i class="fas fa-info-circle me-3"></i>
-          JSON Grid Tool
+        <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">          JSON Grid Tool
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -116,23 +102,17 @@
             <div class="col-md-6">
               <ul class="list-unstyled">
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-sort text-primary me-3 fs-5"></i>
-                    <strong>Sort Columns</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Sort Columns</strong>
                   </div>
                   <p class="text-muted ms-4">Click column headers to sort ascending/descending. Hold Shift to sort by multiple columns.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-filter text-warning me-3 fs-5"></i>
-                    <strong>Filter Data</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Filter Data</strong>
                   </div>
                   <p class="text-muted ms-4">Click the filter icon in headers to search specific columns or use text/number filters.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-edit text-success me-3 fs-5"></i>
-                    <strong>Edit Cells</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Edit Cells</strong>
                   </div>
                   <p class="text-muted ms-4">Double-click cells to edit values. Press Enter to save or Escape to cancel.</p>
                 </li>
@@ -141,23 +121,17 @@
             <div class="col-md-6">
               <ul class="list-unstyled">
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-file-export text-info me-3 fs-5"></i>
-                    <strong>Export Files</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Export Files</strong>
                   </div>
                   <p class="text-muted ms-4">Download as Excel (.xlsx) or CSV to use in spreadsheet apps or databases.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-list-ol text-danger me-3 fs-5"></i>
-                    <strong>Pages</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Pages</strong>
                   </div>
                   <p class="text-muted ms-4">Browse large datasets page-by-page. Change page size in the bottom-right dropdown.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-arrows-alt-h text-secondary me-3 fs-5"></i>
-                    <strong>Resize Columns</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Resize Columns</strong>
                   </div>
                   <p class="text-muted ms-4">Drag column edges to adjust width, or click "Auto Size" to fit all columns.</p>
                 </li>
@@ -212,13 +186,9 @@
         </div>
       </div>
       <div class="modal-footer bg-light">
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">
-          <i class="fas fa-flask"></i>
-          <span class="d-none d-md-inline"> Try Sample</span>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">          <span class="d-none d-md-inline"> Try Sample</span>
         </button>
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">
-          <i class="fas fa-times"></i>
-          <span class="d-none d-md-inline"> Close</span>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">          <span class="d-none d-md-inline"> Close</span>
         </button>
       </div>
     </div>
@@ -322,25 +292,25 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-chart-bar me-2"></i>Data Analysis</h3>
+            <h3 class="use-case-title">Data Analysis</h3>
             <p class="use-case-text">Analyze JSON data from APIs or databases. Sort and filter to find patterns, outliers, or specific records quickly.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-file-excel me-2"></i>Data Export</h3>
+            <h3 class="use-case-title">Data Export</h3>
             <p class="use-case-text">Convert JSON arrays to Excel or CSV for use in spreadsheet apps. Great for reporting or sharing data.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-search me-2"></i>Data Exploration</h3>
+            <h3 class="use-case-title">Data Exploration</h3>
             <p class="use-case-text">Explore large JSON datasets visually. Use filters and sorting to understand data structure and content.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-database me-2"></i>API Responses</h3>
+            <h3 class="use-case-title">API Responses</h3>
             <p class="use-case-text">View API response data in a table format. Easier to read and analyze than raw JSON, especially for large datasets.</p>
           </div>
         </div>
@@ -383,37 +353,21 @@
       <h2 class="content-heading">Other JSON Tools You Might Need</h2>
       <p class="content-text mb-4">Grid view is just one JSON task. Here are other tools that work well together:</p>
       <div class="related-tools-grid">
-        <a routerLink="/" class="tool-link">
-          <i class="fas fa-table"></i>
-          <span>JSON Parser</span>
+        <a routerLink="/" class="tool-link"><span>JSON Parser</span>
         </a>
-        <a routerLink="/json-formatter" class="tool-link">
-          <i class="fas fa-indent"></i>
-          <span>JSON Formatter</span>
+        <a routerLink="/json-formatter" class="tool-link"><span>JSON Formatter</span>
         </a>
-        <a routerLink="/json-to-csv" class="tool-link">
-          <i class="fas fa-file-csv"></i>
-          <span>JSON to CSV</span>
+        <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
         </a>
-        <a routerLink="/json-validator" class="tool-link">
-          <i class="fas fa-check-circle"></i>
-          <span>JSON Validator</span>
+        <a routerLink="/json-validator" class="tool-link"><span>JSON Validator</span>
         </a>
-        <a routerLink="/json-fixer" class="tool-link">
-          <i class="fas fa-wrench"></i>
-          <span>JSON Fixer</span>
+        <a routerLink="/json-fixer" class="tool-link"><span>JSON Fixer</span>
         </a>
-        <a routerLink="/json-sort" class="tool-link">
-          <i class="fas fa-sort"></i>
-          <span>JSON Sort</span>
+        <a routerLink="/json-sort" class="tool-link"><span>JSON Sort</span>
         </a>
-        <a routerLink="/json-diff" class="tool-link">
-          <i class="fas fa-code-branch"></i>
-          <span>JSON Diff</span>
+        <a routerLink="/json-diff" class="tool-link"><span>JSON Diff</span>
         </a>
-        <a routerLink="/json-to-yaml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to YAML</span>
+        <a routerLink="/json-to-yaml" class="tool-link"><span>JSON to YAML</span>
         </a>
       </div>
       <p class="content-text mt-4">

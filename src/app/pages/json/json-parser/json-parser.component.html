@@ -7,44 +7,28 @@
       </span>
       <div class="action-buttons">
 
-        <button class="btn btn-sm btn-dark  animate__animated animate__flipInX" *ngIf="hasValidJson" (click)="openTableModal()">
-          <i class="fas fa-expand"></i>
-          <span class="d-none d-md-inline"> Maximize</span>
+        <button class="btn btn-sm btn-dark  animate__animated animate__flipInX" *ngIf="hasValidJson" (click)="openTableModal()">          <span class="d-none d-md-inline"> Maximize</span>
         </button>
 
         <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleParentTranspose()" 
-                [class.active]="isParentTransposed" title="Transpose main table">
-          <i class="fas fa-arrows-rotate"></i>
-          <span class="d-none d-lg-inline"> Main</span>
+                [class.active]="isParentTransposed" title="Transpose main table">          <span class="d-none d-lg-inline"> Main</span>
         </button>
 
         <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleChildTranspose()" 
-                [class.active]="isChildTransposed" title="Transpose nested tables">
-          <i class="fas fa-arrows-rotate"></i>
-          <span class="d-none d-lg-inline"> Nested</span>
+                [class.active]="isChildTransposed" title="Transpose nested tables">          <span class="d-none d-lg-inline"> Nested</span>
         </button>
 
-        <button class="btn btn-sm btn-dark  " (click)="downloadAsExcel()" *ngIf="hasValidJson">
-          <i class="fas fa-file-excel"></i>
-          <span class="d-none d-md-inline"> Excel</span>
+        <button class="btn btn-sm btn-dark  " (click)="downloadAsExcel()" *ngIf="hasValidJson">          <span class="d-none d-md-inline"> Excel</span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">
-          <i class="fas fa-flask"></i>
-          <span class="d-none d-md-inline"> Sample</span>
+        <button class="btn btn-sm btn-dark" (click)="loadSampleData()">          <span class="d-none d-md-inline"> Sample</span>
         </button>
-        <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleEditMode()" [class.active]="isEditMode">
-          <i class="fas fa-pen"></i>
-          <span class="d-none d-md-inline"> {{ isEditMode ? 'Done' : 'Edit' }} </span>
+        <button class="btn btn-sm btn-dark" *ngIf="hasValidJson" (click)="toggleEditMode()" [class.active]="isEditMode">          <span class="d-none d-md-inline"> {{ isEditMode ? 'Done' : 'Edit' }} </span>
         </button>
 
-        <button class="btn btn-sm btn-dark" (click)="openShareModal()">
-          <i class="fas fa-share-square"></i>
-          <span class="d-none d-md-inline"> Share</span>
+        <button class="btn btn-sm btn-dark" (click)="openShareModal()">          <span class="d-none d-md-inline"> Share</span>
         </button>
-        <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">
-          <i class="fas fa-info-circle"></i>
-          <!--<span class="d-none d-md-inline"> Info</span>-->
+        <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#infoModal">          <!--<span class="d-none d-md-inline"> Info</span>-->
         </button>
 
       </div>
@@ -62,8 +46,7 @@
         <div class="json-input-container" style="flex: 0.22 1 0%;">
           <div #editor class="editor"></div>
           <!--<div class="error-bar" *ngIf="errorMessage">
-            <div class="error-message">
-              <i class="fas fa-exclamation-circle text-danger"></i> {{ errorMessage }}
+            <div class="error-message"> {{ errorMessage }}
             </div>
           </div>-->
         </div>
@@ -85,7 +68,7 @@
                       <tr>
                         <th *ngFor="let col of columns" class="position-relative">
                           <b>{{ col }}</b>
-                          <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(col)"><i class="fas fa-times "></i></button>
+                          <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(col)"></button>
                         </th>
                       </tr>
                       <tr>
@@ -138,7 +121,7 @@
                       <tr *ngFor="let key of columns; let i = index">
                         <td class="nested-key position-relative">
                           <b>{{ key }}</b>
-                          <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(key)"><i class="fas fa-times "></i></button>
+                          <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(key)"></button>
                         </td>
                         <td (dblclick)="isEditMode && startEdit(0, key)">
                           <ng-container *ngIf="(isArray(tableData[0][key]) || isObject(tableData[0][key])) && !(isEditMode && editingRow === 0 && editingCol === key); else singleObjectCell">
@@ -277,25 +260,25 @@
       <div class="row g-4">
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-code me-2"></i>Debugging API Responses</h3>
+            <h3 class="use-case-title">Debugging API Responses</h3>
             <p class="use-case-text">Your API returns JSON, but you can't tell if the structure is right. Paste it here, see it as a table, and spot missing fields instantly. Works great with <a href="https://swagger.io/" target="_blank" rel="noopener noreferrer">Swagger/OpenAPI</a> responses or <a href="https://graphql.org/" target="_blank" rel="noopener noreferrer">GraphQL</a> queries. Much faster than writing a script just to view data.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-database me-2"></i>Quick Data Analysis</h3>
+            <h3 class="use-case-title">Quick Data Analysis</h3>
             <p class="use-case-text">Got a JSON export from your database or analytics tool? Instead of writing Python scripts or loading it into a database, paste it here. Filter what you need, export to Excel, and you're done. Perfect for one-off analysis tasks without the overhead.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-cog me-2"></i>Config File Reviews</h3>
+            <h3 class="use-case-title">Config File Reviews</h3>
             <p class="use-case-text">Trying to understand a complex <a href="https://jsonapi.org/" target="_blank" rel="noopener noreferrer">JSON:API</a> config or settings file? View it as a table to see the structure clearly. Edit values directly if you need to make changes. Way easier than hunting through nested braces.</p>
           </div>
         </div>
         <div class="col-md-6">
           <div class="use-case-card">
-            <h3 class="use-case-title"><i class="fas fa-users me-2"></i>Showing Data to Non-Devs</h3>
+            <h3 class="use-case-title">Showing Data to Non-Devs</h3>
             <p class="use-case-text">Need to show JSON data to a PM or designer who doesn't read code? Generate a share link and send it over. They see a clean table instead of raw JSON. Saves you from explaining what brackets mean.</p>
           </div>
         </div>
@@ -338,37 +321,21 @@
       <h2 class="content-heading">Other JSON Tools You Might Need</h2>
       <p class="content-text mb-4">This parser is great for viewing data, but sometimes you need other things. Here are our other tools that work well together:</p>
       <div class="related-tools-grid">
-        <a routerLink="/json-formatter" class="tool-link">
-          <i class="fas fa-indent"></i>
-          <span>JSON Formatter</span>
+        <a routerLink="/json-formatter" class="tool-link"><span>JSON Formatter</span>
         </a>
-        <a routerLink="/json-validator" class="tool-link">
-          <i class="fas fa-check-circle"></i>
-          <span>JSON Validator</span>
+        <a routerLink="/json-validator" class="tool-link"><span>JSON Validator</span>
         </a>
-        <a routerLink="/json-minifier" class="tool-link">
-          <i class="fas fa-compress"></i>
-          <span>JSON Minifier</span>
+        <a routerLink="/json-minifier" class="tool-link"><span>JSON Minifier</span>
         </a>
-        <a routerLink="/json-to-csv" class="tool-link">
-          <i class="fas fa-file-csv"></i>
-          <span>JSON to CSV</span>
+        <a routerLink="/json-to-csv" class="tool-link"><span>JSON to CSV</span>
         </a>
-        <a routerLink="/json-to-yaml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to YAML</span>
+        <a routerLink="/json-to-yaml" class="tool-link"><span>JSON to YAML</span>
         </a>
-        <a routerLink="/json-to-xml" class="tool-link">
-          <i class="fas fa-file-code"></i>
-          <span>JSON to XML</span>
+        <a routerLink="/json-to-xml" class="tool-link"><span>JSON to XML</span>
         </a>
-        <a routerLink="/json-to-toon" class="tool-link">
-          <i class="fas fa-file-alt"></i>
-          <span>JSON to TOON</span>
+        <a routerLink="/json-to-toon" class="tool-link"><span>JSON to TOON</span>
         </a>
-        <a routerLink="/json-schema-generator" class="tool-link">
-          <i class="fas fa-project-diagram"></i>
-          <span>JSON Schema Generator</span>
+        <a routerLink="/json-schema-generator" class="tool-link"><span>JSON Schema Generator</span>
         </a>
       </div>
       <p class="content-text mt-4">
@@ -479,25 +446,20 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width:98vw; ">
     <div class="modal-content" style="height:96vh !important; ">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title d-flex align-items-center" id="tableModalLabel">
-          <i class="fas fa-expand me-2"></i>
-          Maximized Table View
+        <h5 class="modal-title d-flex align-items-center" id="tableModalLabel">          Maximized Table View
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="closeTableModal()"></button>
       </div>
       <div class="modal-body">
         <div class="d-flex justify-content-end mb-3 gap-2">
           <button class="btn btn-sm btn-outline-dark" (click)="toggleParentTranspose()" 
-                  [class.active]="isParentTransposed" title="Transpose main table">
-            <i class="fas fa-arrows-rotate"></i> Main
+                  [class.active]="isParentTransposed" title="Transpose main table"> Main
           </button>
           <button class="btn btn-sm btn-outline-dark" (click)="toggleChildTranspose()" 
-                  [class.active]="isChildTransposed" title="Transpose nested tables">
-            <i class="fas fa-arrows-rotate"></i> Nested
+                  [class.active]="isChildTransposed" title="Transpose nested tables"> Nested
           </button>
           <button class="btn btn-sm btn-outline-dark" (click)="toggleEditMode()"
-                  [class.active]="isEditMode" title="Edit mode">
-            <i class="fas fa-pen"></i> Edit
+                  [class.active]="isEditMode" title="Edit mode"> Edit
           </button>
         </div>
         <div class="">
@@ -512,7 +474,7 @@
                   <tr>
                     <th *ngFor="let col of columns" class="position-relative">
                       <b>{{ col }}</b>
-                      <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(col)"><i class="fas fa-times "></i></button>
+                      <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(col)"></button>
                     </th>
                   </tr>
                   <tr>
@@ -565,7 +527,7 @@
                   <tr *ngFor="let key of columns; let i = index">
                     <td class="nested-key position-relative">
                       <b>{{ key }}</b>
-                      <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(key)"><i class="fas fa-times "></i></button>
+                      <button *ngIf="isEditMode" type="button" class="btn btn-link p-0 m-1 column-remove" title="Remove column" (click)="removeColumn(key)"></button>
                     </td>
                     <td (dblclick)="isEditMode && startEdit(0, key)">
                       <ng-container *ngIf="(isArray(tableData[0][key]) || isObject(tableData[0][key])) && !(isEditMode && editingRow === 0 && editingCol === key); else singleObjectCellModal">
@@ -592,9 +554,7 @@
         </div>
       </div>
       <div class="modal-footer bg-light">
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="closeTableModal()">
-          <i class="fas fa-times"></i>
-          <span class="d-none d-md-inline"> Close</span>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="closeTableModal()">          <span class="d-none d-md-inline"> Close</span>
         </button>
       </div>
     </div>
@@ -606,9 +566,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-dark text-white py-3">
-        <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">
-          <i class="fas fa-info-circle me-3"></i>
-          JSON Parser Tool
+        <h5 class="modal-title d-flex align-items-center fs-4" id="infoModalLabel">          JSON Parser Tool
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -625,23 +583,17 @@
             <div class="col-md-6">
               <ul class="list-unstyled">
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-magic text-primary me-3 fs-5"></i>
-                    <strong>Nested Data Support</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Nested Data Support</strong>
                   </div>
                   <p class="text-muted ms-4">Arrays and objects inside your JSON are automatically converted into nested tables.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-bolt text-warning me-3 fs-5"></i>
-                    <strong>Live Preview</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Live Preview</strong>
                   </div>
                   <p class="text-muted ms-4">Type or paste JSON and watch the table update in real-time as you edit.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-table text-success me-3 fs-5"></i>
-                    <strong>Edit Mode</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Edit Mode</strong>
                   </div>
                   <p class="text-muted ms-4">Click "Edit" to modify table values directly. Changes sync back to the JSON editor.</p>
                 </li>
@@ -650,23 +602,17 @@
             <div class="col-md-6">
               <ul class="list-unstyled">
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-file-export text-info me-3 fs-5"></i>
-                    <strong>Export to Excel</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Export to Excel</strong>
                   </div>
                   <p class="text-muted ms-4">Click "Excel" to download the table as an .xls file you can open in Excel or Google Sheets.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-expand-arrows-alt text-danger me-3 fs-5"></i>
-                    <strong>Fullscreen Mode</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Fullscreen Mode</strong>
                   </div>
                   <p class="text-muted ms-4">Hit "Maximize" to view the table fullscreen with column filters and search.</p>
                 </li>
                 <li class="feature-item mb-4">
-                  <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-code text-secondary me-3 fs-5"></i>
-                    <strong>Share with Others</strong>
+                  <div class="d-flex align-items-center mb-2">                    <strong>Share with Others</strong>
                   </div>
                   <p class="text-muted ms-4">Use "Share" to generate a URL that loads your JSON. Expires after your selected period.</p>
                 </li>
@@ -722,14 +668,10 @@
       </div>
       <div class="modal-footer bg-light">
 
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">
-          <i class="fas fa-flask"></i>
-          <span class="d-none d-md-inline"> Try Sample</span>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="loadSampleData()">          <span class="d-none d-md-inline"> Try Sample</span>
         </button>
 
-        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">
-          <i class="fas fa-times"></i>
-          <span class="d-none d-md-inline"> Close</span>
+        <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">          <span class="d-none d-md-inline"> Close</span>
         </button>
 
       </div>

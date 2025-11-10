@@ -11,14 +11,11 @@
           <h2>Input TOON</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleToon()" title="Load Sample">
-            <i class="fas fa-file-code"></i> Sample
+          <button class="btn" (click)="loadSampleToon()" title="Load Sample"> Sample
           </button>
-          <button class="btn" (click)="triggerFileUpload()" title="Upload File">
-            <i class="fas fa-upload"></i> Upload
+          <button class="btn" (click)="triggerFileUpload()" title="Upload File"> Upload
           </button>
-          <button class="btn" (click)="clearInput()" title="Clear">
-            <i class="fas fa-times"></i> Clear
+          <button class="btn" (click)="clearInput()" title="Clear"> Clear
           </button>
         </div>
       </div>
@@ -33,11 +30,9 @@
           <h2>Formatted TOON</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="copyToClipboard()" title="Copy to Clipboard">
-            <i class="fas fa-copy"></i> Copy
+          <button class="btn" (click)="copyToClipboard()" title="Copy to Clipboard"> Copy
           </button>
-          <button class="btn" (click)="downloadToon()" title="Download">
-            <i class="fas fa-download"></i> Download
+          <button class="btn" (click)="downloadToon()" title="Download"> Download
           </button>
         </div>
       </div>
@@ -58,9 +53,7 @@
   </div>
 
   <div class="toast" [class.show]="copyErrorVisible" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed; top: 80px; right: 20px; z-index: 1000; min-width: 300px;">
-    <div class="toast-header">
-      <i class="fas fa-exclamation-circle text-warning me-2"></i>
-      <strong class="me-auto">Warning</strong>
+    <div class="toast-header">      <strong class="me-auto">Warning</strong>
     </div>
     <div class="toast-body">
       {{ copyErrorMessage }}

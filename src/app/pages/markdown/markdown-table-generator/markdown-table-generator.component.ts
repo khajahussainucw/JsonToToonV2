@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -26,7 +26,11 @@ export class MarkdownTableGeneratorComponent implements AfterViewInit {
 
   tableData: string[][] = [];
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private titleService: Title, 
+    private metaService: Meta
+  ) {
     this.titleService.setTitle('Markdown Table Generator - Create Tables Online');
     this.metaService.updateTag({
       name: 'description',
@@ -37,11 +41,19 @@ export class MarkdownTableGeneratorComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initializeEditor();
-    this.generateTable();
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.initializeEditor();
+        this.generateTable();
+      }, 100);
+    }
   }
 
   private initializeEditor() {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
+      console.error('Ace editor is not loaded');
+      return;
+    }
     this.aceOutputEditor = ace.edit(this.outputEditor.nativeElement);
     this.aceOutputEditor.setTheme('ace/theme/github');
     this.aceOutputEditor.session.setMode('ace/mode/markdown');

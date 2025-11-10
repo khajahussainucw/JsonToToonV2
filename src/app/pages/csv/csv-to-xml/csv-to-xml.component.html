@@ -1,7 +1,7 @@
 <div class="csv-tool-container">
   <!-- Page Header -->
   <div class="page-header">
-    <h1 class="page-title"><i class="fas fa-code"></i> CSV to XML Converter</h1>
+    <h1 class="page-title"> CSV to XML Converter</h1>
     <p class="page-description">Convert CSV files to XML format with custom configuration</p>
   </div>
   
@@ -15,21 +15,13 @@
           <h2>Input CSV</h2>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="loadSampleCsv()" title="Load Sample">
-            <i class="fas fa-flask"></i>
-            <span class="d-none d-md-inline">Sample</span>
+          <button class="btn" (click)="loadSampleCsv()" title="Load Sample">            <span class="d-none d-md-inline">Sample</span>
           </button>
-          <button class="btn" (click)="fileInput.click()" title="Upload">
-            <i class="fas fa-upload"></i>
-            <span class="d-none d-md-inline">Upload</span>
+          <button class="btn" (click)="fileInput.click()" title="Upload">            <span class="d-none d-md-inline">Upload</span>
           </button>
-          <button class="btn" (click)="showConfig = !showConfig" title="Settings">
-            <i class="fas fa-cog"></i>
-            <span class="d-none d-md-inline">Settings</span>
+          <button class="btn" (click)="showConfig = !showConfig" title="Settings">            <span class="d-none d-md-inline">Settings</span>
           </button>
-          <button class="btn" (click)="clearInput()" title="Clear">
-            <i class="fas fa-trash"></i>
-          </button>
+          <button class="btn" (click)="clearInput()" title="Clear">          </button>
         </div>
       </div>
       <div class="config-panel" *ngIf="showConfig">
@@ -68,13 +60,9 @@
           <span class="badge" *ngIf="successMessage">{{ successMessage }}</span>
         </div>
         <div class="panel-actions">
-          <button class="btn" (click)="downloadXml()" title="Download">
-            <i class="fas fa-download"></i>
-            <span class="d-none d-md-inline">Download</span>
+          <button class="btn" (click)="downloadXml()" title="Download">            <span class="d-none d-md-inline">Download</span>
           </button>
-          <button class="btn" (click)="copyXml()" title="Copy">
-            <i class="fas fa-copy"></i>
-            <span class="d-none d-md-inline">Copy</span>
+          <button class="btn" (click)="copyXml()" title="Copy">            <span class="d-none d-md-inline">Copy</span>
           </button>
         </div>
       </div>
@@ -88,9 +76,7 @@
 <!-- Error Toast -->
 <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
   <div class="toast" [class.show]="!!errorMessage" role="alert">
-    <div class="toast-header bg-danger text-white">
-      <i class="fas fa-exclamation-triangle me-2"></i>
-      <strong class="me-auto">Error</strong>
+    <div class="toast-header bg-danger text-white">      <strong class="me-auto">Error</strong>
       <button type="button" class="btn-close btn-close-white" (click)="errorMessage = ''"></button>
     </div>
     <div class="toast-body">{{ errorMessage }}</div>

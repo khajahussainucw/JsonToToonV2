@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ViewChild, ElementRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -22,7 +22,11 @@ export class MarkdownFormatterComponent implements AfterViewInit {
   errorMessage = '';
   copySuccessMessage = '';
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private titleService: Title, 
+    private metaService: Meta
+  ) {
     this.titleService.setTitle('Markdown Formatter - Format and Beautify Markdown Online');
     this.metaService.updateTag({
       name: 'description',
@@ -31,10 +35,18 @@ export class MarkdownFormatterComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initializeEditor();
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.initializeEditor();
+      }, 100);
+    }
   }
 
   private initializeEditor() {
+    if (typeof window === 'undefined' || typeof ace === 'undefined') {
+      console.error('Ace editor is not loaded');
+      return;
+    }
     this.aceInputEditor = ace.edit(this.inputEditor.nativeElement);
     this.aceInputEditor.setTheme('ace/theme/github');
     this.aceInputEditor.session.setMode('ace/mode/markdown');
